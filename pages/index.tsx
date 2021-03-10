@@ -263,11 +263,11 @@ export default function DailyPct() {
           </select>
         </h2>
 
-        <div className="lg:flex">
+        <div className="xl:flex">
           <div className="pb-5 md:pb-10 lg:pb-20 lg:pr-4">
             {data ? (
               <RankingsChart
-                className="rounded-3xl shadow-2xl p-2 md:p-4 lg:p-8 lg:flex-1"
+                className="rounded-3xl shadow-2xl p-2 md:p-4 lg:p-8 xl:flex-1"
                 data={data}
                 maxRank={maxRank}
                 maxScore={maxScore}
@@ -291,7 +291,7 @@ export default function DailyPct() {
           <div
             className={
               results.length
-                ? 'table-wrapper pb-5 md:pb-10 lg:pb-20 lg:max-w-3xl lg:flex-1'
+                ? 'table-wrapper pb-5 md:pb-10 lg:pb-20 xl:max-w-3xl xl:flex-1'
                 : 'loading'
             }
           >

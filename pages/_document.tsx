@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <body
           style={{
             height: '100%',
+            width: '100%',
             backgroundImage:
               'linear-gradient(to right, #3B435C, #4A536D, #545D77)',
           }}
