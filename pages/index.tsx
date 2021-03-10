@@ -230,12 +230,12 @@ export default function DailyPct() {
       style={{ height: '100%', fontFamily: 'Helvetica' }}
     >
       <Head>
-        <title>TopCryptos - {title}</title>
+        <title>Top Cryptos - {title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto">
-        <h1 className="logo pt-10 pb-20 text-8xl font-bold">Top Cryptos</h1>
-        <h2 className="text-5xl pb-20">
+        <h1 className="logo pt-10 pb-20 text-6xl font-bold">Top Cryptos</h1>
+        <h2 className="text-4xl pb-20">
           Top performing cryptocurrencies over{' '}
           <select
             className="bg-gray-600 rounded-md border-2 border-gray-100"

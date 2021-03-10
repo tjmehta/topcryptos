@@ -62,7 +62,11 @@ export function D3Chart({
     select(window).on('resize.' + container.attr('id'), resize)
     // get width of container and resize svg to fit it
     function resize() {
-      const targetWidth = parseInt(container.style('width'))
+      const _width = Math.min(
+        parseInt(container.style('width'), 10),
+        Math.round(window.innerHeight * 0.75),
+      )
+      const targetWidth = _width
       const targetHeight = Math.round(targetWidth / aspect)
       svg.attr('width', targetWidth)
       svg.attr('height', targetHeight)
