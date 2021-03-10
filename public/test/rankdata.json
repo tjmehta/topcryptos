@@ -1,0 +1,178 @@
+{
+  "ranking_values": {
+    "foo": [
+      {
+        "id": "ntpa",
+        "value": 59.1976085
+      },
+      {
+        "id": "ntht",
+        "value": 44.1010164
+      },
+      {
+        "id": "prag",
+        "value": 38.9905168
+      },
+      {
+        "id": "noti",
+        "value": 28.2587239
+      },
+      {
+        "id": "drip",
+        "value": 21.9267023
+      },
+      {
+        "id": "flll",
+        "value": 15.5421067
+      },
+      {
+        "id": "heto",
+        "value": 12.216709
+      },
+      {
+        "id": "cprp",
+        "value": 11.5320694
+      },
+      {
+        "id": "sprk",
+        "value": 11.2949606
+      },
+      {
+        "id": "isfm",
+        "value": 10.2965667
+      },
+      {
+        "id": "nuef",
+        "value": 8.5787654
+      },
+      {
+        "id": "cprw",
+        "value": 6.9073265
+      },
+      {
+        "id": "cpra",
+        "value": 6.6854331
+      },
+      {
+        "id": "orag",
+        "value": 0
+      }
+    ],
+    "bar": [
+      {
+        "id": "ntpa",
+        "value": 40.7301661
+      },
+      {
+        "id": "ntht",
+        "value": 40.1623997
+      },
+      {
+        "id": "noti",
+        "value": 28.2885676
+      },
+      {
+        "id": "prag",
+        "value": 17.692261
+      },
+      {
+        "id": "drip",
+        "value": 12.3346203
+      },
+      {
+        "id": "heto",
+        "value": 11.0153901
+      },
+      {
+        "id": "nuef",
+        "value": 9.8583117
+      },
+      {
+        "id": "cprp",
+        "value": 9.5001056
+      },
+      {
+        "id": "isfm",
+        "value": 9.4943845
+      },
+      {
+        "id": "cpra",
+        "value": 8.0929976
+      },
+      {
+        "id": "flll",
+        "value": 6.948348
+      },
+      {
+        "id": "sprk",
+        "value": 6.8584992
+      },
+      {
+        "id": "cprw",
+        "value": 6.1271892
+      },
+      {
+        "id": "orag",
+        "value": null
+      }
+    ],
+    "qux": [
+      {
+        "id": "ntpa",
+        "value": 39.9745382
+      },
+      {
+        "id": "ntht",
+        "value": 38.2018416
+      },
+      {
+        "id": "noti",
+        "value": 27.9118377
+      },
+      {
+        "id": "prag",
+        "value": 20.6946352
+      },
+      {
+        "id": "isfm",
+        "value": 11.4482751
+      },
+      {
+        "id": "nuef",
+        "value": 11.0955987
+      },
+      {
+        "id": "heto",
+        "value": 10.4677161
+      },
+      {
+        "id": "cprp",
+        "value": 8.4809729
+      },
+      {
+        "id": "drip",
+        "value": 7.5883244
+      },
+      {
+        "id": "cpra",
+        "value": 6.6365235
+      },
+      {
+        "id": "cprw",
+        "value": 5.9303402
+      },
+      {
+        "id": "flll",
+        "value": 4.6178556
+      },
+      {
+        "id": "sprk",
+        "value": 4.3954689
+      },
+      {
+        "id": "orag",
+        "value": 0
+      }
+    ]
+  }
+}

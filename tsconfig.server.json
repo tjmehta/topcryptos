@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "dist",
+    "isolatedModules": false,
+    "noEmit": false,
+    "baseUrl": "./"
+  },
+  "include": [
+    "app/**/*.ts"
+  ]
+}
