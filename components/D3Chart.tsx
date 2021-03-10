@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export function D3Chart({
   children,
+  className,
   renderKey,
 }: {
   children: (
@@ -10,7 +11,8 @@ export function D3Chart({
     height: number,
     width: number,
   ) => unknown
-  renderKey: {}
+  className: string
+  renderKey: string
 }) {
   const ref = useRef<SVGSVGElement | null>(null)
   const [height, setHeight] = useState<number>(1536)
@@ -34,7 +36,7 @@ export function D3Chart({
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
     children(svg, chartHeight, chartWidth)
-  }, [ref.current, height, width, renderKey])
+  }, [ref.current, height, width, renderKey, className])
 
   function responsivefy(
     svg: Selection<
@@ -76,5 +78,5 @@ export function D3Chart({
     resize()
   }
 
-  return <svg ref={ref} className="chart" />
+  return <svg ref={ref} className={'chart ' + className} />
 }

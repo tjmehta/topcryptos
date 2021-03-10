@@ -212,7 +212,7 @@ export default function DailyPct() {
     }
   }, [data])
 
-  const title = `Top Performing Cryptocurrencies Over ${limit} Days`
+  const title = `Top Performing Cryptocurrencies`
   type ResultType = typeof resultsByCryptoId[0]
   const results = useMemo(() => {
     const results = Object.values(resultsByCryptoId ?? {})
@@ -234,9 +234,11 @@ export default function DailyPct() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto">
-        <h1 className="logo pt-10 pb-20 text-6xl font-bold">Top Cryptos</h1>
-        <h2 className="text-4xl pb-20">
-          Top performing cryptocurrencies over{' '}
+        <h1 className="logo font-bold pt-5 pb-10 text-4xl md:pt-6 md:pb-12 md:text-5xl lg:pt-10 lg:pb-20 lg:text-6xl">
+          Top Cryptos
+        </h1>
+        <h2 className="pb-5 text-xl md:pb-10 md:text-2xl lg:pb-20 lg:text-4xl">
+          Top performing cryptos over{' '}
           <select
             className="bg-gray-600 rounded-md border-2 border-gray-100"
             value={limit.toString()}
@@ -262,9 +264,10 @@ export default function DailyPct() {
         </h2>
 
         <div>
-          <div>
+          <div className="pb-5 md:p-2 md:p-4 md:pb-10 lg:p-8 lg:pb-20">
             {data ? (
               <RankingsChart
+                className="rounded-3xl shadow-2xl"
                 data={data}
                 maxRank={maxRank}
                 maxScore={maxScore}
@@ -285,7 +288,13 @@ export default function DailyPct() {
               />
             ) : null}
           </div>
-          <div className={results.length ? 'table-wrapper' : 'loading'}>
+          <div
+            className={
+              results.length
+                ? 'table-wrapper pb-5 md:pb-10 lg:pb-20'
+                : 'loading'
+            }
+          >
             {useMemo(() => {
               if (results.length === 0)
                 return <div style={{ textAlign: 'center' }}>Loading...</div>
@@ -409,8 +418,6 @@ export default function DailyPct() {
         }
         .table-wrapper {
           border-radius: 25px;
-          margin-bottom: 50px;
-          box-shadow: -25px 25px 50px rgba(5, 5, 5, .5);
           background-image: linear-gradient(to top right,#0F1214,#131518,#15181B,#1B2026,#20242B,#22252D)
         }
         .table-wrapper > div:first-child {
@@ -458,13 +465,8 @@ export default function DailyPct() {
           color: purple;
         }
         .chart {
-          flex: 16;
           background-image: linear-gradient(to top right, #0F1214, #131518, #15181B, #1B2026, #20242B, #22252D);
-          border-radius: 25px;
-          padding: 40px 45px 45px 40px;
-          margin-bottom: 75px;
           box-sizing: border-box;
-          box-shadow: -25px 25px 50px rgba(5, 5, 5, .5);
         }
         .line {
           cursor: pointer,

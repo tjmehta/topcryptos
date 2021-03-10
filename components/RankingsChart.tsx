@@ -34,6 +34,7 @@ export type ResultsByCryptoId = Record<
 
 export function RankingsChart({
   data,
+  className,
   maxRank,
   maxScore,
   minScore,
@@ -42,6 +43,7 @@ export function RankingsChart({
   onClick,
 }: {
   data: RankingsResult & { key: string }
+  className: string
   maxRank: number
   maxScore: number
   minScore: number
@@ -51,6 +53,7 @@ export function RankingsChart({
 }) {
   return (
     <D3Chart
+      className={className}
       renderKey={data.key + ':::' + Object.keys(selectedRows).sort().join(':')}
     >
       {(svg, height, width) => {
