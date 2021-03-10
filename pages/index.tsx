@@ -13,15 +13,15 @@ export const NAN_SCORE = 0 - 101
 
 createTheme('custom', {
   text: {
-    primary: '#CBCBCB',
-    secondary: '#CBCBCB',
+    primary: '#EBEBEB',
+    secondary: '#EBEBEB',
   },
   background: {
     default: 'none',
   },
   context: {
     background: '#E91E63',
-    text: '#CBCBCB',
+    text: '#EBEBEB',
   },
   divider: {
     default: '#2C3136',
@@ -46,14 +46,14 @@ export default function DailyPct() {
     let result = parseInt(str, 10)
     if (isNaN(result)) result = null
     console.log('maxRank', result)
-    return result ?? 400
+    return result ?? 350
   })
   const [limit, setLimit] = useURLSearchParam<number>('limit', (val) => {
     const str: string | undefined = Array.isArray(val) ? val[0] : val
     let result = parseInt(str, 10)
     if (isNaN(result)) result = null
     console.log('limit', result)
-    return result ?? 30
+    return result ?? 10
   })
 
   // fetch cryptos
@@ -238,7 +238,7 @@ export default function DailyPct() {
         <h2 className="text-5xl pb-20">
           Top performing cryptocurrencies over{' '}
           <select
-            className="bg-gray-400 rounded-md border-2 border-gray-100"
+            className="bg-gray-600 rounded-md border-2 border-gray-100"
             value={limit.toString()}
             onChange={(evt) => {
               const val = parseInt(evt.target.value, 10)
@@ -292,8 +292,8 @@ export default function DailyPct() {
               return (
                 <DataTable
                   theme="custom"
-                  defaultSortField="score"
-                  defaultSortAsc={false}
+                  defaultSortField="score_rank_mod"
+                  defaultSortAsc={true}
                   selectableRows // add for checkbox selection
                   selectableRowsHighlight={true}
                   selectableRowSelected={(row) => {
@@ -440,7 +440,7 @@ export default function DailyPct() {
           fill: #7F8490;
         }
         .logo::before {
-          content: '📈 ';
+          content: '🔥 ';
         }
         .rankings-section {
           flex: 9;
