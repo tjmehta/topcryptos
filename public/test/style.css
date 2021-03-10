@@ -1,0 +1,37 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font: 10px;
+    background-color: #bbb;
+}
+.viz {
+    margin-left: 20px;
+}
+.headertext {
+    text-transform: uppercase;
+    font-size: 16px;
+    fill: black;
+}
+.line {
+    stroke: #666;
+    stroke-width: 2;
+    fill: none;
+}
+.line-accent {
+    stroke: cornflowerblue;
+    stroke-width: 4;
+    fill: none;
+}
+.label {
+    font-size: 16px;
+    fill: #bbb;
+}
+.label-accent {
+    font-size: 20px;
+    fill: cornflowerblue;
+}
+.headertext:hover{
+    text-decoration: underline;
+}
+.label, .line , .headertext{
+    cursor: pointer;
+}
