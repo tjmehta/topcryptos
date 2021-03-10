@@ -1,6 +1,6 @@
 {
   "name": "cryptovisualize",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "dev": "node --experimental-modules -r esm dist/app/app.js",
