@@ -39,15 +39,14 @@ export function RankingsChart({
   maxScore,
   minScore,
   selectedRows,
-  resultsByCryptoId,
   onClick,
 }: {
-  data: RankingsResult & { key: string }
+  data: RankingsResult
+  dayIndex: number
   className: string
   maxRank: number
   maxScore: number
   minScore: number
-  resultsByCryptoId: ResultsByCryptoId
   selectedRows: { [id: string]: boolean }
   onClick: (id: number) => unknown
 }) {
@@ -57,7 +56,14 @@ export function RankingsChart({
       renderKey={data.key + ':::' + Object.keys(selectedRows).sort().join(':')}
     >
       {(svg, height, width) => {
-        const { totalDeltasByCryptoId, rankingsByCrypto } = data
+        const {
+          rankingsByCryptoId,
+          dailyTotalDeltasByCrypto,
+          dailyMinMaxTotalDeltas,
+          dailyScoresByCryptoId,
+          dailyMinMaxScores,
+        } = data
+        const rankingsByCrypto = Object.values(rankingsByCryptoId)
 
         // AXES
         const yScale = scaleLinear()
@@ -121,7 +127,7 @@ export function RankingsChart({
           })
           .style('stroke', (arr, index) => {
             const cryptoId = arr[0].id
-            const totalDelta = totalDeltasByCryptoId[cryptoId]
+            const totalDelta = dailyTotalDeltasByCrypto[cryptoId]
 
             if (Object.keys(selectedRows).length > 0) {
               const isSelected = selectedRows[cryptoId]
@@ -137,7 +143,7 @@ export function RankingsChart({
           .style('stroke-width', (arr, index) => {
             const cryptoId = arr[0].id
             const totalDelta = totalDeltasByCryptoId[cryptoId]
-            const result = resultsByCryptoId[totalDelta.id]
+            const result = rankingsByCryptoId[totalDelta.id]
 
             if (result.score === NAN_SCORE) return 0
 
