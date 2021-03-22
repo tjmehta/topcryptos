@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { timesParallel } from 'times-loop'
 
+type Resolved<T> = T extends PromiseLike<infer U> ? U : T
+
 export default async (
   req: NextApiRequest,
   res: NextApiResponse<Listings[]>,
@@ -27,8 +29,15 @@ export default async (
       ].join('-')}T23:00:00.000Z`
       query.date = new Date(strDate)
     }
-
-    const result = await cmc.listings(query)
+    
+    let result: Resolved<ReturnType<typeof cmc.listings>>
+    try {
+      result = await cmc.listings(query)
+      //console.log('THIS IS QUERY HERE' + query.date)
+    } catch (err) {
+      console.error('LISTINGS ERROR', err)
+      return null
+    }
     // @ts-ignore
     result.data = result.data.slice(0, maxRank)
     if (minMarketCap) {
@@ -41,7 +50,7 @@ export default async (
     return result
   })
 
-  res.status(200).json(listingSnapshots.reverse())
+  res.status(200).json(listingSnapshots.filter(v => v != null).reverse())
 }
 
 function stringParam(param: null | string | string[]): string | null {
