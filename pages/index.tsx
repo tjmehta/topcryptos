@@ -202,7 +202,6 @@ export default function DailyPct() {
           }
         >,
       )
-
     return {
       maxScore: scoreMinMaxState.max,
       minScore: scoreMinMaxState.min,
@@ -221,6 +220,9 @@ export default function DailyPct() {
         ? 0 - maxRank * 2 + item.score_rank
         : item.score_rank
     })
+    //results.forEach((item) => {
+    //  item.name = "<a href=marketcap.com/currencies/{item.name}></a>"
+    //})
     return results
   }, [resultsByCryptoId, selectedRows])
 
@@ -330,6 +332,7 @@ export default function DailyPct() {
                     {
                       name: 'Name',
                       // rank_accel_sum: resultsByCryptoId[0].mark,
+                      cell: (item: ResultType) => <a href={`//coinmarketcap.com/currencies/${item.slug}/`} target="_blank">{item.name}</a>,
                       selector: 'name',
                       maxWidth: '250px',
                       sortable: true,
