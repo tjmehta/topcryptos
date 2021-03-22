@@ -7,6 +7,7 @@ import stringify from 'fast-json-stable-stringify'
 
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
 const CMC_API_KEY = get('CMC_API_KEY').required().asString()
+const maxCacheDuration = 30 * 60 * 60 * 1000 // 30 min
 
 export type Listings = {
   status: {
@@ -65,6 +66,11 @@ const fsStore = new FSStore(path.resolve(CACHE_STORE_DIR, 'coinmarketcap'))
 const s3Store = new S3Store()
 const store = s3Store
 
+const errorDatesByKey: {[key: string]: {
+  err: Error,
+  date: Date
+}} = {}
+
 class CoinMarketCap extends ApiClient {
   latestListingsCache: {
     date: Date
@@ -84,13 +90,23 @@ class CoinMarketCap extends ApiClient {
       get: async ([opts]) => {
         // @ts-ignore
         const key = cacheKey('cryptocurrency_listings', opts)
+        const now = Date.now()
+
+        const errInfo = errorDatesByKey[key]
+        if (errInfo) {
+          if (now - errInfo.date.valueOf() > maxCacheDuration) {
+            delete errorDatesByKey[key]
+          } else {
+            throw new Error('cached error')
+          }
+        }
+
         // if date is missing, query is for latest listings
         if (opts.date == null) {
           if (this.latestListingsCache == null) return
           // get cache for latest listings
-          const maxCacheDuration = 30 * 60 * 60 * 1000 // 30 min
           const cacheDuration =
-            Date.now() - this.latestListingsCache.date.valueOf()
+            now - this.latestListingsCache.date.valueOf()
           if (maxCacheDuration < cacheDuration) {
             this.latestListingsCache = null
             return
@@ -154,6 +170,11 @@ class CoinMarketCap extends ApiClient {
             },
           )
         } catch (err) {
+          const key = cacheKey('cryptocurrency_listings', opts)
+          errorDatesByKey[key] = {
+            err,
+            date: new Date()
+          }
           console.error(err, opts)
           throw err
         }
