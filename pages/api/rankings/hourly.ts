@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export type RankingsData = {
+export type RankingsResponse = {
   status: {
     timestamp: string // Date
     error_code: number
@@ -39,6 +39,9 @@ export type RankingsData = {
   ]
 }
 
-export default (req: NextApiRequest, res: NextApiResponse<RankingsData>) => {
+export default (
+  req: NextApiRequest,
+  res: NextApiResponse<RankingsResponse>,
+) => {
   // res.status(200).json({ name: 'John Doe' })
 }

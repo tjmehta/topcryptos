@@ -1,15 +1,28 @@
+import {
+  Crypto,
+  CryptoScoreResults,
+  CryptosById,
+  processRankings,
+} from '../modules/processRankings'
 import DataTable, { createTheme } from 'react-data-table-component'
-import { RankingsResult, topCryptos } from '../modules/topCryptos'
 import { useEffect, useMemo, useState } from 'react'
 
+import { DailyRankingsResponse } from './api/rankings/daily'
 import Head from 'next/head'
-import { MinMaxState } from '../modules/MinMax'
 import { RankingsChart } from '../components/RankingsChart'
 import { format } from 'd3'
+import { topCryptos } from '../modules/topCryptos'
 import useURLSearchParam from '../components/hooks/useURLSearchParam'
 
 const isServer = typeof window === 'undefined'
 export const NAN_SCORE = 0 - 101
+
+const DAYS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
+const DATES = DAYS.map((days) => {
+  const date = new Date()
+  date.setDate(date.getDate() - (days - 1))
+  return date
+})
 
 createTheme('custom', {
   text: {
@@ -33,198 +46,116 @@ createTheme('custom', {
   },
 })
 
-export default function DailyPct() {
+export default function Home() {
   const [error, setError] = useState<null | string>(null)
-  const [selectedRows, setSelectedRows] = useState<{
-    [id: number]: boolean
-  }>({})
-  const [data, setData] = useState<null | (RankingsResult & { key: string })>(
-    null,
+  const [activeCryptoId, setActiveCryptoId] = useState<string>(null)
+  const [selectedCryptoIds, setSelectedCryptoIds] = useState<Set<string>>(
+    new Set(),
   )
+  const [disabledCryptoIds, setDisabledCryptoIds] = useState<Set<string>>(
+    new Set(),
+  )
+  const [rankings, setRankings] = useState<null | DailyRankingsResponse>(null)
+  const [
+    cryptoScoreResults,
+    setCryptoScoreResults,
+  ] = useState<null | CryptoScoreResults>(null)
   const [maxRank] = useURLSearchParam<number>('maxRank', (val) => {
     const str: string | undefined = Array.isArray(val) ? val[0] : val
     let result = parseInt(str, 10)
     if (isNaN(result)) result = null
     console.log('maxRank', result)
-    return result ?? 350
+    return result ?? 500
   })
-  const [limit, setLimit] = useURLSearchParam<number>('limit', (val) => {
+  const [days, setDays] = useURLSearchParam<number>('limit', (val) => {
     const str: string | undefined = Array.isArray(val) ? val[0] : val
     let result = parseInt(str, 10)
     if (isNaN(result)) result = null
-    console.log('limit', result)
     return result ?? 10
   })
+  const daysIndex = DAYS.findIndex((v) => v === days)
+  const toggleDisabledCrypto = (cryptoId: string) => {
+    const nextDisabledCryptoIds = new Set([...disabledCryptoIds])
+
+    if (disabledCryptoIds.has(cryptoId)) {
+      nextDisabledCryptoIds.delete(cryptoId)
+    } else {
+      nextDisabledCryptoIds.add(cryptoId)
+    }
+
+    if (selectedCryptoIds.has(cryptoId)) {
+      toggleSelectedCrypto(cryptoId)
+    }
+
+    setDisabledCryptoIds(nextDisabledCryptoIds)
+  }
+  const toggleSelectedCrypto = (cryptoId: string) => {
+    const nextSelectedCryptoIds = new Set([...selectedCryptoIds])
+
+    const crypto = cryptoScoreResults.cryptosById[cryptoId]
+    if (selectedCryptoIds.has(cryptoId)) {
+      // @ts-ignore
+      delete crypto.rank_plus_selected
+      nextSelectedCryptoIds.delete(cryptoId)
+    } else {
+      const maxRank = cryptoScoreResults.minMaxes.rankByMarketCapMinMax.max
+      // @ts-ignore
+      crypto.rank_plus_selected = 0 - maxRank * 2 + crypto.rank
+      nextSelectedCryptoIds.add(cryptoId)
+    }
+
+    setSelectedCryptoIds(nextSelectedCryptoIds)
+  }
+  const setSelectedCryptos = (cryptoIds: string[]) => {
+    const nextSelectedCryptoIds = new Set([...cryptoIds])
+
+    selectedCryptoIds.forEach((cryptoId) => {
+      // previously selected
+      delete cryptoScoreResults.cryptosById[
+        cryptoId
+        // @ts-ignore
+      ].rank_plus_selected
+    })
+    const maxRank = cryptoScoreResults.minMaxes.rankByMarketCapMinMax.max
+    nextSelectedCryptoIds.forEach((cryptoId) => {
+      cryptoScoreResults.cryptosById[
+        cryptoId
+        // @ts-ignore
+      ].rank_plus_selected =
+        0 - maxRank * 2 + cryptoScoreResults.cryptosById[cryptoId].rank
+    })
+
+    setSelectedCryptoIds(nextSelectedCryptoIds)
+  }
 
   // fetch cryptos
   useEffect(() => {
     if (isServer) return
 
     topCryptos
-      .getRankings({ maxRank, limit })
-      .then((data) => {
-        setData({
-          ...data,
-          key: Date.now().toString(),
-        })
+      .getRankings({ maxRank })
+      .then((rankings) => {
+        setRankings(rankings)
       })
       .catch((err) => {
+        console.error('getRankings error', err)
         setError(err)
       })
-  }, [maxRank, limit])
+  }, [])
 
-  // compute stuff
-  const {
-    minScore,
-    maxScore,
-    maxTotalPricePct,
-    minTotalPricePct,
-    resultsByCryptoId,
-  } = useMemo(() => {
-    if (data == null) return {}
-
-    const totalPricePctMinMaxState = new MinMaxState(0)
-    const pricePctAccelsSumMinMaxState = new MinMaxState(0)
-    const mktRankAccelsSumMinMaxState = new MinMaxState(0)
-    const scoreMinMaxState = new MinMaxState(0)
-
-    const resultsByCryptoId = data.totalDeltasByCrypto
-      .map((totalDelta, i) => {
-        const accels = data.accelsByCryptoId[totalDelta.id]
-
-        const totalPricePct = totalDelta.price_delta_pct
-        const totalMarketCapDeltaPct = totalDelta.market_cap_delta_pct
-        const totalMarketRankDelta = totalDelta.mkt_rank_delta
-        const pricePctAccelsSum =
-          accels?.reduce((memo, item) => {
-            return memo + item.price_pct_accel
-          }, 0) ?? NaN
-        const mktRankAccelsSum =
-          accels?.reduce((memo, item) => {
-            return memo - item.mkt_rank_accel
-          }, 0) ?? NaN
-
-        totalPricePctMinMaxState.compare(totalPricePct)
-        pricePctAccelsSumMinMaxState.compare(pricePctAccelsSum)
-        mktRankAccelsSumMinMaxState.compare(mktRankAccelsSum)
-
-        return {
-          id: totalDelta.id,
-          name: totalDelta.name,
-          symbol: totalDelta.symbol,
-          slug: totalDelta.slug,
-          start: totalDelta.start,
-          end: totalDelta.end,
-          totalPricePct,
-          totalMarketCapDeltaPct,
-          totalMarketRankDelta,
-          pricePctAccelsSum,
-          mktRankAccelsSum,
-          score: 0,
-        }
+  useEffect(() => {
+    if (rankings == null) return
+    processRankings(rankings, DATES[daysIndex], disabledCryptoIds)
+      .then((cryptoScoreResults) => {
+        setCryptoScoreResults(cryptoScoreResults)
       })
-      .map((result) => {
-        const pricePctScore =
-          (result.totalPricePct / totalPricePctMinMaxState.max) * 100
-        const pricePctAccelsSumScore =
-          (result.pricePctAccelsSum / pricePctAccelsSumMinMaxState.max) * 100
-        const mktRankAccelsSumScore =
-          (result.mktRankAccelsSum / mktRankAccelsSumMinMaxState.max) * 100
-        const w1 = 30
-        const w2 = 4.5 * ((95 - limit) / (100 + limit * 5))
-        const w3 =
-          result.end.mkt_rank < 10
-            ? 10
-            : result.end.mkt_rank < 25
-            ? 8
-            : result.end.mkt_rank < 50
-            ? 6
-            : result.end.mkt_rank < 100
-            ? 5
-            : result.end.mkt_rank < 200
-            ? 3
-            : result.end.mkt_rank < 300
-            ? 1
-            : 1
-
-        let score =
-          ((w1 * pricePctScore +
-            w2 * pricePctAccelsSumScore +
-            w3 * mktRankAccelsSumScore) /
-            ((w1 + w2 + w3) * 100)) *
-          100
-
-        if (isNaN(score) || ~result.name.indexOf('Cocos')) {
-          score = NAN_SCORE
-        } else {
-          scoreMinMaxState.compare(score)
-        }
-
-        return {
-          ...result,
-          score,
-          score_rank_mod: 0,
-          score_rank: 0,
-        }
+      .catch((err) => {
+        console.error('processRankings error', err)
+        setError(err)
       })
-      .sort((a: any, b: any) => {
-        if (a.score > b.score) return -1
-        if (a.score < b.score) return 1
-        return 0
-      })
-      .map((result, i) => {
-        result.score_rank = 1 + i
-        return result
-      })
-      .reduce(
-        (memo, result) => {
-          memo[result.id] = result
-
-          return memo
-        },
-        {} as Record<
-          string,
-          {
-            id: number
-            name: string
-            symbol: string
-            slug: string
-            start: typeof data.totalDeltasByCrypto[0]['start']
-            end: typeof data.totalDeltasByCrypto[0]['end']
-            totalPricePct: number
-            totalMarketCapDeltaPct: number
-            totalMarketRankDelta: number
-            pricePctAccelsSum: number
-            mktRankAccelsSum: number
-            score: number
-            score_rank: number
-            score_rank_mod: number
-          }
-        >,
-      )
-    return {
-      maxScore: scoreMinMaxState.max,
-      minScore: scoreMinMaxState.min,
-      maxTotalPricePct: totalPricePctMinMaxState.max,
-      minTotalPricePct: totalPricePctMinMaxState.min,
-      resultsByCryptoId,
-    }
-  }, [data])
+  }, [daysIndex, rankings, disabledCryptoIds])
 
   const title = `Top Performing Cryptocurrencies`
-  type ResultType = typeof resultsByCryptoId[0]
-  const results = useMemo(() => {
-    const results = Object.values(resultsByCryptoId ?? {})
-    results.forEach((item) => {
-      item.score_rank_mod = selectedRows[item.id]
-        ? 0 - maxRank * 2 + item.score_rank
-        : item.score_rank
-    })
-    //results.forEach((item) => {
-    //  item.name = "<a href=marketcap.com/currencies/{item.name}></a>"
-    //})
-    return results
-  }, [resultsByCryptoId, selectedRows])
 
   return (
     <div
@@ -243,175 +174,190 @@ export default function DailyPct() {
           Top performing cryptos over{' '}
           <select
             className="bg-gray-600 rounded-md border-2 border-gray-100"
-            value={limit.toString()}
+            value={days.toString()}
             onChange={(evt) => {
               const val = parseInt(evt.target.value, 10)
               if (isNaN(val)) return
-              setLimit(val)
+              setDays(val)
             }}
           >
-            <option value="3">1 day</option>
-            <option value="4">4 days</option>
-            <option value="5">5 days</option>
-            <option value="6">6 days</option>
-            <option value="7">7 days</option>
-            <option value="10">10 days</option>
-            <option value="14">14 days</option>
-            <option value="21">21 days</option>
-            <option value="30">30 days</option>
-            <option value="45">45 days</option>
-            <option value="60">60 days</option>
-            <option value="90">90 days</option>
+            {DAYS.map((day) => (
+              <option key={day} value={day}>{`${day} days`}</option>
+            ))}
           </select>
         </h2>
 
         <div className="xl:flex">
           <div className="pb-5 md:pb-10 lg:pb-20 lg:pr-4">
-            {data ? (
-              <RankingsChart
-                className="rounded-3xl shadow-2xl p-2 md:p-4 lg:p-8 xl:flex-1"
-                data={data}
-                maxRank={maxRank}
-                maxScore={maxScore}
-                minScore={minScore}
-                resultsByCryptoId={resultsByCryptoId}
-                selectedRows={selectedRows}
-                onClick={(cryptoId: number) => {
-                  const nextSelectedRows = {
-                    ...selectedRows,
-                  }
-                  if (selectedRows[cryptoId]) {
-                    delete nextSelectedRows[cryptoId]
-                  } else {
-                    nextSelectedRows[cryptoId] = true
-                  }
-                  setSelectedRows(nextSelectedRows)
-                }}
-              />
-            ) : null}
+            {useMemo(() => {
+              if (cryptoScoreResults == null) return null
+              return (
+                <RankingsChart
+                  className="rounded-3xl shadow-2xl p-2 md:p-4 lg:p-8 xl:flex-1"
+                  cryptoScoreResults={cryptoScoreResults}
+                  days={days}
+                  activeCryptoId={activeCryptoId}
+                  selectedCryptoIds={selectedCryptoIds}
+                  disabledCryptoIds={disabledCryptoIds}
+                  onClick={(cryptoId) => {
+                    toggleSelectedCrypto(cryptoId)
+                  }}
+                  onDoubleClick={(cryptoId) => {
+                    toggleDisabledCrypto(cryptoId)
+                  }}
+                  onMouseOver={(cryptoId) => {
+                    setActiveCryptoId(cryptoId)
+                  }}
+                />
+              )
+            }, [cryptoScoreResults, selectedCryptoIds])}
           </div>
           <div
             className={
-              results.length
+              cryptoScoreResults != null
                 ? 'table-wrapper pb-5 md:pb-10 lg:pb-20 xl:max-w-3xl xl:flex-1'
                 : 'loading'
             }
           >
             {useMemo(() => {
-              if (results.length === 0)
+              if (cryptoScoreResults == null)
                 return <div style={{ textAlign: 'center' }}>Loading...</div>
+
               return (
                 <DataTable
+                  data={cryptoScoreResults.cryptosSortedByScore.slice()}
                   theme="custom"
-                  defaultSortField="score_rank_mod"
+                  defaultSortField="rank_plus_selected"
                   defaultSortAsc={true}
+                  onRowDoubleClicked={(crypto: Crypto) => {
+                    toggleDisabledCrypto(crypto.id)
+                  }}
+                  contextActions={<div>ContextMenu</div>}
                   selectableRows // add for checkbox selection
                   selectableRowsHighlight={true}
-                  selectableRowSelected={(row) => {
-                    if (selectedRows == null) return false
-                    return selectedRows[row.id] ?? false
+                  selectableRowSelected={(crypto: Crypto) => {
+                    return selectedCryptoIds.has(crypto.id)
+                  }}
+                  selectableRowDisabled={(crypto: Crypto) => {
+                    return disabledCryptoIds.has(crypto.id)
                   }}
                   onSelectedRowsChange={(state) => {
-                    state
-                    setSelectedRows(
-                      state.selectedRows.reduce((memo, row) => {
-                        memo[row.id] = true
-                        return memo
-                      }, {}),
+                    setSelectedCryptos(
+                      state.selectedRows.map((crypto) => crypto.id),
                     )
                   }}
                   columns={[
                     {
-                      name: 'Score Rank',
-                      selector: 'score_rank_mod',
-                      format: (item: ResultType) => item.score_rank,
-                      maxWidth: '25px',
-                      sortable: true,
-                      center: true,
-                    },
-                    {
                       name: 'Name',
                       // rank_accel_sum: resultsByCryptoId[0].mark,
-                      cell: (item: ResultType) => <a href={`//coinmarketcap.com/currencies/${item.slug}/`} target="_blank">{item.name}</a>,
+                      cell: (crypto: Crypto) => (
+                        <a
+                          href={`//coinmarketcap.com/currencies/${crypto.slug}/`}
+                          target="_blank"
+                        >
+                          {crypto.name}
+                        </a>
+                      ),
                       selector: 'name',
                       maxWidth: '250px',
+                      // minWidth: '250px',
                       sortable: true,
                     },
                     {
                       name: 'Symbol',
                       selector: 'symbol',
                       maxWidth: '80px',
+                      minWidth: '80px',
                       sortable: true,
                     },
                     {
-                      name: 'Mkt Cap Rank',
-                      selector: 'end.mkt_rank',
-                      maxWidth: '100px',
-                      sortable: true,
-                      right: true,
-                    },
-                    {
-                      name: 'Mkt Cap',
-                      selector: 'end.market_cap',
-                      format: (item: ResultType) => {
-                        return format('~s')(item.end.market_cap).replace(
-                          'G',
-                          'B',
-                        )
-                      },
-                      maxWidth: '200px',
-                      sortable: true,
-                      right: true,
-                    },
-                    {
-                      name: 'Price',
-                      selector: 'end.price',
-                      format: (item: ResultType) =>
-                        format('$,.4f')(item.end.price),
-                      maxWidth: '200px',
+                      name: 'Score Rank',
+                      selector: (crypto: Crypto) =>
+                        // @ts-ignore
+                        crypto.rank_plus_selected ?? crypto.rank,
+                      format: (crypto: Crypto) => crypto.rank,
+                      maxWidth: '55px',
+                      minWidth: '55px',
                       sortable: true,
                       right: true,
                     },
                     {
                       name: 'Score',
-                      selector: (item: ResultType) => item.score ?? 0,
-                      format: (item: ResultType) => format('.4f')(item.score),
+                      selector: 'score',
+                      format: (crypto: Crypto) => format('.4f')(crypto.score),
                       maxWidth: '200px',
+                      minWidth: '85px',
                       sortable: true,
                       right: true,
                     },
                     {
                       name: 'Price %',
-                      selector: 'totalPricePct',
-                      format: (item: ResultType) =>
-                        `${format('.2f')(item.totalPricePct)}%`,
+                      selector: 'total.pricePct',
+                      format: (crypto: Crypto) =>
+                        `${format('.2f')(crypto.total.pricePct)}%`,
                       maxWidth: '125px',
+                      minWidth: '85px',
+                      sortable: true,
+                      right: true,
+                    },
+                    {
+                      name: 'Mkt Cap',
+                      selector: 'total.endQuote.marketCap',
+                      format: (crypto: Crypto) => {
+                        return format('~s')(
+                          crypto.total.endQuote.marketCap,
+                        ).replace('G', 'B')
+                      },
+                      maxWidth: '200px',
+                      minWidth: '85px',
                       sortable: true,
                       right: true,
                     },
                     {
                       name: 'Mkt Cap %',
-                      selector: 'totalMarketCapDeltaPct',
-                      format: (item: ResultType) =>
-                        `${format('.2f')(item.totalMarketCapDeltaPct)}%`,
+                      selector: 'total.marketCapPct',
+                      format: (crypto: Crypto) =>
+                        `${format('.2f')(crypto.total.marketCapPct)}%`,
                       maxWidth: '125px',
+                      minWidth: '85px',
                       sortable: true,
                       right: true,
                     },
                     {
                       name: 'Rank Delta',
-                      selector: 'totalMarketRankDelta',
-                      format: (item: ResultType) =>
-                        0 - item.totalMarketRankDelta,
-                      maxWidth: '125px',
+                      selector: 'crypto.total.rankDelta',
+                      format: (crypto: Crypto) => 0 - crypto.total.rankDelta,
+                      maxWidth: '55px',
+                      minWidth: '55px',
+                      sortable: true,
+                      right: true,
+                    },
+                    {
+                      name: 'Mkt Cap Rank',
+                      selector: 'total.endQuote.rankByMarketCap',
+                      maxWidth: '55px',
+                      minWidth: '55px',
+                      sortable: true,
+                      right: true,
+                    },
+                    {
+                      name: 'Price',
+                      selector: 'total.endQuote.price',
+                      format: (crypto: Crypto) =>
+                        format('$,.4f')(crypto.total.endQuote.price),
+                      maxWidth: '200px',
+                      minWidth: '85px',
                       sortable: true,
                       right: true,
                     },
                   ]}
-                  data={results}
                 />
               )
-            }, [results, selectedRows])}
+            }, [
+              cryptoScoreResults?.cryptosSortedByScore,
+              selectedCryptoIds,
+              disabledCryptoIds,
+            ])}
           </div>
         </div>
 
