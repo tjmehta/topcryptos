@@ -255,6 +255,7 @@ export default function Home() {
                     {
                       name: 'Name',
                       // rank_accel_sum: resultsByCryptoId[0].mark,
+                      cell: (item: ResultType) => <a href={`//coinmarketcap.com/currencies/${item.slug}/`} target="_blank">{item.name}</a>,
                       selector: 'name',
                       maxWidth: '250px',
                       // minWidth: '250px',
