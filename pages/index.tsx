@@ -210,7 +210,7 @@ export default function Home() {
                   }}
                 />
               )
-            }, [cryptoScoreResults, activeCryptoId, selectedCryptoIds])}
+            }, [cryptoScoreResults, selectedCryptoIds])}
           </div>
           <div
             className={
@@ -229,15 +229,10 @@ export default function Home() {
                   theme="custom"
                   defaultSortField="rank_plus_selected"
                   defaultSortAsc={true}
-                  // onRowClicked={(crypto: Crypto) => {
-                  //   window.open(
-                  //     `//coinmarketcap.com/currencies/${crypto.slug}`,
-                  //     '_blank',
-                  //   )
-                  // }}
                   onRowDoubleClicked={(crypto: Crypto) => {
                     toggleDisabledCrypto(crypto.id)
                   }}
+                  contextActions={<div>ContextMenu</div>}
                   selectableRows // add for checkbox selection
                   selectableRowsHighlight={true}
                   selectableRowSelected={(crypto: Crypto) => {
@@ -255,7 +250,14 @@ export default function Home() {
                     {
                       name: 'Name',
                       // rank_accel_sum: resultsByCryptoId[0].mark,
-                      cell: (item: ResultType) => <a href={`//coinmarketcap.com/currencies/${item.slug}/`} target="_blank">{item.name}</a>,
+                      cell: (crypto: Crypto) => (
+                        <a
+                          href={`//coinmarketcap.com/currencies/${crypto.slug}/`}
+                          target="_blank"
+                        >
+                          {crypto.name}
+                        </a>
+                      ),
                       selector: 'name',
                       maxWidth: '250px',
                       // minWidth: '250px',

@@ -85,7 +85,7 @@ export function RankingsChart({
           .attr('class', 'line')
           .attr('data-crypto-id', (crypto) => crypto.id)
           .attr('d', (crypto) => createLine(crypto.quotes))
-          .on('dbclick', (evt) => {
+          .on('dblclick', (evt) => {
             // right click
             onDoubleClick(evt.currentTarget.dataset.cryptoId)
           })
