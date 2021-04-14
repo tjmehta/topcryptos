@@ -4,16 +4,17 @@ export class MinMaxState<T> {
   private comparator: (a: T, b: T) => -1 | 1 | 0
 
   constructor(init?: T, comparator?: (a: T, b: T) => -1 | 1 | 0) {
+    this.comparator = comparator ?? ((a, b) => (a > b ? -1 : a < b ? 1 : 0))
+    if (init == null) return
     this.min = init
     this.max = init
-    this.comparator = comparator ?? ((a, b) => (a > b ? -1 : a < b ? 1 : 0))
   }
 
   compare(val: T) {
-    const result1 = this.comparator(this.min, val)
+    const result1 = this.min == null ? -1 : this.comparator(this.min, val)
     if (result1 === -1) this.min = val
 
-    const result2 = this.comparator(this.max, val)
+    const result2 = this.max == null ? 1 : this.comparator(this.max, val)
     if (result2 === 1) this.max = val
   }
 }

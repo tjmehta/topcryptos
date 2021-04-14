@@ -1,4 +1,10 @@
 import {
+  CryptoScoreResults,
+  MAX_SCORE,
+  NAN_SCORE,
+  Quote,
+} from '../modules/processRankings'
+import {
   axisBottom,
   axisLeft,
   line,
@@ -9,79 +15,51 @@ import {
 } from 'd3'
 
 import { D3Chart } from './D3Chart'
-import { NAN_SCORE } from '../pages'
-import { RankingsResult } from '../modules/topCryptos'
 import { interpolate } from '../modules/interpolate'
 
-export type ResultsByCryptoId = Record<
-  number,
-  {
-    id: number
-    name: string
-    symbol: string
-    slug: string
-    start: RankingsResult['totalDeltasByCrypto'][0]['start']
-    end: RankingsResult['totalDeltasByCrypto'][0]['end']
-    totalPricePct: number
-    totalMarketCapDeltaPct: number
-    totalMarketRankDelta: number
-    pricePctAccelsSum: number
-    mktRankAccelsSum: number
-    score: number
-    score_rank: number
-  }
->
-
 export function RankingsChart({
-  data,
   className,
-  maxRank,
-  maxScore,
-  minScore,
-  selectedRows,
+  cryptoScoreResults,
+  days,
+  selectedCryptoIds,
+  disabledCryptoIds,
+  activeCryptoId,
   onClick,
+  onDoubleClick,
+  onMouseOver,
 }: {
-  data: RankingsResult
-  dayIndex: number
   className: string
-  maxRank: number
-  maxScore: number
-  minScore: number
-  selectedRows: { [id: string]: boolean }
-  onClick: (id: number) => unknown
+  days: number
+  cryptoScoreResults: CryptoScoreResults
+  selectedCryptoIds: Set<string>
+  disabledCryptoIds: Set<string>
+  activeCryptoId: string
+  onClick: (id: string) => unknown
+  onDoubleClick: (id: string) => unknown
+  onMouseOver: (id: string) => unknown
 }) {
+  const { cryptosSortedByScore, cryptosById, minMaxes } = cryptoScoreResults
   return (
     <D3Chart
       className={className}
-      renderKey={data.key + ':::' + Object.keys(selectedRows).sort().join(':')}
+      renderKey={`${days.toString()}:${activeCryptoId}:${[
+        ...selectedCryptoIds,
+      ].join(',')}:${[...disabledCryptoIds].join(',')}`}
     >
       {(svg, height, width) => {
-        const {
-          rankingsByCryptoId,
-          dailyTotalDeltasByCrypto,
-          dailyMinMaxTotalDeltas,
-          dailyScoresByCryptoId,
-          dailyMinMaxScores,
-        } = data
-        const rankingsByCrypto = Object.values(rankingsByCryptoId)
-
         // AXES
         const yScale = scaleLinear()
-          .domain([maxRank, 1])
+          .domain([
+            minMaxes.rankByMarketCapMinMax.max,
+            minMaxes.rankByMarketCapMinMax.min,
+          ])
           .range([height, 0])
           .nice()
         const yAxis = axisLeft(yScale)
         svg.append('g').attr('class', 'axisLeft').call(yAxis)
 
         const xScale = scaleTime()
-          .domain([
-            min(rankingsByCrypto, (arr) =>
-              min(arr, (item) => item.last_updated),
-            ),
-            max(rankingsByCrypto, (arr) =>
-              max(arr, (item) => item.last_updated),
-            ),
-          ])
+          .domain([minMaxes.dateMinMax.min, minMaxes.dateMinMax.max])
           .range([0, width])
         const xAxis = axisBottom(xScale).ticks(5)
         svg
@@ -94,104 +72,95 @@ export function RankingsChart({
           .attr('transform', 'rotate(-45)')
 
         // LINES
-        type Ranking = typeof rankingsByCrypto[0][0]
-        const createLine = (arr: Ranking[], index: number) =>
-          line<Ranking>()
-            .x((item) => xScale(item.last_updated))
-            .y((item) => yScale(item.mkt_rank))(arr)
+        const createLine = (arr: Quote[]) =>
+          line<Quote>()
+            .x((item) => xScale(item.date))
+            .y((item) => yScale(item.rankByMarketCap))(arr.slice(0 - days))
 
         svg
           .selectAll('.line')
-          .data(
-            rankingsByCrypto,
-            // .filter((rankings) => {
-            //   // if (Object.keys(selectedRows).length === 0) return true
-            //   // const cryptoId = rankings[0].id
-            //   // return selectedRows[cryptoId]
-            // }),
-          )
+          .data(cryptosSortedByScore)
           .enter()
           .append('path')
           .attr('class', 'line')
-          .attr('data-crypto-id', (arr) => arr[0].id)
-          .attr('d', (arr, index) => createLine(arr, index))
-          .on('click', (evt) => onClick(evt.currentTarget.dataset.cryptoId))
+          .attr('data-crypto-id', (crypto) => crypto.id)
+          .attr('d', (crypto) => createLine(crypto.quotes))
+          .on('dbclick', (evt) => {
+            // right click
+            onDoubleClick(evt.currentTarget.dataset.cryptoId)
+          })
+          .on('click', (evt) => {
+            onClick(evt.currentTarget.dataset.cryptoId)
+          })
+          .on('onmouseover', (evt) =>
+            onMouseOver(evt.currentTarget.dataset.cryptoId),
+          )
           .style('cursor', 'pointer')
           .style('stoke-linecap', 'round')
           .style('stoke-linejoin', 'round')
-          .style('filter', (arr, index) => {
-            if (Object.keys(selectedRows).length === 0) return true
-            const cryptoId = arr[0].id
-            const isSelected = selectedRows[cryptoId]
+          .style('filter', (crypto) => {
+            const isSelected = selectedCryptoIds.has(crypto.id)
             return isSelected ? 'drop-shadow(0px 0px 3px pink)' : 'none'
           })
-          .style('stroke', (arr, index) => {
-            const cryptoId = arr[0].id
-            const totalDelta = dailyTotalDeltasByCrypto[cryptoId]
+          .style('stroke', (crypto) => {
+            if (selectedCryptoIds.has(crypto.id)) return 'lightyellow'
 
-            if (Object.keys(selectedRows).length > 0) {
-              const isSelected = selectedRows[cryptoId]
-              if (isSelected) return 'lightyellow'
-            }
-
-            if (totalDelta.price_delta_pct >= 0) {
+            if (crypto.total.pricePct >= 0) {
               return '#00b300'
             } else {
               return '#b30000'
             }
           })
-          .style('stroke-width', (arr, index) => {
-            const cryptoId = arr[0].id
-            const totalDelta = totalDeltasByCryptoId[cryptoId]
-            const result = rankingsByCryptoId[totalDelta.id]
+          .style('stroke-width', (crypto) => {
+            const score = crypto.score
 
-            if (result.score === NAN_SCORE) return 0
+            if (disabledCryptoIds.has(crypto.id)) return 0
+            if (score === NAN_SCORE) return 0
 
-            if (result.score >= 0) {
+            if (score >= 0) {
               return interpolate({
                 start: 0,
                 end: 20,
-                steps: maxScore,
-                count: result.score,
+                steps: minMaxes.scoreMinMax.max,
+                count: score,
               })
             } else {
               return interpolate({
                 start: 0,
                 end: 10,
-                steps: Math.abs(minScore),
-                count: Math.abs(result.score),
+                steps: Math.abs(minMaxes.scoreMinMax.min),
+                count: Math.abs(score),
               })
             }
           })
-          .style('opacity', (arr, index) => {
-            const cryptoId = arr[0].id
-            const totalDelta = totalDeltasByCryptoId[cryptoId]
-            const result = resultsByCryptoId[totalDelta.id]
+          .style('opacity', (crypto) => {
+            const score = crypto.score
 
-            if (result.score === NAN_SCORE) return 0
+            if (disabledCryptoIds.has(crypto.id)) return 0
+            if (score === NAN_SCORE) return 0
 
-            if (totalDelta.price_delta_pct >= 0) {
+            if (score >= 0) {
               return (
                 interpolate({
                   start: 0,
                   end: 900,
-                  steps: maxScore,
-                  count: result.score,
-                }) / 1000
+                  steps: minMaxes.scoreMinMax.max,
+                  count: score,
+                }) / MAX_SCORE
               )
             } else {
               return (
                 interpolate({
                   start: 0,
                   end: 450,
-                  steps: Math.abs(minScore),
-                  count: Math.abs(result.score),
-                }) / 1000
+                  steps: Math.abs(minMaxes.scoreMinMax.min),
+                  count: Math.abs(score),
+                }) / MAX_SCORE
               )
             }
           })
           .append('title')
-          .text((deltas) => deltas[0].name)
+          .text((crypto) => crypto.quotes[0].name)
       }}
     </D3Chart>
   )
