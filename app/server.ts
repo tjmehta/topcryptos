@@ -24,6 +24,7 @@ export default class Server extends AbstractServer {
   }
 
   handleRequest = async (req: IncomingMessage, res: ServerResponse) => {
+    console.log(req.url)
     if (/api\/rankings\/daily/.test(req.url)) {
       const queryIndex = req.url.indexOf('?')
       let query = {}
