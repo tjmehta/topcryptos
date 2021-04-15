@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node --experimental-modules -r esm dist/app/app.js",
     "cron-hourly-listings": "node dist/app/crons/runHourlyListingsCron.js",
-    "build": "next build && tsc --project tsconfig.server.json",
+    "build": "next build && npm run build-server",
+    "build-server": "tsc --project tsconfig.server.json",
     "start": "NODE_ENV=production node -r esm dist/app/app.js",
     "test": "DOTENV_CONFIG_PATH=.env.test.local jest"
   },
