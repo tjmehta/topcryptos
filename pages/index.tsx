@@ -133,7 +133,7 @@ export default function Home() {
     if (isServer) return
 
     topCryptos
-      .getRankings({ maxRank })
+      .getRankings({})
       .then((rankings) => {
         setRankings(rankings)
       })
