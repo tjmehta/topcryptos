@@ -11,12 +11,14 @@ export default async (
   req: NextApiRequest,
   res: NextApiResponse<Listings[]>,
 ) => {
-  const limit = intParam(req.query.limit) ?? 30
+  const daysSkip = intParam(req.query.daysSkip) ?? 0
+  const daysLimit = intParam(req.query.daysLimit) ?? 10
   const maxRank = intParam(req.query.maxRank) ?? 500
   const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
 
   const dailyRankingsResponse: Listings[] = (
-    await timesParallel(limit, async (i) => {
+    await timesParallel(daysLimit, async (i) => {
+      const day = daysSkip + i
       const query: ListingsOpts = {
         start: 1,
         limit: 500,
@@ -24,7 +26,7 @@ export default async (
 
       if (i > 0) {
         const date = new Date()
-        date.setDate(date.getDate() - i)
+        date.setDate(date.getDate() - day)
         const strDate = `${[
           date.getFullYear(),
           zpad(date.getMonth() + 1),
