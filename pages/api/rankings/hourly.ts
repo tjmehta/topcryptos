@@ -41,7 +41,7 @@ export type RankingsResponse = {
 
 export default (
   req: NextApiRequest,
-  res: NextApiResponse<RankingsResponse>,
+  res: NextApiResponse<{ message: string }>,
 ) => {
-  // res.status(200).json({ name: 'John Doe' })
+  res.status(501).json({ message: 'no implemented' })
 }

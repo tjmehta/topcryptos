@@ -8,6 +8,7 @@
     "baseUrl": "./"
   },
   "include": [
-    "app/**/*.ts"
+    "app/**/*.ts",
+    "pages/api/**/*.ts",
   ]
 }

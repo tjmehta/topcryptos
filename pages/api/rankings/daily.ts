@@ -6,7 +6,6 @@ import { timesParallel } from 'times-loop'
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
 export type DailyRankingsResponse = Listings[]
-export const DAYS = [3, 4, 5, 6, 7, 8, 9, 10, 14, 21, 30, 60]
 
 export default async (
   req: NextApiRequest,
