@@ -90,8 +90,12 @@ export default function Home() {
     setDisabledCryptoIds(nextDisabledCryptoIds)
   }
   const toggleSelectedCrypto = (cryptoId: string) => {
-    const nextSelectedCryptoIds = new Set([...selectedCryptoIds])
+    if (cryptoScoreResults == null) {
+      console.warn('no results!')
+      return
+    }
 
+    const nextSelectedCryptoIds = new Set([...selectedCryptoIds])
     const crypto = cryptoScoreResults.cryptosById[cryptoId]
     if (selectedCryptoIds.has(cryptoId)) {
       // @ts-ignore
@@ -107,6 +111,11 @@ export default function Home() {
     setSelectedCryptoIds(nextSelectedCryptoIds)
   }
   const setSelectedCryptos = (cryptoIds: string[]) => {
+    if (cryptoScoreResults == null) {
+      console.warn('no results!')
+      return
+    }
+
     const nextSelectedCryptoIds = new Set([...cryptoIds])
 
     selectedCryptoIds.forEach((cryptoId) => {

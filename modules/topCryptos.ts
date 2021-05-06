@@ -17,43 +17,7 @@ export class TopCryptosApiClient extends ApiClient {
     const responses = await Promise.all<DailyRankingsResponse>([
       this.get<RankingsQuery>('api/rankings/daily', 200, {
         query: {
-          daySkip: '0',
-          dayLimit: '10',
-        },
-      }),
-      this.get<RankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '10',
-          dayLimit: '10',
-        },
-      }),
-      this.get<RankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '20',
-          dayLimit: '10',
-        },
-      }),
-      this.get<RankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '30',
-          dayLimit: '10',
-        },
-      }),
-      this.get<RankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '40',
-          dayLimit: '10',
-        },
-      }),
-      this.get<RankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '50',
-          dayLimit: '10',
-        },
-      }),
-      this.get<RankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '60',
+          daySkip: '80',
           dayLimit: '10',
         },
       }),
@@ -65,7 +29,43 @@ export class TopCryptosApiClient extends ApiClient {
       }),
       this.get<RankingsQuery>('api/rankings/daily', 200, {
         query: {
-          daySkip: '80',
+          daySkip: '60',
+          dayLimit: '10',
+        },
+      }),
+      this.get<RankingsQuery>('api/rankings/daily', 200, {
+        query: {
+          daySkip: '50',
+          dayLimit: '10',
+        },
+      }),
+      this.get<RankingsQuery>('api/rankings/daily', 200, {
+        query: {
+          daySkip: '40',
+          dayLimit: '10',
+        },
+      }),
+      this.get<RankingsQuery>('api/rankings/daily', 200, {
+        query: {
+          daySkip: '30',
+          dayLimit: '10',
+        },
+      }),
+      this.get<RankingsQuery>('api/rankings/daily', 200, {
+        query: {
+          daySkip: '20',
+          dayLimit: '10',
+        },
+      }),
+      this.get<RankingsQuery>('api/rankings/daily', 200, {
+        query: {
+          daySkip: '10',
+          dayLimit: '10',
+        },
+      }),
+      this.get<RankingsQuery>('api/rankings/daily', 200, {
+        query: {
+          daySkip: '0',
           dayLimit: '10',
         },
       }),
@@ -76,11 +76,19 @@ export class TopCryptosApiClient extends ApiClient {
       responses,
     )
     const seen = new Set<string>()
+    const seenDate = new Set<string>()
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const key = `${item.id}:${item.quote.USD.last_updated}`
-        if (seen.has(key)) return false
+        const dateStr = `${item.quote.USD.last_updated}`.split(':').shift()
+        const key = `${dateStr}:${item.id}`
+        if (!seenDate.has(dateStr)) {
+          console.log('DATE!!!', dateStr)
+        }
+        seenDate.add(dateStr)
+        if (seen.has(key)) {
+          return false
+        }
         seen.add(key)
         return true
       })
