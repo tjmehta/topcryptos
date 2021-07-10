@@ -144,9 +144,16 @@ class CoinMarketCap extends ApiClient {
         // if date is missing, query is for latest listings
         if (opts.date == null) {
           // set cache for latest listings
-          this.latestListingsCache = {
-            date: opts.hourlyCron ? roundToHour(keyQuery.date) : keyQuery.date,
-            result,
+          try {
+            this.latestListingsCache = {
+              date: opts.hourlyCron
+                ? roundToHour(keyQuery.date)
+                : keyQuery.date,
+              result,
+            }
+          } catch (err) {
+            console.error('hourly cron timing error..', err)
+            return
           }
         }
         const key = cacheKey('cryptocurrency_listings', keyQuery)

@@ -216,9 +216,14 @@ export class CoinGecko extends ApiClient {
           date: new Date(result[0].last_updated),
         }
         // set cache for latest listings
-        this.latestMarketsCache = {
-          date: opts.hourlyCron ? roundToHour(keyQuery.date) : keyQuery.date,
-          result,
+        try {
+          this.latestMarketsCache = {
+            date: opts.hourlyCron ? roundToHour(keyQuery.date) : keyQuery.date,
+            result,
+          }
+        } catch (err) {
+          console.error('hourly cron timing error..', err)
+          return
         }
         const key = cacheKey('cryptocurrency_markets', keyQuery)
 
