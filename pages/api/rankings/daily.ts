@@ -1,9 +1,14 @@
+import { CoinGecko, coingecko } from '../../../modules/coingecko'
 import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+import { Market } from './../../../modules/coingecko'
+import { get } from 'env-var'
 import { timesParallel } from 'times-loop'
 
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
+
+const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
 
 export type DailyRankingsResponse = Listings[]
 
@@ -42,7 +47,30 @@ export default async (
 
       let result: Resolved<ReturnType<typeof cmc.listings>>
       try {
-        result = await cmc.listings(query)
+        if (USE_COINGECKO_API) {
+          let markets: Market[] | null
+          if (query.date) {
+            markets = await coingecko.dailyCachedMarkets({
+              limit: query.limit,
+              date: query.date,
+            })
+          } else {
+            markets = await coingecko.markets({
+              limit: query.limit,
+            })
+          }
+          if (markets == null) {
+            // fallback to cmc cache
+            console.warn(
+              'falling back to cmc cache: ' + query.date.toISOString(),
+            )
+            result = await cmc.listings(query)
+          } else {
+            result = CoinGecko.toCMCListing(markets)
+          }
+        } else {
+          result = await cmc.listings(query)
+        }
         //console.log('THIS IS QUERY HERE' + query.date)
       } catch (err) {
         console.error('LISTINGS ERROR', err)
