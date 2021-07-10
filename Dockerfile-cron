@@ -14,4 +14,4 @@ ADD . /app
 
 RUN npm run build
 
-CMD npm start
+CMD npm run cron-hourly-listings

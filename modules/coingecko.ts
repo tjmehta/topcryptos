@@ -1,4 +1,5 @@
 import { cache, cacheKey } from './cache'
+import { roundToHour, setHour } from './roundToHour'
 
 import ApiClient from 'simple-api-client'
 import FSStore from './FSStore'
@@ -172,7 +173,7 @@ export class CoinGecko extends ApiClient {
     // @ts-ignore
     const cacheOpts = {
       ...opts,
-      date: roundToHour(opts.date, 23),
+      date: setHour(opts.date, 23),
     }
     const key = cacheKey('cryptocurrency_markets', cacheOpts)
 
@@ -266,11 +267,3 @@ export class CoinGecko extends ApiClient {
 }
 
 export const coingecko = new CoinGecko()
-
-function roundToHour(date: Date, forceHour?: number): Date {
-  if (forceHour == null) {
-    return new Date(date.toISOString().slice(0, -10) + '00:00.000Z')
-  }
-
-  return new Date(date.toISOString().slice(0, -13) + `${forceHour}:00:00.000Z`)
-}

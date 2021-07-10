@@ -9,18 +9,19 @@ import { useEffect, useMemo, useState } from 'react'
 
 import Head from 'next/head'
 import { RankingsChart } from '../components/RankingsChart'
-import { RankingsResponse } from './api/rankings/daily'
+import { RankingsResponse } from './api/rankings/hourly'
 import { format } from 'd3'
 import { topCryptos } from '../modules/topCryptos'
+import { useCallback } from 'react'
 import useURLSearchParam from '../components/hooks/useURLSearchParam'
 
 const isServer = typeof window === 'undefined'
 export const NAN_SCORE = 0 - 101
 
-const DAYS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
-const DATES = DAYS.map((days) => {
+const HOURS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
+const DATES = HOURS.map((hours) => {
   const date = new Date()
-  date.setDate(date.getDate() - (days - 1))
+  date.setHours(date.getHours() - (hours - 1))
   return date
 })
 
@@ -46,7 +47,7 @@ createTheme('custom', {
   },
 })
 
-export default function Home() {
+export default function Hourly() {
   const [error, setError] = useState<null | string>(null)
   const [activeCryptoId, setActiveCryptoId] = useState<string>(null)
   const [selectedCryptoIds, setSelectedCryptoIds] = useState<Set<string>>(
@@ -67,13 +68,13 @@ export default function Home() {
     console.log('maxRank', result)
     return result ?? 500
   })
-  const [days, setDays] = useURLSearchParam<number>('limit', (val) => {
+  const [hours, setHours] = useURLSearchParam<number>('limit', (val) => {
     const str: string | undefined = Array.isArray(val) ? val[0] : val
     let result = parseInt(str, 10)
     if (isNaN(result)) result = null
-    return result ?? 10
+    return result ?? NaN
   })
-  const daysIndex = DAYS.findIndex((v) => v === days)
+  const hoursIndex = HOURS.findIndex((v) => v === hours)
   const toggleDisabledCrypto = (cryptoId: string) => {
     const nextDisabledCryptoIds = new Set([...disabledCryptoIds])
 
@@ -142,7 +143,7 @@ export default function Home() {
     if (isServer) return
 
     topCryptos
-      .getDailyRankings({})
+      .getHourlyRankings({})
       .then((rankings) => {
         setRankings(rankings)
       })
@@ -154,7 +155,8 @@ export default function Home() {
 
   useEffect(() => {
     if (rankings == null) return
-    processRankings(rankings, DATES[daysIndex], disabledCryptoIds)
+    if (hoursIndex === -1) return
+    processRankings(rankings, DATES[hoursIndex], disabledCryptoIds)
       .then((cryptoScoreResults) => {
         setCryptoScoreResults(cryptoScoreResults)
       })
@@ -162,9 +164,19 @@ export default function Home() {
         console.error('processRankings error', err)
         setError(err)
       })
-  }, [daysIndex, rankings, disabledCryptoIds])
+  }, [hoursIndex, rankings, disabledCryptoIds])
 
-  const title = `Top Performing Cryptocurrencies`
+  const title = `Top Performing Cryptocurrencies (Hourly)`
+
+  const hoursOptions = useCallback(() => {
+    if (rankings == null) return []
+    let options = HOURS.filter((hour) => hour < rankings.length)
+    if (options.length === 0) options = [rankings.length]
+    if (hours === NaN) setHours(options[0] ?? NaN)
+    return options.map((hour) => (
+      <option key={hour} value={hour}>{`${hour} hours`}</option>
+    ))
+  }, [hours, rankings])
 
   return (
     <div
@@ -183,16 +195,14 @@ export default function Home() {
           Top performing cryptos over{' '}
           <select
             className="bg-gray-600 rounded-md border-2 border-gray-100"
-            value={days.toString()}
+            value={hours.toString()}
             onChange={(evt) => {
               const val = parseInt(evt.target.value, 10)
               if (isNaN(val)) return
-              setDays(val)
+              setHours(val)
             }}
           >
-            {DAYS.map((day) => (
-              <option key={day} value={day}>{`${day} days`}</option>
-            ))}
+            {hoursOptions()}
           </select>
         </h2>
 
@@ -204,7 +214,7 @@ export default function Home() {
                 <RankingsChart
                   className="rounded-3xl shadow-2xl p-2 md:p-4 lg:p-8 xl:flex-1"
                   cryptoScoreResults={cryptoScoreResults}
-                  days={days}
+                  days={hours}
                   activeCryptoId={activeCryptoId}
                   selectedCryptoIds={selectedCryptoIds}
                   disabledCryptoIds={disabledCryptoIds}

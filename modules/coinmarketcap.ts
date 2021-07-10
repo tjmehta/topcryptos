@@ -5,6 +5,7 @@ import FSStore from './FSStore'
 import S3Store from './S3Store'
 import { get } from 'env-var'
 import path from 'path'
+import { roundToHour } from './roundToHour'
 
 const USE_FS_CACHE = get('USE_FS_CACHE').asBool()
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
@@ -54,6 +55,7 @@ export type ListingsOpts = {
   start: number
   limit: number
   date?: Date
+  hourlyCron?: boolean
 }
 
 export type ExchangesOpts = {
@@ -85,6 +87,19 @@ class CoinMarketCap extends ApiClient {
         'X-CMC_PRO_API_KEY': CMC_API_KEY,
       },
     })
+  }
+
+  hourlyCachedMarkets = async (
+    opts: ListingsOpts,
+  ): Promise<Listings | null> => {
+    // @ts-ignore
+    const cacheOpts = {
+      ...opts,
+      date: roundToHour(opts.date),
+    }
+    const key = cacheKey('cryptocurrency_listings', cacheOpts)
+
+    return await store.get<Listings>(key)
   }
 
   listings = cache(
@@ -130,7 +145,7 @@ class CoinMarketCap extends ApiClient {
         if (opts.date == null) {
           // set cache for latest listings
           this.latestListingsCache = {
-            date: keyQuery.date,
+            date: opts.hourlyCron ? roundToHour(keyQuery.date) : keyQuery.date,
             result,
           }
         }

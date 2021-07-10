@@ -15,14 +15,15 @@ class HourlyListingsCron extends HourlyCron {
       logger: console,
       stopTimeout: 5 * 1000,
       task: async () => {
-        if (USE_COINGECKO_API) {
-          await coingecko.markets({ limit: 500 })
-        } else {
-          await cmc.listings({
-            start: 1,
-            limit: 500,
-          })
-        }
+        await coingecko.markets({
+          limit: 500,
+          // hourlyCron: true,
+        })
+        await cmc.listings({
+          start: 1,
+          limit: 500,
+          // hourlyCron: true,
+        })
       },
     })
   }
