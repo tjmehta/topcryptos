@@ -11,7 +11,7 @@ import { timesParallel } from 'times-loop'
 
 const USE_FS_CACHE = get('USE_FS_CACHE').asBool()
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
-const maxCacheDuration = 30 * 60 * 60 * 1000 // 30 min
+const maxCacheDuration = 15 * 60 * 60 * 1000 // 15 min
 
 const fsStore = new FSStore(path.resolve(CACHE_STORE_DIR, 'coinmarketcap'))
 const s3Store = new S3Store()
@@ -184,8 +184,10 @@ export class CoinGecko extends ApiClient {
     {
       get: async ([opts = {}]) => {
         // @ts-ignore
-        const now = Date.now()
+        if (opts.hourlyCron) return
         if (this.latestMarketsCache == null) return
+
+        const now = Date.now()
         // get cache for latest listings
         const cacheDuration = now - this.latestMarketsCache.date.valueOf()
         if (maxCacheDuration < cacheDuration) {
@@ -206,7 +208,12 @@ export class CoinGecko extends ApiClient {
 
         if (opts.hourlyCron) {
           // hourly cron query, round date and cache
-          keyQuery.date = roundToHour(keyQuery.date)
+          const rounded = roundToHour(keyQuery.date)
+          console.log('hourlyCron: coingecko set cache', {
+            date: keyQuery.date,
+            rounded,
+          })
+          keyQuery.date = rounded
         }
         // cache in memory
         this.latestMarketsCache = {

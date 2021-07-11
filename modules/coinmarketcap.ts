@@ -10,7 +10,7 @@ import path from 'path'
 const USE_FS_CACHE = get('USE_FS_CACHE').asBool()
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
 const CMC_API_KEY = get('CMC_API_KEY').required().asString()
-const maxCacheDuration = 30 * 60 * 60 * 1000 // 30 min
+const maxCacheDuration = 15 * 60 * 60 * 1000 // 15 min
 
 export type Listings = {
   status: {
@@ -128,6 +128,7 @@ class CoinMarketCap extends ApiClient {
             throw new Error('cached error')
           }
         }
+        if (opts.hourlyCron) return
 
         // if date is missing, query is for latest listings
         if (opts.date == null) {
@@ -157,7 +158,12 @@ class CoinMarketCap extends ApiClient {
           // if date is missing, query is for latest listings
           if (opts.hourlyCron) {
             // hourly cron query, round date and cache
-            keyQuery.date = roundToHour(keyQuery.date)
+            const rounded = roundToHour(keyQuery.date)
+            console.log('hourlyCron: cmc set cache', {
+              date: keyQuery.date,
+              rounded,
+            })
+            keyQuery.date = rounded
           }
           // cache in memory
           this.latestListingsCache = {
