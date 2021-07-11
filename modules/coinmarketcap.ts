@@ -152,21 +152,25 @@ class CoinMarketCap extends ApiClient {
           ...opts,
           date: new Date(result.data[0].last_updated),
         }
-        // if date is missing, query is for latest listings
+
         if (opts.date == null) {
-          // set cache for latest listings
-          try {
-            this.latestListingsCache = {
-              date: opts.hourlyCron
-                ? roundToHour(keyQuery.date)
-                : keyQuery.date,
-              result,
-            }
-          } catch (err) {
-            console.error('ERROR: hourly cron timing error..', err)
-            return
+          // if date is missing, query is for latest listings
+          if (opts.hourlyCron) {
+            // hourly cron query, round date and cache
+            keyQuery.date = roundToHour(keyQuery.date)
+          }
+          // cache in memory
+          this.latestListingsCache = {
+            date: keyQuery.date,
+            result,
+          }
+          if (!opts.hourlyCron) {
+            // latest query, dont cache in store
+            return result
           }
         }
+
+        // cache in store
         const key = cacheKey('cryptocurrency_listings', keyQuery)
 
         return await store.set(key, result)
@@ -209,7 +213,7 @@ class CoinMarketCap extends ApiClient {
             err,
             date: new Date(),
           }
-          console.error('ERROR: cmc.listings', err, opts)
+          console.error('ERROR: cmc.historical.listings', err, opts)
           throw err
         }
       }

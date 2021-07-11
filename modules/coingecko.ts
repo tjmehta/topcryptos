@@ -184,19 +184,7 @@ export class CoinGecko extends ApiClient {
     {
       get: async ([opts = {}]) => {
         // @ts-ignore
-        const key = cacheKey('cryptocurrency_markets', opts)
         const now = Date.now()
-
-        const errInfo = errorDatesByKey[key]
-        if (errInfo) {
-          if (now - errInfo.date.valueOf() > maxCacheDuration) {
-            delete errorDatesByKey[key]
-          } else {
-            throw new Error('cached error')
-          }
-        }
-
-        // if date is missing, query is for latest listings
         if (this.latestMarketsCache == null) return
         // get cache for latest listings
         const cacheDuration = now - this.latestMarketsCache.date.valueOf()
@@ -215,16 +203,22 @@ export class CoinGecko extends ApiClient {
           ...opts,
           date: new Date(result[0].last_updated),
         }
-        // set cache for latest listings
-        try {
-          this.latestMarketsCache = {
-            date: opts.hourlyCron ? roundToHour(keyQuery.date) : keyQuery.date,
-            result,
-          }
-        } catch (err) {
-          console.error('ERROR: hourly cron timing error..', err)
-          return
+
+        if (opts.hourlyCron) {
+          // hourly cron query, round date and cache
+          keyQuery.date = roundToHour(keyQuery.date)
         }
+        // cache in memory
+        this.latestMarketsCache = {
+          date: keyQuery.date,
+          result,
+        }
+        if (!opts.hourlyCron) {
+          // latest query, dont cache in store
+          return result
+        }
+
+        // cache in store
         const key = cacheKey('cryptocurrency_markets', keyQuery)
 
         return await store.set(key, result)

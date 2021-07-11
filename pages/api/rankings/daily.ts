@@ -26,10 +26,10 @@ export default async (
   const maxRank = intParam(req.query.maxRank) ?? 500
   const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
 
-  console.log('query', req.query, {
-    daySkip,
-    dayLimit,
-  })
+  // console.log('query', req.query, {
+  //   daySkip,
+  //   dayLimit,
+  // })
 
   const dailyRankingsResponse: Listings[] = (
     await timesParallel(dayLimit, async (i) => {
