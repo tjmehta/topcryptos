@@ -1,10 +1,13 @@
+import { cache, cacheKey } from './cache'
+import { roundToHour, setHour } from './roundToHour'
+
 import ApiClient from 'simple-api-client'
 import FSStore from './FSStore'
 import S3Store from './S3Store'
 import { get } from 'env-var'
 import path from 'path'
-import stringify from 'fast-json-stable-stringify'
 
+const USE_FS_CACHE = get('USE_FS_CACHE').asBool()
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
 const CMC_API_KEY = get('CMC_API_KEY').required().asString()
 const maxCacheDuration = 30 * 60 * 60 * 1000 // 30 min
@@ -18,34 +21,32 @@ export type Listings = {
     credit_count: number
     notice: string | null
   }
-  data: [
-    {
-      id: number
-      name: string
-      symbol: string
-      slug: string
-      num_market_pairs: number
-      date_added: string // Date
-      tags: Array<string>
-      max_supply: number
-      circulating_supply: number
-      total_supply: number
-      platform: null
-      cmc_rank: number
-      last_updated: string // Date
-      quote: {
-        USD: {
-          price: number
-          volume_24h: number
-          percent_change_1h: number
-          percent_change_24h: number
-          percent_change_7d: number
-          market_cap: number
-          last_updated: string // Date
-        }
+  data: {
+    id: number
+    name: string
+    symbol: string
+    slug: string
+    num_market_pairs: number
+    date_added: string // Date
+    tags: Array<string>
+    max_supply: number
+    circulating_supply: number
+    total_supply: number
+    platform: null
+    cmc_rank: number
+    last_updated: string // Date
+    quote: {
+      USD: {
+        price: number
+        volume_24h: number
+        percent_change_1h: number
+        percent_change_24h: number
+        percent_change_7d: number
+        market_cap: number
+        last_updated: string // Date
       }
-    },
-  ]
+    }
+  }[]
 }
 
 type Exchanges = {}
@@ -54,6 +55,7 @@ export type ListingsOpts = {
   start: number
   limit: number
   date?: Date
+  hourlyCron?: boolean
 }
 
 export type ExchangesOpts = {
@@ -64,12 +66,14 @@ export type ExchangesOpts = {
 
 const fsStore = new FSStore(path.resolve(CACHE_STORE_DIR, 'coinmarketcap'))
 const s3Store = new S3Store()
-const store = s3Store
+const store = USE_FS_CACHE ? fsStore : s3Store
 
-const errorDatesByKey: {[key: string]: {
-  err: Error,
-  date: Date
-}} = {}
+const errorDatesByKey: {
+  [key: string]: {
+    err: Error
+    date: Date
+  }
+} = {}
 
 class CoinMarketCap extends ApiClient {
   latestListingsCache: {
@@ -83,6 +87,30 @@ class CoinMarketCap extends ApiClient {
         'X-CMC_PRO_API_KEY': CMC_API_KEY,
       },
     })
+  }
+
+  hourlyCachedMarkets = async (
+    opts: ListingsOpts,
+  ): Promise<Listings | null> => {
+    // @ts-ignore
+    const cacheOpts = {
+      ...opts,
+      date: roundToHour(opts.date),
+    }
+    const key = cacheKey('cryptocurrency_listings', cacheOpts)
+
+    return await store.get<Listings>(key)
+  }
+
+  dailyCachedMarkets = async (opts: ListingsOpts): Promise<Listings | null> => {
+    // @ts-ignore
+    const cacheOpts = {
+      ...opts,
+      date: setHour(opts.date, 23),
+    }
+    const key = cacheKey('cryptocurrency_listings', cacheOpts)
+
+    return await store.get<Listings>(key)
   }
 
   listings = cache(
@@ -105,8 +133,7 @@ class CoinMarketCap extends ApiClient {
         if (opts.date == null) {
           if (this.latestListingsCache == null) return
           // get cache for latest listings
-          const cacheDuration =
-            now - this.latestListingsCache.date.valueOf()
+          const cacheDuration = now - this.latestListingsCache.date.valueOf()
           if (maxCacheDuration < cacheDuration) {
             this.latestListingsCache = null
             return
@@ -118,21 +145,32 @@ class CoinMarketCap extends ApiClient {
       },
       set: async ([opts], result) => {
         if (!result.data || !result.data[0]) {
-          console.error('unexpected response', result)
+          console.error('ERROR: unexpected response', { opts, result })
           return
         }
         const keyQuery = {
           ...opts,
           date: new Date(result.data[0].last_updated),
         }
-        // if date is missing, query is for latest listings
+
         if (opts.date == null) {
-          // set cache for latest listings
+          // if date is missing, query is for latest listings
+          if (opts.hourlyCron) {
+            // hourly cron query, round date and cache
+            keyQuery.date = roundToHour(keyQuery.date)
+          }
+          // cache in memory
           this.latestListingsCache = {
             date: keyQuery.date,
             result,
           }
+          if (!opts.hourlyCron) {
+            // latest query, dont cache in store
+            return result
+          }
         }
+
+        // cache in store
         const key = cacheKey('cryptocurrency_listings', keyQuery)
 
         return await store.set(key, result)
@@ -173,9 +211,9 @@ class CoinMarketCap extends ApiClient {
           const key = cacheKey('cryptocurrency_listings', opts)
           errorDatesByKey[key] = {
             err,
-            date: new Date()
+            date: new Date(),
           }
-          console.error(err, opts)
+          console.error('ERROR: cmc.historical.listings', err, opts)
           throw err
         }
       }
@@ -226,37 +264,3 @@ class CoinMarketCap extends ApiClient {
 }
 
 export const cmc = new CoinMarketCap()
-
-type CacheOpts<Result, Args> = {
-  set: (args: Args, result: Result) => Promise<unknown>
-  get: (args: Args) => Promise<Result | undefined>
-}
-
-function cache<Result, Args extends Array<unknown>>(
-  opts: CacheOpts<Result, Args>,
-  task: (...args: Args) => Promise<Result>,
-): (...args: Args) => Promise<Result> {
-  return async (...args: Args) => {
-    // check if result is cached
-    const cached = await opts.get(args)
-    if (cached != null) return cached
-
-    // no cached result, run task
-    const result = await task(...args)
-
-    // save result in cache
-    await opts.set(args, result)
-
-    return result
-  }
-}
-
-function cacheKey(name: string, opts: {}): string {
-  const out = {}
-  Object.keys(opts).forEach((key) => {
-    out[key] = opts[key].toISOString
-      ? opts[key].toISOString()
-      : opts[key].toString()
-  })
-  return `${name}:${stringify(out).replace(/\\/g, '')}`
-}

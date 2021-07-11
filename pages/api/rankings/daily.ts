@@ -1,11 +1,21 @@
+import { CoinGecko, coingecko } from '../../../modules/coingecko'
 import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+import { get } from 'env-var'
+import { setHour } from './../../../modules/roundToHour'
 import { timesParallel } from 'times-loop'
 
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
-export type DailyRankingsResponse = Listings[]
+const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
+
+export type RankingsResponse = Listings[]
+
+export type DailyRankingsQuery = {
+  daySkip?: string
+  dayLimit?: string
+}
 
 export default async (
   req: NextApiRequest,
@@ -16,48 +26,48 @@ export default async (
   const maxRank = intParam(req.query.maxRank) ?? 500
   const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
 
-  console.log('query', req.query, {
-    daySkip,
-    dayLimit,
-  })
+  // console.log('query', req.query, {
+  //   daySkip,
+  //   dayLimit,
+  // })
 
   const dailyRankingsResponse: Listings[] = (
     await timesParallel(dayLimit, async (i) => {
-      const day = daySkip + i
-      const query: ListingsOpts = {
-        start: 1,
-        limit: 500,
-      }
-
-      if (i > 0 || daySkip > 0) {
-        const date = new Date()
-        date.setDate(date.getDate() - day)
-        const strDate = `${[
-          date.getFullYear(),
-          zpad(date.getMonth() + 1),
-          zpad(date.getDate()),
-        ].join('-')}T23:00:00.000Z`
-        query.date = new Date(strDate)
-      }
-
-      let result: Resolved<ReturnType<typeof cmc.listings>>
       try {
-        result = await cmc.listings(query)
-        //console.log('THIS IS QUERY HERE' + query.date)
+        const day = daySkip + i
+        const query: ListingsOpts = {
+          start: 1,
+          limit: 500,
+        }
+
+        if (i > 0 || daySkip > 0) {
+          const date = new Date()
+          date.setDate(date.getDate() - day)
+          query.date = setHour(date, 23)
+        }
+
+        const result = USE_COINGECKO_API
+          ? await fetchFromGecko(query)
+          : await fetchFromCMC(query)
+
+        // @ts-ignore
+        result.data = result.data.slice(0, maxRank)
+        if (minMarketCap) {
+          // @ts-ignore
+          result.data = result.data.filter(
+            (c) => c.quote.USD.market_cap > minMarketCap,
+          )
+        }
+
+        return result
       } catch (err) {
+        if (/cache miss/.test(err.message)) {
+          console.warn('cache miss:', err.message)
+          return null
+        }
         console.error('LISTINGS ERROR', err)
         return null
       }
-      // @ts-ignore
-      result.data = result.data.slice(0, maxRank)
-      if (minMarketCap) {
-        // @ts-ignore
-        result.data = result.data.filter(
-          (c) => c.quote.USD.market_cap > minMarketCap,
-        )
-      }
-
-      return result
     })
   )
     .filter((v) => v != null)
@@ -81,4 +91,42 @@ function intParam(param: null | string | string[]): number | null {
 function zpad(val: number): string {
   let str = val.toString()
   return str.length === 1 ? `0${str}` : str
+}
+
+async function fetchFromGecko(query: ListingsOpts, noFallback?: boolean) {
+  try {
+    const markets = query.date
+      ? await coingecko.dailyCachedMarkets({
+          limit: query.limit,
+          date: query.date,
+        })
+      : await coingecko.markets({
+          limit: query.limit,
+        })
+    if (markets == null)
+      throw { message: `gecko cache miss: ${query.date?.toISOString()}` }
+    return CoinGecko.toCMCListing(markets)
+  } catch (err) {
+    // if (noFallback) throw err // loops back and fetches from CMC History API
+    console.warn('fetchFromGecko warn', err.message)
+    return fetchFromCMC(query, true /* no fallback */)
+  }
+}
+
+async function fetchFromCMC(query: ListingsOpts, noFallback?: boolean) {
+  try {
+    const result = query.date
+      ? await cmc.dailyCachedMarkets(query)
+      : await cmc.listings(query)
+    if (result == null)
+      throw { message: `cmc cache miss: ${query.date?.toISOString()}` }
+    return result
+  } catch (err) {
+    if (noFallback) {
+      console.warn(`Using CMC History API! ${query.date?.toISOString()}`)
+      return cmc.listings(query)
+    }
+    console.warn('fetchFromGecko warn', err.message)
+    return fetchFromGecko(query, true /* no fallback */)
+  }
 }

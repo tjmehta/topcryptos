@@ -100,7 +100,7 @@ export type CryptoScoreResults = {
 }
 
 export async function processRankings(
-  dailyRankings: RankingsResponse[],
+  rankingsList: RankingsResponse,
   startDate: Date,
   disabledCryptoIds: Set<string>,
 ): Promise<CryptoScoreResults> {
@@ -113,23 +113,16 @@ export async function processRankings(
     scoreMinMax: new MinMaxState<number>(),
   }
 
-  const quotesGroupedByCrypto = from(dailyRankings).pipe(
-    mergeMap((dayRankings) => {
-      dayRankings.data.sort((a, b) => {
+  const quotesGroupedByCrypto = from(rankingsList).pipe(
+    mergeMap((rankings) => {
+      rankings.data.sort((a, b) => {
         if (a.quote.USD.market_cap > b.quote.USD.market_cap) return -1
         if (a.quote.USD.market_cap < b.quote.USD.market_cap) return 1
         return 0
       })
-      return from(dayRankings.data).pipe(
+      return from(rankings.data).pipe(
         map((rankingData, index) => {
-          const {
-            id,
-            name,
-            symbol,
-            slug,
-            cmc_rank,
-            quote: _quote,
-          } = rankingData
+          const { id, name, symbol, slug, quote: _quote } = rankingData
           const { price, volume_24h, market_cap, last_updated } = _quote.USD
 
           const quote: Quote = {
