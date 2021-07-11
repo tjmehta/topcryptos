@@ -40,9 +40,28 @@ export class HourlyCron extends AbstractApp {
       this.lastRunDate = nowRoundedToHour
       return
     }
-    if (this.lastRunDate.toString() === nowRoundedToHour.toString()) return
-    if (nowRoundedToHour < this.lastRunDate) return
-    if (now.getMinutes() > 15) return
+    if (this.lastRunDate != null) {
+      if (this.lastRunDate.toString() === nowRoundedToHour.toString()) {
+        // this._logger.info(
+        //   'equal',
+        //   this.lastRunDate.toString(),
+        //   nowRoundedToHour.toString(),
+        // )
+        return
+      }
+      if (this.lastRunDate > nowRoundedToHour) {
+        // this._logger.info(
+        //   'gte',
+        //   this.lastRunDate.toString(),
+        //   nowRoundedToHour.toString(),
+        // )
+        return
+      }
+    }
+    if (now.getMinutes() > 15) {
+      // this._logger.info('min too big', now.getMinutes(), 15)
+      return
+    }
 
     try {
       // run task
@@ -61,6 +80,7 @@ export class HourlyCron extends AbstractApp {
       this.lastRunDate = null
     } finally {
       // task finished, clear promise
+      this._logger.info('task finished')
       this.taskPromise = null
     }
   }
