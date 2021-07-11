@@ -42,6 +42,7 @@ export default class FSStore extends AbstractStartable {
   async set<T>(key: string, data: T): Promise<void> {
     key = key.replace(/\//g, '_') + '.json'
     let str: string
+    await this.start()
     try {
       str = JSON.stringify(data)
     } catch (err) {

@@ -86,7 +86,7 @@ export class TopCryptosApiClient extends ApiClient {
       response.data = response.data.filter((item) => {
         const dateStr = `${item.quote.USD.last_updated}`.split(':').shift()
         const key = `${dateStr}:${item.id}`
-        if (!seenDate.has(dateStr)) {
+        if (!seen.has(key)) {
           console.log('DATE!!!', dateStr)
         }
         seenDate.add(dateStr)

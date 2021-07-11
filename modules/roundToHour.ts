@@ -9,12 +9,10 @@ export function floorHour(date: Date): Date {
 }
 
 export function roundToHour(date: Date): Date {
-  if (date.getMinutes() > 50) {
+  if (date.getMinutes() >= 30) {
     return ceilHour(date)
-  } else if (date.getMinutes() < 10) {
-    return floorHour(date)
   } else {
-    throw new Error('Date is not near an hour')
+    return floorHour(date)
   }
 }
 

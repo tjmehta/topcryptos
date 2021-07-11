@@ -15,6 +15,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "@types/d3": "^6.3.0",
     "@types/react-plotly.js": "^2.2.4",
+    "abortable-interval": "^1.0.0",
     "abstract-app": "^1.0.1",
     "abstract-http-server": "^1.0.0",
     "abstract-startable": "^1.0.1",
