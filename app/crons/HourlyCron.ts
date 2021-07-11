@@ -17,6 +17,7 @@ export class HourlyCron extends AbstractApp {
   private taskPromise: ReturnType<TaskType> | null = null
   private abortController: AbortController | null = null
   private lastRunDate: Date | null = null
+  private lastRunError: Error | null = null
 
   constructor(opts: { task: TaskType } & OptsType) {
     super({
@@ -35,7 +36,7 @@ export class HourlyCron extends AbstractApp {
 
     const now = new Date()
     const nowRoundedToHour = roundToHour(now)
-    if (this.lastRunDate == null) {
+    if (this.lastRunDate == null && this.lastRunError == null) {
       this._logger.info('skip first run', { date: new Date() })
       this.lastRunDate = nowRoundedToHour
       return
@@ -73,11 +74,13 @@ export class HourlyCron extends AbstractApp {
       this.lastRunDate = nowRoundedToHour
       this.taskPromise = this.task()
       await this.taskPromise
+      this.lastRunError = null
     } catch (err) {
       // task errored, wait 30 sec and try again
       this._logger.error('task failed', { date: new Date(), err })
       await timeout(30 * 1000, this.abortController.signal)
       this.lastRunDate = null
+      this.lastRunError = err
     } finally {
       // task finished, clear promise
       this._logger.info('task finished')
