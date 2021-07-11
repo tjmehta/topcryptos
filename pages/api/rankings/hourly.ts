@@ -2,7 +2,6 @@ import { CoinGecko, coingecko } from '../../../modules/coingecko'
 import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { Market } from './../../../modules/coingecko'
 import { RankingsResponse as _RankingsResponse } from './daily'
 import { ceilHour } from './../../../modules/roundToHour'
 import { get } from 'env-var'
@@ -35,61 +34,41 @@ export default async (
 
   const hourlyRankingsResponse: Listings[] = (
     await timesParallel(hoursLimit, async (i) => {
-      const hours = hoursSkip + i
-      const query: ListingsOpts = {
-        start: 1,
-        limit: 500,
-      }
-
-      if (i > 0 || hoursSkip > 0) {
-        const date = ceilHour(new Date())
-        date.setHours(date.getHours() - hours)
-        query.date = date
-      }
-
-      let result: Resolved<ReturnType<typeof cmc.listings>>
       try {
-        if (USE_COINGECKO_API) {
-          let markets: Market[] | null
-          if (query.date) {
-            markets = await coingecko.hourlyCachedMarkets({
-              limit: query.limit,
-              date: query.date,
-            })
-          } else {
-            markets = await coingecko.markets({
-              limit: query.limit,
-            })
-          }
-          if (markets != null) {
-            result = CoinGecko.toCMCListing(markets)
-          } else {
-            // fallback to cmc cache
-            console.warn(
-              'falling back to cmc cache: ' + query.date?.toISOString(),
-            )
-            result = await cmc.hourlyCachedMarkets(query)
-          }
-        } else {
-          result = await cmc.hourlyCachedMarkets(query)
+        const hours = hoursSkip + i
+        const query: ListingsOpts = {
+          start: 1,
+          limit: 500,
         }
-        if (result == null) {
-          throw new Error('result missing ' + query.date?.toISOString())
+
+        if (i > 0 || hoursSkip > 0) {
+          const date = ceilHour(new Date())
+          date.setHours(date.getHours() - hours)
+          query.date = date
         }
+
+        const result = USE_COINGECKO_API
+          ? await fetchFromGecko(query)
+          : await fetchFromCMC(query)
+
+        // @ts-ignore
+        result.data = result.data.slice(0, maxRank)
+        if (minMarketCap) {
+          // @ts-ignore
+          result.data = result.data.filter(
+            (c) => c.quote.USD.market_cap > minMarketCap,
+          )
+        }
+
+        return result
       } catch (err) {
+        if (/cache miss/.test(err.message)) {
+          console.warn('cache miss:', err.message)
+          return null
+        }
         console.error('LISTINGS ERROR', err)
         return null
       }
-      // @ts-ignore
-      result.data = result.data.slice(0, maxRank)
-      if (minMarketCap) {
-        // @ts-ignore
-        result.data = result.data.filter(
-          (c) => c.quote.USD.market_cap > minMarketCap,
-        )
-      }
-
-      return result
     })
   )
     .filter((v) => v != null)
@@ -110,7 +89,38 @@ function intParam(param: null | string | string[]): number | null {
   if (isNaN(num)) return null
   return num
 }
-function zpad(val: number): string {
-  let str = val.toString()
-  return str.length === 1 ? `0${str}` : str
+
+async function fetchFromGecko(query: ListingsOpts, noFallback?: boolean) {
+  try {
+    const markets = query.date
+      ? await coingecko.hourlyCachedMarkets({
+          limit: query.limit,
+          date: query.date,
+        })
+      : await coingecko.markets({
+          limit: query.limit,
+        })
+    if (markets == null)
+      throw { message: `gecko cache miss: ${query.date?.toISOString()}` }
+    return CoinGecko.toCMCListing(markets)
+  } catch (err) {
+    if (noFallback) throw err
+    console.warn('fetchFromGecko warn', err.message)
+    return fetchFromCMC(query, true /* no fallback */)
+  }
+}
+
+async function fetchFromCMC(query: ListingsOpts, noFallback?: boolean) {
+  try {
+    const result = query.date
+      ? await cmc.hourlyCachedMarkets(query)
+      : await cmc.listings(query)
+    if (result == null)
+      throw { message: `cmc cache miss: ${query.date?.toISOString()}` }
+    return result
+  } catch (err) {
+    if (noFallback) throw err
+    console.warn('fetchFromGecko warn', err.message)
+    return fetchFromGecko(query, true /* no fallback */)
+  }
 }

@@ -208,7 +208,7 @@ export class CoinGecko extends ApiClient {
       },
       set: async ([opts = {}], result) => {
         if (!result || !result[0]) {
-          console.error('unexpected response', result)
+          console.error('ERROR: unexpected response', { opts, result })
           return
         }
         const keyQuery = {
@@ -222,7 +222,7 @@ export class CoinGecko extends ApiClient {
             result,
           }
         } catch (err) {
-          console.error('hourly cron timing error..', err)
+          console.error('ERROR: hourly cron timing error..', err)
           return
         }
         const key = cacheKey('cryptocurrency_markets', keyQuery)

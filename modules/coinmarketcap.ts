@@ -1,11 +1,11 @@
 import { cache, cacheKey } from './cache'
+import { roundToHour, setHour } from './roundToHour'
 
 import ApiClient from 'simple-api-client'
 import FSStore from './FSStore'
 import S3Store from './S3Store'
 import { get } from 'env-var'
 import path from 'path'
-import { roundToHour } from './roundToHour'
 
 const USE_FS_CACHE = get('USE_FS_CACHE').asBool()
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
@@ -102,6 +102,17 @@ class CoinMarketCap extends ApiClient {
     return await store.get<Listings>(key)
   }
 
+  dailyCachedMarkets = async (opts: ListingsOpts): Promise<Listings | null> => {
+    // @ts-ignore
+    const cacheOpts = {
+      ...opts,
+      date: setHour(opts.date, 23),
+    }
+    const key = cacheKey('cryptocurrency_listings', cacheOpts)
+
+    return await store.get<Listings>(key)
+  }
+
   listings = cache(
     {
       get: async ([opts]) => {
@@ -134,7 +145,7 @@ class CoinMarketCap extends ApiClient {
       },
       set: async ([opts], result) => {
         if (!result.data || !result.data[0]) {
-          console.error('unexpected response', result)
+          console.error('ERROR: unexpected response', { opts, result })
           return
         }
         const keyQuery = {
@@ -152,7 +163,7 @@ class CoinMarketCap extends ApiClient {
               result,
             }
           } catch (err) {
-            console.error('hourly cron timing error..', err)
+            console.error('ERROR: hourly cron timing error..', err)
             return
           }
         }
@@ -198,7 +209,7 @@ class CoinMarketCap extends ApiClient {
             err,
             date: new Date(),
           }
-          console.error(err, opts)
+          console.error('ERROR: cmc.listings', err, opts)
           throw err
         }
       }

@@ -40,8 +40,8 @@ export class HourlyCron extends AbstractApp {
       this.lastRunDate = nowRoundedToHour
       return
     }
-    if (nowRoundedToHour > this.lastRunDate) return
     if (this.lastRunDate.toString() === nowRoundedToHour.toString()) return
+    if (nowRoundedToHour < this.lastRunDate) return
     if (now.getMinutes() > 15) return
 
     try {
