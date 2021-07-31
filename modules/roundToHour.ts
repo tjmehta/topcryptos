@@ -17,5 +17,15 @@ export function roundToHour(date: Date): Date {
 }
 
 export function setHour(date: Date, hour: number): Date {
-  return new Date(date.toISOString().slice(0, -13) + `${hour}:00:00.000Z`)
+  return new Date(
+    date.toISOString().slice(0, -13) + `${padHour(hour)}:00:00.000Z`,
+  )
+}
+
+function padHour(hour: number): string {
+  const str = hour.toString()
+  if (str.length === 1) {
+    return '0' + str
+  }
+  return str
 }
