@@ -177,7 +177,16 @@ export class CoinGecko extends ApiClient {
     }
     const key = cacheKey('cryptocurrency_markets', cacheOpts)
 
-    return await store.get<Market[]>(key)
+    let result = await store.get<Market[]>(key)
+    if (result == null) {
+      const cacheOpts2 = {
+        ...opts,
+        date: setHour(opts.date, 22),
+      }
+      const key2 = cacheKey('cryptocurrency_markets', cacheOpts2)
+      result = await store.get<Market[]>(key2)
+    }
+    return result
   }
 
   markets = cache(

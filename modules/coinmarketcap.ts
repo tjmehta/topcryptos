@@ -104,13 +104,53 @@ class CoinMarketCap extends ApiClient {
 
   dailyCachedMarkets = async (opts: ListingsOpts): Promise<Listings | null> => {
     // @ts-ignore
-    const cacheOpts = {
+    let cacheOpts = {
       ...opts,
       date: setHour(opts.date, 23),
     }
-    const key = cacheKey('cryptocurrency_listings', cacheOpts)
+    let key = cacheKey('cryptocurrency_listings', cacheOpts)
 
-    return await store.get<Listings>(key)
+    let result = await store.get<Listings>(key)
+    if (result == null) {
+      cacheOpts = {
+        ...opts,
+        hourlyCron: true,
+        date: setHour(opts.date, 22),
+      }
+      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      result = await store.get<Listings>(key)
+    }
+    if (result == null) {
+      console.warn('fallback to 16:00', opts.date)
+      cacheOpts = {
+        ...opts,
+        hourlyCron: true,
+        date: setHour(opts.date, 16),
+      }
+      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      result = await store.get<Listings>(key)
+    }
+    if (result == null) {
+      console.warn('fallback to 10:00', opts.date)
+      cacheOpts = {
+        ...opts,
+        hourlyCron: true,
+        date: setHour(opts.date, 10),
+      }
+      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      result = await store.get<Listings>(key)
+    }
+    if (result == null) {
+      console.warn('fallback to 4:00', opts.date)
+      cacheOpts = {
+        ...opts,
+        hourlyCron: true,
+        date: setHour(opts.date, 4),
+      }
+      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      result = await store.get<Listings>(key)
+    }
+    return result
   }
 
   listings = cache(
