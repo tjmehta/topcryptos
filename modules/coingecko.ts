@@ -91,6 +91,62 @@ export type Market = {
   // roi: null
 }
 
+export type Exchange = {
+  id: string // "binance",
+  name: string // "Binance",
+  year_established: number // 2017,
+  country: string // "Cayman Islands",
+  description: string // "",
+  url: string // "https://www.binance.com/",
+  image: string // "https://assets.coingecko.com/markets/images/52/small/binance.jpg?1519353250",
+  has_trading_incentive: boolean // false,
+  trust_score: number // 10,
+  trust_score_rank: number // 1,
+  trade_volume_24h_btc: number // 551856.5889757562,
+  trade_volume_24h_btc_normalized: number // 551856.5889757562
+}
+
+export type TickerOpts = {
+  page: number
+}
+
+export type ExchangeTickers = {
+  name: string //"Coinbase Exchange",
+  tickers: Ticker[]
+}
+
+export type Ticker = {
+  base: string //'BTC'
+  target: string //'USD'
+  market: {
+    name: string //'Coinbase Exchange'
+    identifier: string //'gdax'
+    has_trading_incentive: boolean //false
+  }
+  last: number //47298.49
+  volume: number //9306.05017655
+  converted_last: {
+    btc: number //0.99792989
+    eth: number //14.451085
+    usd: number //47298
+  }
+  converted_volume: {
+    btc: number //9287
+    eth: number //134483
+    usd: number //440162121
+  }
+  trust_score: string //'green'
+  bid_ask_spread_percentage: number //0.010021
+  timestamp: string //'2021-08-16T06:24:59+00:00'
+  last_traded_at: string //'2021-08-16T06:24:59+00:00'
+  last_fetch_at: string //'2021-08-16T06:26:27+00:00'
+  is_anomaly: boolean //false
+  is_stale: boolean //false
+  trade_url: string //'https://pro.coinbase.com/trade/BTC-USD'
+  token_info_url: null //null
+  coin_id: string //'bitcoin'
+}
+
 const errorDatesByKey: {
   [key: string]: {
     err: Error
@@ -188,6 +244,54 @@ export class CoinGecko extends ApiClient {
     }
     return result
   }
+
+  exchanges = cache<Exchange[], []>(
+    {
+      get: async (args) => {
+        const key = cacheKey('cryptocurrency_markets', { per_page: '250' })
+        return store.get<Exchange[]>(key)
+      },
+      set: async (args, result) => {
+        if (!result || !result[0]) {
+          console.error('ERROR: unexpected response', { args, result })
+          return
+        }
+        const key = cacheKey('cryptocurrency_markets', { per_page: '250' })
+        return store.set<Exchange[]>(key, result)
+      },
+    },
+    async () => {
+      return this.get('exchanges', {
+        query: { per_page: '250' },
+      })
+    },
+  )
+
+  exchangeTickers = cache(
+    {
+      get: async (args) => {
+        const key = cacheKey('cryptocurrency_markets', { per_page: '250' })
+        return store.get<ExchangeTickers>(key)
+      },
+      set: async (args, result) => {
+        if (!result || !result[0]) {
+          console.error('ERROR: unexpected response', { args, result })
+          return
+        }
+        const key = cacheKey('cryptocurrency_markets', { per_page: '250' })
+        return store.set<ExchangeTickers>(key, result)
+      },
+    },
+    async (id: string, opts: TickerOpts) => {
+      const tickers: ExchangeTickers = await this.get(
+        `exchanges/${id}/tickers`,
+        {
+          query: { page: opts.page.toString() },
+        },
+      )
+      return tickers
+    },
+  )
 
   markets = cache(
     {

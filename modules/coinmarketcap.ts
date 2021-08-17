@@ -125,7 +125,27 @@ class CoinMarketCap extends ApiClient {
       cacheOpts = {
         ...opts,
         hourlyCron: true,
+        date: setHour(opts.date, 19),
+      }
+      console.warn('fallback to ', cacheOpts.date)
+      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      result = await store.get<Listings>(key)
+    }
+    if (result == null) {
+      cacheOpts = {
+        ...opts,
+        hourlyCron: true,
         date: setHour(opts.date, 16),
+      }
+      console.warn('fallback to ', cacheOpts.date)
+      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      result = await store.get<Listings>(key)
+    }
+    if (result == null) {
+      cacheOpts = {
+        ...opts,
+        hourlyCron: true,
+        date: setHour(opts.date, 13),
       }
       console.warn('fallback to ', cacheOpts.date)
       key = cacheKey('cryptocurrency_listings', cacheOpts)
