@@ -111,7 +111,7 @@ class CoinMarketCap extends ApiClient {
     let key = cacheKey('cryptocurrency_listings', cacheOpts)
 
     let result = await store.get<Listings>(key)
-    const hours = [22, 19, 16, 13, 10, 7, 4]
+    const hours = [22, 19, 16, 14, 13, 10, 8, 7, 4, 2]
 
     while (hours.length && !result) {
       const hour = hours.shift()
