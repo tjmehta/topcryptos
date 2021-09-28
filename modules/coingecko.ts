@@ -91,6 +91,54 @@ export type Market = {
   // roi: null
 }
 
+export type Exchange = {
+  id: string // "binance",
+  name: string // "Binance",
+  year_established: number // 2017,
+  country: string // "Cayman Islands",
+  description: string // "",
+  url: string // "https://www.binance.com/",
+  image: string // "https://assets.coingecko.com/markets/images/52/small/binance.jpg?1519353250",
+  has_trading_incentive: boolean // false,
+  trust_score: number // 10,
+  trust_score_rank: number // 1,
+  trade_volume_24h_btc: number // 607114.6825867095,
+  trade_volume_24h_btc_normalized: number // 607114.6825867095
+}
+
+export type Ticker = {
+  base: string // "BTC",
+  target: string // "USDT",
+  market: {
+    name: string // "Binance",
+    identifier: string // "binance",
+    has_trading_incentive: boolean // false
+  }
+  last: number // 45557.31,
+  volume: number // 34664.623412566165,
+  converted_last: {
+    btc: number // 0.99967436,
+    eth: number // 13.759832,
+    usd: number // 45671
+  }
+  converted_volume: {
+    btc: number // 34653,
+    eth: number // 476979,
+    usd: number // 1583156545
+  }
+  trust_score: string // "green",
+  bid_ask_spread_percentage: number // 0.010022,
+  timestamp: string // "2021-09-11T18:40:02+00:00",
+  last_traded_at: string // "2021-09-11T18:40:02+00:00",
+  last_fetch_at: string // "2021-09-11T18:40:02+00:00",
+  is_anomaly: boolean // false,
+  is_stale: boolean // false,
+  trade_url: string // "https://www.binance.com/en/trade/BTC_USDT?ref=37754157",
+  token_info_url: string | null // null,
+  coin_id: string // "bitcoin",
+  target_coin_id: string // "tether"
+}
+
 const errorDatesByKey: {
   [key: string]: {
     err: Error
@@ -279,6 +327,84 @@ export class CoinGecko extends ApiClient {
       return json
     },
   )
+
+  exchanges = cache(
+    {
+      get: async (): Promise<Exchange[]> => {
+        if (exchangesCache == null) return
+        if (Date.now() - exchangesCache.date.valueOf() > exchangesCacheTTL) {
+          exchangesCache = null
+          return
+        }
+        return exchangesCache.value
+      },
+      set: async (args: [], value: Exchange[]): Promise<Exchange[]> => {
+        if (
+          // no cache
+          exchangesCache == null ||
+          // expired
+          Date.now() - exchangesCache.date.valueOf() > exchangesCacheTTL
+        ) {
+          exchangesCache = {
+            date: new Date(),
+            value,
+          }
+          return exchangesCache.value
+        }
+        // has cache, and not expired
+        return exchangesCache.value
+      },
+    },
+    async (): Promise<Exchange[]> => {
+      return await this.get('exchanges')
+    },
+  )
+
+  exchangesTickers = cache(
+    {
+      get: async (): Promise<Ticker[]> => {
+        if (exchangesCache == null) return
+        if (Date.now() - exchangesCache.date.valueOf() > exchangesCacheTTL) {
+          exchangesCache = null
+          return
+        }
+        return exchangesCache.value
+      },
+      set: async ([exchangeId], value): Promise<Ticker[]> => {
+        if (
+          // no cache
+          exchangesCache == null ||
+          // expired
+          Date.now() - exchangesCache.date.valueOf() > exchangesCacheTTL
+        ) {
+          exchangesCache = {
+            date: new Date(),
+            value,
+          }
+          return exchangesCache.value
+        }
+        // has cache, and not expired
+        return exchangesCache.value
+      },
+    },
+    async (exchangeId: string): Promise<Ticker[]> => {
+      return await this.get(`exchanges/${exchangeId}/tickers`)
+    },
+  )
 }
+
+let exchangesCacheTTL = 2 * 60 * 60 * 1000
+let exchangesCache: {
+  value: Exchange[]
+  date: Date
+} | null = null
+
+let tickersCacheTTL = 2 * 60 * 60 * 1000
+let tickersCache: {
+  [exchangeId: string]: {
+    value: Ticker[]
+    date: Date
+  } | null
+} = null
 
 export const coingecko = new CoinGecko()

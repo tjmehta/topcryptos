@@ -29,7 +29,7 @@ export default class S3Store extends AbstractStartable {
   constructor() {
     super()
     this.opts = {
-      region: AWS_S3_BUCKET_REGION,
+    region: AWS_S3_BUCKET_REGION,
       credentials: {
         accessKeyId: AWS_S3_ACCESS_KEY_ID,
         secretAccessKey: AWS_S3_SECRET_ACCESS_KEY,
