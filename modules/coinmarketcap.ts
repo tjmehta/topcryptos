@@ -86,6 +86,10 @@ class CoinMarketCap extends ApiClient {
       headers: {
         'X-CMC_PRO_API_KEY': CMC_API_KEY,
       },
+      throttle: {
+        timeout: 60 * 1000 * 1.1, // 1333 limit a day vs 1440 minutes in a day
+        statusCodes: [429],
+      },
     })
   }
 

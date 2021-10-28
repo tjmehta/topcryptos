@@ -15,11 +15,11 @@ class HourlyListingsCron extends HourlyCron {
       logger: console,
       stopTimeout: 5 * 1000,
       task: async () => {
-        await Promise.all([
-          coingecko.markets({
-            limit: 500,
-            hourlyCron: true,
-          }),
+        await Promise.allSettled([
+          // coingecko.markets({
+          //   limit: 500,
+          //   hourlyCron: true,
+          // }),
           cmc.listings({
             start: 1,
             limit: 500,

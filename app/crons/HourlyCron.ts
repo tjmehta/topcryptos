@@ -2,9 +2,12 @@ import AbstractApp, { OptsType } from 'abstract-app'
 
 import AbortController from 'fast-abort-controller'
 import { LoggerType } from 'abstract-startable'
+import { get } from 'env-var'
 import interval from 'abortable-interval'
 import { roundToHour } from '../../modules/roundToHour'
 import timeout from 'abortable-timeout'
+
+const FORCE_RUN_INTERVAL = get('FORCE_RUN_INTERVAL').asBool()
 
 type TaskType = () => Promise<void>
 
@@ -36,11 +39,12 @@ export class HourlyCron extends AbstractApp {
 
     const now = new Date()
     const nowRoundedToHour = roundToHour(now)
-    if (this.lastRunDate == null && this.lastRunError == null) {
-      this._logger.info('skip first run', { date: new Date() })
-      this.lastRunDate = nowRoundedToHour
-      return
-    }
+    if (!FORCE_RUN_INTERVAL)
+      if (this.lastRunDate == null && this.lastRunError == null) {
+        this._logger.info('skip first run', { date: new Date() })
+        this.lastRunDate = nowRoundedToHour
+        return
+      }
     if (this.lastRunDate != null) {
       if (this.lastRunDate.toString() === nowRoundedToHour.toString()) {
         // this._logger.info(
@@ -59,10 +63,11 @@ export class HourlyCron extends AbstractApp {
         return
       }
     }
-    if (now.getMinutes() > 15) {
-      // this._logger.info('min too big', now.getMinutes(), 15)
-      return
-    }
+    if (!FORCE_RUN_INTERVAL)
+      if (now.getMinutes() > 15) {
+        // this._logger.info('min too big', now.getMinutes(), 15)
+        return
+      }
 
     try {
       // run task
@@ -97,6 +102,7 @@ export class HourlyCron extends AbstractApp {
     timeout((60 - seconds) * 1000, this.abortController.signal).then(() => {
       interval(15 * 1000, this.abortController.signal, this._handleInterval)
     })
+    if (FORCE_RUN_INTERVAL) this._handleInterval()
   }
 
   async _stop() {
