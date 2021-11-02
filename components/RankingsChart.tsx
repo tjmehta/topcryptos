@@ -135,7 +135,8 @@ export function RankingsChart({
           })
           .style('opacity', (crypto) => {
             const score = crypto.score
-
+            
+            if (selectedCryptoIds.has(crypto.id)) return 900
             if (disabledCryptoIds.has(crypto.id)) return 0
             if (score === NAN_SCORE) return 0
 
