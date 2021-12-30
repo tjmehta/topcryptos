@@ -16,6 +16,7 @@ export default class FSStore extends AbstractStartable {
   }
 
   async _start() {
+    console.log('starting fs store', this.path)
     await mkdirp(this.path)
   }
   async _stop() {

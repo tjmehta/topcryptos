@@ -175,15 +175,12 @@ class CoinMarketCap extends ApiClient {
           date: new Date(result.data[0].last_updated),
         }
 
+        let rounded: Date | null = null
         if (opts.date == null) {
           // if date is missing, query is for latest listings
           if (opts.hourlyCron) {
             // hourly cron query, round date and cache
-            const rounded = roundToHour(keyQuery.date)
-            console.log('hourlyCron: cmc set cache', {
-              date: keyQuery.date,
-              rounded,
-            })
+            rounded = roundToHour(keyQuery.date)
             keyQuery.date = rounded
           }
           // cache in memory
@@ -200,6 +197,11 @@ class CoinMarketCap extends ApiClient {
         // cache in store
         const key = cacheKey('cryptocurrency_listings', keyQuery)
 
+        console.log('hourlyCron: cmc set cache', {
+          date: keyQuery.date,
+          rounded,
+          key,
+        })
         return await store.set(key, result)
       },
     },

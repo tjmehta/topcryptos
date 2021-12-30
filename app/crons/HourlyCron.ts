@@ -33,7 +33,7 @@ export class HourlyCron extends AbstractApp {
 
   private _handleInterval = async () => {
     if (this.taskPromise != null) {
-      this._logger.warn('task still running', { date: new Date() })
+      this._logger.warn('hourlyCron: task still running', { date: new Date() })
       return
     }
 
@@ -41,37 +41,37 @@ export class HourlyCron extends AbstractApp {
     const nowRoundedToHour = roundToHour(now)
     if (!FORCE_RUN_INTERVAL)
       if (this.lastRunDate == null && this.lastRunError == null) {
-        this._logger.info('skip first run', { date: new Date() })
+        this._logger.info('hourlyCron: skip first run', { date: new Date() })
         this.lastRunDate = nowRoundedToHour
         return
       }
     if (this.lastRunDate != null) {
       if (this.lastRunDate.toString() === nowRoundedToHour.toString()) {
-        // this._logger.info(
-        //   'equal',
-        //   this.lastRunDate.toString(),
-        //   nowRoundedToHour.toString(),
-        // )
+        this._logger.info(
+          'hourlyCron: equal',
+          this.lastRunDate.toString(),
+          nowRoundedToHour.toString(),
+        )
         return
       }
       if (this.lastRunDate > nowRoundedToHour) {
-        // this._logger.info(
-        //   'gte',
-        //   this.lastRunDate.toString(),
-        //   nowRoundedToHour.toString(),
-        // )
+        this._logger.info(
+          'hourlyCron: gte',
+          this.lastRunDate.toString(),
+          nowRoundedToHour.toString(),
+        )
         return
       }
     }
     if (!FORCE_RUN_INTERVAL)
       if (now.getMinutes() > 15) {
-        // this._logger.info('min too big', now.getMinutes(), 15)
+        this._logger.info('hourlyCron: min too big', now.getMinutes(), 15)
         return
       }
 
     try {
       // run task
-      this._logger.info('running task', {
+      this._logger.info('hourlyCron: running task', {
         date: new Date(),
         rounded: nowRoundedToHour,
         lastRunDate: this.lastRunDate,
@@ -82,13 +82,13 @@ export class HourlyCron extends AbstractApp {
       this.lastRunError = null
     } catch (err) {
       // task errored, wait 30 sec and try again
-      this._logger.error('task failed', { date: new Date(), err })
+      this._logger.error('hourlyCron: task failed', { date: new Date(), err })
       await timeout(30 * 1000, this.abortController.signal)
       this.lastRunDate = null
       this.lastRunError = err
     } finally {
       // task finished, clear promise
-      this._logger.info('task finished')
+      this._logger.info('hourlyCron: task finished')
       this.taskPromise = null
     }
   }

@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { UrlWithParsedQuery, parse } from 'url'
 
 import AbstractServer from 'abstract-http-server'
-import NextServer from 'next/dist/next-server/server/next-server'
+import { NextServer } from 'next/dist/server/next'
 import next from 'next'
 import qs from 'querystring'
 

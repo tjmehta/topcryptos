@@ -100,8 +100,10 @@ export default class S3Store extends AbstractStartable {
     }
     try {
       await this.client.putObject({ Bucket: this.bucket, Key: key, Body: str })
+      console.log('s3store: set: success', key)
       this.cache.set(key, data)
     } catch (err) {
+      console.error('s3store: set: error', key, err)
       throw S3StoreSetError.wrap(err, 'writeFile error', { key })
     }
   }
