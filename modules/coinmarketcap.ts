@@ -131,6 +131,14 @@ class CoinMarketCap extends ApiClient {
       result = await store.get<Listings>(key)
     }
 
+    // HACK: remove data to reduce payload size
+    if (result) {
+      result.data = result?.data.map((d) => {
+        d.tags = []
+        return d
+      })
+    }
+
     return result
   }
 
@@ -255,6 +263,15 @@ class CoinMarketCap extends ApiClient {
       //   if (mktCapA < mktCapB) return 1
       //   return 0
       // })
+
+      // HACK: remove data to reduce payload size
+      if (json) {
+        json.data = json.data.map((d) => {
+          d.tags = []
+          return d
+        })
+      }
+
       return json
     },
   )
