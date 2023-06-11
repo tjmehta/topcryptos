@@ -5,6 +5,7 @@ import {
 
 import ApiClient from 'simple-api-client'
 import { HourlyRankingsQuery } from './../pages/api/rankings/hourly'
+import times from 'times-loop'
 
 type DailyRankingsOpts = {
   daySkip?: number
@@ -21,62 +22,17 @@ export class TopCryptosApiClient extends ApiClient {
     super('/')
   }
   async getDailyRankings(opts: DailyRankingsOpts): Promise<RankingsResponse> {
-    const responses = await Promise.all<RankingsResponse>([
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '80',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '70',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '60',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '50',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '40',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '30',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '20',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '10',
-          dayLimit: '10',
-        },
-      }),
-      this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-        query: {
-          daySkip: '0',
-          dayLimit: '10',
-        },
-      }),
-    ])
+    const limit = 9
+    const responses = await Promise.all<RankingsResponse>(
+      times(90 / limit, (i) =>
+        this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
+          query: {
+            daySkip: `${i * limit}`,
+            dayLimit: `${limit}`,
+          },
+        }),
+      ).reverse(),
+    )
 
     const mergedResponses: RankingsResponse = [].concat.apply([], responses)
     const seen = new Set<string>()
@@ -165,7 +121,7 @@ export class TopCryptosApiClient extends ApiClient {
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split(':').shift()
+        const dateStr = `${item.quote.USD.last_updated}`.split('T').shift()
         const key = `${dateStr}:${item.id}`
         if (!seenDate.has(dateStr)) {
           console.warn('DATE!!!', dateStr)
