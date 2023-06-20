@@ -30,7 +30,7 @@
     "human-number": "^1.0.6",
     "isomorphic-unfetch": "^3.1.0",
     "mkdirp": "^1.0.4",
-    "next": "^12.0.7",
+    "next": "^12.3.4",
     "node-schedule": "^2.0.0",
     "p-props": "^4.0.0",
     "postcss": "^8.2.7",
