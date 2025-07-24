@@ -2,6 +2,10 @@
   "name": "cryptovisualize",
   "version": "1.3.3",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "node --experimental-modules -r esm dist/app/app.js",
     "cron-hourly-listings": "DOTENV_CONFIG_PATH=.env.local node --experimental-modules -r esm -r dotenv/config dist/app/crons/runHourlyListingsCron.js",
