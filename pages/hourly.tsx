@@ -49,7 +49,7 @@ createTheme('custom', {
 
 export default function Hourly() {
   const [error, setError] = useState<null | string>(null)
-  const [activeCryptoId, setActiveCryptoId] = useState<string>(null)
+  const [activeCryptoId, setActiveCryptoId] = useState<string | null>(null)
   const [selectedCryptoIds, setSelectedCryptoIds] = useState<Set<string>>(
     new Set(),
   )
@@ -63,14 +63,14 @@ export default function Hourly() {
   ] = useState<null | CryptoScoreResults>(null)
   const [maxRank] = useURLSearchParam<number>('maxRank', (val) => {
     const str: string | undefined = Array.isArray(val) ? val[0] : val
-    let result = parseInt(str, 10)
+    let result: number | null = parseInt(str, 10)
     if (isNaN(result)) result = null
     console.log('maxRank', result)
     return result ?? 500
   })
   const [hours, setHours] = useURLSearchParam<number>('limit', (val) => {
     const str: string | undefined = Array.isArray(val) ? val[0] : val
-    let result = parseInt(str, 10)
+    let result: number | null = parseInt(str, 10)
     if (isNaN(result)) result = null
     return result ?? NaN
   })
@@ -119,21 +119,24 @@ export default function Hourly() {
 
     const nextSelectedCryptoIds = new Set([...cryptoIds])
 
-    selectedCryptoIds.forEach((cryptoId) => {
-      // previously selected
-      delete cryptoScoreResults.cryptosById[
-        cryptoId
-        // @ts-ignore
-      ].rank_plus_selected
+    if (cryptoScoreResults) {
+      const results = cryptoScoreResults as any
+      selectedCryptoIds.forEach((cryptoId) => {
+        // previously selected
+        delete results.cryptosById[
+          cryptoId
+          // @ts-ignore
+        ].rank_plus_selected
+      })
+      const maxRank = results.minMaxes.rankByMarketCapMinMax.max
+      nextSelectedCryptoIds.forEach((cryptoId) => {
+        results.cryptosById[
+          cryptoId
+          // @ts-ignore
+        ].rank_plus_selected =
+          0 - maxRank * 2 + results.cryptosById[cryptoId].rank
     })
-    const maxRank = cryptoScoreResults.minMaxes.rankByMarketCapMinMax.max
-    nextSelectedCryptoIds.forEach((cryptoId) => {
-      cryptoScoreResults.cryptosById[
-        cryptoId
-        // @ts-ignore
-      ].rank_plus_selected =
-        0 - maxRank * 2 + cryptoScoreResults.cryptosById[cryptoId].rank
-    })
+    }
 
     setSelectedCryptoIds(nextSelectedCryptoIds)
   }
@@ -172,7 +175,7 @@ export default function Hourly() {
     if (rankings == null) return []
     let options = HOURS.filter((hour) => hour < rankings.length)
     if (options.length === 0) options = [rankings.length]
-    if (hours === NaN) setHours(options[0] ?? NaN)
+    if (isNaN(hours)) setHours(options[0] ?? NaN)
     return options.map((hour) => (
       <option key={hour} value={hour}>{`${hour} hours`}</option>
     ))
@@ -313,7 +316,7 @@ export default function Hourly() {
                       name: 'Price %',
                       selector: 'total.pricePct',
                       format: (crypto: Crypto) =>
-                        `${format('.2f')(crypto.total.pricePct)}%`,
+                        crypto.total ? `${format('.2f')(crypto.total.pricePct)}%` : 'N/A',
                       maxWidth: '125px',
                       minWidth: '85px',
                       sortable: true,
@@ -323,9 +326,9 @@ export default function Hourly() {
                       name: 'Mkt Cap',
                       selector: 'total.endQuote.marketCap',
                       format: (crypto: Crypto) => {
-                        return format('~s')(
+                        return crypto.total ? format('~s')(
                           crypto.total.endQuote.marketCap,
-                        ).replace('G', 'B')
+                        ).replace('G', 'B') : 'N/A'
                       },
                       maxWidth: '200px',
                       minWidth: '85px',
@@ -336,7 +339,7 @@ export default function Hourly() {
                       name: 'Mkt Cap %',
                       selector: 'total.marketCapPct',
                       format: (crypto: Crypto) =>
-                        `${format('.2f')(crypto.total.marketCapPct)}%`,
+                        crypto.total ? `${format('.2f')(crypto.total.marketCapPct)}%` : 'N/A',
                       maxWidth: '125px',
                       minWidth: '85px',
                       sortable: true,
@@ -345,7 +348,7 @@ export default function Hourly() {
                     {
                       name: 'Rank Delta',
                       selector: 'crypto.total.rankDelta',
-                      format: (crypto: Crypto) => 0 - crypto.total.rankDelta,
+                      format: (crypto: Crypto) => crypto.total ? 0 - crypto.total.rankDelta : 0,
                       maxWidth: '55px',
                       minWidth: '55px',
                       sortable: true,
@@ -363,7 +366,7 @@ export default function Hourly() {
                       name: 'Price',
                       selector: 'total.endQuote.price',
                       format: (crypto: Crypto) =>
-                        format('$,.4f')(crypto.total.endQuote.price),
+                        crypto.total ? format('$,.4f')(crypto.total.endQuote.price) : 'N/A',
                       maxWidth: '200px',
                       minWidth: '85px',
                       sortable: true,

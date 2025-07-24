@@ -326,7 +326,7 @@ export default function D3() {
     // axes
     const yScale = d3
       .scaleLinear()
-      .domain(d3.extent(data, (d) => d.expectancy))
+      .domain(d3.extent(data, (d) => d.expectancy) as [number, number] || [0, 1])
       .range([height, 0])
       .nice()
     const yAxis = d3.axisLeft(yScale)
@@ -334,7 +334,7 @@ export default function D3() {
 
     const xScale = d3
       .scaleLinear()
-      .domain(d3.extent(data, (d) => d.cost))
+      .domain(d3.extent(data, (d) => d.cost) as [number, number] || [0, 1])
       .range([0, width])
       .nice()
     const xAxis = d3.axisBottom(xScale).ticks(5)
@@ -342,7 +342,7 @@ export default function D3() {
 
     const rScale = d3
       .scaleSqrt()
-      .domain([0, d3.max(data, (d) => d.population)])
+      .domain([0, d3.max(data, (d) => d.population) || 1])
       .range([0, 40])
 
     const circles = svg

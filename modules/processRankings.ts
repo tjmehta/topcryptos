@@ -330,7 +330,8 @@ export async function processRankings(
   // calculate score
   Object.keys(sparseCryptosById).forEach((id) => {
     const sparseCrypto = sparseCryptosById[id]
-    let { pricePctAccelsSum, rankAccelsSum, total } = sparseCrypto
+    if (!sparseCrypto) return
+    let { pricePctAccelsSum = 0, rankAccelsSum = 0, total } = sparseCrypto
 
     const w1 = 0.7 * MAX_SCORE
     const w2 = 0.2 * MAX_SCORE
@@ -364,7 +365,7 @@ export async function processRankings(
     if (!disabledCryptoIds.has(id)) {
       minMaxes.scoreMinMax.compare(score)
     }
-    sparseCryptosById[id].score = score
+    sparseCryptosById[id]!.score = score
   })
 
   // cryptosById from sparse
@@ -378,6 +379,7 @@ export async function processRankings(
   const cryptosById: CryptosById = {}
   Object.keys(sparseCryptosById).forEach((id, index, keys) => {
     const sparseCrypto = sparseCryptosById[id]
+    if (!sparseCrypto) return
 
     if (sparseCrypto.quotes == null || sparseCrypto.quotes.length === 0) {
       console.warn(
@@ -398,7 +400,6 @@ export async function processRankings(
 
     const score =
       sparseCrypto.score == null ||
-      sparseCrypto.score === NaN ||
       isNaN(sparseCrypto.score)
         ? NAN_SCORE
         : sparseCrypto.score
@@ -457,9 +458,9 @@ function delta<K extends string, R extends Record<K, number>>(
   const next = pair[1]
 
   if (prev[key] == null) return NaN
-  if (prev[key] === NaN) return NaN
+  if (isNaN(prev[key])) return NaN
   if (next[key] == null) return NaN
-  if (next[key] === NaN) return NaN
+  if (isNaN(next[key])) return NaN
 
   return next[key] - prev[key]
 }

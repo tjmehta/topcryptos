@@ -79,7 +79,7 @@ class CoinMarketCap extends ApiClient {
   latestListingsCache: {
     date: Date
     result: Listings
-  } = null
+  } | null = null
 
   constructor() {
     super('https://pro-api.coinmarketcap.com/v1/', {
@@ -99,7 +99,7 @@ class CoinMarketCap extends ApiClient {
     // @ts-ignore
     const cacheOpts = {
       ...opts,
-      date: roundToHour(opts.date),
+      date: roundToHour(opts.date || new Date()),
     }
     const key = cacheKey('cryptocurrency_listings', cacheOpts)
 
@@ -110,7 +110,7 @@ class CoinMarketCap extends ApiClient {
     // @ts-ignore
     let cacheOpts = {
       ...opts,
-      date: setHour(opts.date, 23),
+      date: setHour(opts.date || new Date(), 23),
     }
     let key = cacheKey('cryptocurrency_listings', cacheOpts)
 
@@ -119,10 +119,11 @@ class CoinMarketCap extends ApiClient {
 
     while (hours.length && !result) {
       const hour = hours.shift()
+      if (hour === undefined) break
       cacheOpts = {
         ...opts,
         hourlyCron: true,
-        date: setHour(opts.date, hour),
+        date: setHour(opts.date || new Date(), hour),
       }
       if (hour !== 22) {
         console.warn('fallback to ', cacheOpts.date)
@@ -174,7 +175,7 @@ class CoinMarketCap extends ApiClient {
         return await store.get(key)
       },
       set: async ([opts], result) => {
-        if (!result.data || !result.data[0]) {
+        if (!result || !result.data || !result.data[0]) {
           console.error('ERROR: unexpected response', { opts, result })
           return
         }

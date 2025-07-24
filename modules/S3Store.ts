@@ -47,7 +47,7 @@ export default class S3Store extends AbstractStartable {
     if (!Boolean(buckets?.length)) {
       throw new S3StoreStartError('no buckets found', { result })
     }
-    const found = buckets.some((bucket) => bucket.Name === this.bucket)
+    const found = buckets?.some((bucket) => bucket.Name === this.bucket)
     if (!found) {
       throw new S3StoreStartError('bucket not found', {
         bucket: this.bucket,
@@ -78,7 +78,7 @@ export default class S3Store extends AbstractStartable {
       if (err.name === 'NoSuchKey') return null
       throw S3StoreGetError.wrap(err, 'readFile error', { key })
     }
-    let str: string
+    let str: string | undefined
     try {
       str = await getStream(result.Body as Stream)
       const obj: T = JSON.parse(str)

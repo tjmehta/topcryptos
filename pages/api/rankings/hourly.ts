@@ -22,10 +22,10 @@ export default async (
   req: NextApiRequest,
   res: NextApiResponse<Listings[]>,
 ) => {
-  const hoursSkip = intParam(req.query.hoursSkip) ?? 0
-  const hoursLimit = intParam(req.query.hoursLimit) ?? 10
-  const maxRank = intParam(req.query.maxRank) ?? 500
-  const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
+  const hoursSkip = intParam(req.query.hoursSkip || null) ?? 0
+  const hoursLimit = intParam(req.query.hoursLimit || null) ?? 10
+  const maxRank = intParam(req.query.maxRank || null) ?? 500
+  const minMarketCap = intParam(req.query.minMarketCap || null) ?? 10 * 1e6
 
   // console.log('query', req.query, {
   //   hoursSkip,

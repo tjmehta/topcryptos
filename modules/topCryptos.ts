@@ -40,7 +40,7 @@ export class TopCryptosApiClient extends ApiClient {
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split(':').shift()
+        const dateStr = `${item.quote.USD.last_updated}`.split(':').shift() || ''
         const key = `${dateStr}:${item.id}`
         if (!seen.has(key)) {
           console.log('DATE!!!', dateStr)
@@ -121,7 +121,7 @@ export class TopCryptosApiClient extends ApiClient {
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split('T').shift()
+        const dateStr = `${item.quote.USD.last_updated}`.split('T').shift() || ''
         const key = `${dateStr}:${item.id}`
         if (!seenDate.has(dateStr)) {
           console.warn('DATE!!!', dateStr)

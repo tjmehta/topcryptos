@@ -48,7 +48,7 @@ createTheme('custom', {
 
 export default function Home() {
   const [error, setError] = useState<null | string>(null)
-  const [activeCryptoId, setActiveCryptoId] = useState<string>(null)
+  const [activeCryptoId, setActiveCryptoId] = useState<string | null>(null)
   const [selectedCryptoIds, setSelectedCryptoIds] = useState<Set<string>>(
     new Set(),
   )

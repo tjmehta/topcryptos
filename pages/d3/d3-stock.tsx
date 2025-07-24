@@ -558,8 +558,8 @@ export default function D3() {
     const xScale = d3
       .scaleTime()
       .domain([
-        d3.min(data, (co) => d3.min(co.values, (d) => d.date)),
-        d3.max(data, (co) => d3.max(co.values, (d) => d.date)),
+        d3.min(data, (co) => d3.min(co.values, (d) => d.date)) || new Date(),
+        d3.max(data, (co) => d3.max(co.values, (d) => d.date)) || new Date(),
       ])
       .range([0, width])
     svg
@@ -570,8 +570,8 @@ export default function D3() {
     const yScale = d3
       .scaleLinear()
       .domain([
-        d3.min(data, (co) => d3.min(co.values, (d) => d.close)),
-        d3.max(data, (co) => d3.max(co.values, (d) => d.close)),
+        d3.min(data, (co) => d3.min(co.values, (d) => d.close)) || 0,
+        d3.max(data, (co) => d3.max(co.values, (d) => d.close)) || 1,
       ])
       .range([height, 0])
     svg.append('g').call(d3.axisLeft(yScale))

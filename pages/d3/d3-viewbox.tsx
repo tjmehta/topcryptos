@@ -59,10 +59,10 @@ export default function D3() {
       .data(data)
       .enter()
       .append('rect')
-      .attr('x', (d) => xScale(d.subject))
-      .attr('y', (d) => yScale(d.score))
+      .attr('x', (d) => xScale(d.subject) || 0)
+      .attr('y', (d) => yScale(d.score) || 0)
       .attr('width', (d) => xScale.bandwidth())
-      .attr('height', (d) => height - yScale(d.score))
+      .attr('height', (d) => height - (yScale(d.score) || 0))
   }, [])
 
   return (

@@ -14,8 +14,8 @@ export type HourlyRankingsQuery = {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
-  const maxRank = intParam(req.query.maxRank) ?? 500
-  const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
+  const maxRank = intParam(req.query.maxRank || null) ?? 500
+  const minMarketCap = intParam(req.query.minMarketCap || null) ?? 10 * 1e6
 
   const query: ListingsOpts = {
     start: 1,
@@ -44,19 +44,24 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
     query,
   )
   // @ts-ignore
-  cmcResult.data = cmcResult.data.slice(0, maxRank)
-  if (minMarketCap) {
+  if (cmcResult?.data) {
+    cmcResult.data = cmcResult.data.slice(0, maxRank)
+  }
+  if (minMarketCap && cmcResult?.data) {
     // @ts-ignore
     cmcResult.data = cmcResult.data.filter(
       (c) => c.quote.USD.market_cap > minMarketCap,
     )
   }
   // @ts-ignore
-  cmcResult.data = cmcResult.data.map((r) => r.quote.USD.last_updated)
+  let cmcLastUpdated: string[] = []
+  if (cmcResult?.data) {
+    cmcLastUpdated = cmcResult.data.map((r) => r.quote.USD.last_updated)
+  }
 
   const result = {
-    coingecko: coingeckoResult.data,
-    coinmarketcap: cmcResult.data,
+    coingecko: coingeckoResult?.data || [],
+    coinmarketcap: cmcLastUpdated,
   }
 
   res.status(200).json(result)

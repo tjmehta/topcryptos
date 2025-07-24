@@ -9,7 +9,7 @@ export default class SortedList<T> extends Doubly<T> {
     comparator: (a: T, b: T) => -1 | 1 | 0
   }) {
     super(opts)
-    this.comparator = opts.comparator
+    this.comparator = opts?.comparator || ((a, b) => 0)
   }
   add(newValue: T) {
     let node: Node<T> | null = null
@@ -41,11 +41,11 @@ export default class SortedList<T> extends Doubly<T> {
     const prev = node.prev
     const next = node
     const newNode = new Node(newValue, {
-      prev,
-      next,
+      prev: prev || undefined,
+      next: next || undefined,
     })
     if (!prev) debugger
-    prev.next = newNode
-    node.prev = newNode
+    if (prev) prev.next = newNode
+    if (node) node.prev = newNode
   }
 }

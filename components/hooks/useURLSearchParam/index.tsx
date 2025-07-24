@@ -11,7 +11,7 @@ export default function useURLSearchParam<T>(
   parse?: (val: string | string[]) => T,
 ): [T, (val: T) => void] {
   const router = useRouter()
-  const [value, setValue] = useState<T>(parse(router.query[key] ?? qs.get(key)))
+  const [value, setValue] = useState<T>(parse ? parse(router.query[key] ?? qs.get(key) ?? '') : (router.query[key] ?? qs.get(key) ?? '') as T)
 
   const setURLSearchParam = (val: T) => {
     if (val === value) return

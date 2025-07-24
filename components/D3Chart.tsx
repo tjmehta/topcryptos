@@ -31,7 +31,7 @@ export function D3Chart({
     const svg = select(ref.current)
       .attr('width', width)
       .attr('height', height)
-      .call(responsivefy)
+      .call(responsivefy as any)
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
@@ -47,7 +47,9 @@ export function D3Chart({
     >,
   ) {
     // get container + svg aspect ratio
-    const container = select(svg.node().parentNode)
+    const parentNode = svg.node()?.parentNode
+    if (!parentNode) return
+    const container = select(parentNode as Element)
     const width = parseInt(svg.style('width'))
     const height = parseInt(svg.style('height'))
     const aspect = width / height

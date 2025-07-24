@@ -27,7 +27,7 @@ export function D3Chart<T, X, Y>({
       .append('svg')
       .attr('width', fullWidth)
       .attr('height', fullHeight)
-      .call(responsivefy)
+      .call(responsivefy as any)
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
@@ -65,7 +65,9 @@ function responsivefy(
   svg: Selection<HTMLDivElement | SVGElement, unknown, HTMLDivElement, unknown>,
 ) {
   // get container + svg aspect ratio
-  var container = select(svg.node().parentNode),
+  const parentNode = svg.node()?.parentNode
+  if (!parentNode) return
+  var container = select(parentNode as Element),
     width = parseInt(svg.style('width')),
     height = parseInt(svg.style('height')),
     aspect = 1

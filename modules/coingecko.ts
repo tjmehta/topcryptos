@@ -102,7 +102,7 @@ export class CoinGecko extends ApiClient {
   latestMarketsCache: {
     date: Date
     result: Market[]
-  } = null
+  } | null = null
 
   constructor() {
     super('https://api.coingecko.com/api/v3/', {
