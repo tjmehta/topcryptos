@@ -13,6 +13,13 @@ import { RankingsResponse } from './api/rankings/daily'
 import { format } from 'd3'
 import { topCryptos } from '../modules/topCryptos'
 import useURLSearchParam from '../components/hooks/useURLSearchParam'
+import {
+  EXCHANGES,
+  ExchangeInfo,
+  filterCryptosByExchange,
+  getAvailableExchanges,
+  getExchangesForCrypto,
+} from '../modules/exchangeData'
 
 const isServer = typeof window === 'undefined'
 export const NAN_SCORE = 0 - 101
@@ -73,6 +80,13 @@ export default function Home() {
     if (isNaN(result)) result = null
     return result ?? 10
   })
+  const [selectedExchange, setSelectedExchange] = useURLSearchParam<string>(
+    'exchange',
+    (val) => {
+      const str: string | undefined = Array.isArray(val) ? val[0] : val
+      return str ?? 'all'
+    },
+  )
   const daysIndex = DAYS.findIndex((v) => v === days)
   const toggleDisabledCrypto = (cryptoId: string) => {
     const nextDisabledCryptoIds = new Set([...disabledCryptoIds])
@@ -196,6 +210,26 @@ export default function Home() {
           </select>
         </h2>
 
+        <div className="pb-5 md:pb-10 lg:pb-20">
+          <label className="block text-lg md:text-xl lg:text-2xl mb-2">
+            Filter by Exchange:
+          </label>
+          <select
+            className="bg-gray-600 rounded-md border-2 border-gray-100 px-3 py-2 text-base"
+            value={selectedExchange}
+            onChange={(evt) => {
+              setSelectedExchange(evt.target.value)
+            }}
+          >
+            <option value="all">All Exchanges</option>
+            {EXCHANGES.map((exchange) => (
+              <option key={exchange.id} value={exchange.id}>
+                {exchange.name} ({exchange.type === 'centralized' ? 'CEX' : 'DEX'})
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="xl:flex">
           <div className="pb-5 md:pb-10 lg:pb-20 lg:pr-4">
             {useMemo(() => {
@@ -228,13 +262,19 @@ export default function Home() {
                 : 'loading'
             }
           >
-            {useMemo(() => {
+            {            useMemo(() => {
               if (cryptoScoreResults == null)
                 return <div style={{ textAlign: 'center' }}>Loading...</div>
 
+              // Apply exchange filter to the crypto list
+              const filteredCryptos = filterCryptosByExchange(
+                cryptoScoreResults.cryptosSortedByScore,
+                selectedExchange,
+              )
+
               return (
                 <DataTable
-                  data={cryptoScoreResults.cryptosSortedByScore.slice()}
+                  data={filteredCryptos.slice()}
                   theme="custom"
                   defaultSortField="rank_plus_selected"
                   defaultSortAsc={true}
@@ -359,6 +399,34 @@ export default function Home() {
                       sortable: true,
                       right: true,
                     },
+                    {
+                      name: 'Available On',
+                      cell: (crypto: Crypto) => {
+                        const exchanges = getExchangesForCrypto(crypto.symbol)
+                        if (exchanges.length === 0) {
+                          return <span className="text-gray-500">N/A</span>
+                        }
+                        const displayExchanges = exchanges.slice(0, 3)
+                        const remainingCount = exchanges.length - 3
+                        return (
+                          <div className="text-xs">
+                            {displayExchanges.map((exchange, index) => (
+                              <span key={exchange.id} className="inline-block">
+                                {exchange.name}
+                                {index < displayExchanges.length - 1 && ', '}
+                              </span>
+                            ))}
+                            {remainingCount > 0 && (
+                              <span className="text-gray-400"> +{remainingCount} more</span>
+                            )}
+                          </div>
+                        )
+                      },
+                      selector: (crypto: Crypto) => getExchangesForCrypto(crypto.symbol).length,
+                      maxWidth: '200px',
+                      minWidth: '140px',
+                      sortable: true,
+                    },
                   ]}
                 />
               )
@@ -366,6 +434,7 @@ export default function Home() {
               cryptoScoreResults?.cryptosSortedByScore,
               selectedCryptoIds,
               disabledCryptoIds,
+              selectedExchange,
             ])}
           </div>
         </div>
