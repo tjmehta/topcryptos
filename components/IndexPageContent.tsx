@@ -268,14 +268,14 @@ export default function IndexPageContent() {
                           {crypto.name}
                         </a>
                       ),
-                      selector: 'name',
+                      selector: (crypto: Crypto) => crypto.name,
                       maxWidth: '250px',
                       // minWidth: '250px',
                       sortable: true,
                     },
                     {
                       name: 'Symbol',
-                      selector: 'symbol',
+                      selector: (crypto: Crypto) => crypto.symbol,
                       maxWidth: '80px',
                       minWidth: '80px',
                       sortable: true,
@@ -293,7 +293,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Score',
-                      selector: 'score',
+                      selector: (crypto: Crypto) => crypto.score,
                       format: (crypto: Crypto) => format('.4f')(crypto.score),
                       maxWidth: '200px',
                       minWidth: '85px',
@@ -302,7 +302,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Price %',
-                      selector: 'total.pricePct',
+                      selector: (crypto: Crypto) => crypto.total?.pricePct || 0,
                       format: (crypto: Crypto) =>
                         crypto.total ? `${format('.2f')(crypto.total.pricePct)}%` : 'N/A',
                       maxWidth: '125px',
@@ -312,7 +312,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Mkt Cap',
-                      selector: 'total.endQuote.marketCap',
+                      selector: (crypto: Crypto) => crypto.total?.endQuote?.marketCap || 0,
                       format: (crypto: Crypto) => {
                         return crypto.total ? format('~s')(
                           crypto.total.endQuote.marketCap,
@@ -325,7 +325,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Mkt Cap %',
-                      selector: 'total.marketCapPct',
+                      selector: (crypto: Crypto) => crypto.total?.marketCapPct || 0,
                       format: (crypto: Crypto) =>
                         crypto.total ? `${format('.2f')(crypto.total.marketCapPct)}%` : 'N/A',
                       maxWidth: '125px',
@@ -335,7 +335,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Rank Delta',
-                      selector: 'crypto.total.rankDelta',
+                      selector: (crypto: Crypto) => crypto.total?.rankDelta || 0,
                       format: (crypto: Crypto) => crypto.total ? 0 - crypto.total.rankDelta : 'N/A',
                       maxWidth: '55px',
                       minWidth: '55px',
@@ -344,7 +344,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Mkt Cap Rank',
-                      selector: 'total.endQuote.rankByMarketCap',
+                      selector: (crypto: Crypto) => crypto.total?.endQuote?.rankByMarketCap || 0,
                       maxWidth: '55px',
                       minWidth: '55px',
                       sortable: true,
@@ -352,7 +352,7 @@ export default function IndexPageContent() {
                     },
                     {
                       name: 'Price',
-                      selector: 'total.endQuote.price',
+                      selector: (crypto: Crypto) => crypto.total?.endQuote?.price || 0,
                       format: (crypto: Crypto) =>
                         crypto.total ? format('$,.4f')(crypto.total.endQuote.price) : 'N/A',
                       maxWidth: '200px',
