@@ -10,7 +10,22 @@ import { useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
 import { RankingsChart } from '../components/RankingsChart'
 import { RankingsResponse } from '../types/api'
-import { format } from 'd3'
+// Removed D3 format import to prevent server-side window errors
+// Using simple JavaScript number formatting instead
+
+// Simple number formatting functions to replace D3 format
+const formatDecimal = (num: number, decimals: number) => num.toFixed(decimals)
+const formatCurrency = (num: number) => new Intl.NumberFormat('en-US', { 
+  style: 'currency', 
+  currency: 'USD',
+  minimumFractionDigits: 4,
+  maximumFractionDigits: 4 
+}).format(num)
+const formatCompact = (num: number) => new Intl.NumberFormat('en-US', { 
+  notation: 'compact',
+  compactDisplay: 'short' 
+}).format(num)
+
 import { topCryptos } from '../modules/topCryptos'
 import useURLSearchParam from '../components/hooks/useURLSearchParam'
 
@@ -296,7 +311,7 @@ export default function IndexPageContent() {
                       id: 'score',
                       name: 'Score',
                       selector: (crypto: Crypto) => crypto.score,
-                      format: (crypto: Crypto) => format('.4f')(crypto.score),
+                      format: (crypto: Crypto) => formatDecimal(crypto.score, 4),
                       maxWidth: '200px',
                       minWidth: '85px',
                       sortable: true,
@@ -306,8 +321,8 @@ export default function IndexPageContent() {
                       id: 'pricePct',
                       name: 'Price %',
                       selector: (crypto: Crypto) => crypto.total?.pricePct || 0,
-                      format: (crypto: Crypto) =>
-                        crypto.total ? `${format('.2f')(crypto.total.pricePct)}%` : 'N/A',
+                                      format: (crypto: Crypto) =>
+                  crypto.total ? `${formatDecimal(crypto.total.pricePct, 2)}%` : 'N/A',
                       maxWidth: '125px',
                       minWidth: '85px',
                       sortable: true,
@@ -318,9 +333,7 @@ export default function IndexPageContent() {
                       name: 'Mkt Cap',
                       selector: (crypto: Crypto) => crypto.total?.endQuote?.marketCap || 0,
                       format: (crypto: Crypto) => {
-                        return crypto.total ? format('~s')(
-                          crypto.total.endQuote.marketCap,
-                        ).replace('G', 'B') : 'N/A'
+                        return crypto.total ? formatCompact(crypto.total.endQuote.marketCap).replace('G', 'B') : 'N/A'
                       },
                       maxWidth: '200px',
                       minWidth: '85px',
@@ -332,7 +345,7 @@ export default function IndexPageContent() {
                       name: 'Mkt Cap %',
                       selector: (crypto: Crypto) => crypto.total?.marketCapPct || 0,
                       format: (crypto: Crypto) =>
-                        crypto.total ? `${format('.2f')(crypto.total.marketCapPct)}%` : 'N/A',
+                        crypto.total ? `${formatDecimal(crypto.total.marketCapPct, 2)}%` : 'N/A',
                       maxWidth: '125px',
                       minWidth: '85px',
                       sortable: true,
@@ -362,7 +375,7 @@ export default function IndexPageContent() {
                       name: 'Price',
                       selector: (crypto: Crypto) => crypto.total?.endQuote?.price || 0,
                       format: (crypto: Crypto) =>
-                        crypto.total ? format('$,.4f')(crypto.total.endQuote.price) : 'N/A',
+                        crypto.total ? formatCurrency(crypto.total.endQuote.price) : 'N/A',
                       maxWidth: '200px',
                       minWidth: '85px',
                       sortable: true,
