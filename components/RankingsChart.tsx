@@ -33,7 +33,7 @@ export function RankingsChart({
   cryptoScoreResults: CryptoScoreResults
   selectedCryptoIds: Set<string>
   disabledCryptoIds: Set<string>
-  activeCryptoId: string
+  activeCryptoId: string | null
   onClick: (id: string) => unknown
   onDoubleClick: (id: string) => unknown
   onMouseOver: (id: string) => unknown
@@ -42,7 +42,7 @@ export function RankingsChart({
   return (
     <D3Chart
       className={className}
-      renderKey={`${days.toString()}:${activeCryptoId}:${[
+      renderKey={`${days.toString()}:${activeCryptoId || ''}:${[
         ...selectedCryptoIds,
       ].join(',')}:${[...disabledCryptoIds].join(',')}`}
     >
@@ -105,7 +105,7 @@ export function RankingsChart({
           .style('stroke', (crypto) => {
             if (selectedCryptoIds.has(crypto.id)) return 'lightyellow'
 
-            if (crypto.total.pricePct >= 0) {
+            if (crypto.total && crypto.total.pricePct >= 0) {
               return '#00b300'
             } else {
               return '#b30000'

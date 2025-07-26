@@ -2,12 +2,11 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { UrlWithParsedQuery, parse } from 'url'
 
 import AbstractServer from 'abstract-http-server'
-import { NextServer } from 'next/dist/server/next'
 import next from 'next'
 import qs from 'querystring'
 
 export default class Server extends AbstractServer {
-  private nextServer: NextServer
+  private nextServer: any
   private nextRequestHandler: (
     req: IncomingMessage,
     res: ServerResponse,

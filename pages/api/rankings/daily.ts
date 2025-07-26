@@ -6,25 +6,20 @@ import { get } from 'env-var'
 import { setHour } from './../../../modules/roundToHour'
 import { timesParallel } from 'times-loop'
 
+export type { RankingsResponse, DailyRankingsQuery } from '../../../types/api'
+
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
-
-export type RankingsResponse = Listings[]
-
-export type DailyRankingsQuery = {
-  daySkip?: string
-  dayLimit?: string
-}
 
 export default async (
   req: NextApiRequest,
   res: NextApiResponse<Listings[]>,
 ) => {
-  const daySkip = intParam(req.query.daySkip) ?? 0
-  const dayLimit = intParam(req.query.dayLimit) ?? 10
-  const maxRank = intParam(req.query.maxRank) ?? 500
-  const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
+  const daySkip = intParam(req.query.daySkip || null) ?? 0
+  const dayLimit = intParam(req.query.dayLimit || null) ?? 10
+  const maxRank = intParam(req.query.maxRank || null) ?? 500
+  const minMarketCap = intParam(req.query.minMarketCap || null) ?? 10 * 1e6
 
   // console.log('query', req.query, {
   //   daySkip,

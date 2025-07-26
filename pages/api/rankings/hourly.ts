@@ -2,30 +2,24 @@ import { CoinGecko, coingecko } from '../../../modules/coingecko'
 import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { RankingsResponse as _RankingsResponse } from './daily'
 import { ceilHour } from './../../../modules/roundToHour'
 import { get } from 'env-var'
 import { timesParallel } from 'times-loop'
+
+export type { RankingsResponse, HourlyRankingsQuery } from '../../../types/api'
 
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
 
-export type RankingsResponse = _RankingsResponse
-
-export type HourlyRankingsQuery = {
-  hoursSkip?: string
-  hoursLimit?: string
-}
-
 export default async (
   req: NextApiRequest,
   res: NextApiResponse<Listings[]>,
 ) => {
-  const hoursSkip = intParam(req.query.hoursSkip) ?? 0
-  const hoursLimit = intParam(req.query.hoursLimit) ?? 10
-  const maxRank = intParam(req.query.maxRank) ?? 500
-  const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
+  const hoursSkip = intParam(req.query.hoursSkip || null) ?? 0
+  const hoursLimit = intParam(req.query.hoursLimit || null) ?? 10
+  const maxRank = intParam(req.query.maxRank || null) ?? 500
+  const minMarketCap = intParam(req.query.minMarketCap || null) ?? 10 * 1e6
 
   // console.log('query', req.query, {
   //   hoursSkip,
