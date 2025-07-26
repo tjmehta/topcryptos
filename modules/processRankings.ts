@@ -10,7 +10,7 @@ import {
 } from 'rxjs/operators'
 
 import { MinMaxState } from './MinMax'
-import { RankingsResponse } from './../pages/api/rankings/hourly'
+import { RankingsResponse } from './../types/api'
 import SortedList from './SortedList'
 import { compareDates } from './compareDates'
 import { last } from './../modules/last'

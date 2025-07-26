@@ -1,10 +1,10 @@
 import {
   DailyRankingsQuery,
   RankingsResponse,
-} from './../pages/api/rankings/daily'
+  HourlyRankingsQuery,
+} from './../types/api'
 
 import ApiClient from 'simple-api-client'
-import { HourlyRankingsQuery } from './../pages/api/rankings/hourly'
 import times from 'times-loop'
 
 type DailyRankingsOpts = {

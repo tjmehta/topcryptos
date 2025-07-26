@@ -2,21 +2,15 @@ import { CoinGecko, coingecko } from '../../../modules/coingecko'
 import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { RankingsResponse as _RankingsResponse } from './daily'
 import { ceilHour } from './../../../modules/roundToHour'
 import { get } from 'env-var'
 import { timesParallel } from 'times-loop'
 
+export type { RankingsResponse, HourlyRankingsQuery } from '../../../types/api'
+
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
-
-export type RankingsResponse = _RankingsResponse
-
-export type HourlyRankingsQuery = {
-  hoursSkip?: string
-  hoursLimit?: string
-}
 
 export default async (
   req: NextApiRequest,

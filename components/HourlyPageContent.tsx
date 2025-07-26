@@ -9,7 +9,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import Head from 'next/head'
 import { RankingsChart } from '../components/RankingsChart'
-import { RankingsResponse } from '../pages/api/rankings/hourly'
+import { RankingsResponse } from '../types/api'
 import { format } from 'd3'
 import { topCryptos } from '../modules/topCryptos'
 import { useCallback } from 'react'

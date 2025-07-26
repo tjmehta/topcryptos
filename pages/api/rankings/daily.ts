@@ -6,16 +6,11 @@ import { get } from 'env-var'
 import { setHour } from './../../../modules/roundToHour'
 import { timesParallel } from 'times-loop'
 
+export type { RankingsResponse, DailyRankingsQuery } from '../../../types/api'
+
 type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
-
-export type RankingsResponse = Listings[]
-
-export type DailyRankingsQuery = {
-  daySkip?: string
-  dayLimit?: string
-}
 
 export default async (
   req: NextApiRequest,
