@@ -234,11 +234,9 @@ export default function IndexPageContent() {
                 return <div style={{ textAlign: 'center' }}>Loading...</div>
 
               return (
-                <DataTable
-                  data={cryptoScoreResults.cryptosSortedByScore.slice()}
-                  theme="custom"
-                  defaultSortField="rank_plus_selected"
-                  defaultSortAsc={true}
+                                  <DataTable
+                    data={cryptoScoreResults.cryptosSortedByScore.slice()}
+                    theme="custom"
                   onRowDoubleClicked={(crypto: Crypto) => {
                     toggleDisabledCrypto(crypto.id)
                   }}
@@ -258,6 +256,7 @@ export default function IndexPageContent() {
                   }}
                   columns={[
                     {
+                      id: 'name',
                       name: 'Name',
                       // rank_accel_sum: resultsByCryptoId[0].mark,
                       cell: (crypto: Crypto) => (
@@ -274,6 +273,7 @@ export default function IndexPageContent() {
                       sortable: true,
                     },
                     {
+                      id: 'symbol',
                       name: 'Symbol',
                       selector: (crypto: Crypto) => crypto.symbol,
                       maxWidth: '80px',
@@ -281,6 +281,7 @@ export default function IndexPageContent() {
                       sortable: true,
                     },
                     {
+                      id: 'rank_plus_selected',
                       name: 'Score Rank',
                       selector: (crypto: Crypto) =>
                         // @ts-ignore
@@ -292,6 +293,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'score',
                       name: 'Score',
                       selector: (crypto: Crypto) => crypto.score,
                       format: (crypto: Crypto) => format('.4f')(crypto.score),
@@ -301,6 +303,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'pricePct',
                       name: 'Price %',
                       selector: (crypto: Crypto) => crypto.total?.pricePct || 0,
                       format: (crypto: Crypto) =>
@@ -311,6 +314,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'marketCap',
                       name: 'Mkt Cap',
                       selector: (crypto: Crypto) => crypto.total?.endQuote?.marketCap || 0,
                       format: (crypto: Crypto) => {
@@ -324,6 +328,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'marketCapPct',
                       name: 'Mkt Cap %',
                       selector: (crypto: Crypto) => crypto.total?.marketCapPct || 0,
                       format: (crypto: Crypto) =>
@@ -334,6 +339,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'rankDelta',
                       name: 'Rank Delta',
                       selector: (crypto: Crypto) => crypto.total?.rankDelta || 0,
                       format: (crypto: Crypto) => crypto.total ? 0 - crypto.total.rankDelta : 'N/A',
@@ -343,6 +349,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'rankByMarketCap',
                       name: 'Mkt Cap Rank',
                       selector: (crypto: Crypto) => crypto.total?.endQuote?.rankByMarketCap || 0,
                       maxWidth: '55px',
@@ -351,6 +358,7 @@ export default function IndexPageContent() {
                       right: true,
                     },
                     {
+                      id: 'price',
                       name: 'Price',
                       selector: (crypto: Crypto) => crypto.total?.endQuote?.price || 0,
                       format: (crypto: Crypto) =>
