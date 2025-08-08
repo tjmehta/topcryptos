@@ -172,7 +172,7 @@ export default function Hourly() {
     if (rankings == null) return []
     let options = HOURS.filter((hour) => hour < rankings.length)
     if (options.length === 0) options = [rankings.length]
-    if (hours === NaN) setHours(options[0] ?? NaN)
+    if (Number.isNaN(hours)) setHours(options[0] ?? NaN)
     return options.map((hour) => (
       <option key={hour} value={hour}>{`${hour} hours`}</option>
     ))
