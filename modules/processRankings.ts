@@ -398,8 +398,7 @@ export async function processRankings(
 
     const score =
       sparseCrypto.score == null ||
-      sparseCrypto.score === NaN ||
-      isNaN(sparseCrypto.score)
+      Number.isNaN(sparseCrypto.score)
         ? NAN_SCORE
         : sparseCrypto.score
 
