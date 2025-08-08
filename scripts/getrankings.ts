@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch'
 import fs from 'fs'
 import path from 'path'
 import { timesParallel } from 'times-loop'
