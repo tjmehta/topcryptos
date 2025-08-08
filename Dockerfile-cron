@@ -1,4 +1,4 @@
-FROM node:14.18.2
+FROM node:22
 
 ARG GITHUB_KEY
 
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 
-RUN npm install
+RUN npm ci
 
 ADD . /app
 
