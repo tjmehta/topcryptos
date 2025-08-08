@@ -456,9 +456,9 @@ function delta<K extends string, R extends Record<K, number>>(
   const next = pair[1]
 
   if (prev[key] == null) return NaN
-  if (prev[key] === NaN) return NaN
+  if (Number.isNaN(prev[key])) return NaN
   if (next[key] == null) return NaN
-  if (next[key] === NaN) return NaN
+  if (Number.isNaN(next[key])) return NaN
 
   return next[key] - prev[key]
 }
