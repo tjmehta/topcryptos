@@ -1,7 +1,6 @@
 import { cache, cacheKey } from './cache'
 import { roundToHour, setHour } from './roundToHour'
 
-import ApiClient from 'simple-api-client'
 import FSStore from './FSStore'
 import S3Store from './S3Store'
 import { get } from 'env-var'
@@ -75,23 +74,23 @@ const errorDatesByKey: {
   }
 } = {}
 
-class CoinMarketCap extends ApiClient {
+async function getJson<T>(path: string, expected: number, init?: { query?: Record<string, string> }) {
+  let url = new URL(`https://pro-api.coinmarketcap.com/v1/${path}`)
+  if (init?.query) Object.entries(init.query).forEach(([k, v]) => url.searchParams.set(k, v))
+  const res = await fetch(url.toString(), {
+    headers: { 'X-CMC_PRO_API_KEY': CMC_API_KEY, accept: 'application/json' },
+  })
+  if (res.status !== expected) throw new Error(`unexpected status ${res.status}`)
+  return (await res.json()) as T
+}
+
+class CoinMarketCap {
   latestListingsCache: {
     date: Date
     result: Listings
   } = null
 
-  constructor() {
-    super('https://pro-api.coinmarketcap.com/v1/', {
-      headers: {
-        'X-CMC_PRO_API_KEY': CMC_API_KEY,
-      },
-      throttle: {
-        timeout: 60 * 1000 * 1.1, // 1333 limit a day vs 1440 minutes in a day
-        statusCodes: [429],
-      },
-    })
-  }
+  constructor() {}
 
   hourlyCachedMarkets = async (
     opts: ListingsOpts,
@@ -225,25 +224,17 @@ class CoinMarketCap extends ApiClient {
 
       let json: Listings
       if (opts.date == null) {
-        json = await this.json<Listings>(
-          'cryptocurrency/listings/latest',
-          200,
-          {
-            query,
-          },
-        )
+        json = await getJson<Listings>('cryptocurrency/listings/latest', 200, {
+          query,
+        })
       } else {
         try {
-          json = await this.json<Listings>(
-            'cryptocurrency/listings/historical',
-            200,
-            {
-              query: {
-                ...query,
-                date: new Date(opts.date).toISOString(),
-              },
+          json = await getJson<Listings>('cryptocurrency/listings/historical', 200, {
+            query: {
+              ...query,
+              date: new Date(opts.date).toISOString(),
             },
-          )
+          })
         } catch (err) {
           const key = cacheKey('cryptocurrency_listings', opts)
           errorDatesByKey[key] = {
@@ -254,15 +245,6 @@ class CoinMarketCap extends ApiClient {
           throw err
         }
       }
-      // // sort by market cap?
-      // json.data = json.data.sort((a, b) => {
-      //   const mktCapA = a.quote.USD.market_cap
-      //   const mktCapB = b.quote.USD.market_cap
-
-      //   if (mktCapA > mktCapB) return -1
-      //   if (mktCapA < mktCapB) return 1
-      //   return 0
-      // })
 
       // HACK: remove data to reduce payload size
       if (json) {
@@ -296,13 +278,9 @@ class CoinMarketCap extends ApiClient {
         limit: opts.limit.toString(),
       }
 
-      const json: Exchanges = await this.json<Exchanges>(
-        'exchange/listings/latest',
-        200,
-        {
-          query,
-        },
-      )
+      const json: Exchanges = await getJson<Exchanges>('exchange/listings/latest', 200, {
+        query,
+      })
 
       return json
     },

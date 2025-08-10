@@ -1,7 +1,6 @@
 import { cache, cacheKey } from './cache'
 import { roundToHour, setHour } from './roundToHour'
 
-import ApiClient from 'simple-api-client'
 import FSStore from './FSStore'
 import { Listings } from './coinmarketcap'
 import S3Store from './S3Store'
@@ -98,20 +97,11 @@ const errorDatesByKey: {
   }
 } = {}
 
-export class CoinGecko extends ApiClient {
+export class CoinGecko {
   latestMarketsCache: {
     date: Date
     result: Market[]
   } = null
-
-  constructor() {
-    super('https://api.coingecko.com/api/v3/', {
-      throttle: {
-        statusCodes: /.*/,
-        timeout: 60 * 1000,
-      },
-    })
-  }
 
   static toCMCListing = (markets: Market[]): Listings => {
     const listings: Listings = {
@@ -255,23 +245,28 @@ export class CoinGecko extends ApiClient {
       if (ids) query.ids = ids
       if (order) query.order = order
 
+      const makeUrl = (params: Record<string, string>) => {
+        const url = new URL('https://api.coingecko.com/api/v3/coins/markets')
+        Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v))
+        return url.toString()
+      }
+
       let json: Market[] = []
       if (limit <= 250) {
-        json = await this.get<MarketQuery>('coins/markets', {
-          query,
-        })
+        const url = makeUrl(query as any)
+        const res = await fetch(url, { headers: { accept: 'application/json' } })
+        if (!res.ok) throw new Error(`status ${res.status}`)
+        json = await res.json()
       } else {
         const count = Math.ceil(limit / 250)
         const pages: Market[][] = await timesParallel(
           count,
-          (i): Promise<Market[]> =>
-            this.get<MarketQuery>('coins/markets', {
-              query: {
-                ...query,
-                per_page: '250',
-                page: (i + 1).toString(),
-              },
-            }),
+          async (i): Promise<Market[]> => {
+            const url = makeUrl({ ...(query as any), per_page: '250', page: (i + 1).toString() })
+            const res = await fetch(url, { headers: { accept: 'application/json' } })
+            if (!res.ok) throw new Error(`status ${res.status}`)
+            return res.json()
+          },
         )
         json = json.concat(...pages).slice(0, limit)
       }
