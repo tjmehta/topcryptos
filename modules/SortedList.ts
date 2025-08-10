@@ -1,51 +1,40 @@
-import Doubly from 'doubly'
-import Node from 'doubly/dist/cjs/Node'
+export default class SortedList<T> {
+  private readonly comparator: (a: T, b: T) => -1 | 1 | 0
+  private readonly items: T[]
 
-export default class SortedList<T> extends Doubly<T> {
-  private comparator: (a: T, b: T) => -1 | 1 | 0
-
-  constructor(opts?: {
-    head?: Node<T>
-    comparator: (a: T, b: T) => -1 | 1 | 0
-  }) {
-    super(opts)
+  constructor(opts: { comparator: (a: T, b: T) => -1 | 1 | 0 }) {
     this.comparator = opts.comparator
+    this.items = []
   }
+
   add(newValue: T) {
-    let node: Node<T> | null = null
-    let index = -1
-    let i = 0
-    for (let n of this.nodes()) {
-      const sort = this.comparator(n.value, newValue)
-      if (sort === -1 || sort === 0) {
-        node = n
-        index = i
+    // find first index where existing item is strictly less than or equal to newValue
+    let insertIndex = -1
+    for (let i = 0; i < this.items.length; i++) {
+      const compare = this.comparator(this.items[i], newValue)
+      if (compare === -1 || compare === 0) {
+        insertIndex = i
         break
       }
-      i++
     }
-    if (index === 0) {
-      // @ts-ignore
-      // console.log('unshift!', newValue.score, this.head?.value.score)
-      this.unshift(newValue)
+    if (insertIndex === 0) {
+      this.items.unshift(newValue)
       return
     }
-    if (index < 0) {
-      // @ts-ignore
-      // console.log('push!', newValue.score, this.tail?.value.score)
-      this.push(newValue)
+    if (insertIndex < 0) {
+      this.items.push(newValue)
       return
     }
-    // @ts-ignore
-    // console.log('insert!', newValue.score, node.value.score)
-    const prev = node.prev
-    const next = node
-    const newNode = new Node(newValue, {
-      prev,
-      next,
-    })
-    if (!prev) debugger
-    prev.next = newNode
-    node.prev = newNode
+    this.items.splice(insertIndex, 0, newValue)
+  }
+
+  indexOf(value: T): number {
+    return this.items.indexOf(value)
+  }
+
+  forEach(cb: (value: T, index: number) => void) {
+    for (let i = 0; i < this.items.length; i++) {
+      cb(this.items[i], i)
+    }
   }
 }
