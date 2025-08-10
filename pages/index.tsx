@@ -9,7 +9,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import Head from 'next/head'
 import { RankingsChart } from '../components/RankingsChart'
-import type { RankingsResponse } from './api/rankings/daily'
+import type { RankingsResponse } from '../modules/uiTypes'
 import { format } from 'd3'
 import { topCryptos } from '../modules/topCryptos'
 import useURLSearchParam from '../components/hooks/useURLSearchParam'
