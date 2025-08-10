@@ -3,7 +3,6 @@ import {
   RankingsResponse,
 } from './../pages/api/rankings/daily'
 
-import ApiClient from 'simple-api-client'
 import { HourlyRankingsQuery } from './../pages/api/rankings/hourly'
 import times from 'times-loop'
 
@@ -17,24 +16,30 @@ type HourlyRankingsOpts = {
   hoursLimit?: number
 }
 
-export class TopCryptosApiClient extends ApiClient {
-  constructor() {
-    super('/')
+async function getJson<T>(path: string, query?: Record<string, string>): Promise<T> {
+  const url = new URL(path, typeof window !== 'undefined' ? window.location.origin : 'http://localhost')
+  if (query) Object.entries(query).forEach(([k, v]) => url.searchParams.set(k, v))
+  const res = await fetch(url.toString(), { method: 'GET', headers: { accept: 'application/json' } })
+  if (!res.ok) {
+    const text = await res.text().catch(() => '')
+    throw new Error(`unexpected status ${res.status}: ${text}`)
   }
+  return res.json() as Promise<T>
+}
+
+class TopCryptosApiClient {
   async getDailyRankings(opts: DailyRankingsOpts): Promise<RankingsResponse> {
     const limit = 9
     const responses = await Promise.all<RankingsResponse>(
       times(90 / limit, (i) =>
-        this.get<DailyRankingsQuery>('api/rankings/daily', 200, {
-          query: {
-            daySkip: `${i * limit}`,
-            dayLimit: `${limit}`,
-          },
+        getJson<RankingsResponse>('api/rankings/daily', {
+          daySkip: `${i * limit}`,
+          dayLimit: `${limit}`,
         }),
       ).reverse(),
     )
 
-    const mergedResponses: RankingsResponse = [].concat.apply([], responses)
+    const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
     const seen = new Set<string>()
     const seenDate = new Set<string>()
     mergedResponses.forEach((response) => {
@@ -59,63 +64,13 @@ export class TopCryptosApiClient extends ApiClient {
   }
   async getHourlyRankings(opts: HourlyRankingsOpts): Promise<RankingsResponse> {
     const responses = await Promise.all<RankingsResponse>([
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '80',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '70',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '60',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '50',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '40',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '30',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '20',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      // this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-      //   query: {
-      //     hoursSkip: '10',
-      //     hoursLimit: '10',
-      //   },
-      // }),
-      this.get<HourlyRankingsQuery>('api/rankings/hourly', 200, {
-        query: {
-          hoursSkip: '0',
-          hoursLimit: '4',
-        },
+      getJson<RankingsResponse>('api/rankings/hourly', {
+        hoursSkip: '0',
+        hoursLimit: '4',
       }),
     ])
 
-    const mergedResponses: RankingsResponse = [].concat.apply([], responses)
+    const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
     const seen = new Set<string>()
     const seenDate = new Set<string>()
     mergedResponses.forEach((response) => {

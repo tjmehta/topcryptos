@@ -1,13 +1,9 @@
 import { HourlyCron } from './HourlyCron'
 import { cmc } from '../../modules/coinmarketcap'
 import { coingecko } from '../../modules/coingecko'
-import fetch from 'isomorphic-unfetch'
 import { get } from 'env-var'
-import { setFetch } from 'simple-api-client'
 
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
-
-setFetch(fetch)
 
 class HourlyListingsCron extends HourlyCron {
   constructor() {

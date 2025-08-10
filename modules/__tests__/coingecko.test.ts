@@ -1,8 +1,7 @@
 import { coingecko } from '../coingecko'
-import fetch from 'isomorphic-unfetch'
 import { setFetch } from 'simple-api-client'
 
-setFetch(fetch)
+setFetch(globalThis.fetch as any)
 
 describe('coingecko', () => {
   it('should', async () => {

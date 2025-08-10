@@ -65,10 +65,12 @@ function responsivefy(
   svg: Selection<HTMLDivElement | SVGElement, unknown, HTMLDivElement, unknown>,
 ) {
   // get container + svg aspect ratio
-  var container = select(svg.node().parentNode),
-    width = parseInt(svg.style('width')),
-    height = parseInt(svg.style('height')),
-    aspect = 1
+  const node = svg.node()
+  if (!node || !node.parentElement) return
+  const container = select(node.parentElement)
+  const width = parseInt(svg.style('width'))
+  const height = parseInt(svg.style('height'))
+  const aspect = 1
   // add viewBox and preserveAspectRatio properties,
   // and call resize so that svg resizes on inital page load
   svg
@@ -82,7 +84,7 @@ function responsivefy(
   select(window).on('resize.' + container.attr('id'), resize)
   // get width of container and resize svg to fit it
   function resize() {
-    var targetWidth = parseInt(container.style('width'))
+    const targetWidth = parseInt(container.style('width'))
     svg.attr('width', Math.round(targetWidth / aspect))
     svg.attr('height', targetWidth / aspect)
   }
