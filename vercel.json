@@ -1,9 +1,9 @@
 {
   "build": {
     "env": {
-      "NEXT_SOURCE_MAP": "true",
-      "NEXTJS_SOURCEMAPS": "true",
-      "NEXT_DISABLE_SOURCEMAPS": "false"
+      "NEXT_SOURCE_MAP": "false",
+      "NEXTJS_SOURCEMAPS": "false",
+      "NEXT_DISABLE_SOURCEMAPS": "true"
     }
   }
 }
