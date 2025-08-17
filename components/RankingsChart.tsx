@@ -33,7 +33,7 @@ export function RankingsChart({
   cryptoScoreResults: CryptoScoreResults
   selectedCryptoIds: Set<string>
   disabledCryptoIds: Set<string>
-  activeCryptoId: string
+  activeCryptoId: string | null
   onClick: (id: string) => unknown
   onDoubleClick: (id: string) => unknown
   onMouseOver: (id: string) => unknown
@@ -92,12 +92,11 @@ export function RankingsChart({
           .on('click', (evt) => {
             onClick(evt.currentTarget.dataset.cryptoId)
           })
-          .on('onmouseover', (evt) =>
-            onMouseOver(evt.currentTarget.dataset.cryptoId),
-          )
+          .on('mouseover', (evt) => onMouseOver(evt.currentTarget.dataset.cryptoId))
           .style('cursor', 'pointer')
-          .style('stoke-linecap', 'round')
-          .style('stoke-linejoin', 'round')
+          .style('stroke-linecap', 'round')
+          .style('stroke-linejoin', 'round')
+          .classed('hover', (crypto) => crypto.id === activeCryptoId)
           .style('filter', (crypto) => {
             const isSelected = selectedCryptoIds.has(crypto.id)
             return isSelected ? 'drop-shadow(0px 0px 3px pink)' : 'none'

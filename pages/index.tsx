@@ -48,7 +48,7 @@ createTheme('custom', {
 
 export default function Home() {
   const [error, setError] = useState<null | string>(null)
-  const [activeCryptoId, setActiveCryptoId] = useState<string>(null)
+  const [activeCryptoId, setActiveCryptoId] = useState<string | null>(null)
   const [selectedCryptoIds, setSelectedCryptoIds] = useState<Set<string>>(
     new Set(),
   )
@@ -227,6 +227,7 @@ export default function Home() {
                 ? 'table-wrapper pb-5 md:pb-10 lg:pb-20 xl:max-w-3xl xl:flex-1'
                 : 'loading'
             }
+            onMouseLeave={() => setActiveCryptoId(null)}
           >
             {useMemo(() => {
               if (cryptoScoreResults == null)
@@ -258,23 +259,28 @@ export default function Home() {
                   columns={[
                     {
                       name: 'Name',
-                      // rank_accel_sum: resultsByCryptoId[0].mark,
                       cell: (crypto: Crypto) => (
-                        <a
-                          href={`//coinmarketcap.com/currencies/${crypto.slug}/`}
-                          target="_blank"
-                        >
-                          {crypto.name}
-                        </a>
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          <a
+                            href={`//coinmarketcap.com/currencies/${crypto.slug}/`}
+                            target="_blank"
+                          >
+                            {crypto.name}
+                          </a>
+                        </div>
                       ),
                       selector: 'name',
                       maxWidth: '250px',
-                      // minWidth: '250px',
                       sortable: true,
                     },
                     {
                       name: 'Symbol',
                       selector: 'symbol',
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {crypto.symbol}
+                        </div>
+                      ),
                       maxWidth: '80px',
                       minWidth: '80px',
                       sortable: true,
@@ -285,6 +291,11 @@ export default function Home() {
                         // @ts-ignore
                         crypto.rank_plus_selected ?? crypto.rank,
                       format: (crypto: Crypto) => crypto.rank,
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {crypto.rank}
+                        </div>
+                      ),
                       maxWidth: '55px',
                       minWidth: '55px',
                       sortable: true,
@@ -294,6 +305,11 @@ export default function Home() {
                       name: 'Score',
                       selector: 'score',
                       format: (crypto: Crypto) => format('.4f')(crypto.score),
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {format('.4f')(crypto.score)}
+                        </div>
+                      ),
                       maxWidth: '200px',
                       minWidth: '85px',
                       sortable: true,
@@ -304,6 +320,11 @@ export default function Home() {
                       selector: 'total.pricePct',
                       format: (crypto: Crypto) =>
                         `${format('.2f')(crypto.total.pricePct)}%`,
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {`${format('.2f')(crypto.total.pricePct)}%`}
+                        </div>
+                      ),
                       maxWidth: '125px',
                       minWidth: '85px',
                       sortable: true,
@@ -317,6 +338,14 @@ export default function Home() {
                           crypto.total.endQuote.marketCap,
                         ).replace('G', 'B')
                       },
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {format('~s')(crypto.total.endQuote.marketCap).replace(
+                            'G',
+                            'B',
+                          )}
+                        </div>
+                      ),
                       maxWidth: '200px',
                       minWidth: '85px',
                       sortable: true,
@@ -327,6 +356,11 @@ export default function Home() {
                       selector: 'total.marketCapPct',
                       format: (crypto: Crypto) =>
                         `${format('.2f')(crypto.total.marketCapPct)}%`,
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {`${format('.2f')(crypto.total.marketCapPct)}%`}
+                        </div>
+                      ),
                       maxWidth: '125px',
                       minWidth: '85px',
                       sortable: true,
@@ -336,6 +370,11 @@ export default function Home() {
                       name: 'Rank Delta',
                       selector: 'crypto.total.rankDelta',
                       format: (crypto: Crypto) => 0 - crypto.total.rankDelta,
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {0 - crypto.total.rankDelta}
+                        </div>
+                      ),
                       maxWidth: '55px',
                       minWidth: '55px',
                       sortable: true,
@@ -344,6 +383,11 @@ export default function Home() {
                     {
                       name: 'Mkt Cap Rank',
                       selector: 'total.endQuote.rankByMarketCap',
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {crypto.total.endQuote.rankByMarketCap}
+                        </div>
+                      ),
                       maxWidth: '55px',
                       minWidth: '55px',
                       sortable: true,
@@ -354,6 +398,11 @@ export default function Home() {
                       selector: 'total.endQuote.price',
                       format: (crypto: Crypto) =>
                         format('$,.4f')(crypto.total.endQuote.price),
+                      cell: (crypto: Crypto) => (
+                        <div onMouseEnter={() => setActiveCryptoId(crypto.id)}>
+                          {format('$,.4f')(crypto.total.endQuote.price)}
+                        </div>
+                      ),
                       maxWidth: '200px',
                       minWidth: '85px',
                       sortable: true,
