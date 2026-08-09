@@ -83,7 +83,7 @@ export class HourlyCron extends AbstractApp {
     } catch (err) {
       // task errored, wait 30 sec and try again
       this._logger.error('hourlyCron: task failed', { date: new Date(), err })
-      await timeout(30 * 1000, this.abortController.signal)
+      await timeout(30 * 1000, this.abortController?.signal)
       this.lastRunDate = null
       this.lastRunError = err
     } finally {
@@ -96,11 +96,14 @@ export class HourlyCron extends AbstractApp {
   async _start() {
     if (this.abortController != null) return
     // start task interval
-    this.abortController = new AbortController()
+    const abortController = new AbortController()
+    this.abortController = abortController
     const now = new Date()
     const seconds = now.getSeconds()
-    timeout((60 - seconds) * 1000, this.abortController.signal).then(() => {
-      interval(15 * 1000, this.abortController.signal, this._handleInterval)
+    // Capture the controller in a local: `_stop` nulls the field, and reading
+    // it again inside the async callback could dereference null.
+    timeout((60 - seconds) * 1000, abortController.signal).then(() => {
+      interval(15 * 1000, abortController.signal, this._handleInterval)
     })
     if (FORCE_RUN_INTERVAL) this._handleInterval()
   }

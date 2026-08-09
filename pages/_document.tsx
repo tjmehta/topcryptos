@@ -1,29 +1,15 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
-class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
-  }
-
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body
-          style={{
-            height: '100%',
-            width: '100%',
-            backgroundImage:
-              'linear-gradient(to right, #3B435C, #4A536D, #545D77)',
-          }}
-        >
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+// Body styling moved into styles/globals.css so Tailwind owns the theme
+// instead of an inline style object that utilities could not override.
+export default function Document() {
+  return (
+    <Html lang="en">
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }
-
-export default MyDocument

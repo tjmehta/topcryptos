@@ -33,3 +33,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+.env*
+
+*.tsbuildinfo
+
+# local snapshot cache (seed with scripts/seedLocalCache.mjs)
+.cache/

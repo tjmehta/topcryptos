@@ -10,7 +10,7 @@ import {
 } from 'rxjs/operators'
 
 import { MinMaxState } from './MinMax'
-import { RankingsResponse } from './../pages/api/rankings/hourly'
+import type { RankingsResponse } from './uiTypes'
 import SortedList from './SortedList'
 import { compareDates } from './compareDates'
 import { last } from './../modules/last'
@@ -205,7 +205,7 @@ export async function processRankings(
             rankDelta,
             rankVelocity: rankDelta / duration,
             duration,
-            averageDate: new Date(pair[0].date.valueOf() + duration / 2),
+            averageDate: midpointDate(pair[0].date, duration),
             startQuote: pair[0],
             endQuote: pair[1],
           } as Velocity
@@ -233,7 +233,7 @@ export async function processRankings(
             marketCapPctVelocity: pct('marketCap', pair) / duration,
             rankVelocity: delta('rankByMarketCap', pair) / duration,
             duration,
-            averageDate: new Date(pair[0].date.valueOf() + duration / 2),
+            averageDate: midpointDate(pair[0].date, duration),
             startQuote: pair[0],
             endQuote: pair[1],
           }
@@ -330,6 +330,7 @@ export async function processRankings(
   // calculate score
   Object.keys(sparseCryptosById).forEach((id) => {
     const sparseCrypto = sparseCryptosById[id]
+    if (sparseCrypto == null) return
     let { pricePctAccelsSum, rankAccelsSum, total } = sparseCrypto
 
     const w1 = 0.7 * MAX_SCORE
@@ -337,21 +338,24 @@ export async function processRankings(
     const w3 = 0.1 * MAX_SCORE
 
     let score: number
-    if (total?.pricePct) {
-      const pricePctScoreRatio =
-        total.pricePct >= 0
-          ? total.pricePctVelocity /
-            Math.abs(minMaxes.pricePctVelocityMinMax.max)
-          : total.pricePctVelocity /
-            Math.abs(minMaxes.pricePctVelocityMinMax.min)
-      const pricePctAccelsSumScoreRatio =
-        pricePctAccelsSum >= 0
-          ? pricePctAccelsSum / Math.abs(minMaxes.pricePctAccelsSumMinMax.max)
-          : pricePctAccelsSum / Math.abs(minMaxes.pricePctAccelsSumMinMax.min)
-      const rankAccelsSumScoreRatio =
-        rankAccelsSum >= 0
-          ? rankAccelsSum / Math.abs(minMaxes.rankAccelsSumMinMax.max)
-          : rankAccelsSum / Math.abs(minMaxes.rankAccelsSumMinMax.min)
+    // Guard on finiteness, not truthiness. `if (total?.pricePct)` also rejected
+    // a pricePct of exactly 0, so a coin that closed the window perfectly flat
+    // scored NaN -> NAN_SCORE and got hidden from the chart entirely. Infinity
+    // is excluded too: `pct()` divides by the start value, which is 0 for a coin
+    // that had no price at the start of the window.
+    if (total != null && Number.isFinite(total.pricePct)) {
+      const pricePctScoreRatio = normalize(
+        total.pricePctVelocity,
+        minMaxes.pricePctVelocityMinMax,
+      )
+      const pricePctAccelsSumScoreRatio = normalize(
+        pricePctAccelsSum,
+        minMaxes.pricePctAccelsSumMinMax,
+      )
+      const rankAccelsSumScoreRatio = normalize(
+        rankAccelsSum,
+        minMaxes.rankAccelsSumMinMax,
+      )
       const scoreRatio =
         (w1 * pricePctScoreRatio +
           w2 * pricePctAccelsSumScoreRatio +
@@ -364,7 +368,7 @@ export async function processRankings(
     if (!disabledCryptoIds.has(id)) {
       minMaxes.scoreMinMax.compare(score)
     }
-    sparseCryptosById[id].score = score
+    sparseCrypto.score = score
   })
 
   // cryptosById from sparse
@@ -379,6 +383,7 @@ export async function processRankings(
   Object.keys(sparseCryptosById).forEach((id, index, keys) => {
     const sparseCrypto = sparseCryptosById[id]
 
+    if (sparseCrypto == null) return
     if (sparseCrypto.quotes == null || sparseCrypto.quotes.length === 0) {
       console.warn(
         'SPARSE CRYPTO FILTERED (no quotes)',
@@ -474,6 +479,48 @@ function minutesDuration<K extends string, R extends Record<K, Date>>(
   key: K,
 ) {
   return pair[1][key].valueOf() / 1000 / 60 - pair[0][key].valueOf() / 1000 / 60
+}
+/**
+ * Scale `value` into roughly -1..1 against whichever end of the observed range
+ * it sits on, returning 0 when that isn't meaningful.
+ *
+ * The previous inline form divided by `Math.abs(minMax.max)` (or `.min`) with no
+ * guard, which produced NaN in two situations that actually occur:
+ *
+ *  - **A degenerate range.** When every coin in the window shares the same value
+ *    the bound is 0, so `0 / 0` is NaN. NaN then propagates through the weighted
+ *    sum, so *every* coin scores NaN -> NAN_SCORE and the entire chart renders
+ *    blank rather than just that one component being uninformative.
+ *  - **Missing acceleration sums.** Accelerations need at least three quotes
+ *    (two `pairwise` passes). With a short window — or a longer one that the
+ *    hourly cron left gaps in — the sums stay `undefined`, and
+ *    `undefined / x` is NaN.
+ *
+ * Treating both as "this component contributes nothing" lets the score degrade
+ * to the components that do have signal.
+ */
+function normalize(
+  value: number | undefined,
+  minMax: MinMaxState<number>,
+): number {
+  if (value == null || !Number.isFinite(value)) return 0
+  const bound = Math.abs(value >= 0 ? minMax.max : minMax.min)
+  if (!Number.isFinite(bound) || bound === 0) return 0
+  return value / bound
+}
+/**
+ * Midpoint of a window that starts at `start` and lasts `durationMinutes`.
+ *
+ * This used to be written inline as `new Date(start.valueOf() + duration / 2)`,
+ * which mixed units: `valueOf()` is milliseconds but `duration` is minutes, so a
+ * 24h window advanced the "average" date by 720ms instead of 12 hours. Because
+ * the same offset was applied to every window it mostly cancelled out when
+ * accelerations diffed consecutive `averageDate`s — but it stopped cancelling as
+ * soon as snapshots were unevenly spaced, which is exactly what happens whenever
+ * the hourly cron misses an hour.
+ */
+function midpointDate(start: Date, durationMinutes: number): Date {
+  return new Date(start.valueOf() + (durationMinutes * 60 * 1000) / 2)
 }
 // function rankDivisor(rank: number) {
 //   if (rank < 10) return 10

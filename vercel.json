@@ -1,9 +1,20 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "build": {
     "env": {
       "NEXT_SOURCE_MAP": "false",
       "NEXTJS_SOURCEMAPS": "false",
       "NEXT_DISABLE_SOURCEMAPS": "true"
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/hourly-listings",
+      "schedule": "5 * * * *"
+    },
+    {
+      "path": "/api/cron/exchange-map",
+      "schedule": "35 * * * *"
+    }
+  ]
 }

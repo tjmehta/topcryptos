@@ -44,7 +44,9 @@ export default class S3Store extends AbstractStartable {
     this.cache = new QuickLRU({ maxSize: 1000 })
     const result = await this.client.listBuckets({})
     const buckets = result.Buckets
-    if (!Boolean(buckets?.length)) {
+    // `Boolean(buckets?.length)` did not narrow the type, so every later use of
+    // `buckets` was an unchecked deref.
+    if (buckets == null || buckets.length === 0) {
       throw new S3StoreStartError('no buckets found', { result })
     }
     const found = buckets.some((bucket) => bucket.Name === this.bucket)
@@ -78,7 +80,9 @@ export default class S3Store extends AbstractStartable {
       if (err.name === 'NoSuchKey') return null
       throw S3StoreGetError.wrap(err, 'readFile error', { key })
     }
-    let str: string
+    // Declared without an initializer but read from the catch block, where it
+    // may never have been assigned.
+    let str: string | undefined
     try {
       str = await getStream(result.Body as Stream)
       const obj: T = JSON.parse(str)

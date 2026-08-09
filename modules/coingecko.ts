@@ -101,7 +101,7 @@ export class CoinGecko {
   latestMarketsCache: {
     date: Date
     result: Market[]
-  } = null
+  } | null = null
 
   static toCMCListing = (markets: Market[]): Listings => {
     const listings: Listings = {

@@ -1,9 +1,5 @@
-import {
-  DailyRankingsQuery,
-  RankingsResponse,
-} from './../pages/api/rankings/daily'
+import type { RankingsResponse } from './uiTypes'
 
-import { HourlyRankingsQuery } from './../pages/api/rankings/hourly'
 import times from 'times-loop'
 
 type DailyRankingsOpts = {
@@ -45,11 +41,8 @@ class TopCryptosApiClient {
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split(':').shift()
+        const dateStr = `${item.quote.USD.last_updated}`.split(':')[0] ?? ''
         const key = `${dateStr}:${item.id}`
-        if (!seen.has(key)) {
-          console.log('DATE!!!', dateStr)
-        }
         seenDate.add(dateStr)
         if (seen.has(key)) {
           return false
@@ -76,11 +69,8 @@ class TopCryptosApiClient {
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split('T').shift()
+        const dateStr = `${item.quote.USD.last_updated}`.split('T')[0] ?? ''
         const key = `${dateStr}:${item.id}`
-        if (!seenDate.has(dateStr)) {
-          console.warn('DATE!!!', dateStr)
-        }
         seenDate.add(dateStr)
         if (seen.has(key)) {
           return false

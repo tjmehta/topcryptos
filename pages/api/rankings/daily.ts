@@ -1,5 +1,6 @@
 import { CoinGecko, coingecko } from '../../../modules/coingecko'
 import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
+import { intParam } from '../../../modules/queryParams'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { get } from 'env-var'
@@ -10,7 +11,7 @@ type Resolved<T> = T extends PromiseLike<infer U> ? U : T
 
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
 
-export type RankingsResponse = Listings[]
+export type { RankingsResponse } from '../../../modules/uiTypes'
 
 export type DailyRankingsQuery = {
   daySkip?: string
@@ -76,35 +77,20 @@ export default async (
   res.status(200).json(dailyRankingsResponse)
 }
 
-function stringParam(param: null | string | string[]): string | null {
-  if (param == null) return null
-  if (typeof param === 'string') return param
-  return param[0] ?? null
-}
-function intParam(param: null | string | string[]): number | null {
-  const str = stringParam(param)
-  if (str == null) return null
-  const num = parseInt(str, 10)
-  if (isNaN(num)) return null
-  return num
-}
-function zpad(val: number): string {
-  let str = val.toString()
-  return str.length === 1 ? `0${str}` : str
-}
 
 async function fetchFromGecko(query: ListingsOpts, noFallback?: boolean) {
+  const date = query.date
   try {
-    const markets = query.date
+    const markets = date
       ? await coingecko.dailyCachedMarkets({
           limit: query.limit,
-          date: query.date,
+          date,
         })
       : await coingecko.markets({
           limit: query.limit,
         })
     if (markets == null)
-      throw { message: `gecko cache miss: ${query.date?.toISOString()}` }
+      throw { message: `gecko cache miss: ${date?.toISOString()}` }
     return CoinGecko.toCMCListing(markets)
   } catch (err) {
     // if (noFallback) throw err // loops back and fetches from CMC History API
@@ -114,16 +100,17 @@ async function fetchFromGecko(query: ListingsOpts, noFallback?: boolean) {
 }
 
 async function fetchFromCMC(query: ListingsOpts, noFallback?: boolean) {
+  const date = query.date
   try {
-    const result = query.date
-      ? await cmc.dailyCachedMarkets(query)
+    const result = date
+      ? await cmc.dailyCachedMarkets({ ...query, date })
       : await cmc.listings(query)
     if (result == null)
-      throw { message: `cmc cache miss: ${query.date?.toISOString()}` }
+      throw { message: `cmc cache miss: ${date?.toISOString()}` }
     return result
   } catch (err) {
     if (noFallback) {
-      console.warn(`Using CMC History API! ${query.date?.toISOString()}`)
+      console.warn(`Using CMC History API! ${date?.toISOString()}`)
       return cmc.listings(query)
     }
     console.warn('fetchFromGecko warn', err.message)

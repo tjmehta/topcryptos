@@ -2,6 +2,7 @@ import { cache, cacheKey } from './cache'
 import { roundToHour, setHour } from './roundToHour'
 
 import FSStore from './FSStore'
+import type { Listings } from './uiTypes'
 import S3Store from './S3Store'
 import { get } from 'env-var'
 import path from 'path'
@@ -11,42 +12,8 @@ const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
 const CMC_API_KEY = get('CMC_API_KEY').required().asString()
 const maxCacheDuration = 15 * 60 * 60 * 1000 // 15 min
 
-export type Listings = {
-  status: {
-    timestamp: string // Date
-    error_code: number
-    error_message: string | null
-    elapsed: number
-    credit_count: number
-    notice: string | null
-  }
-  data: {
-    id: number
-    name: string
-    symbol: string
-    slug: string
-    num_market_pairs: number
-    date_added: string // Date
-    tags: Array<string>
-    max_supply: number
-    circulating_supply: number
-    total_supply: number
-    platform: null
-    cmc_rank: number
-    last_updated: string // Date
-    quote: {
-      USD: {
-        price: number
-        volume_24h: number
-        percent_change_1h: number
-        percent_change_24h: number
-        percent_change_7d: number
-        market_cap: number
-        last_updated: string // Date
-      }
-    }
-  }[]
-}
+
+export type { Listings }
 
 type Exchanges = {}
 
@@ -88,46 +55,76 @@ class CoinMarketCap {
   latestListingsCache: {
     date: Date
     result: Listings
-  } = null
+  } | null = null
 
   constructor() {}
 
   hourlyCachedMarkets = async (
-    opts: ListingsOpts,
+    opts: ListingsOpts & { date: Date },
   ): Promise<Listings | null> => {
-    // @ts-ignore
-    const cacheOpts = {
-      ...opts,
-      date: roundToHour(opts.date),
-    }
-    const key = cacheKey('cryptocurrency_listings', cacheOpts)
+    const date = roundToHour(opts.date)
 
-    return await store.get<Listings>(key)
+    // The hourly cron writes snapshots through `listings` below, whose `set`
+    // step builds the key from the *full* opts — including `hourlyCron: true`.
+    // Reading without that flag produces a different key that can never match,
+    // which is why /hourly silently rendered an empty chart. Try the cron's key
+    // shape first, then the flag-less shape used by pre-2022 snapshots.
+    const legacyOpts = { ...opts, date }
+    delete legacyOpts.hourlyCron
+
+    for (const cacheOpts of [{ ...opts, hourlyCron: true, date }, legacyOpts]) {
+      const result = await store.get<Listings>(
+        cacheKey('cryptocurrency_listings', cacheOpts),
+      )
+      if (result != null) {
+        // HACK: remove data to reduce payload size. Daily already does this;
+        // hourly must too, or restoring these snapshots reintroduces the 1MB
+        // response overflow that `topCryptos.getDailyRankings` chunks around.
+        result.data = result.data.map((d) => {
+          d.tags = []
+          return d
+        })
+        return result
+      }
+    }
+
+    return null
   }
 
-  dailyCachedMarkets = async (opts: ListingsOpts): Promise<Listings | null> => {
-    // @ts-ignore
-    let cacheOpts = {
-      ...opts,
-      date: setHour(opts.date, 23),
-    }
-    let key = cacheKey('cryptocurrency_listings', cacheOpts)
-
-    let result = await store.get<Listings>(key)
+  dailyCachedMarkets = async (
+    opts: ListingsOpts & { date: Date },
+  ): Promise<Listings | null> => {
+    // Late-evening snapshots are preferred so a "day" reads as its close, but
+    // the cron does miss hours, so walk back through hours that have
+    // historically produced snapshots before giving up on the day.
     const hours = [23, 22, 19, 18, 16, 14, 13, 12, 10, 8, 7, 6, 4, 2]
 
-    while (hours.length && !result) {
-      const hour = hours.shift()
-      cacheOpts = {
+    let result: Listings | null = null
+
+    for (const hour of hours) {
+      const key = cacheKey('cryptocurrency_listings', {
         ...opts,
         hourlyCron: true,
         date: setHour(opts.date, hour),
-      }
-      if (hour !== 22) {
-        console.warn('fallback to ', cacheOpts.date)
-      }
-      key = cacheKey('cryptocurrency_listings', cacheOpts)
+      })
       result = await store.get<Listings>(key)
+      if (result != null) {
+        if (hour !== 23 && hour !== 22) {
+          console.warn('dailyCachedMarkets: fell back to hour', hour, opts.date)
+        }
+        break
+      }
+    }
+
+    if (result == null) {
+      // Pre-2022 snapshots were keyed without the hourlyCron flag. This used to
+      // be the *first* probe, which meant every lookup spent an extra store read
+      // that could never hit for cron-written data.
+      const legacyOpts = { ...opts, date: setHour(opts.date, 23) }
+      delete legacyOpts.hourlyCron
+      result = await store.get<Listings>(
+        cacheKey('cryptocurrency_listings', legacyOpts),
+      )
     }
 
     // HACK: remove data to reduce payload size
@@ -173,7 +170,7 @@ class CoinMarketCap {
         return await store.get(key)
       },
       set: async ([opts], result) => {
-        if (!result.data || !result.data[0]) {
+        if (result == null || !result.data || !result.data[0]) {
           console.error('ERROR: unexpected response', { opts, result })
           return
         }
