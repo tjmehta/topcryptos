@@ -27,9 +27,14 @@ export default async function handler(
     // max-age=0 keeps browsers revalidating (otherwise they cache this
     // heuristically and pin a stale exchange list), while s-maxage lets the CDN
     // absorb the traffic.
+    //
+    // s-maxage is deliberately short. The refresh cron rewrites this map every
+    // hour, and while it is still converging each run adds exchanges — a long
+    // CDN TTL pinned an empty map on the edge and left the filter looking
+    // broken. The route only reads one ~9KB object, so refreshing often is cheap.
     res.setHeader(
       'Cache-Control',
-      'public, max-age=0, s-maxage=1800, stale-while-revalidate=86400',
+      'public, max-age=0, s-maxage=60, stale-while-revalidate=300',
     )
     return res.status(200).json(map ?? EMPTY)
   } catch (err) {
