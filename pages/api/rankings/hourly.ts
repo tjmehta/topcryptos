@@ -3,7 +3,7 @@ import { Listings, ListingsOpts, cmc } from '../../../modules/coinmarketcap'
 import { intParam } from '../../../modules/queryParams'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { ceilHour } from './../../../modules/roundToHour'
+import { floorHour } from './../../../modules/roundToHour'
 import { get } from 'env-var'
 import { timesParallel } from 'times-loop'
 
@@ -42,7 +42,15 @@ export default async (
         }
 
         if (i > 0 || hoursSkip > 0) {
-          const date = ceilHour(new Date())
+          // hours=0 is served live above, uncached. ceilHour(now) - hours
+          // used to land on the *current* hour again when hours=1 (ceilHour
+          // rounds up to the next boundary, so it's one hour later than
+          // floorHour) — the same bucket the live fetch already covers, so
+          // every request silently got one fewer distinct hour than asked
+          // for. floorHour(now) - hours is the hour that's actually "hours
+          // ago", matching how the cron keys snapshots (it runs at :05, well
+          // under roundToHour's :30 ceiling threshold, so it always floors).
+          const date = floorHour(new Date())
           date.setHours(date.getHours() - hours)
           query.date = date
         }

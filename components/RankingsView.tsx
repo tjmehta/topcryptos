@@ -296,9 +296,13 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
         {/* The table is given the larger share: it is the column that gains
             information with width (each ~100px brings back a real metric),
             whereas the chart is legible well below half the page. */}
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           <section
             aria-label="Rank over time"
+            // Grid items stretch to the row height by default, so without
+            // items-start this panel's border/background stretched down to
+            // match the much-taller scrolling table next to it — a big empty
+            // "mat" below the chart and legend.
             className="panel rounded-xl border border-border/50 p-3 shadow-2xl sm:p-5"
           >
             {loading ? (
@@ -317,6 +321,29 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                 onHover={setActiveCryptoId}
               />
             ) : null}
+
+            {/* On desktop this panel no longer stretches to match the taller
+                table (see items-start above), which freed up real space here
+                — used for the explainer a cold visitor otherwise doesn't get:
+                nothing on the page says what "score" means or what a line's
+                weight encodes. */}
+            <div className="mt-5 border-t border-border/50 pt-4 text-sm text-muted-foreground">
+              <p>
+                <span className="text-foreground font-medium">Score</span> ranks coins by
+                how fast their price, market cap, and rank are climbing — not just today's
+                price change.
+              </p>
+              <ul className="mt-2 space-y-1">
+                <li>Each line traces one coin's market-cap rank over the window.</li>
+                <li>Thicker, brighter lines have a higher score.</li>
+                <li>
+                  <span className="text-[color:var(--gain)]">Green</span> means price is up
+                  over the window, <span className="text-[color:var(--loss)]">red</span>{' '}
+                  means down.
+                </li>
+                <li>Click a line or its star to highlight a coin so it never gets lost.</li>
+              </ul>
+            </div>
           </section>
 
           <section aria-label="Rankings" className="min-w-0">
