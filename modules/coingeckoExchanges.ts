@@ -43,13 +43,42 @@ async function cgGet<T>(path: string, attempt = 0): Promise<T> {
   return (await res.json()) as T
 }
 
-export async function fetchTopExchanges(limit: number): Promise<ExchangeSummary[]> {
-  const raw = await cgGet<any[]>(`/exchanges?per_page=${limit}&page=1`)
-  return raw.map((e) => ({
+/** Widest page the endpoint serves. One call, so asking for it is free. */
+const EXCHANGES_PAGE_MAX = 250
+
+/**
+ * The top `limit` exchanges by trust-score rank, plus any of `extraIds`.
+ *
+ * The extras list exists because ranking by trust score alone can never
+ * surface a DEX: CoinGecko caps every DEX at `trust_score: 2` while CEXes
+ * reach 9-10, so the highest-ranked DEX sits near rank 170 and a top-20 cut is
+ * always 100% centralised. Naming them explicitly is the only way in.
+ *
+ * Widening the page costs nothing — it is the same single request — so the
+ * extras are picked out of one ranked fetch rather than a second lookup.
+ */
+export async function fetchTopExchanges(
+  limit: number,
+  extraIds: string[] = [],
+): Promise<ExchangeSummary[]> {
+  const perPage =
+    extraIds.length > 0 ? EXCHANGES_PAGE_MAX : Math.min(limit, EXCHANGES_PAGE_MAX)
+  const raw = await cgGet<any[]>(`/exchanges?per_page=${perPage}&page=1`)
+  const summarize = (e: any): ExchangeSummary => ({
     id: e.id,
     name: e.name,
     rank: typeof e.trust_score_rank === 'number' ? e.trust_score_rank : null,
-  }))
+  })
+
+  // The response is already ordered by trust-score rank.
+  const top = raw.slice(0, limit).map(summarize)
+  const seen = new Set(top.map((e) => e.id))
+  const extras = extraIds
+    .map((id) => raw.find((e) => e?.id === id))
+    .filter((e) => e != null && !seen.has(e.id))
+    .map(summarize)
+
+  return [...top, ...extras]
 }
 
 /**

@@ -41,6 +41,12 @@ export type ExchangeMapState = ExchangeMap & {
   roster: ExchangeSummary[]
   /** When `roster` was last fetched from CoinGecko. */
   rosterFetchedAt: string
+  /**
+   * Signature of the explicitly-named exchanges the roster was built with, so
+   * changing that list refetches once instead of waiting out the weekly TTL.
+   * Absent on state written before the extras existed.
+   */
+  rosterExtrasKey?: string
   /** exchange id -> CoinGecko coin ids last seen trading there */
   geckoCoinIdsByExchangeId: Record<string, string[]>
   /** exchange id -> ISO timestamp of its last successful refresh */

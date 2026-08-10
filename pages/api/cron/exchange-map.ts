@@ -24,6 +24,27 @@ import { get } from 'env-var'
 const CRON_SECRET = get('CRON_SECRET').asString()
 const TOP_EXCHANGES = get('CG_TOP_EXCHANGES').default(20).asIntPositive()
 
+// CoinGecko caps DEX trust_score at 2 while CEXes reach 9-10, so a top-N cut
+// by rank is always entirely centralised (the first DEX lands near rank 170).
+// These are named explicitly so the filter can offer them at all.
+const EXTRA_EXCHANGES = get('CG_EXTRA_EXCHANGES')
+  .default(
+    [
+      'uniswap_v3',
+      'uniswap-v4-ethereum',
+      'pancakeswap-v3-bsc',
+      'curve_ethereum',
+      'raydium-clmm',
+      'orca',
+      'aerodrome-slipstream',
+      'hyperliquid-spot',
+    ].join(','),
+  )
+  .asString()
+  .split(',')
+  .map((id) => id.trim())
+  .filter(Boolean)
+
 // Keyless CoinGecko hard-429s after ~3 calls, so the default rotation fits in
 // that budget. A free Demo key raises the ceiling to 30/min; these env vars let
 // you converge faster without a code change.
@@ -74,12 +95,21 @@ export default async function handler(
 
     // 1. Exchange roster — changes far more slowly than membership, so this is
     //    usually skipped and costs nothing.
+    //
+    //    The extras key forces one refresh after CG_EXTRA_EXCHANGES changes,
+    //    rather than leaving newly-named venues out for up to a week. It is
+    //    compared as a stored signature instead of "is every extra present?"
+    //    so that an id CoinGecko doesn't recognise settles after a single
+    //    refetch rather than re-fetching the roster on every run forever.
+    const extrasKey = [...EXTRA_EXCHANGES].sort().join(',')
     if (
       state.roster.length === 0 ||
+      state.rosterExtrasKey !== extrasKey ||
       Date.now() - new Date(state.rosterFetchedAt).valueOf() > WEEK_MS
     ) {
-      state.roster = await fetchTopExchanges(TOP_EXCHANGES)
+      state.roster = await fetchTopExchanges(TOP_EXCHANGES, EXTRA_EXCHANGES)
       state.rosterFetchedAt = new Date().toISOString()
+      state.rosterExtrasKey = extrasKey
       callsSpent += 1
     }
 
