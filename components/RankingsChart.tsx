@@ -38,7 +38,10 @@ export function RankingsChart({
 }: {
   cryptos: Crypto[]
   minMaxes: CryptosMinMaxes
-  /** trailing quotes to draw per coin */
+  /**
+   * Window size, in days or hours. Not a slice length — the series itself is
+   * windowed upstream by date. Kept as part of the d3 redraw key.
+   */
   points: number
   /** cap on drawn series — small screens get the top scorers only */
   maxSeries?: number
@@ -172,7 +175,19 @@ export function RankingsChart({
             return Math.min(0.95, Math.max(0.16, raw / MAX_SCORE))
           }
 
-          const path = (c: Crypto) => drawLine(c.quotes.slice(-points)) ?? ''
+          /*
+           * Draw every quote processRankings kept, rather than re-limiting to
+           * the last `points`. The window is defined by date upstream (quotes
+           * are filtered to >= startDate) and the x-domain is built from that
+           * same filtered set, so a second count-based limit here only
+           * disagreed with the axis: a window of N days holds N+1 quotes (N
+           * daily cron snapshots plus the live one fetched at request time),
+           * so slice(-N) dropped each coin's oldest point while the axis still
+           * spanned it. Every complete series started one column in, leaving
+           * the first column occupied only by coins that happened to have a
+           * gap elsewhere.
+           */
+          const path = (c: Crypto) => drawLine(c.quotes) ?? ''
 
           // Visible marks, weakest first so the strong movers land on top.
           const ordered = drawn.slice().sort((a, b) => a.score - b.score)
