@@ -69,7 +69,7 @@ class TopCryptosApiClient {
     mergedResponses.forEach((response) => {
       // @ts-ignore
       response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split('T')[0] ?? ''
+        const dateStr = `${item.quote.USD.last_updated}`.split(':')[0] ?? ''
         const key = `${dateStr}:${item.id}`
         seenDate.add(dateStr)
         if (seen.has(key)) {

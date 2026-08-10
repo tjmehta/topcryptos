@@ -1,58 +1,77 @@
 @import 'tailwindcss';
 
 /*
- * Tailwind v4 is CSS-first: no tailwind.config.js, no @tailwind directives, and
- * the design tokens live here as CSS variables surfaced to utilities via
- * `@theme inline`.
+ * topcryptos — design tokens.
  *
- * This app has always been dark-only — the old _document.tsx hardcoded a dark
- * body gradient and the chart/table palettes were hand-tuned against it — so
- * rather than inventing a light theme that nothing was designed for, the single
- * palette below is the dark one, lifted from the colors that were previously
- * scattered across inline <style jsx> blocks in index.tsx and hourly.tsx.
+ * The subject is rank *motion*: which coins are climbing the market-cap ladder
+ * fastest. Everything here serves that. The rank-flow chart is the signature, so
+ * it gets the only saturated color on the page; the surrounding chrome stays
+ * deliberately grey so it never competes with the data.
+ *
+ * Dark-only, as the app has always been. A light theme was never designed for
+ * these panels, and inventing one would be worse than committing to this.
  */
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Surfaces. The panel gradient is the one used by .chart and .table-wrapper. */
-  --background: oklch(0.34 0.03 271);
-  --foreground: oklch(0.93 0 0);
+  /* ---- surfaces -------------------------------------------------------- */
+  /* Page sits cooler and darker than the panels so cards read as lifted. */
+  --background: oklch(0.28 0.028 268);
+  --foreground: oklch(0.94 0.004 260);
 
   --panel-from: #0f1214;
-  --panel-to: #22252d;
+  --panel-to: #21242c;
 
-  --card: oklch(0.21 0.01 265);
-  --card-foreground: oklch(0.93 0 0);
-  --popover: oklch(0.23 0.012 265);
-  --popover-foreground: oklch(0.93 0 0);
+  --card: oklch(0.215 0.014 264);
+  --card-foreground: oklch(0.94 0.004 260);
+  --popover: oklch(0.235 0.014 264);
+  --popover-foreground: oklch(0.94 0.004 260);
 
-  --primary: oklch(0.72 0.19 145);
-  --primary-foreground: oklch(0.18 0.01 265);
-  --secondary: oklch(0.3 0.015 265);
-  --secondary-foreground: oklch(0.93 0 0);
+  --secondary: oklch(0.3 0.016 264);
+  --secondary-foreground: oklch(0.94 0.004 260);
+  --muted: oklch(0.3 0.016 264);
+  --muted-foreground: oklch(0.68 0.014 264);
+  --accent: oklch(0.34 0.02 264);
+  --accent-foreground: oklch(0.96 0.004 260);
 
-  --muted: oklch(0.3 0.015 265);
-  --muted-foreground: oklch(0.65 0.012 265);
-  --accent: oklch(0.32 0.02 265);
-  --accent-foreground: oklch(0.93 0 0);
+  --border: oklch(0.33 0.012 258);
+  --input: oklch(0.38 0.014 258);
 
-  --destructive: oklch(0.58 0.21 27);
+  /*
+   * UI accent is intentionally NOT the gain green. It used to be, which meant
+   * every button and focus ring read as "this coin is up". Chrome is a warm
+   * near-white; the saturated hues belong to the data alone.
+   */
+  --primary: oklch(0.93 0.02 85);
+  --primary-foreground: oklch(0.2 0.012 264);
+  --ring: oklch(0.83 0.13 85);
+
+  --destructive: oklch(0.64 0.21 22);
   --destructive-foreground: oklch(0.97 0 0);
 
-  /* #2C3136 — the divider color the d3 axes already use. */
-  --border: oklch(0.31 0.011 254);
-  --input: oklch(0.35 0.012 254);
-  --ring: oklch(0.72 0.19 145);
+  /* ---- data ------------------------------------------------------------
+   * Diverging pair for price polarity, chosen by running the dataviz
+   * validator against the panel surface rather than by eye:
+   *   deuteranopia ΔE 10.7 (target >= 8) and both clear 3:1 contrast.
+   * The previous #00b300/#b30000 separated well but the red sat at 2.4:1 on
+   * these panels — losing coins were genuinely hard to see.
+   * Never encode polarity by color alone: marks carry sign and direction too.
+   */
+  --gain: #35d1ae;
+  --loss: #ff5f5f;
+  --flat: oklch(0.62 0.01 264);
+  /* The spotlight for a highlighted series — a third hue, used on one coin at
+   * a time, so it cannot be confused with either pole. */
+  --spotlight: #ffd166;
 
-  /* Series colors. Green = gaining, red = losing, matching RankingsChart. */
-  --chart-1: oklch(0.72 0.19 145);
-  --chart-2: oklch(0.58 0.21 27);
-  --chart-3: oklch(0.75 0.16 85);
-  --chart-4: oklch(0.68 0.15 250);
-  --chart-5: oklch(0.7 0.17 320);
+  --chart-1: var(--gain);
+  --chart-2: var(--loss);
+  --chart-3: var(--spotlight);
+  --chart-4: oklch(0.7 0.13 250);
+  --chart-5: oklch(0.72 0.13 320);
 
-  --radius: 0.75rem;
+  --radius: 0.875rem;
 }
 
 @theme inline {
@@ -75,15 +94,24 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-gain: var(--gain);
+  --color-loss: var(--loss);
+  --color-flat: var(--flat);
+  --color-spotlight: var(--spotlight);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), Georgia, serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-sm: calc(var(--radius) - 6px);
 }
 
 @layer base {
@@ -91,61 +119,102 @@
     @apply border-border;
   }
 
-  html,
-  body {
-    height: 100%;
+  html {
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    /* Was an inline style on <body> in _document.tsx. */
-    background-image: linear-gradient(to right, #3b435c, #4a536d, #545d77);
+    background-image: linear-gradient(
+      168deg,
+      oklch(0.26 0.03 268) 0%,
+      oklch(0.31 0.032 265) 55%,
+      oklch(0.34 0.03 262) 100%
+    );
     background-attachment: fixed;
+    min-height: 100%;
     @apply text-foreground antialiased;
-    font-family:
-      ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial,
-      sans-serif;
+    font-family: var(--font-sans);
+  }
+
+  /* Every figure in this app is meant to be compared down a column. */
+  .tabular,
+  table td,
+  table th {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    @apply outline-ring outline-2 outline-offset-2;
   }
 }
 
 @utility panel {
   background-image: linear-gradient(
-    to top right,
-    var(--panel-from),
-    #131518,
-    #15181b,
-    #1b2026,
-    #20242b,
-    var(--panel-to)
+    152deg,
+    var(--panel-from) 0%,
+    #14171b 35%,
+    #1b1f26 70%,
+    var(--panel-to) 100%
   );
 }
 
+/* Numeric emphasis for the headline metric. */
+@utility figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
 /*
- * d3 renders the axes and lines imperatively, outside React, so these stay as
- * plain selectors rather than utility classes.
+ * d3 draws the rank-flow chart imperatively, outside React's tree, so its marks
+ * are styled here rather than with utility classes.
  */
-.axisLeft line,
-.axisBottom line,
-.axisLeft path,
-.axisBottom path {
-  stroke: #2c3136;
+.axis line,
+.axis path {
+  stroke: oklch(0.38 0.012 258);
 }
 
-.axisLeft text,
-.axisBottom text {
-  fill: #7f8490;
+.axis text {
+  fill: oklch(0.66 0.014 264);
+  font-size: 11px;
+  font-family: var(--font-mono);
 }
 
-.rankings-line {
+.rank-line {
   fill: none;
   cursor: pointer;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: opacity 120ms ease-out;
+  transition:
+    opacity 140ms ease-out,
+    stroke-width 140ms ease-out;
 }
 
-.rankings-line:hover,
-.rankings-line.is-active {
-  stroke: #ffe066 !important;
+/* Hover and keyboard focus both spotlight a series. */
+.rank-line:hover,
+.rank-line.is-active {
+  stroke: var(--spotlight) !important;
   opacity: 1 !important;
-  filter: drop-shadow(0 0 10px rgb(255 224 102 / 0.6));
+  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--spotlight) 55%, transparent));
+}
+
+/* A wide invisible companion path: 2px lines are far too thin to hit on a
+ * touchscreen, so each series gets a transparent 16px target underneath.
+ * Alpha is 0.01, not 0 — Safari doesn't hit-test a fully transparent stroke
+ * (unlike Chromium, which follows spec and hit-tests it regardless of alpha),
+ * so `transparent` silently drops all hover/click on WebKit. */
+.rank-hit {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.01);
+  stroke-width: 16;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

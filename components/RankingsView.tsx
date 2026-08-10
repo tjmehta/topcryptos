@@ -10,16 +10,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { percent, toneClass, trend } from '@/modules/format'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
+import { CoinCard } from '@/components/CoinCard'
 import type { ExchangeMap } from '@/modules/exchangeMap'
 import { ExchangeFilter } from '@/components/ExchangeFilter'
 import Head from 'next/head'
 import Link from 'next/link'
 import { RankingsChart } from '@/components/RankingsChart'
 import { RankingsTable } from '@/components/RankingsTable'
+import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
 import { selectCoinIdsOnExchanges } from '@/modules/exchangeMap'
 import { topCryptos } from '@/modules/topCryptos'
+import { useMediaQuery } from '@/components/hooks/useMediaQuery'
 
 const WINDOWS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
 
@@ -27,16 +32,15 @@ export type RankingsMode = 'daily' | 'hourly'
 
 function startDateFor(mode: RankingsMode, amount: number): Date {
   const date = new Date()
-  if (mode === 'daily') {
-    date.setDate(date.getDate() - (amount - 1))
-  } else {
-    date.setHours(date.getHours() - (amount - 1))
-  }
+  if (mode === 'daily') date.setDate(date.getDate() - (amount - 1))
+  else date.setHours(date.getHours() - (amount - 1))
   return date
 }
 
 export function RankingsView({ mode }: { mode: RankingsMode }) {
   const unit = mode === 'daily' ? 'days' : 'hours'
+  const isDesktop = useMediaQuery('(min-width: 768px)')
+  const isWide = useMediaQuery('(min-width: 1280px)')
 
   const [error, setError] = useState<string | null>(null)
   const [rankings, setRankings] = useState<null | unknown[]>(null)
@@ -44,12 +48,8 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
   const [exchangeMap, setExchangeMap] = useState<null | ExchangeMap>(null)
 
   const [activeCryptoId, setActiveCryptoId] = useState<string | null>(null)
-  const [selectedCryptoIds, setSelectedCryptoIds] = useState<Set<string>>(
-    () => new Set(),
-  )
-  const [disabledCryptoIds, setDisabledCryptoIds] = useState<Set<string>>(
-    () => new Set(),
-  )
+  const [highlightedIds, setHighlightedIds] = useState<Set<string>>(() => new Set())
+  const [hiddenIds, setHiddenIds] = useState<Set<string>>(() => new Set())
 
   const [amount, setAmount] = useState<number>(mode === 'daily' ? 10 : 4)
   const [selectedExchanges, setSelectedExchanges] = useState<string[]>([])
@@ -64,9 +64,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
         : topCryptos.getHourlyRankings({})
 
     load
-      .then((res) => {
-        if (!cancelled) setRankings(res)
-      })
+      .then((res) => !cancelled && setRankings(res))
       .catch((err) => {
         console.error('getRankings error', err)
         if (!cancelled) setError('Could not load rankings.')
@@ -81,13 +79,10 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     let cancelled = false
     fetch('/api/exchanges')
       .then((r) => (r.ok ? r.json() : null))
-      .then((map) => {
-        if (!cancelled && map?.exchanges) setExchangeMap(map)
-      })
+      .then((map) => !cancelled && map?.exchanges && setExchangeMap(map))
       .catch(() => {
-        // The filter is additive; if the map is unavailable the rest of the
-        // page must still work, so this failure is deliberately swallowed
-        // beyond leaving `exchangeMap` null (which disables the control).
+        // The filter is additive — if the map is unavailable the page still
+        // works, and ExchangeFilter disables itself on an empty list.
       })
     return () => {
       cancelled = true
@@ -98,10 +93,8 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     if (rankings == null) return
     let cancelled = false
 
-    processRankings(rankings as any, startDateFor(mode, amount), disabledCryptoIds)
-      .then((res) => {
-        if (!cancelled) setResults(res)
-      })
+    processRankings(rankings as any, startDateFor(mode, amount), hiddenIds)
+      .then((res) => !cancelled && setResults(res))
       .catch((err) => {
         console.error('processRankings error', err)
         if (!cancelled) setError('Could not score rankings.')
@@ -110,15 +103,12 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     return () => {
       cancelled = true
     }
-  }, [rankings, amount, disabledCryptoIds, mode])
+  }, [rankings, amount, hiddenIds, mode])
 
   // --- derived --------------------------------------------------------------
 
   const allowedCoinIds = useMemo(
-    () =>
-      exchangeMap
-        ? selectCoinIdsOnExchanges(exchangeMap, selectedExchanges)
-        : null,
+    () => (exchangeMap ? selectCoinIdsOnExchanges(exchangeMap, selectedExchanges) : null),
     [exchangeMap, selectedExchanges],
   )
 
@@ -128,21 +118,19 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     return results.cryptosSortedByScore.filter((c) => allowedCoinIds.has(c.id))
   }, [results, allowedCoinIds])
 
-  /**
-   * Selected coins float to the top of the table. The old implementation did
-   * this by monkey-patching a `rank_plus_selected` field onto each Crypto and
-   * sorting on it, which mutated shared objects during render.
-   */
-  const tableData = useMemo(() => {
-    const rows = visibleCryptos.slice()
-    rows.sort((a, b) => {
-      const aSel = selectedCryptoIds.has(a.id) ? 0 : 1
-      const bSel = selectedCryptoIds.has(b.id) ? 0 : 1
-      if (aSel !== bSel) return aSel - bSel
+  /** Highlighted coins float to the top so a pinned coin is never lost in 500 rows. */
+  const rows = useMemo(() => {
+    const list = visibleCryptos.slice()
+    list.sort((a, b) => {
+      const aPin = highlightedIds.has(a.id) ? 0 : 1
+      const bPin = highlightedIds.has(b.id) ? 0 : 1
+      if (aPin !== bPin) return aPin - bPin
       return a.rank - b.rank
     })
-    return rows
-  }, [visibleCryptos, selectedCryptoIds])
+    return list
+  }, [visibleCryptos, highlightedIds])
+
+  const leader = visibleCryptos[0] ?? null
 
   const windowOptions = useMemo(() => {
     if (mode === 'daily') return WINDOWS
@@ -151,7 +139,6 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     return opts.length > 0 ? opts : [Math.max(available, 1)]
   }, [mode, rankings])
 
-  // Keep the selection valid when the available hourly window shrinks.
   useEffect(() => {
     if (windowOptions.length > 0 && !windowOptions.includes(amount)) {
       setAmount(windowOptions[0])
@@ -160,67 +147,91 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
 
   // --- interactions ---------------------------------------------------------
 
-  const toggleSelected = useCallback((cryptoId: string) => {
-    setSelectedCryptoIds((prev) => {
+  const toggleIn = (set: Set<string>, id: string) => {
+    const next = new Set(set)
+    next.has(id) ? next.delete(id) : next.add(id)
+    return next
+  }
+
+  const toggleHighlight = useCallback((id: string) => {
+    setHighlightedIds((prev) => toggleIn(prev, id))
+  }, [])
+
+  const toggleHidden = useCallback((id: string) => {
+    setHiddenIds((prev) => toggleIn(prev, id))
+    setHighlightedIds((prev) => {
+      if (!prev.has(id)) return prev
       const next = new Set(prev)
-      next.has(cryptoId) ? next.delete(cryptoId) : next.add(cryptoId)
+      next.delete(id)
       return next
     })
   }, [])
 
-  const toggleDisabled = useCallback((cryptoId: string) => {
-    setDisabledCryptoIds((prev) => {
-      const next = new Set(prev)
-      next.has(cryptoId) ? next.delete(cryptoId) : next.add(cryptoId)
-      return next
-    })
-    setSelectedCryptoIds((prev) => {
-      if (!prev.has(cryptoId)) return prev
-      const next = new Set(prev)
-      next.delete(cryptoId)
-      return next
-    })
-  }, [])
-
-  const title = `Top Performing Cryptocurrencies${
-    mode === 'hourly' ? ' (Hourly)' : ''
-  }`
+  const title = `Top Performing Cryptocurrencies${mode === 'hourly' ? ' (Hourly)' : ''}`
   const filteredOut =
     results != null && allowedCoinIds != null
       ? results.cryptosSortedByScore.length - visibleCryptos.length
       : 0
+  const loading = results == null && error == null
 
   return (
     <div className="min-h-full">
       <Head>
-        <title>{`Top Cryptos - ${title}`}</title>
+        <title>{`Top Cryptos — ${title}`}</title>
+        <meta
+          name="description"
+          content="Which cryptocurrencies are climbing the market-cap ranks fastest, scored by price and rank momentum."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container mx-auto px-4">
-        <header className="flex flex-wrap items-baseline justify-between gap-4 pt-6 pb-8 lg:pt-10 lg:pb-12">
-          <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">
-            <span aria-hidden>🔥 </span>Top Cryptos
-          </h1>
-          <nav className="flex gap-4 text-sm text-muted-foreground">
-            <Link
-              href="/"
-              className={mode === 'daily' ? 'text-foreground' : 'hover:text-foreground'}
-            >
-              Daily
-            </Link>
-            <Link
-              href="/hourly"
-              className={mode === 'hourly' ? 'text-foreground' : 'hover:text-foreground'}
-            >
-              Hourly
-            </Link>
+      {/* Sticky, compact: on a phone this is the only chrome between the user
+          and the data, and it must never eat vertical space. */}
+      <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
+          <Link href="/" className="flex min-w-0 items-center gap-2">
+            <span aria-hidden className="text-lg leading-none">
+              🔥
+            </span>
+            <span className="font-display truncate text-xl leading-none tracking-tight sm:text-2xl">
+              Top Cryptos
+            </span>
+          </Link>
+
+          <nav
+            aria-label="Ranking window"
+            className="flex shrink-0 items-center rounded-full border border-border/70 bg-secondary/50 p-0.5 text-xs"
+          >
+            {(
+              [
+                { href: '/', label: 'Daily', active: mode === 'daily' },
+                { href: '/hourly', label: 'Hourly', active: mode === 'hourly' },
+              ] as const
+            ).map((tab) => (
+              <Link
+                key={tab.href}
+                href={tab.href}
+                aria-current={tab.active ? 'page' : undefined}
+                className={cn(
+                  'rounded-full px-3 py-1 font-medium transition-colors',
+                  tab.active
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                )}
+              >
+                {tab.label}
+              </Link>
+            ))}
           </nav>
-        </header>
+        </div>
+      </header>
 
-        <div className="flex flex-wrap items-center gap-3 pb-8 text-xl md:text-2xl">
-          <span>Top performing cryptos over</span>
-
+      <main className="mx-auto max-w-[1600px] px-4 pb-16 sm:px-6">
+        {/* Thesis line: says what the page is for, and carries the two controls
+            inline so the sentence reads as the query being run. */}
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-2 pt-5 pb-4 text-base sm:text-lg">
+          <span className="text-muted-foreground">Climbing fastest over</span>
           <Select
             value={String(amount)}
             onValueChange={(v) => {
@@ -228,7 +239,10 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               if (!Number.isNaN(parsed)) setAmount(parsed)
             }}
           >
-            <SelectTrigger className="h-auto w-auto gap-2 border-border bg-secondary/60 text-base">
+            <SelectTrigger
+              aria-label={`Window: ${amount} ${unit}`}
+              className="h-8 w-auto gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm"
+            >
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -239,9 +253,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               ))}
             </SelectContent>
           </Select>
-
-          <span>on</span>
-
+          <span className="text-muted-foreground">on</span>
           <ExchangeFilter
             exchanges={exchangeMap?.exchanges ?? []}
             selected={selectedExchanges}
@@ -250,59 +262,143 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-lg border border-destructive/40 bg-destructive/10 p-4 text-destructive-foreground">
-            {error}
+          <div
+            role="alert"
+            className="mb-6 rounded-lg border border-destructive/40 bg-destructive/10 p-4 text-sm"
+          >
+            {error} Reload the page to try again.
           </div>
         )}
 
-        {selectedExchanges.length > 0 && filteredOut > 0 && (
-          <p className="pb-4 text-sm text-muted-foreground">
-            Showing {visibleCryptos.length} coins · {filteredOut} hidden by the
-            exchange filter
-          </p>
+        {/* The signature moment: the single coin this whole page exists to find. */}
+        {leader && (
+          <div className="mb-5 flex items-baseline gap-3 rounded-lg border border-border/50 bg-card/40 px-4 py-3">
+            <span className="text-xs tracking-wide text-muted-foreground uppercase">
+              Leader
+            </span>
+            <span className="font-display truncate text-2xl leading-none">
+              {leader.name}
+            </span>
+            <span
+              className={cn(
+                'figure ml-auto shrink-0 text-lg font-medium',
+                toneClass(leader.total?.pricePct),
+              )}
+            >
+              <span aria-hidden className="mr-1 text-[0.7em]">
+                {trend(leader.total?.pricePct)}
+              </span>
+              {percent(leader.total?.pricePct)}
+            </span>
+          </div>
         )}
 
-        <div className="grid gap-6 pb-16 xl:grid-cols-2">
-          <div className="panel rounded-3xl p-2 shadow-2xl md:p-4 lg:p-6">
-            {results == null ? (
-              <div className="flex h-[28rem] items-center justify-center text-muted-foreground">
-                Loading chart…
-              </div>
-            ) : (
+        {/* The table is given the larger share: it is the column that gains
+            information with width (each ~100px brings back a real metric),
+            whereas the chart is legible well below half the page. */}
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+          <section
+            aria-label="Rank over time"
+            className="panel rounded-xl border border-border/50 p-3 shadow-2xl sm:p-5"
+          >
+            {loading ? (
+              <Skeleton className="h-[300px] w-full rounded-lg sm:h-[380px]" />
+            ) : results ? (
               <RankingsChart
                 cryptos={visibleCryptos}
                 minMaxes={results.minMaxes}
                 points={amount}
+                // 500 hairlines is texture, not information, on a phone.
+                maxSeries={isWide ? undefined : isDesktop ? 120 : 30}
+                highlightedIds={highlightedIds}
+                hiddenIds={hiddenIds}
                 activeCryptoId={activeCryptoId}
-                selectedCryptoIds={selectedCryptoIds}
-                disabledCryptoIds={disabledCryptoIds}
-                onClick={toggleSelected}
-                onDoubleClick={toggleDisabled}
-                onMouseOver={setActiveCryptoId}
-              />
-            )}
-          </div>
-
-          <div className="panel overflow-hidden rounded-3xl shadow-2xl">
-            {results == null ? (
-              <div className="flex h-[28rem] items-center justify-center text-muted-foreground">
-                Loading table…
-              </div>
-            ) : (
-              <RankingsTable
-                data={tableData}
-                selectedCryptoIds={selectedCryptoIds}
-                disabledCryptoIds={disabledCryptoIds}
-                onToggleSelected={toggleSelected}
-                onToggleDisabled={toggleDisabled}
+                onToggleHighlight={toggleHighlight}
                 onHover={setActiveCryptoId}
               />
+            ) : null}
+          </section>
+
+          <section aria-label="Rankings" className="min-w-0">
+            <div className="flex items-baseline justify-between gap-3 pb-2 text-xs text-muted-foreground">
+              <span>
+                {loading
+                  ? 'Scoring…'
+                  : `${visibleCryptos.length} coin${visibleCryptos.length === 1 ? '' : 's'}`}
+                {filteredOut > 0 && ` · ${filteredOut} filtered out`}
+              </span>
+              {highlightedIds.size > 0 && (
+                <button
+                  onClick={() => setHighlightedIds(new Set())}
+                  className="underline underline-offset-4 hover:text-foreground"
+                >
+                  Clear {highlightedIds.size} highlighted
+                </button>
+              )}
+            </div>
+
+            {loading ? (
+              <div className="space-y-2">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <Skeleton key={i} className="h-16 w-full rounded-lg md:h-10" />
+                ))}
+              </div>
+            ) : rows.length === 0 ? (
+              <div className="rounded-xl border border-dashed border-border/70 px-6 py-16 text-center">
+                <p className="font-medium">No coins match this filter</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Try selecting more exchanges, or clear the filter to see all
+                  {results ? ` ${results.cryptosSortedByScore.length}` : ''} coins.
+                </p>
+                {selectedExchanges.length > 0 && (
+                  <button
+                    onClick={() => setSelectedExchanges([])}
+                    className="mt-4 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
+                  >
+                    Clear exchange filter
+                  </button>
+                )}
+              </div>
+            ) : isDesktop ? (
+              // shadcn's Table already wraps <table> in its own overflow-x-auto
+              // div for horizontal scroll. Putting the vertical scroll/rounding
+              // on a *second*, outer div made that inner div the sticky
+              // <thead>'s containing block instead (nearest scroll-container
+              // wins) — the header stopped sticking to the intended box. Both
+              // axes need to live on the one div, via containerClassName.
+              <RankingsTable
+                data={rows}
+                highlightedIds={highlightedIds}
+                hiddenIds={hiddenIds}
+                onToggleHighlight={toggleHighlight}
+                onToggleHidden={toggleHidden}
+                onHover={setActiveCryptoId}
+                containerClassName="panel max-h-[70vh] overflow-y-auto rounded-xl border border-border/50 shadow-2xl"
+              />
+            ) : (
+              <ul className="space-y-2">
+                {rows.slice(0, 100).map((crypto: Crypto) => (
+                  <li key={crypto.id}>
+                    <CoinCard
+                      crypto={crypto}
+                      highlighted={highlightedIds.has(crypto.id)}
+                      hidden={hiddenIds.has(crypto.id)}
+                      onToggleHighlight={toggleHighlight}
+                      onToggleHidden={toggleHidden}
+                    />
+                  </li>
+                ))}
+                {rows.length > 100 && (
+                  <li className="py-4 text-center text-xs text-muted-foreground">
+                    Showing the top 100 of {rows.length}. Narrow the window or
+                    filter by exchange to see further down.
+                  </li>
+                )}
+              </ul>
             )}
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
-
-export type { Crypto }

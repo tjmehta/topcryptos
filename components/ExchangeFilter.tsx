@@ -56,14 +56,22 @@ export function ExchangeFilter({
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          aria-label={
+            exchanges.length === 0
+              ? 'Exchange filter unavailable'
+              : `Filter by exchange: ${label}`
+          }
           disabled={disabled || exchanges.length === 0}
-          className="h-auto min-w-[13rem] justify-between gap-2 border-border bg-secondary/60 text-base font-normal"
+          className="h-8 max-w-[15rem] justify-between gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm font-normal"
         >
           <span className="truncate">
             {exchanges.length === 0 ? 'Exchanges unavailable' : label}
           </span>
           {selected.length > 0 && (
-            <Badge variant="secondary" className="ml-1 shrink-0">
+            <Badge
+              variant="secondary"
+              className="ml-0.5 h-5 shrink-0 rounded-full px-1.5 text-[0.7rem]"
+            >
               {selected.length}
             </Badge>
           )}

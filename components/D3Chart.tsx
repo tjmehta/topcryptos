@@ -26,12 +26,19 @@ export function D3Chart({
   className,
   renderKey,
   aspect = 1,
+  minHeight = 0,
 }: {
   children: D3ChartRenderer
   className?: string
   renderKey: string
   /** height / width */
   aspect?: number
+  /**
+   * Floor for the plot height. Pure aspect sizing collapses the chart on narrow
+   * viewports — at 390px wide an 0.78 aspect leaves ~300px total, of which the
+   * axes eat a third.
+   */
+  minHeight?: number
 }) {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const svgRef = useRef<SVGSVGElement | null>(null)
@@ -46,9 +53,9 @@ export function D3Chart({
       if (entry == null) return
       const width = Math.floor(entry.contentRect.width)
       if (width <= 0) return
-      const height = Math.min(
-        Math.round(width * aspect),
-        Math.round(window.innerHeight * 0.8),
+      const height = Math.max(
+        minHeight,
+        Math.min(Math.round(width * aspect), Math.round(window.innerHeight * 0.8)),
       )
       setSize((prev) =>
         prev.width === width && prev.height === height
@@ -59,7 +66,7 @@ export function D3Chart({
 
     observer.observe(wrapper)
     return () => observer.disconnect()
-  }, [aspect])
+  }, [aspect, minHeight])
 
   useEffect(() => {
     const node = svgRef.current
