@@ -329,23 +329,21 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                 weight encodes. */}
             <div className="mt-5 border-t border-border/50 pt-4 text-sm text-muted-foreground">
               <p>
-                <span className="text-foreground font-medium">Score</span> ranks coins by
-                how fast their price, market cap, and rank are climbing — not just today's
-                price change.
+                <span className="text-foreground font-medium">Score</span> measures how
+                fast a coin's price, market cap, and rank are climbing across the whole
+                window — not just today's move.
               </p>
               <ul className="mt-2 space-y-1">
-                <li>Each line traces one coin's market-cap rank over the window.</li>
-                <li>Thicker, brighter lines have a higher score.</li>
+                <li>Each line is one coin's market-cap rank over time.</li>
+                <li>Thicker, brighter lines score higher.</li>
                 <li>
-                  <span className="text-[color:var(--gain)]">Green</span> means price is up
-                  over the window, <span className="text-[color:var(--loss)]">red</span>{' '}
-                  means down.
+                  <span className="text-[color:var(--gain)]">Green</span> = price up over
+                  the window, <span className="text-[color:var(--loss)]">red</span> = down.
                 </li>
-                <li>Click a line or its star to highlight a coin so it never gets lost.</li>
+                <li>Click a line or its star to keep a coin highlighted.</li>
                 <li>
-                  Coins marked <span className="text-foreground">New</span> don't have
-                  enough history in this window to be scored fairly, so they sit out the
-                  ranking until they do.
+                  <span className="text-foreground">New</span> = too little history to
+                  score fairly, so those coins sit out the ranking.
                 </li>
               </ul>
             </div>
