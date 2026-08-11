@@ -342,6 +342,11 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                   means down.
                 </li>
                 <li>Click a line or its star to highlight a coin so it never gets lost.</li>
+                <li>
+                  Coins marked <span className="text-foreground">New</span> don't have
+                  enough history in this window to be scored fairly, so they sit out the
+                  ranking until they do.
+                </li>
               </ul>
             </div>
           </section>

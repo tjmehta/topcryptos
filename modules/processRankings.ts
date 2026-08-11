@@ -15,8 +15,31 @@ import SortedList from './SortedList'
 import { compareDates } from './compareDates'
 import { last } from './../modules/last'
 
-export const NAN_SCORE = -101
+/**
+ * Sentinel for "cannot be scored". Must sit below the entire real score range
+ * (-MAX_SCORE..MAX_SCORE) so unscoreable coins sort under the worst genuine
+ * loser — at its old value of -101 they ranked above every coin scoring below
+ * -101.
+ */
+export const NAN_SCORE = -10001
 export const MAX_SCORE = 1000
+
+/**
+ * Eligibility floor for scoring, per window. Below either bound a coin gets
+ * NAN_SCORE and renders as unranked ("New") instead of competing:
+ *
+ *  - Fewer than three quotes cannot produce a single acceleration (two
+ *    `pairwise` passes), so 30% of the score's weight would be judging noise —
+ *    two points are one price delta, not a trend.
+ *  - A coin must span at least half the window, or its velocity describes a
+ *    sliver of the period the leaderboard claims to rank. Momentum screens and
+ *    the major aggregators exclude such listings from windowed rankings for
+ *    the same reason (CMC/CoinGecko show "—" for a 7d change on a 2-day-old
+ *    coin). Half, not higher: on the hourly view a window is only 3-5 buckets,
+ *    so a coin missing a single end bucket already sits near 0.6.
+ */
+export const MIN_QUOTES_TO_SCORE = 3
+export const MIN_COVERAGE_TO_SCORE = 0.5
 
 export type Quote = {
   id: string
@@ -66,6 +89,10 @@ export type Crypto = {
   pricePctAccelsSum: number
   rankAccelsSum: number
   score: number
+  /** fraction of the window this coin's quotes actually span, 0..1 */
+  coverage: number
+  /** true when the coin was too new/sparse to score — see MIN_*_TO_SCORE */
+  insufficientHistory: boolean
 }
 export type CryptosById = {
   [id: string]: Crypto | undefined
@@ -81,6 +108,8 @@ type SparseCrypto = {
   pricePctAccelsSum?: undefined | number
   rankAccelsSum?: undefined | number
   score?: undefined | number
+  coverage?: undefined | number
+  insufficientHistory?: undefined | boolean
 }
 type SparseCryptosById = {
   [id: string]: SparseCrypto | undefined
@@ -328,14 +357,83 @@ export async function processRankings(
   ])
 
   // calculate score
+  const w1 = 0.7 * MAX_SCORE
+  const w2 = 0.2 * MAX_SCORE
+  const w3 = 0.1 * MAX_SCORE
+
+  /*
+   * Coverage is measured against the longest span any coin achieved, not the
+   * raw min-to-max of all dates. When data is healthy they're identical — some
+   * large cap always spans the whole window. They diverge when no coin *can*
+   * span it: a stalled cron leaves every coin with the same truncated history,
+   * and dividing by the theoretical window would gate the entire board as
+   * "insufficient" even though every coin is equally, maximally covered.
+   */
+  let fullSpanMinutes = 0
+  Object.keys(sparseCryptosById).forEach((id) => {
+    const duration = sparseCryptosById[id]?.total?.duration
+    if (duration != null && Number.isFinite(duration)) {
+      fullSpanMinutes = Math.max(fullSpanMinutes, duration)
+    }
+  })
+
+  /*
+   * Pass 1 — eligibility and coverage-adjusted velocity.
+   *
+   * `pricePctVelocity` divides by the coin's *own* observed span, which hands
+   * a partial-history coin an inflation factor of (window / own span): a newly
+   * listed coin with two quotes four hours apart computed a velocity ~57× any
+   * full-history coin's and ranked #1 on every window. Two corrections, both
+   * standard for ranking items with unequal histories:
+   *
+   *  - Coins under the MIN_*_TO_SCORE floor are not scored at all.
+   *  - Scored coins spread their move over the shared window rather than their
+   *    own span (velocity × coverage == pricePct / windowSpan), so missing
+   *    history counts as "no movement" instead of a multiplier. For a
+   *    full-coverage coin this is a no-op.
+   */
+  const adjustedVelocityById: { [id: string]: number } = {}
+  const velocityPercentiles = new SignedPercentiles()
+  const pricePctAccelsSumPercentiles = new SignedPercentiles()
+  const rankAccelsSumPercentiles = new SignedPercentiles()
   Object.keys(sparseCryptosById).forEach((id) => {
     const sparseCrypto = sparseCryptosById[id]
     if (sparseCrypto == null) return
-    let { pricePctAccelsSum, rankAccelsSum, total } = sparseCrypto
+    const { total, quotes } = sparseCrypto
 
-    const w1 = 0.7 * MAX_SCORE
-    const w2 = 0.2 * MAX_SCORE
-    const w3 = 0.1 * MAX_SCORE
+    const coverage =
+      total == null || fullSpanMinutes <= 0
+        ? 0
+        : Math.min(1, total.duration / fullSpanMinutes)
+    sparseCrypto.coverage = coverage
+    sparseCrypto.insufficientHistory =
+      (quotes?.length ?? 0) < MIN_QUOTES_TO_SCORE ||
+      coverage < MIN_COVERAGE_TO_SCORE
+
+    if (total != null) {
+      adjustedVelocityById[id] = total.pricePctVelocity * coverage
+    }
+
+    // Only scoreable coins define the field the percentiles rank against, so
+    // an ineligible outlier cannot shift anyone else's score. Hidden coins are
+    // kept out for the same reason the min/maxes exclude them.
+    if (
+      !sparseCrypto.insufficientHistory &&
+      !disabledCryptoIds.has(id) &&
+      total != null &&
+      Number.isFinite(total.pricePct)
+    ) {
+      velocityPercentiles.add(adjustedVelocityById[id])
+      pricePctAccelsSumPercentiles.add(sparseCrypto.pricePctAccelsSum)
+      rankAccelsSumPercentiles.add(sparseCrypto.rankAccelsSum)
+    }
+  })
+
+  // Pass 2 — score as a weighted sum of signed percentile ranks.
+  Object.keys(sparseCryptosById).forEach((id) => {
+    const sparseCrypto = sparseCryptosById[id]
+    if (sparseCrypto == null) return
+    const { pricePctAccelsSum, rankAccelsSum, total } = sparseCrypto
 
     let score: number
     // Guard on finiteness, not truthiness. `if (total?.pricePct)` also rejected
@@ -343,29 +441,24 @@ export async function processRankings(
     // scored NaN -> NAN_SCORE and got hidden from the chart entirely. Infinity
     // is excluded too: `pct()` divides by the start value, which is 0 for a coin
     // that had no price at the start of the window.
-    if (total != null && Number.isFinite(total.pricePct)) {
-      const pricePctScoreRatio = normalize(
-        total.pricePctVelocity,
-        minMaxes.pricePctVelocityMinMax,
-      )
-      const pricePctAccelsSumScoreRatio = normalize(
-        pricePctAccelsSum,
-        minMaxes.pricePctAccelsSumMinMax,
-      )
-      const rankAccelsSumScoreRatio = normalize(
-        rankAccelsSum,
-        minMaxes.rankAccelsSumMinMax,
-      )
+    if (
+      !sparseCrypto.insufficientHistory &&
+      total != null &&
+      Number.isFinite(total.pricePct)
+    ) {
       const scoreRatio =
-        (w1 * pricePctScoreRatio +
-          w2 * pricePctAccelsSumScoreRatio +
-          w3 * rankAccelsSumScoreRatio) /
+        (w1 * velocityPercentiles.rank(adjustedVelocityById[id]) +
+          w2 * pricePctAccelsSumPercentiles.rank(pricePctAccelsSum) +
+          w3 * rankAccelsSumPercentiles.rank(rankAccelsSum)) /
         (w1 + w2 + w3)
       score = scoreRatio * MAX_SCORE
     } else {
       score = NaN
     }
-    if (!disabledCryptoIds.has(id)) {
+    // Finite scores only: MinMaxState's comparator can never displace a NaN
+    // seeded as the first min/max, which froze the range the chart scales
+    // stroke width by.
+    if (!disabledCryptoIds.has(id) && Number.isFinite(score)) {
       minMaxes.scoreMinMax.compare(score)
     }
     sparseCrypto.score = score
@@ -418,6 +511,8 @@ export async function processRankings(
       pricePctAccelsSum: sparseCrypto.pricePctAccelsSum ?? NaN,
       rankAccelsSum: sparseCrypto.rankAccelsSum ?? NaN,
       score,
+      coverage: sparseCrypto.coverage ?? 0,
+      insufficientHistory: sparseCrypto.insufficientHistory ?? false,
     }
     cryptosById[id] = crypto
     cryptosSortedByScoreList.add(crypto)
@@ -481,32 +576,76 @@ function minutesDuration<K extends string, R extends Record<K, Date>>(
   return pair[1][key].valueOf() / 1000 / 60 - pair[0][key].valueOf() / 1000 / 60
 }
 /**
- * Scale `value` into roughly -1..1 against whichever end of the observed range
- * it sits on, returning 0 when that isn't meaningful.
+ * Signed percentile-rank normalization into -1..1, replacing the old
+ * `value / populationMax` scaling.
  *
- * The previous inline form divided by `Math.abs(minMax.max)` (or `.min`) with no
- * guard, which produced NaN in two situations that actually occur:
+ * Dividing by the max let a single outlier define the whole scale: one extreme
+ * velocity compressed every other coin's ratio toward 0, flattening the
+ * scores' spread (and so the chart's stroke weights) across the field.
+ * Percentiles only care about order, so an outlier is merely "first" — it
+ * cannot shrink anyone else.
  *
- *  - **A degenerate range.** When every coin in the window shares the same value
- *    the bound is 0, so `0 / 0` is NaN. NaN then propagates through the weighted
- *    sum, so *every* coin scores NaN -> NAN_SCORE and the entire chart renders
- *    blank rather than just that one component being uninformative.
- *  - **Missing acceleration sums.** Accelerations need at least three quotes
- *    (two `pairwise` passes). With a short window — or a longer one that the
- *    hourly cron left gaps in — the sums stay `undefined`, and
- *    `undefined / x` is NaN.
- *
- * Treating both as "this component contributes nothing" lets the score degrade
- * to the components that do have signal.
+ * Sign is preserved by ranking gainers and losers in separate pools — the
+ * chart keys gain/loss stroke scales off the score's sign, so a coin that
+ * moved up must never score negative just for being below the median. Ties
+ * take the midrank. A missing, non-finite, or zero value contributes 0:
+ * accelerations need at least three quotes (two `pairwise` passes), so short
+ * or gappy series leave the sums `undefined`, and treating that as "this
+ * component contributes nothing" lets the score degrade to the components
+ * that do have signal — a degenerate all-equal field behaves the same way.
  */
-function normalize(
-  value: number | undefined,
-  minMax: MinMaxState<number>,
-): number {
-  if (value == null || !Number.isFinite(value)) return 0
-  const bound = Math.abs(value >= 0 ? minMax.max : minMax.min)
-  if (!Number.isFinite(bound) || bound === 0) return 0
-  return value / bound
+class SignedPercentiles {
+  private readonly gains: number[] = []
+  private readonly losses: number[] = []
+  private sorted = false
+
+  add(value: number | undefined) {
+    if (value == null || !Number.isFinite(value) || value === 0) return
+    if (value > 0) this.gains.push(value)
+    else this.losses.push(-value)
+    this.sorted = false
+  }
+
+  /** midrank percentile of |value| within its sign's pool, negated for losses */
+  rank(value: number | undefined): number {
+    if (value == null || !Number.isFinite(value) || value === 0) return 0
+    if (!this.sorted) {
+      this.gains.sort((a, b) => a - b)
+      this.losses.sort((a, b) => a - b)
+      this.sorted = true
+    }
+    const pool = value > 0 ? this.gains : this.losses
+    if (pool.length === 0) return 0
+    const magnitude = Math.abs(value)
+    const below = lowerBound(pool, magnitude)
+    const equal = upperBound(pool, magnitude) - below
+    const percentile = (below + 0.5 * equal) / pool.length
+    return value > 0 ? percentile : -percentile
+  }
+}
+
+/** index of the first element >= value */
+function lowerBound(sorted: number[], value: number): number {
+  let lo = 0
+  let hi = sorted.length
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1
+    if (sorted[mid] < value) lo = mid + 1
+    else hi = mid
+  }
+  return lo
+}
+
+/** index of the first element > value */
+function upperBound(sorted: number[], value: number): number {
+  let lo = 0
+  let hi = sorted.length
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1
+    if (sorted[mid] <= value) lo = mid + 1
+    else hi = mid
+  }
+  return lo
 }
 /**
  * Midpoint of a window that starts at `start` and lasts `durationMinutes`.

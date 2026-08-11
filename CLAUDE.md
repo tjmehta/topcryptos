@@ -9,6 +9,12 @@ top-performing cryptocurrencies over a trailing window. It scores each coin from
 velocity/acceleration of its price, market cap, and market-cap rank, then renders a D3
 "spaghetti" chart of rank-over-time alongside a sortable table.
 
+Scores are **signed percentile ranks** of coverage-adjusted velocity (70%) plus price/rank
+acceleration sums (20%/10%) — see `processRankings.ts`. Coins without enough history in
+the window (`MIN_QUOTES_TO_SCORE`, `MIN_COVERAGE_TO_SCORE`) get `NAN_SCORE`, sort last,
+and render as a "New" badge instead of a rank — a newly listed coin's 4-hour pump must
+not outrank coins measured over the full window.
+
 - `/` — daily rankings (3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90 days)
 - `/hourly` — same view on an hourly window
 
@@ -135,6 +141,12 @@ Read at **module load time** via `env-var`, so a missing one throws on import:
   delete once DO is decommissioned.
 
 ## Known rough edges
+
+- **Local dev: live listings fall back to CoinGecko and their ids don't join.** With the
+  placeholder `CMC_API_KEY`, the live (no-date) fetch fails over to CoinGecko, whose shim
+  emits slug string ids (`"bitcoin"`) while cron snapshots carry CMC numeric ids. Every
+  coin then splits into two groups client-side; single-quote groups get dropped, so coins
+  can be missing or mis-scored **only in local dev**. Production uses CMC for both paths.
 
 - **1MB response cap.** `topCryptos.getDailyRankings` issues 10 parallel requests of 9 days
   each rather than one 90-day request (commit `70908cf`), and both cached readers blank

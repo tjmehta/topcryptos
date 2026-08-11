@@ -1,7 +1,6 @@
 import {
   Crypto,
   CryptosMinMaxes,
-  MAX_SCORE,
   NAN_SCORE,
   Quote,
 } from '@/modules/processRankings'
@@ -11,7 +10,6 @@ import { useCallback, useMemo, useState } from 'react'
 
 import { D3Chart } from '@/components/D3Chart'
 import { cn } from '@/lib/utils'
-import { interpolate } from '@/modules/interpolate'
 
 type Hover = { crypto: Crypto; x: number; y: number } | null
 
@@ -147,11 +145,20 @@ export function RankingsChart({
             .x((q) => xScale(q.date))
             .y((q) => yScale(q.rankByMarketCap))
 
-          const weight = (value: number, bound: number, cap: number) => {
+          /*
+           * Scores are percentile ranks, so they spread uniformly across the
+           * field — mapped linearly to stroke, the *median* coin would get a
+           * mid-weight line and 500 of them fuse into a solid wall. Emphasis
+           * has to be convex: the power curve keeps the bulk of the field at
+           * hairline weight and spends the visual budget on the top decile,
+           * which is the shape the old skewed divide-by-max scores produced
+           * incidentally.
+           */
+          const emphasis = (value: number, bound: number, exponent: number) => {
             if (!Number.isFinite(value) || !Number.isFinite(bound) || bound === 0) {
-              return 0.75
+              return 0
             }
-            return interpolate({ start: 0, end: cap, steps: bound, count: value })
+            return Math.pow(Math.min(1, Math.max(0, value / bound)), exponent)
           }
 
           const strokeFor = (c: Crypto) =>
@@ -163,16 +170,18 @@ export function RankingsChart({
 
           const widthFor = (c: Crypto) =>
             c.score >= 0
-              ? Math.max(1, weight(c.score, minMaxes.scoreMinMax.max, 14))
-              : Math.max(0.75, weight(Math.abs(c.score), Math.abs(minMaxes.scoreMinMax.min), 7))
+              ? 1 + 13 * emphasis(c.score, minMaxes.scoreMinMax.max, 4)
+              : 0.75 +
+                6.25 * emphasis(Math.abs(c.score), Math.abs(minMaxes.scoreMinMax.min), 4)
 
           const opacityFor = (c: Crypto) => {
             if (highlightedIds.has(c.id)) return 1
             const raw =
               c.score >= 0
-                ? weight(c.score, minMaxes.scoreMinMax.max, 900)
-                : weight(Math.abs(c.score), Math.abs(minMaxes.scoreMinMax.min), 480)
-            return Math.min(0.95, Math.max(0.16, raw / MAX_SCORE))
+                ? 0.16 + 0.79 * emphasis(c.score, minMaxes.scoreMinMax.max, 3)
+                : 0.16 +
+                  0.32 * emphasis(Math.abs(c.score), Math.abs(minMaxes.scoreMinMax.min), 3)
+            return Math.min(0.95, raw)
           }
 
           /*

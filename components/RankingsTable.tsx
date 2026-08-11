@@ -27,6 +27,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { cmcUrl, marketCap, percent, price, score, toneClass, trend } from '@/modules/format'
 import { useMemo, useState } from 'react'
 
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import type { Crypto } from '@/modules/processRankings'
 import { NAN_SCORE } from '@/modules/processRankings'
@@ -151,11 +152,20 @@ export function RankingsTable({
       {
         accessorKey: 'score',
         header: 'Score',
-        cell: ({ row }) => (
-          <span className="figure text-muted-foreground">
-            {row.original.score === NAN_SCORE ? '—' : score(row.original.score)}
-          </span>
-        ),
+        cell: ({ row }) =>
+          row.original.insufficientHistory ? (
+            <Badge
+              variant="outline"
+              className="text-muted-foreground"
+              title="Too new to score — not enough history in this window"
+            >
+              New
+            </Badge>
+          ) : (
+            <span className="figure text-muted-foreground">
+              {row.original.score === NAN_SCORE ? '—' : score(row.original.score)}
+            </span>
+          ),
         meta: { align: 'right' } as Meta,
       },
       {

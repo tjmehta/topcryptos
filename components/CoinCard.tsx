@@ -80,7 +80,9 @@ export function CoinCard({
             {percent(pricePct)}
           </span>
           <span className="figure text-xs text-muted-foreground">
-            score {crypto.score === NAN_SCORE ? '—' : score(crypto.score)}
+            {crypto.insufficientHistory
+              ? 'too new to score'
+              : `score ${crypto.score === NAN_SCORE ? '—' : score(crypto.score)}`}
           </span>
         </div>
       </div>
