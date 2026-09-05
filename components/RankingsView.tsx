@@ -570,7 +570,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
         </div>
       </main>
 
-      {/* House ad. One quiet card, below the fold, for the maker's other project. */}
+      {/* Sponsored card, below the fold. */}
       <footer className="mx-auto max-w-[1600px] px-4 pb-10 sm:px-6">
         <a
           href="https://meownero.com"
@@ -588,7 +588,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
           />
           <span className="min-w-0 flex-1">
             <span className="block text-[10px] tracking-wide text-muted-foreground uppercase">
-              From the maker of Top Cryptos
+              Sponsored
             </span>
             <span className="block truncate">
               <span className="font-display text-lg leading-tight">Meownero</span>
