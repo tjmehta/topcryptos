@@ -14,6 +14,9 @@ import { percent, toneClass, trend } from '@/modules/format'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { CoinCard } from '@/components/CoinCard'
+import { ShareButton } from '@/components/ShareButton'
+import type { SortingState } from '@tanstack/react-table'
+import { useRouter } from 'next/router'
 import type { ExchangeMap } from '@/modules/exchangeMap'
 import { ExchangeFilter } from '@/components/ExchangeFilter'
 import Head from 'next/head'
@@ -26,15 +29,80 @@ import { selectCoinIdsOnExchanges } from '@/modules/exchangeMap'
 import { topCryptos } from '@/modules/topCryptos'
 import { useMediaQuery } from '@/components/hooks/useMediaQuery'
 
-const WINDOWS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
+export const DAILY_WINDOWS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
+export const HOURLY_WINDOWS = [3, 6, 9, 12, 18, 24]
+export const DEFAULT_WINDOW = { daily: 10, hourly: 6 } as const
 
 export type RankingsMode = 'daily' | 'hourly'
+
+/**
+ * Query param carrying the window, per mode. Kept distinct (`d` vs `h`) so a
+ * daily link pasted onto /hourly can't be misread as 30 hours.
+ */
+export const WINDOW_PARAM = { daily: 'd', hourly: 'h' } as const
+
+const SORTABLE = new Set([
+  'rank',
+  'name',
+  'pricePct',
+  'score',
+  'marketCap',
+  'price',
+  'marketCapPct',
+  'rankDelta',
+])
+
+function first(v: string | string[] | undefined): string | undefined {
+  return Array.isArray(v) ? v[0] : v
+}
+
+function parseList(v: string | string[] | undefined, max = 50): string[] {
+  const raw = first(v)
+  if (!raw) return []
+  return raw
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, max)
+}
+
+export function parseWindow(mode: RankingsMode, v: string | string[] | undefined): number {
+  const n = parseInt(first(v) ?? '', 10)
+  const options = mode === 'daily' ? DAILY_WINDOWS : HOURLY_WINDOWS
+  return options.includes(n) ? n : DEFAULT_WINDOW[mode]
+}
+
+function parseSort(v: string | string[] | undefined): SortingState {
+  const raw = first(v)
+  if (!raw) return []
+  const desc = raw.startsWith('-')
+  const id = desc ? raw.slice(1) : raw
+  return SORTABLE.has(id) ? [{ id, desc }] : []
+}
+
+function hiddenStorageKey(mode: RankingsMode) {
+  return `topcryptos:hidden:${mode}`
+}
 
 function startDateFor(mode: RankingsMode, amount: number): Date {
   const date = new Date()
   if (mode === 'daily') date.setDate(date.getDate() - (amount - 1))
   else date.setHours(date.getHours() - (amount - 1))
   return date
+}
+
+/** The sentence a shared link previews with. Built from URL state only, so the server can emit it too. */
+export function shareDescription(
+  mode: RankingsMode,
+  amount: number,
+  highlighted: number,
+  exchanges: number,
+): string {
+  const unit = mode === 'daily' ? 'days' : 'hours'
+  const parts = [`Cryptocurrencies climbing the market-cap ranks fastest over ${amount} ${unit}`]
+  if (exchanges > 0) parts.push(`on ${exchanges} exchange${exchanges === 1 ? '' : 's'}`)
+  if (highlighted > 0) parts.push(`· ${highlighted} coin${highlighted === 1 ? '' : 's'} highlighted`)
+  return parts.join(' ') + '.'
 }
 
 export function RankingsView({ mode }: { mode: RankingsMode }) {
@@ -48,11 +116,85 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
   const [exchangeMap, setExchangeMap] = useState<null | ExchangeMap>(null)
 
   const [activeCryptoId, setActiveCryptoId] = useState<string | null>(null)
-  const [highlightedIds, setHighlightedIds] = useState<Set<string>>(() => new Set())
-  const [hiddenIds, setHiddenIds] = useState<Set<string>>(() => new Set())
 
-  const [amount, setAmount] = useState<number>(mode === 'daily' ? 10 : 4)
-  const [selectedExchanges, setSelectedExchanges] = useState<string[]>([])
+  /*
+   * Shareable state lives in the URL: the window, the exchange filter, the
+   * sort and the highlighted coins are what a pasted link should reproduce.
+   * Hidden coins are a personal preference (nobody shares "without USDT"),
+   * so they persist in localStorage instead and stay out of the link.
+   */
+  const router = useRouter()
+  const windowParam = WINDOW_PARAM[mode]
+  const amount = parseWindow(mode, router.query[windowParam])
+  const selectedExchanges = useMemo(
+    () => parseList(router.query.ex),
+    [router.query.ex],
+  )
+  const highlightedIds = useMemo(
+    () => new Set(parseList(router.query.hl)),
+    [router.query.hl],
+  )
+  const sorting = useMemo(() => parseSort(router.query.sort), [router.query.sort])
+
+  const setQuery = useCallback(
+    (patch: Record<string, string | undefined>, push = false) => {
+      const query: Record<string, string> = {}
+      Object.entries({ ...router.query, ...patch }).forEach(([k, v]) => {
+        const val = first(v)
+        if (val) query[k] = val
+      })
+      const nav = push ? router.push : router.replace
+      // Shallow: nothing here needs a server round-trip, and a star click must
+      // not refetch 90 days of snapshots.
+      nav({ pathname: router.pathname, query }, undefined, { shallow: true, scroll: false })
+    },
+    [router],
+  )
+
+  const setAmount = useCallback(
+    (n: number) =>
+      // A window change is a real "new view", so it earns a history entry;
+      // stars and sorts use replace so Back still leaves the page.
+      setQuery({ [windowParam]: n === DEFAULT_WINDOW[mode] ? undefined : String(n) }, true),
+    [setQuery, windowParam, mode],
+  )
+  const setSelectedExchanges = useCallback(
+    (ids: string[]) => setQuery({ ex: ids.length ? ids.join(',') : undefined }),
+    [setQuery],
+  )
+  const setHighlightedIds = useCallback(
+    (ids: Set<string>) => setQuery({ hl: ids.size ? [...ids].join(',') : undefined }),
+    [setQuery],
+  )
+  const setSorting = useCallback(
+    (next: SortingState | ((prev: SortingState) => SortingState)) => {
+      const resolved = typeof next === 'function' ? next(sorting) : next
+      const s = resolved[0]
+      setQuery({ sort: s ? `${s.desc ? '-' : ''}${s.id}` : undefined })
+    },
+    [setQuery, sorting],
+  )
+
+  const [hiddenIds, setHiddenIds] = useState<Set<string>>(() => new Set())
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(hiddenStorageKey(mode))
+      setHiddenIds(new Set(raw ? (JSON.parse(raw) as string[]) : []))
+    } catch {
+      setHiddenIds(new Set())
+    }
+  }, [mode])
+  const persistHidden = useCallback(
+    (ids: Set<string>) => {
+      setHiddenIds(ids)
+      try {
+        localStorage.setItem(hiddenStorageKey(mode), JSON.stringify([...ids]))
+      } catch {
+        // Private mode / storage disabled: hiding still works for the session.
+      }
+    },
+    [mode],
+  )
 
   // --- data -----------------------------------------------------------------
 
@@ -132,18 +274,23 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
 
   const leader = visibleCryptos[0] ?? null
 
+  /*
+   * Hourly options are trimmed to what the snapshots actually cover: a window
+   * of N hours needs N cron buckets plus the live one, hence the strict `<`.
+   * Until the data arrives the full list stands so the select never flashes
+   * a bogus "1 hours" entry.
+   */
   const windowOptions = useMemo(() => {
-    if (mode === 'daily') return WINDOWS
-    const available = rankings?.length ?? 0
-    const opts = WINDOWS.filter((w) => w < available)
-    return opts.length > 0 ? opts : [Math.max(available, 1)]
+    if (mode === 'daily') return DAILY_WINDOWS
+    if (rankings == null) return HOURLY_WINDOWS
+    const opts = HOURLY_WINDOWS.filter((w) => w < rankings.length)
+    return opts.length > 0 ? opts : HOURLY_WINDOWS.slice(0, 1)
   }, [mode, rankings])
 
   useEffect(() => {
-    if (windowOptions.length > 0 && !windowOptions.includes(amount)) {
-      setAmount(windowOptions[0])
-    }
-  }, [windowOptions, amount])
+    if (!router.isReady || rankings == null) return
+    if (!windowOptions.includes(amount)) setAmount(windowOptions[windowOptions.length - 1])
+  }, [router.isReady, rankings, windowOptions, amount, setAmount])
 
   // --- interactions ---------------------------------------------------------
 
@@ -153,19 +300,22 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     return next
   }
 
-  const toggleHighlight = useCallback((id: string) => {
-    setHighlightedIds((prev) => toggleIn(prev, id))
-  }, [])
+  const toggleHighlight = useCallback(
+    (id: string) => setHighlightedIds(toggleIn(highlightedIds, id)),
+    [highlightedIds, setHighlightedIds],
+  )
 
-  const toggleHidden = useCallback((id: string) => {
-    setHiddenIds((prev) => toggleIn(prev, id))
-    setHighlightedIds((prev) => {
-      if (!prev.has(id)) return prev
-      const next = new Set(prev)
-      next.delete(id)
-      return next
-    })
-  }, [])
+  const toggleHidden = useCallback(
+    (id: string) => {
+      persistHidden(toggleIn(hiddenIds, id))
+      if (highlightedIds.has(id)) {
+        const next = new Set(highlightedIds)
+        next.delete(id)
+        setHighlightedIds(next)
+      }
+    },
+    [hiddenIds, highlightedIds, persistHidden, setHighlightedIds],
+  )
 
   const title = `Top Performing Cryptocurrencies${mode === 'hourly' ? ' (Hourly)' : ''}`
   const filteredOut =
@@ -174,14 +324,17 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
       : 0
   const loading = results == null && error == null
 
+  const description = shareDescription(mode, amount, highlightedIds.size, selectedExchanges.length)
+
   return (
     <div className="min-h-full">
       <Head>
         <title>{`Top Cryptos — ${title}`}</title>
-        <meta
-          name="description"
-          content="Which cryptocurrencies are climbing the market-cap ranks fastest, scored by price and rank momentum."
-        />
+        <meta name="description" content={description} />
+        <meta property="og:title" content={`Top Cryptos — ${title}`} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -322,31 +475,13 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               />
             ) : null}
 
-            {/* On desktop this panel no longer stretches to match the taller
-                table (see items-start above), which freed up real space here
-                — used for the explainer a cold visitor otherwise doesn't get:
-                nothing on the page says what "score" means or what a line's
-                weight encodes. */}
-            <div className="mt-5 border-t border-border/50 pt-4 text-sm text-muted-foreground">
-              <p>
-                <span className="text-foreground font-medium">Score</span> measures how
-                fast a coin's price, market cap, and rank are climbing across the whole
-                window — not just today's move.
-              </p>
-              <ul className="mt-2 space-y-1">
-                <li>Each line is one coin's market-cap rank over time.</li>
-                <li>Thicker, brighter lines score higher.</li>
-                <li>
-                  <span className="text-[color:var(--gain)]">Green</span> = price up over
-                  the window, <span className="text-[color:var(--loss)]">red</span> = down.
-                </li>
-                <li>Click a line or its star to keep a coin highlighted.</li>
-                <li>
-                  <span className="text-foreground">New</span> = too little history to
-                  score fairly, so those coins sit out the ranking.
-                </li>
-              </ul>
-            </div>
+            {/* One line of onboarding stays visible; everything else the old
+                explainer said now lives on the thing it explains — the legend,
+                the Score header tooltip, the New badge, the hover card. */}
+            <p className="mt-4 border-t border-border/50 pt-3 text-xs text-muted-foreground">
+              <span className="text-foreground font-medium">Score</span> = how fast a coin's
+              price, market cap, and rank climbed over the whole window, not just today.
+            </p>
           </section>
 
           <section aria-label="Rankings" className="min-w-0">
@@ -357,14 +492,17 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                   : `${visibleCryptos.length} coin${visibleCryptos.length === 1 ? '' : 's'}`}
                 {filteredOut > 0 && ` · ${filteredOut} filtered out`}
               </span>
-              {highlightedIds.size > 0 && (
-                <button
-                  onClick={() => setHighlightedIds(new Set())}
-                  className="underline underline-offset-4 hover:text-foreground"
-                >
-                  Clear {highlightedIds.size} highlighted
-                </button>
-              )}
+              <span className="flex items-center gap-3">
+                {highlightedIds.size > 0 && (
+                  <button
+                    onClick={() => setHighlightedIds(new Set())}
+                    className="underline underline-offset-4 hover:text-foreground"
+                  >
+                    Clear {highlightedIds.size} highlighted
+                  </button>
+                )}
+                <ShareButton title={`Top Cryptos — ${title}`} text={description} />
+              </span>
             </div>
 
             {loading ? (
@@ -398,6 +536,8 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               // axes need to live on the one div, via containerClassName.
               <RankingsTable
                 data={rows}
+                sorting={sorting}
+                onSortingChange={setSorting}
                 highlightedIds={highlightedIds}
                 hiddenIds={hiddenIds}
                 onToggleHighlight={toggleHighlight}
@@ -429,6 +569,40 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
           </section>
         </div>
       </main>
+
+      {/* House ad. One quiet card, below the fold, for the maker's other project. */}
+      <footer className="mx-auto max-w-[1600px] px-4 pb-10 sm:px-6">
+        <a
+          href="https://meownero.com"
+          target="_blank"
+          rel="noopener"
+          className="group flex items-center gap-4 rounded-xl border border-border/50 bg-card/40 px-4 py-3 transition-colors hover:border-[#e0b64a]/50 hover:bg-card/70"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/meownero.png"
+            alt=""
+            width={44}
+            height={44}
+            className="size-11 shrink-0 rounded-full transition-transform group-hover:rotate-[12deg]"
+          />
+          <span className="min-w-0 flex-1">
+            <span className="block text-[10px] tracking-wide text-muted-foreground uppercase">
+              From the maker of Top Cryptos
+            </span>
+            <span className="block truncate">
+              <span className="font-display text-lg leading-tight">Meownero</span>
+              <span className="text-sm text-muted-foreground">
+                {' '}
+                — a fair-launch privacy coin. Private by rule, proof of work, no premine.
+              </span>
+            </span>
+          </span>
+          <span className="hidden shrink-0 text-sm text-muted-foreground group-hover:text-foreground sm:inline">
+            meownero.com ↗
+          </span>
+        </a>
+      </footer>
     </div>
   )
 }

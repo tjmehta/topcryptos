@@ -64,6 +64,9 @@
   /* The spotlight for a highlighted series — a third hue, used on one coin at
    * a time, so it cannot be confused with either pole. */
   --spotlight: #ffd166;
+  /* Hover/active on a series. Distinct from the spotlight so a tap that only
+   * hovers reads differently from one that actually pinned the coin. */
+  --active: #c4b5fd;
 
   --chart-1: var(--gain);
   --chart-2: var(--loss);
@@ -190,12 +193,13 @@
     stroke-width 140ms ease-out;
 }
 
-/* Hover and keyboard focus both spotlight a series. */
+/* Hover and keyboard focus both light a series, in the active hue rather than
+ * the highlight yellow so "hovered" and "pinned" are never confused. */
 .rank-line:hover,
 .rank-line.is-active {
-  stroke: var(--spotlight) !important;
+  stroke: var(--active) !important;
   opacity: 1 !important;
-  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--spotlight) 55%, transparent));
+  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--active) 55%, transparent));
 }
 
 /* A wide invisible companion path: 2px lines are far too thin to hit on a
@@ -203,11 +207,34 @@
  * Alpha is 0.01, not 0 — Safari doesn't hit-test a fully transparent stroke
  * (unlike Chromium, which follows spec and hit-tests it regardless of alpha),
  * so `transparent` silently drops all hover/click on WebKit. */
+/* Rank rails (RankingsChart): the gutters either side of the plot. */
+.rank-rail-tick {
+  stroke-width: 1;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.rank-rail-label {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  fill: var(--foreground);
+  pointer-events: none;
+  user-select: none;
+}
+.rank-rail-hit {
+  fill: rgba(0, 0, 0, 0.01);
+  cursor: ns-resize;
+  /* Dragging along the rail scrubs coins; the page must not scroll instead. */
+  touch-action: none;
+}
+
 .rank-hit {
   fill: none;
   stroke: rgba(0, 0, 0, 0.01);
   stroke-width: 16;
   cursor: pointer;
+  /* A tap focuses the path and drew a bounding-box outline across the whole
+   * chart; the series itself lights up on focus, which is the real indicator. */
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

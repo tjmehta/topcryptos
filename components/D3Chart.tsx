@@ -9,7 +9,9 @@ export type D3ChartRenderer = (
   width: number,
 ) => unknown
 
-const MARGIN = { top: 10, right: 12, bottom: 44, left: 44 }
+// Left and right gutters are equal on purpose: both carry a rank rail (see
+// RankingsChart), and "500" needs ~40px at 11px mono.
+const MARGIN = { top: 10, right: 44, bottom: 44, left: 44 }
 
 /**
  * Responsive SVG host for imperative d3 rendering.

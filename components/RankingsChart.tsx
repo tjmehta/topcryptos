@@ -4,9 +4,9 @@ import {
   NAN_SCORE,
   Quote,
 } from '@/modules/processRankings'
-import { axisBottom, axisLeft, line, scaleLinear, scaleTime, timeFormat } from 'd3'
+import { axisBottom, axisLeft, line, pointer, scaleLinear, scaleTime, select, timeFormat } from 'd3'
 import { percent, trend } from '@/modules/format'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { D3Chart } from '@/components/D3Chart'
 import { cn } from '@/lib/utils'
@@ -50,6 +50,7 @@ export function RankingsChart({
   onHover: (id: string | null) => void
 }) {
   const [hover, setHover] = useState<Hover>(null)
+  const figureRef = useRef<HTMLElement | null>(null)
 
   /**
    * Drawing 500 hairlines into 390px of phone is noise, not information. The
@@ -76,16 +77,32 @@ export function RankingsChart({
     [onHover],
   )
 
+  /*
+   * The active (hovered) series is NOT part of the redraw key. It used to be,
+   * and that broke tapping on touch screens: a tap fires pointerenter first,
+   * which set activeCryptoId, which re-keyed the chart, which wiped and
+   * rebuilt every path *under the finger* before the click could dispatch —
+   * the tap lit the line yellow but never toggled the highlight. A mouse
+   * hovers long before it clicks, so desktop never saw it. Toggling a class
+   * on the existing paths is also far cheaper than redrawing 500 of them on
+   * every table-row hover.
+   */
   const renderKey = [
     points,
     drawn.length,
-    activeCryptoId,
     [...highlightedIds].join(','),
     [...hiddenIds].join(','),
   ].join(':')
 
+  useEffect(() => {
+    if (figureRef.current == null) return
+    select(figureRef.current)
+      .selectAll<SVGPathElement, Crypto>('path.rank-line')
+      .classed('is-active', (c) => c.id === activeCryptoId)
+  }, [activeCryptoId, renderKey])
+
   return (
-    <figure className="relative m-0">
+    <figure ref={figureRef} className="relative m-0">
       <D3Chart renderKey={renderKey} aspect={0.78} minHeight={280}>
         {(svg, height, width) => {
           /*
@@ -108,6 +125,10 @@ export function RankingsChart({
 
           // Tick counts scale with available room; a phone gets 3, not 8.
           const xTicks = Math.max(2, Math.min(6, Math.floor(width / 90)))
+          // Hourly windows span a day or two: label hours, not the same date six times.
+          const spanMs =
+            minMaxes.dateMinMax.max.getTime() - minMaxes.dateMinMax.min.getTime()
+          const xFormat = timeFormat(spanMs <= 2 * 24 * 3600 * 1000 ? '%-H:%M' : '%b %-d')
           const yTicks = Math.max(3, Math.min(8, Math.floor(height / 60)))
 
           svg
@@ -135,7 +156,7 @@ export function RankingsChart({
             .call(
               axisBottom(xScale)
                 .ticks(xTicks)
-                .tickFormat((d) => timeFormat('%b %-d')(d as Date))
+                .tickFormat((d) => xFormat(d as Date))
                 .tickSize(0)
                 .tickPadding(10),
             )
@@ -198,17 +219,20 @@ export function RankingsChart({
            */
           const path = (c: Crypto) => drawLine(c.quotes) ?? ''
 
-          // Visible marks, weakest first so the strong movers land on top.
-          const ordered = drawn.slice().sort((a, b) => a.score - b.score)
+          // Visible marks, weakest first so the strong movers land on top —
+          // and pinned coins last of all, so a highlight is never buried.
+          const ordered = drawn.slice().sort((a, b) => {
+            const ah = highlightedIds.has(a.id) ? 1 : 0
+            const bh = highlightedIds.has(b.id) ? 1 : 0
+            return ah - bh || a.score - b.score
+          })
 
           svg
             .append('g')
             .selectAll('path.rank-line')
             .data(ordered, (c: any) => c.id)
             .join('path')
-            .attr('class', (c) =>
-              cn('rank-line', c.id === activeCryptoId && 'is-active'),
-            )
+            .attr('class', 'rank-line')
             .attr('d', path)
             .style('stroke', strokeFor)
             .style('stroke-width', widthFor)
@@ -249,6 +273,162 @@ export function RankingsChart({
                 onToggleHighlight(c.id)
               }
             })
+
+          /*
+           * Rank rails. Every drawn coin gets a label in each gutter — its rank
+           * at the start of the window on the left, at the end on the right —
+           * so the edges of the chart read 1…500 and every series can be found
+           * without aiming at a hairline. 500 labels in 300px are illegible,
+           * so at rest they collapse to a faint tick strip and a fisheye lens
+           * follows the pointer: labels near it spread apart and grow, the rest
+           * squeeze away (the macOS dock / d3-fisheye distortion). Dragging a
+           * finger along the rail does the same, so touch gets it too.
+           */
+          const RAIL_W = 40
+          const DISTORTION = 5
+          const LENS = 120 // px radius of the lens
+
+          type RailItem = { crypto: Crypto; rank: number; y: number }
+          const railItems = (side: 'start' | 'end'): RailItem[] =>
+            drawn
+              .map((c) => {
+                const q = side === 'start' ? c.quotes[0] : c.quotes[c.quotes.length - 1]
+                const rank = q?.rankByMarketCap
+                return rank == null ? null : { crypto: c, rank, y: yScale(rank) }
+              })
+              .filter((v): v is RailItem => v != null)
+              .sort((a, b) => a.y - b.y)
+
+          const fisheye = (y: number, focus: number) => {
+            const dy = y - focus
+            if (dy === 0) return { y, k: 1 }
+            const ad = Math.abs(dy)
+            if (ad >= LENS) return { y, k: 0 }
+            // d3-fisheye: distance is remapped by (d+1)/(d + LENS/|dy|)
+            const f = (DISTORTION + 1) / (DISTORTION + LENS / ad)
+            const yy = focus + Math.sign(dy) * f * LENS
+            // magnification is the derivative — used for font size.
+            const k = ((DISTORTION + 1) * DISTORTION * LENS) / Math.pow(DISTORTION * ad + LENS, 2)
+            return { y: yy, k: Math.min(1, k) }
+          }
+
+          const drawRail = (side: 'start' | 'end') => {
+            const items = railItems(side)
+            const x = side === 'start' ? -6 : width + 6
+            const g = svg
+              .append('g')
+              .attr('class', `rank-rail rank-rail-${side}`)
+              .attr('transform', `translate(${x}, 0)`)
+
+            const ticks = g
+              .selectAll('line')
+              .data(items)
+              .join('line')
+              .attr('class', 'rank-rail-tick')
+              .attr('x1', side === 'start' ? -4 : 0)
+              .attr('x2', side === 'start' ? 0 : 4)
+              .attr('y1', (d) => d.y)
+              .attr('y2', (d) => d.y)
+              .style('stroke', (d) => strokeFor(d.crypto))
+
+            const labels = g
+              .selectAll('text')
+              .data(items)
+              .join('text')
+              .attr('class', 'rank-rail-label')
+              .attr('text-anchor', side === 'start' ? 'end' : 'start')
+              .attr('dominant-baseline', 'middle')
+              .attr('x', 0)
+              .attr('y', (d) => d.y)
+              .style('display', 'none')
+              .text((d) => d.rank)
+
+            const layout = (focus: number | null) => {
+              if (focus == null) {
+                labels.style('display', 'none')
+                ticks.attr('y1', (d) => d.y).attr('y2', (d) => d.y).style('opacity', null)
+                svg.selectAll('.axis text').style('opacity', null)
+                return
+              }
+              // Hide the y-axis numbers while the lens is open — they and the
+              // rail labels would otherwise fight for the same 40px.
+              svg.selectAll('.axis text').style('opacity', 0.15)
+              const pos = items.map((d) => fisheye(d.y, focus))
+              // Labels must not overlap: walk outward from the focus and only
+              // keep a label if it clears the previous kept one by ~its height.
+              const keep = new Set<number>()
+              const order = items
+                .map((_, i) => i)
+                .sort((a, b) => Math.abs(pos[a].y - focus) - Math.abs(pos[b].y - focus))
+              const placed: number[] = []
+              order.forEach((i) => {
+                const size = 7 + 7 * pos[i].k
+                if (pos[i].k < 0.12) return
+                if (placed.every((j) => Math.abs(pos[j].y - pos[i].y) >= size * 0.95)) {
+                  keep.add(i)
+                  placed.push(i)
+                }
+              })
+              labels
+                .style('display', (_, i) => (keep.has(i) ? null : 'none'))
+                .attr('y', (_, i) => pos[i].y)
+                .style('font-size', (_, i) => `${7 + 7 * pos[i].k}px`)
+                .style('font-weight', (_, i) => (pos[i].k > 0.85 ? 600 : 400))
+                .style('opacity', (_, i) => 0.35 + 0.65 * pos[i].k)
+              ticks
+                .attr('y1', (_, i) => pos[i].y)
+                .attr('y2', (_, i) => pos[i].y)
+                .style('opacity', (_, i) => (pos[i].k === 0 ? 0.35 : 0.5 + 0.5 * pos[i].k))
+            }
+
+            const nearest = (y: number) => {
+              let best: RailItem | null = null
+              let bestD = Infinity
+              items.forEach((d) => {
+                const dd = Math.abs(d.y - y)
+                if (dd < bestD) {
+                  bestD = dd
+                  best = d
+                }
+              })
+              return best as RailItem | null
+            }
+
+            // The whole gutter is the hit area, not just the labels.
+            g.append('rect')
+              .attr('class', 'rank-rail-hit')
+              .attr('x', side === 'start' ? -RAIL_W + 6 : -6)
+              .attr('y', -8)
+              .attr('width', RAIL_W)
+              .attr('height', height + 16)
+              .on('pointerenter pointermove', function (evt: any) {
+                const [, my] = pointer(evt, svg.node())
+                layout(my)
+                const hit = nearest(my)
+                if (hit) {
+                  // Park the card just inside the plot, clear of the rail so
+                  // the magnified numbers stay readable under it.
+                  handleHover({
+                    crypto: hit.crypto,
+                    // hover.x is in <svg> space, i.e. includes the 44px gutter.
+                    x: side === 'start' ? 44 + 12 : width + 44 - 250,
+                    y: Math.min(height - 10, Math.max(80, hit.y)),
+                  })
+                }
+              })
+              .on('pointerleave', () => {
+                layout(null)
+                handleHover(null)
+              })
+              .on('click', function (evt: any) {
+                const [, my] = pointer(evt, svg.node())
+                const hit = nearest(my)
+                if (hit) onToggleHighlight(hit.crypto.id)
+              })
+          }
+
+          drawRail('start')
+          drawRail('end')
         }}
       </D3Chart>
 
@@ -288,6 +468,11 @@ export function RankingsChart({
               {percent(hover.crypto.total?.pricePct)}
             </dd>
           </dl>
+          <p className="mt-1.5 text-[0.9em] text-muted-foreground/80">
+            {highlightedIds.has(hover.crypto.id)
+              ? 'Highlighted · click to release'
+              : 'Click to highlight'}
+          </p>
         </div>
       )}
 

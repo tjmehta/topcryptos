@@ -4,11 +4,13 @@ import {
   ChevronsUpDown,
   Eye,
   EyeOff,
+  Info,
   SquareArrowOutUpRight,
   Star,
 } from 'lucide-react'
 import {
   ColumnDef,
+  OnChangeFn,
   SortingState,
   flexRender,
   getCoreRowModel,
@@ -25,7 +27,7 @@ import {
 } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cmcUrl, marketCap, percent, price, score, toneClass, trend } from '@/modules/format'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -48,6 +50,8 @@ type Meta = { align?: 'right'; priority?: '2xl' | '3xl' | '4xl'; flex?: boolean 
  */
 export function RankingsTable({
   data,
+  sorting,
+  onSortingChange,
   highlightedIds,
   hiddenIds,
   onToggleHighlight,
@@ -56,6 +60,8 @@ export function RankingsTable({
   containerClassName,
 }: {
   data: Crypto[]
+  sorting: SortingState
+  onSortingChange: OnChangeFn<SortingState>
   highlightedIds: Set<string>
   hiddenIds: Set<string>
   onToggleHighlight: (id: string) => void
@@ -63,8 +69,6 @@ export function RankingsTable({
   onHover: (id: string | null) => void
   containerClassName?: string
 }) {
-  const [sorting, setSorting] = useState<SortingState>([])
-
   const columns = useMemo<ColumnDef<Crypto>[]>(
     () => [
       {
@@ -151,16 +155,41 @@ export function RankingsTable({
       },
       {
         accessorKey: 'score',
-        header: 'Score',
+        header: () => (
+          <span className="inline-flex items-center gap-1">
+            Score
+            <Tooltip>
+              <TooltipTrigger asChild>
+                {/* Its own trigger, and a click on it must not resort the column. */}
+                <button
+                  type="button"
+                  aria-label="What is score?"
+                  onClick={(e) => e.stopPropagation()}
+                  className="rounded-sm text-muted-foreground/60 hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
+                >
+                  <Info className="size-3" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-[16rem] text-left">
+                How fast a coin's price, market cap, and rank climbed across the whole
+                window, as a percentile against every other coin. Not just today's move.
+              </TooltipContent>
+            </Tooltip>
+          </span>
+        ),
         cell: ({ row }) =>
           row.original.insufficientHistory ? (
-            <Badge
-              variant="outline"
-              className="text-muted-foreground"
-              title="Too new to score — not enough history in this window"
-            >
-              New
-            </Badge>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Badge variant="outline" className="cursor-default text-muted-foreground">
+                  New
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-[16rem] text-left">
+                Too little history in this window to score fairly, so it sits out the
+                ranking.
+              </TooltipContent>
+            </Tooltip>
           ) : (
             <span className="figure text-muted-foreground">
               {row.original.score === NAN_SCORE ? '—' : score(row.original.score)}
@@ -253,7 +282,7 @@ export function RankingsTable({
     data,
     columns,
     state: { sorting },
-    onSortingChange: setSorting,
+    onSortingChange,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getRowId: (row) => row.id,

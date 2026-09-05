@@ -56,12 +56,18 @@ class TopCryptosApiClient {
     return mergedResponses
   }
   async getHourlyRankings(opts: HourlyRankingsOpts): Promise<RankingsResponse> {
-    const responses = await Promise.all<RankingsResponse>([
-      getJson<RankingsResponse>('api/rankings/hourly', {
-        hoursSkip: '0',
-        hoursLimit: '4',
-      }),
-    ])
+    // 25 hours: a 24-hour window needs 24 cron buckets plus the live one.
+    // Chunked for the same reason daily is — one 25×500-coin response would
+    // trip the 1MB cap — and reversed so the oldest chunk merges first.
+    const limit = 5
+    const responses = await Promise.all<RankingsResponse>(
+      times(25 / limit, (i) =>
+        getJson<RankingsResponse>('api/rankings/hourly', {
+          hoursSkip: `${i * limit}`,
+          hoursLimit: `${limit}`,
+        }),
+      ).reverse(),
+    )
 
     const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
     const seen = new Set<string>()
