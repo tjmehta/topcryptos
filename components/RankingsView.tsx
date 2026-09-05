@@ -594,7 +594,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               <span className="font-display text-lg leading-tight">Meownero</span>
               <span className="text-sm text-muted-foreground">
                 {' '}
-                — a fair-launch privacy coin. Private by rule, proof of work, no premine.
+                — a privacy coin.
               </span>
             </span>
           </span>
