@@ -279,14 +279,25 @@ export function RankingsChart({
            * at the start of the window on the left, at the end on the right —
            * so the edges of the chart read 1…500 and every series can be found
            * without aiming at a hairline. 500 labels in 300px are illegible,
-           * so at rest they collapse to a faint tick strip and a fisheye lens
-           * follows the pointer: labels near it spread apart and grow, the rest
-           * squeeze away (the macOS dock / d3-fisheye distortion). Dragging a
+           * so at rest they collapse to a faint tick strip and a lens follows
+           * the pointer: the coin under it gets the big label, its neighbours
+           * step down in tiers (the macOS dock / iOS index bar). Dragging a
            * finger along the rail does the same, so touch gets it too.
            */
           const RAIL_W = 40
-          const DISTORTION = 5
-          const LENS = 120 // px radius of the lens
+          /*
+           * The lens is the macOS-dock / iOS-index-bar layout, not a pixel
+           * distortion: pick the coin under the pointer, then stack its
+           * neighbours outward with sizes stepping down on a cosine curve.
+           * The focus label is always the largest and sits exactly under the
+           * pointer; the stack is built from cumulative sizes so labels can
+           * never overlap, and each one bulges out from the axis in
+           * proportion to its size, which is what gives the warp its curve.
+           */
+          const REACH = 9 // labels per side
+          const FONT_MIN = 7
+          const FONT_MAX = 19
+          const BULGE = 30 // px the focus label swings in over the plot
 
           type RailItem = { crypto: Crypto; rank: number; y: number }
           const railItems = (side: 'start' | 'end'): RailItem[] =>
@@ -297,24 +308,17 @@ export function RankingsChart({
                 return rank == null ? null : { crypto: c, rank, y: yScale(rank) }
               })
               .filter((v): v is RailItem => v != null)
-              .sort((a, b) => a.y - b.y)
+              .sort((a, b) => a.y - b.y || a.rank - b.rank)
 
-          const fisheye = (y: number, focus: number) => {
-            const dy = y - focus
-            if (dy === 0) return { y, k: 1 }
-            const ad = Math.abs(dy)
-            if (ad >= LENS) return { y, k: 0 }
-            // d3-fisheye: distance is remapped by (d+1)/(d + LENS/|dy|)
-            const f = (DISTORTION + 1) / (DISTORTION + LENS / ad)
-            const yy = focus + Math.sign(dy) * f * LENS
-            // magnification is the derivative — used for font size.
-            const k = ((DISTORTION + 1) * DISTORTION * LENS) / Math.pow(DISTORTION * ad + LENS, 2)
-            return { y: yy, k: Math.min(1, k) }
-          }
+          const tier = (i: number) =>
+            i > REACH ? 0 : Math.pow(Math.cos((Math.PI / 2) * (i / (REACH + 1))), 2)
 
           const drawRail = (side: 'start' | 'end') => {
             const items = railItems(side)
             const x = side === 'start' ? -6 : width + 6
+            // Labels bulge *into* the plot, like the iOS index bubble: the
+            // gutter is only 40px and a 19px "500" pushed outward clips.
+            const dir = side === 'start' ? 1 : -1
             const g = svg
               .append('g')
               .attr('class', `rank-rail rank-rail-${side}`)
@@ -343,56 +347,72 @@ export function RankingsChart({
               .style('display', 'none')
               .text((d) => d.rank)
 
-            const layout = (focus: number | null) => {
-              if (focus == null) {
+            const nearestIndex = (y: number) => {
+              let best = -1
+              let bestD = Infinity
+              items.forEach((d, i) => {
+                const dd = Math.abs(d.y - y)
+                if (dd < bestD) {
+                  bestD = dd
+                  best = i
+                }
+              })
+              return best
+            }
+
+            const layout = (focusY: number | null) => {
+              if (focusY == null) {
                 labels.style('display', 'none')
                 ticks.attr('y1', (d) => d.y).attr('y2', (d) => d.y).style('opacity', null)
                 svg.selectAll('.axis text').style('opacity', null)
                 return
               }
-              // Hide the y-axis numbers while the lens is open — they and the
-              // rail labels would otherwise fight for the same 40px.
-              svg.selectAll('.axis text').style('opacity', 0.15)
-              const pos = items.map((d) => fisheye(d.y, focus))
-              // Labels must not overlap: walk outward from the focus and only
-              // keep a label if it clears the previous kept one by ~its height.
-              const keep = new Set<number>()
-              const order = items
-                .map((_, i) => i)
-                .sort((a, b) => Math.abs(pos[a].y - focus) - Math.abs(pos[b].y - focus))
-              const placed: number[] = []
-              order.forEach((i) => {
-                const size = 7 + 7 * pos[i].k
-                if (pos[i].k < 0.12) return
-                if (placed.every((j) => Math.abs(pos[j].y - pos[i].y) >= size * 0.95)) {
-                  keep.add(i)
-                  placed.push(i)
-                }
-              })
+              // The y-axis numbers share this gutter; dim them while the lens is open.
+              svg.selectAll('.axis text').style('opacity', 0.12)
+
+              const f = nearestIndex(focusY)
+              const size = new Map<number, number>()
+              const pos = new Map<number, number>()
+              const dx = new Map<number, number>()
+              const place = (i: number, y: number) => {
+                const k = tier(Math.abs(i - f))
+                size.set(i, FONT_MIN + (FONT_MAX - FONT_MIN) * k)
+                pos.set(i, y)
+                dx.set(i, dir * BULGE * k)
+              }
+              place(f, focusY)
+              // Stack outward: each label sits half its height past the previous one.
+              let up = focusY
+              for (let i = f - 1; i >= Math.max(0, f - REACH); i--) {
+                const h = FONT_MIN + (FONT_MAX - FONT_MIN) * tier(f - i)
+                up -= (size.get(i + 1)! + h) / 2
+                place(i, up)
+              }
+              let down = focusY
+              for (let i = f + 1; i <= Math.min(items.length - 1, f + REACH); i++) {
+                const h = FONT_MIN + (FONT_MAX - FONT_MIN) * tier(i - f)
+                down += (size.get(i - 1)! + h) / 2
+                place(i, down)
+              }
+
               labels
-                .style('display', (_, i) => (keep.has(i) ? null : 'none'))
-                .attr('y', (_, i) => pos[i].y)
-                .style('font-size', (_, i) => `${7 + 7 * pos[i].k}px`)
-                .style('font-weight', (_, i) => (pos[i].k > 0.85 ? 600 : 400))
-                .style('opacity', (_, i) => 0.35 + 0.65 * pos[i].k)
+                .style('display', (_, i) => (size.has(i) ? null : 'none'))
+                .attr('y', (_, i) => pos.get(i) ?? 0)
+                .attr('x', (_, i) => dx.get(i) ?? 0)
+                .style('font-size', (_, i) => `${size.get(i) ?? FONT_MIN}px`)
+                .style('font-weight', (_, i) => (i === f ? 700 : 400))
+                .style('fill', (_, i) => (i === f ? 'var(--active)' : null))
+                .style('opacity', (_, i) => {
+                  const k = tier(Math.abs(i - f))
+                  return 0.3 + 0.7 * k
+                })
               ticks
-                .attr('y1', (_, i) => pos[i].y)
-                .attr('y2', (_, i) => pos[i].y)
-                .style('opacity', (_, i) => (pos[i].k === 0 ? 0.35 : 0.5 + 0.5 * pos[i].k))
+                .attr('y1', (_, i) => pos.get(i) ?? items[i].y)
+                .attr('y2', (_, i) => pos.get(i) ?? items[i].y)
+                .style('opacity', (_, i) => (size.has(i) ? 0.9 : 0.25))
             }
 
-            const nearest = (y: number) => {
-              let best: RailItem | null = null
-              let bestD = Infinity
-              items.forEach((d) => {
-                const dd = Math.abs(d.y - y)
-                if (dd < bestD) {
-                  bestD = dd
-                  best = d
-                }
-              })
-              return best as RailItem | null
-            }
+            const nearest = (y: number): RailItem | null => items[nearestIndex(y)] ?? null
 
             // The whole gutter is the hit area, not just the labels.
             g.append('rect')
@@ -411,7 +431,7 @@ export function RankingsChart({
                   handleHover({
                     crypto: hit.crypto,
                     // hover.x is in <svg> space, i.e. includes the 44px gutter.
-                    x: side === 'start' ? 44 + 12 : width + 44 - 250,
+                    x: side === 'start' ? 44 + 80 : width + 44 - 320,
                     y: Math.min(height - 10, Math.max(80, hit.y)),
                   })
                 }
