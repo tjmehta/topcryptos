@@ -225,12 +225,6 @@
   fill: var(--foreground);
   pointer-events: none;
   user-select: none;
-  paint-order: stroke;
-  /* A hairline halo in the panel colour keeps a magnified label legible where
-   * it crosses a leader or an axis number. */
-  stroke: var(--panel-to);
-  stroke-width: 3px;
-  stroke-linejoin: round;
 }
 
 /* The hover card: fades and settles in on mount, no exit (it is unmounted). */
@@ -248,6 +242,24 @@
   cursor: ns-resize;
   /* Dragging along the rail scrubs coins; the page must not scroll instead. */
   touch-action: none;
+  /* The lens itself is the focus indicator: it opens on keyboard focus. */
+  outline: none;
+}
+/* The focused rank: a filled pill in the active hue, the same one the far
+ * rail uses to call the coin out, so "this coin, this rank" reads the same
+ * everywhere. */
+.rank-rail-pill {
+  pointer-events: none;
+}
+.rank-rail-pill rect {
+  fill: var(--active);
+}
+.rank-rail-pill text {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  fill: oklch(0.18 0.02 290);
+  user-select: none;
 }
 
 .rank-hit {

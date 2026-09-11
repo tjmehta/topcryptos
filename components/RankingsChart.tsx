@@ -321,22 +321,37 @@ export function RankingsChart({
            */
           const RAIL_INSET = 6 // gap between the plot edge and the rail
           const TICK_LEN = 4
-          const REACH = 9 // labels per side of the focus
-          const FONT_MIN = 7
-          const FONT_MAX = 17
+          /*
+           * The lens is deliberately small. An iOS index bar magnifies the
+           * one letter under your finger; a chart crosshair shows one axis
+           * value. Nineteen stacked numbers read as a wall — and since ranks
+           * are consecutive, "173 is next to 172" tells nobody anything. So:
+           * the focused rank sits in a pill (the same pill the far rail uses
+           * to call the coin out), flanked by two faint neighbours a side that
+           * give the scrub its dock feel without competing with the pill.
+           */
+          const PILL_FONT = 13
+          const PILL_H = 20
+          const PILL_PAD = 6
+          const GAP = 2 // between stacked labels
+          const NEIGHBOURS = [
+            { size: 10.5, k: 0.55, alpha: 0.7 },
+            { size: 9, k: 0.2, alpha: 0.4 },
+          ]
+          const REACH = NEIGHBOURS.length
           /*
            * Labels bend *outward*, away from the plot, so the lens never sits
            * on top of the lines it is indexing. Each label swings out in
-           * proportion to its size and a leader runs from its true position on
-           * the axis to where it now sits, which is what draws the curve. The
-           * swing is whatever the gutter has left after the widest label at
-           * full size — ~20px on desktop, nothing on a phone, where the tiers
-           * still fan in size and the leaders run straight.
+           * proportion to its tier and a leader runs from its true position on
+           * the axis to where it now sits. The swing is whatever the gutter has
+           * left after the pill — ~12px on desktop, nothing on a phone, where
+           * the leaders simply run straight.
            */
-          const focusWidth = String(axisMax).length * FONT_MAX * 0.62
+          const pillWidth = (text: string) => text.length * PILL_FONT * 0.62 + PILL_PAD * 2
+          const restX = TICK_LEN + 2
           const BULGE = Math.max(
             0,
-            Math.min(24, margin.left - RAIL_INSET - TICK_LEN - 2 - focusWidth),
+            Math.min(12, margin.left - RAIL_INSET - restX - pillWidth(String(axisMax))),
           )
           const reduceMotion =
             typeof window !== 'undefined' &&
@@ -354,15 +369,12 @@ export function RankingsChart({
               .sort((a, b) => a.y - b.y || a.rank - b.rank)
               .map((d, i) => ({ ...d, i }))
 
-          const tier = (i: number) =>
-            i > REACH ? 0 : Math.pow(Math.cos((Math.PI / 2) * (i / (REACH + 1))), 2)
-
           // The y-axis numbers share the left gutter; fade them while it is in use.
           const dimAxis = (on: boolean) =>
             svg.selectAll('.axis-y text').style('opacity', () => (on ? 0.12 : null))
 
-          type Slot = { y: number; k: number; focus: boolean }
-          const sizeOf = (k: number) => FONT_MIN + (FONT_MAX - FONT_MIN) * k
+          type Slot = { y: number; k: number; size: number; alpha: number }
+          type Focus = { item: RailItem; y: number }
 
           const drawRail = (side: RailSide): RailApi => {
             const items = railItems(side)
@@ -372,7 +384,6 @@ export function RankingsChart({
               .attr('class', `rank-rail rank-rail-${side}`)
               .attr('transform', `translate(${side === 'start' ? -RAIL_INSET : width + RAIL_INSET}, 0)`)
 
-            const restX = out * (TICK_LEN + 2)
             const leaders = g
               .selectAll('line')
               .data(items)
@@ -391,59 +402,103 @@ export function RankingsChart({
               .attr('class', 'rank-rail-label')
               .attr('text-anchor', side === 'start' ? 'end' : 'start')
               .attr('dominant-baseline', 'middle')
-              .attr('transform', (d) => `translate(${restX}, ${d.y})`)
-              .style('font-size', `${FONT_MIN}px`)
+              .attr('transform', (d) => `translate(${out * restX}, ${d.y})`)
+              .style('font-size', `${NEIGHBOURS[REACH - 1].size}px`)
               .style('opacity', 0)
               .text((d) => d.rank)
+
+            // One pill per rail; it moves to whichever rank is focused.
+            const pill = g.append('g').attr('class', 'rank-rail-pill').style('opacity', 0)
+            const pillRect = pill
+              .append('rect')
+              .attr('rx', PILL_H / 2)
+              .attr('height', PILL_H)
+              .attr('y', -PILL_H / 2)
+            const pillText = pill
+              .append('text')
+              .attr('dominant-baseline', 'central')
+              .attr('text-anchor', 'middle')
+              .style('font-size', `${PILL_FONT}px`)
+            let pillShown = false
 
             /*
              * Only the labels entering or leaving the lens are touched on each
              * move — restyling all 500 per pointer event is what makes rails
-             * like this stutter. Short d3 transitions (interruptible, so a fast
-             * scrub just retargets) make the stack glide rather than snap;
-             * closing is quicker than opening, as a release should be.
+             * like this stutter. Short d3 transitions (interruptible, and they
+             * start from the on-screen value, so a fast scrub just retargets)
+             * make the stack glide rather than snap; closing is quicker than
+             * opening, as a release should be.
              */
             let lit = new Set<number>()
-            const render = (slots: Map<number, Slot>, ms: number) => {
+            let prevFocus = -1
+            const render = (focus: Focus | null, slots: Map<number, Slot>, ms: number) => {
+              // The focused item's own label goes to rest under the pill; its
+              // leader is the one thing the pill leaves behind, so the last
+              // focus is always revisited to retract it.
               const touched = new Set([...lit, ...slots.keys()])
+              if (prevFocus >= 0) touched.add(prevFocus)
+              prevFocus = focus?.item.i ?? -1
               lit = new Set(slots.keys())
               const dur = reduceMotion ? 0 : ms
               const slot = (d: RailItem) => slots.get(d.i)
 
-              const hitLabels = labels.filter((d) => touched.has(d.i))
-              hitLabels
-                .style('font-weight', (d) => (slot(d)?.focus ? 700 : 400))
-                .style('fill', (d) => (slot(d)?.focus ? 'var(--active)' : null))
-              hitLabels
+              labels
+                .filter((d) => touched.has(d.i))
                 .transition('lens')
                 .duration(dur)
                 .ease(easeCubicOut)
                 .attr('transform', (d) => {
                   const s = slot(d)
                   return s
-                    ? `translate(${restX + out * BULGE * s.k}, ${s.y})`
-                    : `translate(${restX}, ${d.y})`
+                    ? `translate(${out * (restX + BULGE * s.k)}, ${s.y})`
+                    : `translate(${out * restX}, ${d.y})`
                 })
-                .style('font-size', (d) => `${sizeOf(slot(d)?.k ?? 0)}px`)
-                .style('opacity', (d) => {
-                  const s = slot(d)
-                  return s ? 0.35 + 0.65 * s.k : 0
-                })
+                .style('font-size', (d) => `${slot(d)?.size ?? NEIGHBOURS[REACH - 1].size}px`)
+                .style('opacity', (d) => slot(d)?.alpha ?? 0)
 
-              const hitLeaders = leaders.filter((d) => touched.has(d.i))
+              const hitLeaders = leaders.filter(
+                (d) => touched.has(d.i) || d.i === focus?.item.i,
+              )
               hitLeaders.style('stroke', (d) =>
-                slot(d)?.focus ? 'var(--active)' : strokeFor(d.crypto),
+                focus?.item.i === d.i ? 'var(--active)' : strokeFor(d.crypto),
               )
               hitLeaders
                 .transition('lens')
                 .duration(dur)
                 .ease(easeCubicOut)
-                .attr('x2', (d) => out * (TICK_LEN + BULGE * (slot(d)?.k ?? 0)))
-                .attr('y2', (d) => slot(d)?.y ?? d.y)
+                .attr('x2', (d) =>
+                  focus?.item.i === d.i
+                    ? out * (restX + BULGE - 1)
+                    : out * (TICK_LEN + BULGE * (slot(d)?.k ?? 0)),
+                )
+                .attr('y2', (d) => (focus?.item.i === d.i ? focus.y : (slot(d)?.y ?? d.y)))
                 .style('opacity', (d) => {
+                  if (focus?.item.i === d.i) return 1
                   const s = slot(d)
                   return s ? 0.45 + 0.55 * s.k : 0.35
                 })
+
+              if (focus) {
+                const text = String(focus.item.rank)
+                const w = pillWidth(text)
+                pillText.text(text)
+                pillRect.attr('width', w).attr('x', side === 'start' ? -w : 0)
+                pillText.attr('x', side === 'start' ? -w / 2 : w / 2)
+                const target = `translate(${out * (restX + BULGE)}, ${focus.y})`
+                // A pill arriving from nowhere snaps into place; one that is
+                // already open glides to the next rank.
+                if (!pillShown) pill.attr('transform', target)
+                pillShown = true
+                pill
+                  .transition('lens')
+                  .duration(dur)
+                  .ease(easeCubicOut)
+                  .attr('transform', target)
+                  .style('opacity', 1)
+              } else if (pillShown) {
+                pillShown = false
+                pill.transition('lens').duration(dur).ease(easeCubicOut).style('opacity', 0)
+              }
             }
 
             const nearestIndex = (y: number) => {
@@ -458,84 +513,187 @@ export function RankingsChart({
               })
               return best
             }
-            const nearest = (y: number): RailItem | null => items[nearestIndex(y)] ?? null
+
+            // A pill may ride into the top margin (it is exactly half a pill
+            // tall) but never into the date axis below the plot.
+            const clampY = (y: number) =>
+              Math.min(height - PILL_H / 2, Math.max(-margin.top + PILL_H / 2, y))
+
+            const close = () => {
+              render(null, new Map(), 80)
+              if (side === 'start') dimAxis(false)
+            }
 
             /*
-             * The dock layout: the coin under the pointer gets the largest
-             * label, exactly under the pointer; neighbours stack outward from
-             * it, each sitting half its height past the previous one, so
-             * labels never overlap however dense the rail is.
+             * The dock layout: the focused rank's pill sits under the pointer,
+             * neighbours stack outward from it, each a gap past the previous
+             * one, so labels never overlap however dense the rail is. At the
+             * ends of the rail the whole stack is nudged back inside the plot
+             * rather than spilling over the top or into the date axis — the
+             * pill drifts off the pointer a few px there, which reads as the
+             * rail resisting at its boundary.
              */
-            const lens = (focusY: number | null) => {
-              if (focusY == null) {
-                render(new Map(), 80)
-                if (side === 'start') dimAxis(false)
-                return
-              }
-              const f = nearestIndex(focusY)
-              if (f < 0) return
+            const lens = (f: number, pointerY: number) => {
+              const item = items[f]
+              if (item == null) return
+              const first = items[0].y
+              const last = items[items.length - 1].y
+              let focusY = Math.min(last, Math.max(first, pointerY))
               const slots = new Map<number, Slot>()
-              const place = (i: number, y: number) =>
-                slots.set(i, { y, k: tier(Math.abs(i - f)), focus: i === f })
-              place(f, focusY)
+              let top = focusY - PILL_H / 2
+              let bottom = focusY + PILL_H / 2
               let up = focusY
-              for (let i = f - 1; i >= Math.max(0, f - REACH); i--) {
-                up -= (sizeOf(tier(f - i - 1)) + sizeOf(tier(f - i))) / 2
-                place(i, up)
-              }
               let down = focusY
-              for (let i = f + 1; i <= Math.min(items.length - 1, f + REACH); i++) {
-                down += (sizeOf(tier(i - f - 1)) + sizeOf(tier(i - f))) / 2
-                place(i, down)
+              for (let d = 1; d <= REACH; d++) {
+                const t = NEIGHBOURS[d - 1]
+                const prev = d === 1 ? PILL_H : NEIGHBOURS[d - 2].size
+                const step = (prev + t.size) / 2 + GAP
+                if (f - d >= 0) {
+                  up -= step
+                  slots.set(f - d, { y: up, ...t })
+                  top = up - t.size / 2
+                }
+                if (f + d < items.length) {
+                  down += step
+                  slots.set(f + d, { y: down, ...t })
+                  bottom = down + t.size / 2
+                }
               }
-              render(slots, 100)
+              const shift =
+                top < -margin.top ? -margin.top - top : bottom > height ? height - bottom : 0
+              if (shift !== 0) {
+                focusY += shift
+                slots.forEach((s) => (s.y += shift))
+              }
+              render({ item, y: focusY }, slots, 100)
               if (side === 'start') dimAxis(true)
             }
 
-            // A single full-size label for one coin: the far-rail callout.
+            // A single pill for one coin: the far-rail callout.
             const mark = (id: string | null) => {
               const item = id == null ? undefined : items.find((d) => d.crypto.id === id)
               if (item == null) {
-                render(new Map(), 80)
-                if (side === 'start') dimAxis(false)
+                close()
                 return
               }
-              render(new Map([[item.i, { y: item.y, k: 1, focus: true }]]), 120)
+              render({ item, y: clampY(item.y) }, new Map(), 120)
               if (side === 'start') dimAxis(true)
             }
 
+            /*
+             * Cursor: which rank the lens is on. The pointer sets it by
+             * proximity; the arrow keys step it, which is how a keyboard user
+             * walks the rail and how a mouse user nudges to the exact
+             * neighbour a hairline-dense strip makes hard to hit. Hovering
+             * takes focus so the keys work without a click; a keyboard step
+             * then ignores pointer jitter until the mouse really moves.
+             */
+            let cursor = -1
+            let pointerInside = false
+            let pointerY = NaN
+            let keyed = false // last move came from the keyboard
+            const goTo = (f: number, y = items[f]?.y) => {
+              if (f < 0 || f >= items.length) return
+              cursor = f
+              lens(f, y)
+              // Park the card just inside the plot, clear of the rail so the
+              // pill stays readable under it.
+              handleHover({
+                crypto: items[f].crypto,
+                // hover.x is in <svg> space, i.e. includes the gutter.
+                x: side === 'start' ? margin.left + 80 : width + margin.left - 320,
+                y: Math.min(height - 10, Math.max(80, items[f].y)),
+              })
+            }
+            const leave = () => {
+              cursor = -1
+              close()
+              handleHover(null)
+            }
+
             // The whole gutter is the hit area, not just the labels.
-            g.append('rect')
+            const hit = g
+              .append('rect')
               .attr('class', 'rank-rail-hit')
               .attr('x', side === 'start' ? -margin.left + RAIL_INSET : -RAIL_INSET)
               .attr('y', -8)
               .attr('width', margin.left)
               .attr('height', height + 16)
+              .attr('tabindex', 0)
+              .attr('role', 'slider')
+              .attr('aria-orientation', 'vertical')
+              .attr('aria-valuemin', 1)
+              .attr('aria-valuemax', axisMax)
+              .attr(
+                'aria-label',
+                side === 'start' ? 'Rank at start of window' : 'Rank at end of window',
+              )
+            const announce = () => {
+              const item = items[cursor]
+              hit
+                .attr('aria-valuenow', item?.rank ?? null)
+                .attr('aria-valuetext', item ? `${item.crypto.name}, rank ${item.rank}` : null)
+            }
+
+            hit
               .on('pointerenter pointermove', function (evt: any) {
                 const [, my] = pointer(evt, svg.node())
+                pointerInside = true
                 scrubbingRef.current = side
-                lens(my)
-                const hit = nearest(my)
-                if (hit) {
-                  // Park the card just inside the plot, clear of the rail so
-                  // the magnified numbers stay readable under it.
-                  handleHover({
-                    crypto: hit.crypto,
-                    // hover.x is in <svg> space, i.e. includes the gutter.
-                    x: side === 'start' ? margin.left + 80 : width + margin.left - 320,
-                    y: Math.min(height - 10, Math.max(80, hit.y)),
-                  })
-                }
+                if (keyed && Number.isFinite(pointerY) && Math.abs(my - pointerY) < 4) return
+                keyed = false
+                pointerY = my
+                ;(this as SVGRectElement).focus({ preventScroll: true })
+                goTo(nearestIndex(my), my)
+                announce()
               })
-              .on('pointerleave', () => {
+              .on('pointerleave', function () {
+                pointerInside = false
+                pointerY = NaN
                 scrubbingRef.current = null
-                lens(null)
-                handleHover(null)
+                leave()
+                ;(this as SVGRectElement).blur()
+              })
+              .on('focus', () => {
+                if (pointerInside || cursor >= 0) return
+                scrubbingRef.current = side
+                goTo(0)
+                announce()
+              })
+              .on('blur', () => {
+                if (pointerInside) return
+                scrubbingRef.current = null
+                leave()
+              })
+              .on('keydown', (evt: KeyboardEvent) => {
+                const step =
+                  evt.key === 'ArrowUp' || evt.key === 'ArrowLeft'
+                    ? -1
+                    : evt.key === 'ArrowDown' || evt.key === 'ArrowRight'
+                      ? 1
+                      : 0
+                if (step !== 0) {
+                  evt.preventDefault()
+                  keyed = true
+                  goTo(cursor < 0 ? (step > 0 ? 0 : items.length - 1) : cursor + step)
+                } else if (evt.key === 'Home' || evt.key === 'End') {
+                  evt.preventDefault()
+                  keyed = true
+                  goTo(evt.key === 'Home' ? 0 : items.length - 1)
+                } else if (evt.key === 'Enter' || evt.key === ' ') {
+                  evt.preventDefault()
+                  if (cursor >= 0) onToggleHighlight(items[cursor].crypto.id)
+                } else if (evt.key === 'Escape') {
+                  ;(evt.currentTarget as SVGRectElement).blur()
+                } else {
+                  return
+                }
+                announce()
               })
               .on('click', function (evt: any) {
                 const [, my] = pointer(evt, svg.node())
-                const hit = nearest(my)
-                if (hit) onToggleHighlight(hit.crypto.id)
+                const f = cursor >= 0 ? cursor : nearestIndex(my)
+                if (f >= 0) onToggleHighlight(items[f].crypto.id)
               })
 
             return { mark }
