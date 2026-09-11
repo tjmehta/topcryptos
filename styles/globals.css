@@ -181,6 +181,8 @@
   fill: oklch(0.66 0.014 264);
   font-size: 11px;
   font-family: var(--font-mono);
+  /* The rail lens fades these out while it is open; don't let them blink. */
+  transition: opacity 120ms ease;
 }
 
 .rank-line {
@@ -207,9 +209,13 @@
  * Alpha is 0.01, not 0 — Safari doesn't hit-test a fully transparent stroke
  * (unlike Chromium, which follows spec and hit-tests it regardless of alpha),
  * so `transparent` silently drops all hover/click on WebKit. */
-/* Rank rails (RankingsChart): the gutters either side of the plot. */
+/* Rank rails (RankingsChart): the gutters either side of the plot. At rest the
+ * ticks are a faint strip and the labels are invisible; the lens positions,
+ * sizes and fades them with d3 transitions (inline styles), so nothing here
+ * should transition — two animation systems on one property fight. */
 .rank-rail-tick {
   stroke-width: 1;
+  stroke-linecap: round;
   opacity: 0.35;
   pointer-events: none;
 }
@@ -219,6 +225,23 @@
   fill: var(--foreground);
   pointer-events: none;
   user-select: none;
+  paint-order: stroke;
+  /* A hairline halo in the panel colour keeps a magnified label legible where
+   * it crosses a leader or an axis number. */
+  stroke: var(--panel-to);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* The hover card: fades and settles in on mount, no exit (it is unmounted). */
+.rank-tip {
+  transition:
+    opacity 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    translate 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  @starting-style {
+    opacity: 0;
+    translate: 0 4px;
+  }
 }
 .rank-rail-hit {
   fill: rgba(0, 0, 0, 0.01);

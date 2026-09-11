@@ -3,15 +3,26 @@ import { useEffect, useRef, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 
+export type ChartMargin = { top: number; right: number; bottom: number; left: number }
+
 export type D3ChartRenderer = (
   svg: Selection<SVGGElement, unknown, null, undefined>,
   height: number,
   width: number,
+  margin: ChartMargin,
 ) => unknown
 
-// Left and right gutters are equal on purpose: both carry a rank rail (see
-// RankingsChart), and "500" needs ~40px at 11px mono.
-const MARGIN = { top: 10, right: 44, bottom: 44, left: 44 }
+/*
+ * Left and right gutters are equal on purpose: both carry a rank rail (see
+ * RankingsChart). "500" needs ~40px at 11px mono, and on wider screens the
+ * rail lens swings its magnified labels *outward* into the gutter, so it gets
+ * room for a 17px "500" plus the swing. Phones keep the narrow gutter — plot
+ * width is scarcer than the bend, and a finger covers the label anyway.
+ */
+const marginFor = (width: number): ChartMargin => {
+  const gutter = width < 420 ? 44 : 60
+  return { top: 10, right: gutter, bottom: 44, left: gutter }
+}
 
 /**
  * Responsive SVG host for imperative d3 rendering.
@@ -74,8 +85,9 @@ export function D3Chart({
     const node = svgRef.current
     if (node == null || size.width === 0 || size.height === 0) return
 
-    const chartWidth = size.width - MARGIN.left - MARGIN.right
-    const chartHeight = size.height - MARGIN.top - MARGIN.bottom
+    const margin = marginFor(size.width)
+    const chartWidth = size.width - margin.left - margin.right
+    const chartHeight = size.height - margin.top - margin.bottom
     if (chartWidth <= 0 || chartHeight <= 0) return
 
     const svg = select(node)
@@ -88,9 +100,14 @@ export function D3Chart({
       .attr('viewBox', `0 0 ${size.width} ${size.height}`)
       .attr('preserveAspectRatio', 'xMidYMid meet')
       .append('g')
-      .attr('transform', `translate(${MARGIN.left}, ${MARGIN.top})`)
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-    children(root as Selection<SVGGElement, unknown, null, undefined>, chartHeight, chartWidth)
+    children(
+      root as Selection<SVGGElement, unknown, null, undefined>,
+      chartHeight,
+      chartWidth,
+      margin,
+    )
     // `children` is a fresh closure each render; renderKey is the intended
     // signal for when the drawing actually needs to change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,7 +117,8 @@ export function D3Chart({
     <div ref={wrapperRef} className="w-full">
       <svg
         ref={svgRef}
-        className={cn('w-full', className)}
+        // Lens labels may overshoot the gutter by a pixel or two; let them.
+        className={cn('w-full overflow-visible', className)}
         style={{ height: size.height || undefined }}
         role="img"
         aria-label="Cryptocurrency rank over time"

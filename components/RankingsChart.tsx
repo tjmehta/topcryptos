@@ -4,7 +4,17 @@ import {
   NAN_SCORE,
   Quote,
 } from '@/modules/processRankings'
-import { axisBottom, axisLeft, line, pointer, scaleLinear, scaleTime, select, timeFormat } from 'd3'
+import {
+  axisBottom,
+  axisLeft,
+  easeCubicOut,
+  line,
+  pointer,
+  scaleLinear,
+  scaleTime,
+  select,
+  timeFormat,
+} from 'd3'
 import { percent, trend } from '@/modules/format'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
@@ -12,6 +22,11 @@ import { D3Chart } from '@/components/D3Chart'
 import { cn } from '@/lib/utils'
 
 type Hover = { crypto: Crypto; x: number; y: number } | null
+
+const RAIL_SIDES = ['start', 'end'] as const
+type RailSide = (typeof RAIL_SIDES)[number]
+/** What a drawn rail exposes to React: call out one coin's rank, or clear it. */
+type RailApi = { mark: (id: string | null) => void }
 
 /**
  * Rank-flow chart: every coin's market-cap rank over the window, rank 1 at the
@@ -51,6 +66,15 @@ export function RankingsChart({
 }) {
   const [hover, setHover] = useState<Hover>(null)
   const figureRef = useRef<HTMLElement | null>(null)
+  /*
+   * The rank rails are drawn inside the d3 render closure but need driving
+   * from React: any active coin (line hover, table hover, keyboard focus)
+   * gets its rank called out on both rails. Each rail registers its API here;
+   * `scrubbing` names the rail the pointer is currently on, whose own lens
+   * must not be overwritten by the callout.
+   */
+  const railsRef = useRef<Partial<Record<RailSide, RailApi>>>({})
+  const scrubbingRef = useRef<RailSide | null>(null)
 
   /**
    * Drawing 500 hairlines into 390px of phone is noise, not information. The
@@ -99,12 +123,16 @@ export function RankingsChart({
     select(figureRef.current)
       .selectAll<SVGPathElement, Crypto>('path.rank-line')
       .classed('is-active', (c) => c.id === activeCryptoId)
+    for (const side of RAIL_SIDES) {
+      if (scrubbingRef.current === side) continue
+      railsRef.current[side]?.mark(activeCryptoId)
+    }
   }, [activeCryptoId, renderKey])
 
   return (
     <figure ref={figureRef} className="relative m-0">
       <D3Chart renderKey={renderKey} aspect={0.78} minHeight={280}>
-        {(svg, height, width) => {
+        {(svg, height, width, margin) => {
           /*
            * Rank 1 is the top of the ladder and rank 0 does not exist, so the
            * domain is pinned to 1 and the max is rounded up by hand. `.nice()`
@@ -133,7 +161,7 @@ export function RankingsChart({
 
           svg
             .append('g')
-            .attr('class', 'axis')
+            .attr('class', 'axis axis-y')
             .call(
               axisLeft(yScale)
                 .tickValues(
@@ -283,55 +311,76 @@ export function RankingsChart({
            * the pointer: the coin under it gets the big label, its neighbours
            * step down in tiers (the macOS dock / iOS index bar). Dragging a
            * finger along the rail does the same, so touch gets it too.
+           *
+           * Whichever way a coin becomes active — scrubbing a rail, hovering
+           * its line, hovering its table row — the *other* rail calls out that
+           * coin's rank there, so a hover always shows where the coin started
+           * and where it ended. Only the rail under the pointer opens the full
+           * lens; the callout is a single label, because the lens is a pointer
+           * affordance and the far side has no pointer.
            */
-          const RAIL_W = 40
-          /*
-           * The lens is the macOS-dock / iOS-index-bar layout, not a pixel
-           * distortion: pick the coin under the pointer, then stack its
-           * neighbours outward with sizes stepping down on a cosine curve.
-           * The focus label is always the largest and sits exactly under the
-           * pointer; the stack is built from cumulative sizes so labels can
-           * never overlap, and each one bulges out from the axis in
-           * proportion to its size, which is what gives the warp its curve.
-           */
-          const REACH = 9 // labels per side
+          const RAIL_INSET = 6 // gap between the plot edge and the rail
+          const TICK_LEN = 4
+          const REACH = 9 // labels per side of the focus
           const FONT_MIN = 7
-          const FONT_MAX = 19
-          const BULGE = 30 // px the focus label swings in over the plot
+          const FONT_MAX = 17
+          /*
+           * Labels bend *outward*, away from the plot, so the lens never sits
+           * on top of the lines it is indexing. Each label swings out in
+           * proportion to its size and a leader runs from its true position on
+           * the axis to where it now sits, which is what draws the curve. The
+           * swing is whatever the gutter has left after the widest label at
+           * full size — ~20px on desktop, nothing on a phone, where the tiers
+           * still fan in size and the leaders run straight.
+           */
+          const focusWidth = String(axisMax).length * FONT_MAX * 0.62
+          const BULGE = Math.max(
+            0,
+            Math.min(24, margin.left - RAIL_INSET - TICK_LEN - 2 - focusWidth),
+          )
+          const reduceMotion =
+            typeof window !== 'undefined' &&
+            window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
-          type RailItem = { crypto: Crypto; rank: number; y: number }
-          const railItems = (side: 'start' | 'end'): RailItem[] =>
+          type RailItem = { crypto: Crypto; rank: number; y: number; i: number }
+          const railItems = (side: RailSide): RailItem[] =>
             drawn
               .map((c) => {
                 const q = side === 'start' ? c.quotes[0] : c.quotes[c.quotes.length - 1]
                 const rank = q?.rankByMarketCap
                 return rank == null ? null : { crypto: c, rank, y: yScale(rank) }
               })
-              .filter((v): v is RailItem => v != null)
+              .filter((v): v is Omit<RailItem, 'i'> => v != null)
               .sort((a, b) => a.y - b.y || a.rank - b.rank)
+              .map((d, i) => ({ ...d, i }))
 
           const tier = (i: number) =>
             i > REACH ? 0 : Math.pow(Math.cos((Math.PI / 2) * (i / (REACH + 1))), 2)
 
-          const drawRail = (side: 'start' | 'end') => {
+          // The y-axis numbers share the left gutter; fade them while it is in use.
+          const dimAxis = (on: boolean) =>
+            svg.selectAll('.axis-y text').style('opacity', () => (on ? 0.12 : null))
+
+          type Slot = { y: number; k: number; focus: boolean }
+          const sizeOf = (k: number) => FONT_MIN + (FONT_MAX - FONT_MIN) * k
+
+          const drawRail = (side: RailSide): RailApi => {
             const items = railItems(side)
-            const x = side === 'start' ? -6 : width + 6
-            // Labels bulge *into* the plot, like the iOS index bubble: the
-            // gutter is only 40px and a 19px "500" pushed outward clips.
-            const dir = side === 'start' ? 1 : -1
+            const out = side === 'start' ? -1 : 1 // away from the plot
             const g = svg
               .append('g')
               .attr('class', `rank-rail rank-rail-${side}`)
-              .attr('transform', `translate(${x}, 0)`)
+              .attr('transform', `translate(${side === 'start' ? -RAIL_INSET : width + RAIL_INSET}, 0)`)
 
-            const ticks = g
+            const restX = out * (TICK_LEN + 2)
+            const leaders = g
               .selectAll('line')
               .data(items)
               .join('line')
               .attr('class', 'rank-rail-tick')
-              .attr('x1', side === 'start' ? -4 : 0)
-              .attr('x2', side === 'start' ? 0 : 4)
+              .attr('x1', 0)
               .attr('y1', (d) => d.y)
+              .attr('x2', out * TICK_LEN)
               .attr('y2', (d) => d.y)
               .style('stroke', (d) => strokeFor(d.crypto))
 
@@ -342,10 +391,60 @@ export function RankingsChart({
               .attr('class', 'rank-rail-label')
               .attr('text-anchor', side === 'start' ? 'end' : 'start')
               .attr('dominant-baseline', 'middle')
-              .attr('x', 0)
-              .attr('y', (d) => d.y)
-              .style('display', 'none')
+              .attr('transform', (d) => `translate(${restX}, ${d.y})`)
+              .style('font-size', `${FONT_MIN}px`)
+              .style('opacity', 0)
               .text((d) => d.rank)
+
+            /*
+             * Only the labels entering or leaving the lens are touched on each
+             * move — restyling all 500 per pointer event is what makes rails
+             * like this stutter. Short d3 transitions (interruptible, so a fast
+             * scrub just retargets) make the stack glide rather than snap;
+             * closing is quicker than opening, as a release should be.
+             */
+            let lit = new Set<number>()
+            const render = (slots: Map<number, Slot>, ms: number) => {
+              const touched = new Set([...lit, ...slots.keys()])
+              lit = new Set(slots.keys())
+              const dur = reduceMotion ? 0 : ms
+              const slot = (d: RailItem) => slots.get(d.i)
+
+              const hitLabels = labels.filter((d) => touched.has(d.i))
+              hitLabels
+                .style('font-weight', (d) => (slot(d)?.focus ? 700 : 400))
+                .style('fill', (d) => (slot(d)?.focus ? 'var(--active)' : null))
+              hitLabels
+                .transition('lens')
+                .duration(dur)
+                .ease(easeCubicOut)
+                .attr('transform', (d) => {
+                  const s = slot(d)
+                  return s
+                    ? `translate(${restX + out * BULGE * s.k}, ${s.y})`
+                    : `translate(${restX}, ${d.y})`
+                })
+                .style('font-size', (d) => `${sizeOf(slot(d)?.k ?? 0)}px`)
+                .style('opacity', (d) => {
+                  const s = slot(d)
+                  return s ? 0.35 + 0.65 * s.k : 0
+                })
+
+              const hitLeaders = leaders.filter((d) => touched.has(d.i))
+              hitLeaders.style('stroke', (d) =>
+                slot(d)?.focus ? 'var(--active)' : strokeFor(d.crypto),
+              )
+              hitLeaders
+                .transition('lens')
+                .duration(dur)
+                .ease(easeCubicOut)
+                .attr('x2', (d) => out * (TICK_LEN + BULGE * (slot(d)?.k ?? 0)))
+                .attr('y2', (d) => slot(d)?.y ?? d.y)
+                .style('opacity', (d) => {
+                  const s = slot(d)
+                  return s ? 0.45 + 0.55 * s.k : 0.35
+                })
+            }
 
             const nearestIndex = (y: number) => {
               let best = -1
@@ -359,85 +458,78 @@ export function RankingsChart({
               })
               return best
             }
+            const nearest = (y: number): RailItem | null => items[nearestIndex(y)] ?? null
 
-            const layout = (focusY: number | null) => {
+            /*
+             * The dock layout: the coin under the pointer gets the largest
+             * label, exactly under the pointer; neighbours stack outward from
+             * it, each sitting half its height past the previous one, so
+             * labels never overlap however dense the rail is.
+             */
+            const lens = (focusY: number | null) => {
               if (focusY == null) {
-                labels.style('display', 'none')
-                ticks.attr('y1', (d) => d.y).attr('y2', (d) => d.y).style('opacity', null)
-                svg.selectAll('.axis text').style('opacity', null)
+                render(new Map(), 80)
+                if (side === 'start') dimAxis(false)
                 return
               }
-              // The y-axis numbers share this gutter; dim them while the lens is open.
-              svg.selectAll('.axis text').style('opacity', 0.12)
-
               const f = nearestIndex(focusY)
-              const size = new Map<number, number>()
-              const pos = new Map<number, number>()
-              const dx = new Map<number, number>()
-              const place = (i: number, y: number) => {
-                const k = tier(Math.abs(i - f))
-                size.set(i, FONT_MIN + (FONT_MAX - FONT_MIN) * k)
-                pos.set(i, y)
-                dx.set(i, dir * BULGE * k)
-              }
+              if (f < 0) return
+              const slots = new Map<number, Slot>()
+              const place = (i: number, y: number) =>
+                slots.set(i, { y, k: tier(Math.abs(i - f)), focus: i === f })
               place(f, focusY)
-              // Stack outward: each label sits half its height past the previous one.
               let up = focusY
               for (let i = f - 1; i >= Math.max(0, f - REACH); i--) {
-                const h = FONT_MIN + (FONT_MAX - FONT_MIN) * tier(f - i)
-                up -= (size.get(i + 1)! + h) / 2
+                up -= (sizeOf(tier(f - i - 1)) + sizeOf(tier(f - i))) / 2
                 place(i, up)
               }
               let down = focusY
               for (let i = f + 1; i <= Math.min(items.length - 1, f + REACH); i++) {
-                const h = FONT_MIN + (FONT_MAX - FONT_MIN) * tier(i - f)
-                down += (size.get(i - 1)! + h) / 2
+                down += (sizeOf(tier(i - f - 1)) + sizeOf(tier(i - f))) / 2
                 place(i, down)
               }
-
-              labels
-                .style('display', (_, i) => (size.has(i) ? null : 'none'))
-                .attr('y', (_, i) => pos.get(i) ?? 0)
-                .attr('x', (_, i) => dx.get(i) ?? 0)
-                .style('font-size', (_, i) => `${size.get(i) ?? FONT_MIN}px`)
-                .style('font-weight', (_, i) => (i === f ? 700 : 400))
-                .style('fill', (_, i) => (i === f ? 'var(--active)' : null))
-                .style('opacity', (_, i) => {
-                  const k = tier(Math.abs(i - f))
-                  return 0.3 + 0.7 * k
-                })
-              ticks
-                .attr('y1', (_, i) => pos.get(i) ?? items[i].y)
-                .attr('y2', (_, i) => pos.get(i) ?? items[i].y)
-                .style('opacity', (_, i) => (size.has(i) ? 0.9 : 0.25))
+              render(slots, 100)
+              if (side === 'start') dimAxis(true)
             }
 
-            const nearest = (y: number): RailItem | null => items[nearestIndex(y)] ?? null
+            // A single full-size label for one coin: the far-rail callout.
+            const mark = (id: string | null) => {
+              const item = id == null ? undefined : items.find((d) => d.crypto.id === id)
+              if (item == null) {
+                render(new Map(), 80)
+                if (side === 'start') dimAxis(false)
+                return
+              }
+              render(new Map([[item.i, { y: item.y, k: 1, focus: true }]]), 120)
+              if (side === 'start') dimAxis(true)
+            }
 
             // The whole gutter is the hit area, not just the labels.
             g.append('rect')
               .attr('class', 'rank-rail-hit')
-              .attr('x', side === 'start' ? -RAIL_W + 6 : -6)
+              .attr('x', side === 'start' ? -margin.left + RAIL_INSET : -RAIL_INSET)
               .attr('y', -8)
-              .attr('width', RAIL_W)
+              .attr('width', margin.left)
               .attr('height', height + 16)
               .on('pointerenter pointermove', function (evt: any) {
                 const [, my] = pointer(evt, svg.node())
-                layout(my)
+                scrubbingRef.current = side
+                lens(my)
                 const hit = nearest(my)
                 if (hit) {
                   // Park the card just inside the plot, clear of the rail so
                   // the magnified numbers stay readable under it.
                   handleHover({
                     crypto: hit.crypto,
-                    // hover.x is in <svg> space, i.e. includes the 44px gutter.
-                    x: side === 'start' ? 44 + 80 : width + 44 - 320,
+                    // hover.x is in <svg> space, i.e. includes the gutter.
+                    x: side === 'start' ? margin.left + 80 : width + margin.left - 320,
                     y: Math.min(height - 10, Math.max(80, hit.y)),
                   })
                 }
               })
               .on('pointerleave', () => {
-                layout(null)
+                scrubbingRef.current = null
+                lens(null)
                 handleHover(null)
               })
               .on('click', function (evt: any) {
@@ -445,17 +537,20 @@ export function RankingsChart({
                 const hit = nearest(my)
                 if (hit) onToggleHighlight(hit.crypto.id)
               })
+
+            return { mark }
           }
 
-          drawRail('start')
-          drawRail('end')
+          for (const side of RAIL_SIDES) {
+            railsRef.current[side] = drawRail(side)
+          }
         }}
       </D3Chart>
 
       {hover && (
         <div
           role="tooltip"
-          className="pointer-events-none absolute z-20 max-w-[15rem] rounded-md border border-border bg-popover/95 px-2.5 py-2 text-xs shadow-xl backdrop-blur"
+          className="rank-tip pointer-events-none absolute z-20 max-w-[15rem] rounded-md border border-border bg-popover/95 px-2.5 py-2 text-xs shadow-xl backdrop-blur"
           style={{
             left: Math.min(hover.x + 14, 9999),
             top: Math.max(hover.y - 12, 0),
