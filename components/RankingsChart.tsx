@@ -111,12 +111,19 @@ export function RankingsChart({
    * on the existing paths is also far cheaper than redrawing 500 of them on
    * every table-row hover.
    */
-  const renderKey = [
-    points,
-    drawn.length,
-    [...highlightedIds].join(','),
-    [...hiddenIds].join(','),
-  ].join(':')
+  // Track the actual immutable data, not just its length. Exchange changes
+  // can replace every coin while the responsive series cap stays unchanged;
+  // new quotes and scales also need a redraw even when coin IDs stay the same.
+  const renderKey = useMemo(
+    () => ({ drawn, minMaxes, points, highlightedIds, hiddenIds }),
+    [drawn, minMaxes, points, highlightedIds, hiddenIds],
+  )
+
+  // A tooltip from the previous exchange/window must not linger over new data.
+  useEffect(() => {
+    scrubbingRef.current = null
+    handleHover(null)
+  }, [cryptos, minMaxes, points, handleHover])
 
   useEffect(() => {
     if (figureRef.current == null) return

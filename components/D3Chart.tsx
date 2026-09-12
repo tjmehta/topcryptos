@@ -43,7 +43,8 @@ export function D3Chart({
 }: {
   children: D3ChartRenderer
   className?: string
-  renderKey: string
+  /** Stable redraw token. Data changes replace it; hover-only updates do not. */
+  renderKey: unknown
   /** height / width */
   aspect?: number
   /**
