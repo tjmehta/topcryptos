@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-09-13T20:19:13.247025+00:00",
+  "completed_at_utc": "2026-09-13T20:19:42.570296+00:00",
+  "verifier_sha256": "9e7c4ff5eee5bd4e1f94fb4938b9956bf829a4619558e114e758313af236de6e",
+  "runner_sha256": "360df7a4b7dd223f84d8bffb7b0462f2644e5ed2f767702557ff92421ab4f271",
+  "ledger_sha256": "86e02ac882f48e696938fc647cb2a9f24093ce5d467f2a9bbe2faaa70c8003da",
+  "summary_sha256": "61bf12efdc46d38c592dbb6de0581655b13662e20e289f8da0b2251079c05d27",
+  "panel_sha256": "91dfcdc1afac7a35087a1f9a56b1c75bbede3c504f81a85b4192ef6fe6f7340c",
+  "source_artifact_hashes": 11601,
+  "raw_panel_rows": 143175,
+  "score_values": 237042,
+  "score_cohorts": 858,
+  "outcomes": 17403,
+  "cohorts": 31500,
+  "summary_rows": 6048,
+  "native_parity_cohorts": 13500,
+  "maximum_absolute_numeric_difference": 3.552713678800501e-15,
+  "independence": "Standard library only; raw CSV identity/eligibility, explicit Wilder ATR and SMA-seeded EMA, delayed fills, costs, complete-path labels, selection order, cohort and summary arithmetic. No experiment imports.",
+  "limitations": [
+    "Verifies implementation and arithmetic, not a statistically untouched holdout or production mapping.",
+    "Overlapping cohort outcomes and six annual venue universes are not independent trial observations."
+  ]
+}

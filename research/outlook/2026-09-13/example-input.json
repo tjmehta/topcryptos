@@ -1,0 +1,613 @@
+{
+  "interval_unit": "day",
+  "view_observations": 7,
+  "signal_date": "2024-01-01",
+  "hold_days": 30,
+  "entry_date": "2024-01-03",
+  "entry_price": 44946.91,
+  "instrument_key": "2024:BTCUSDT:segment-01",
+  "symbol": "BTCUSDT",
+  "cohort_member": true,
+  "bars": [
+    {
+      "date": "2023-11-03",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 34941.58,
+      "high": 34946.5,
+      "low": 34120.0,
+      "close": 34716.78,
+      "quote_volume": 1347962831.5658624,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-04",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 34716.78,
+      "high": 35255.0,
+      "low": 34585.18,
+      "close": 35062.07,
+      "quote_volume": 639958598.4198353,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-05",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35062.06,
+      "high": 35380.0,
+      "low": 34448.0,
+      "close": 35011.88,
+      "quote_volume": 859350974.0014893,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-06",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35011.89,
+      "high": 35276.33,
+      "low": 34725.9,
+      "close": 35046.09,
+      "quote_volume": 782427702.2653205,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-07",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35046.09,
+      "high": 35888.0,
+      "low": 34523.06,
+      "close": 35399.12,
+      "quote_volume": 1358031361.1978526,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-08",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35399.13,
+      "high": 36106.0,
+      "low": 35100.0,
+      "close": 35624.72,
+      "quote_volume": 1185492160.4927278,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-09",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35624.72,
+      "high": 37972.24,
+      "low": 35534.05,
+      "close": 36701.09,
+      "quote_volume": 3033417922.7826815,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-10",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 36701.1,
+      "high": 37526.0,
+      "low": 36324.71,
+      "close": 37301.63,
+      "quote_volume": 1605069174.5241032,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-11",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37301.63,
+      "high": 37408.26,
+      "low": 36666.93,
+      "close": 37130.0,
+      "quote_volume": 851924612.7339427,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-12",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37129.99,
+      "high": 37222.22,
+      "low": 36731.1,
+      "close": 37064.13,
+      "quote_volume": 655570813.1382711,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-13",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37064.13,
+      "high": 37417.99,
+      "low": 36333.0,
+      "close": 36462.93,
+      "quote_volume": 1208037462.3041444,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-14",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 36462.93,
+      "high": 36744.0,
+      "low": 34800.0,
+      "close": 35551.19,
+      "quote_volume": 1639130785.08681,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-15",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35551.2,
+      "high": 37980.0,
+      "low": 35360.0,
+      "close": 37858.2,
+      "quote_volume": 1963249656.5094738,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-16",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37858.2,
+      "high": 37929.54,
+      "low": 35500.0,
+      "close": 36163.51,
+      "quote_volume": 1744503339.0151725,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-17",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 36163.51,
+      "high": 36800.0,
+      "low": 35861.1,
+      "close": 36613.92,
+      "quote_volume": 1391225051.1923273,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-18",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 36613.91,
+      "high": 36845.49,
+      "low": 36178.58,
+      "close": 36568.1,
+      "quote_volume": 624434069.5256634,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-19",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 36568.11,
+      "high": 37500.0,
+      "low": 36384.02,
+      "close": 37359.86,
+      "quote_volume": 781531839.4371592,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-20",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37359.85,
+      "high": 37750.0,
+      "low": 36677.0,
+      "close": 37448.78,
+      "quote_volume": 1343722642.386475,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-21",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37448.79,
+      "high": 37649.44,
+      "low": 35735.0,
+      "close": 35741.65,
+      "quote_volume": 1756747495.9818547,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-22",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 35741.65,
+      "high": 37861.1,
+      "low": 35632.01,
+      "close": 37408.34,
+      "quote_volume": 1657141022.427348,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-23",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37408.35,
+      "high": 37653.44,
+      "low": 36870.0,
+      "close": 37294.28,
+      "quote_volume": 888826648.8541473,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-24",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37294.27,
+      "high": 38414.0,
+      "low": 37251.51,
+      "close": 37713.57,
+      "quote_volume": 1688715728.079148,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-25",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37713.57,
+      "high": 37888.0,
+      "low": 37591.1,
+      "close": 37780.67,
+      "quote_volume": 430165251.7609749,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-26",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37780.67,
+      "high": 37814.63,
+      "low": 37150.0,
+      "close": 37447.43,
+      "quote_volume": 797321193.5893991,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-27",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37447.42,
+      "high": 37569.23,
+      "low": 36707.0,
+      "close": 37242.7,
+      "quote_volume": 1112557435.2767923,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-28",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37242.7,
+      "high": 38377.0,
+      "low": 36868.41,
+      "close": 37818.87,
+      "quote_volume": 1414360251.6823456,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-29",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37818.88,
+      "high": 38450.0,
+      "low": 37570.0,
+      "close": 37854.64,
+      "quote_volume": 1252586505.66259,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-11-30",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37854.65,
+      "high": 38145.85,
+      "low": 37500.0,
+      "close": 37723.96,
+      "quote_volume": 934491058.9608141,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-01",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 37723.97,
+      "high": 38999.0,
+      "low": 37615.86,
+      "close": 38682.52,
+      "quote_volume": 1669750777.6239815,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-02",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 38682.51,
+      "high": 39717.14,
+      "low": 38641.61,
+      "close": 39450.35,
+      "quote_volume": 1043421976.7660652,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-03",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 39450.35,
+      "high": 40250.0,
+      "low": 39274.86,
+      "close": 39972.26,
+      "quote_volume": 1059860641.0494444,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-04",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 39972.26,
+      "high": 42420.0,
+      "low": 39972.26,
+      "close": 41991.1,
+      "quote_volume": 3285736844.1408806,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-05",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 41991.1,
+      "high": 44488.0,
+      "low": 41414.0,
+      "close": 44073.32,
+      "quote_volume": 2890205389.4901266,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-06",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 44073.82,
+      "high": 44297.21,
+      "low": 43335.28,
+      "close": 43762.69,
+      "quote_volume": 2256979505.594805,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-07",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43762.69,
+      "high": 44047.33,
+      "low": 42821.1,
+      "close": 43273.14,
+      "quote_volume": 2046945851.8836446,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-08",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43273.15,
+      "high": 44700.0,
+      "low": 43081.1,
+      "close": 44170.99,
+      "quote_volume": 1875581755.4469104,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-09",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 44171.0,
+      "high": 44358.02,
+      "low": 43584.51,
+      "close": 43713.6,
+      "quote_volume": 1096487106.5648339,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-10",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43713.59,
+      "high": 44049.0,
+      "low": 43563.0,
+      "close": 43789.51,
+      "quote_volume": 830485162.5569535,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-11",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43789.5,
+      "high": 43804.5,
+      "low": 40222.0,
+      "close": 41253.4,
+      "quote_volume": 3205540835.511434,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-12",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 41253.41,
+      "high": 42104.12,
+      "low": 40680.0,
+      "close": 41492.39,
+      "quote_volume": 1773961284.3375635,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-13",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 41492.38,
+      "high": 43475.2,
+      "low": 40555.0,
+      "close": 42869.03,
+      "quote_volume": 1919703389.4848804,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-14",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42869.03,
+      "high": 43420.0,
+      "low": 41400.0,
+      "close": 43022.26,
+      "quote_volume": 1798740625.30166,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-15",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43022.26,
+      "high": 43080.81,
+      "low": 41666.0,
+      "close": 41940.3,
+      "quote_volume": 1416898938.509979,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-16",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 41940.29,
+      "high": 42724.43,
+      "low": 41605.0,
+      "close": 42278.03,
+      "quote_volume": 1020469627.8857331,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-17",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42278.02,
+      "high": 42424.07,
+      "low": 41252.0,
+      "close": 41374.65,
+      "quote_volume": 1161963642.9627964,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-18",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 41374.64,
+      "high": 42757.81,
+      "low": 40542.93,
+      "close": 42657.8,
+      "quote_volume": 1936003306.0825727,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-19",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42657.8,
+      "high": 43497.0,
+      "low": 41811.1,
+      "close": 42275.99,
+      "quote_volume": 1747830242.4615936,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-20",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42275.99,
+      "high": 44283.0,
+      "low": 42206.0,
+      "close": 43668.93,
+      "quote_volume": 2115813869.779619,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-21",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43668.92,
+      "high": 44242.35,
+      "low": 43286.72,
+      "close": 43861.8,
+      "quote_volume": 1514529919.1877797,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-22",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43861.79,
+      "high": 44398.26,
+      "low": 43412.54,
+      "close": 43969.04,
+      "quote_volume": 1436074497.5128598,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-23",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43969.04,
+      "high": 43988.68,
+      "low": 43291.1,
+      "close": 43702.16,
+      "quote_volume": 722943825.3332176,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-24",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43702.15,
+      "high": 43946.0,
+      "low": 42500.0,
+      "close": 42991.5,
+      "quote_volume": 1093460634.8894227,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-25",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42991.5,
+      "high": 43802.32,
+      "low": 42720.43,
+      "close": 43576.13,
+      "quote_volume": 1172053386.5109816,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-26",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43576.12,
+      "high": 43592.68,
+      "low": 41637.6,
+      "close": 42508.93,
+      "quote_volume": 1746333612.304945,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-27",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42508.93,
+      "high": 43677.0,
+      "low": 42098.69,
+      "close": 43428.85,
+      "quote_volume": 1554082990.052276,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-28",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 43428.86,
+      "high": 43787.57,
+      "low": 42241.79,
+      "close": 42563.76,
+      "quote_volume": 1508408742.378081,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-29",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42563.76,
+      "high": 43111.0,
+      "low": 41300.0,
+      "close": 42066.95,
+      "quote_volume": 1803086285.2465775,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-30",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42066.94,
+      "high": 42612.32,
+      "low": 41520.3,
+      "close": 42140.28,
+      "quote_volume": 964875790.984935,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2023-12-31",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42140.29,
+      "high": 42899.0,
+      "low": 41965.84,
+      "close": 42283.58,
+      "quote_volume": 1001519241.5559053,
+      "bar_status": "complete"
+    },
+    {
+      "date": "2024-01-01",
+      "instrument_key": "2024:BTCUSDT:segment-01",
+      "open": 42283.58,
+      "high": 44184.1,
+      "low": 42180.77,
+      "close": 44179.55,
+      "quote_volume": 1169995682.0280013,
+      "bar_status": "complete"
+    }
+  ]
+}

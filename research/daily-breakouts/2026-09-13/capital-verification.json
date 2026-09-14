@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-09-13T20:36:02.928937+00:00",
+  "completed_at_utc": "2026-09-13T20:36:13.613933+00:00",
+  "verifier_sha256": "6162d0ca61e9d382365fa6df82d2f2960865baf8d0d4f15b5c184ea1ddaa4dc4",
+  "runner_sha256": "2c3e2ec46ca3eadafed4b748dc1645bc667ae94ff59654102999d6446ea0acf8",
+  "capital_ledger_sha256": "b4ce6be865b1ba865b7e7ae10005c1bb9ebe1778fe93a006fe4a968b00fa61f8",
+  "capital_summary_sha256": "4435fcab2767b34168930480a5035ca7bf2e927cfe46942c8e6a7ae3c9d1dbad",
+  "source_ledger_sha256": "ccd0108188f99f0269383775b20b5eb243ab2dee6b5dbef811206bc461585e1b",
+  "paths": 2304,
+  "decisions": 155174,
+  "status_counts": {
+    "held": 62775,
+    "empty-selection": 84227,
+    "missing-formation": 8172
+  },
+  "scenario_checkpoints": 588008,
+  "summary_rows": 72,
+  "paired_rows": 288,
+  "checked_values": 4596645,
+  "maximum_absolute_numeric_difference": 0.0,
+  "selftests": "passed",
+  "independence": "No capital or main runner imports; enumerates every calendar day, rebuilds entry-knowledge schedules and ten-slot returns from independently verified source outcomes, then wealth, drawdown, exposure, omission diagnostics and paired summaries.",
+  "limitations": [
+    "Checks arithmetic and stated causal schedule, not untouched validation or deployable expected gains.",
+    "Daily and phase paths share source outcomes; these are not independent statistical trials."
+  ]
+}

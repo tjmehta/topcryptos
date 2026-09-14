@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-14",
+  "scope": "Independent Python decimal arithmetic and exact date/selection matching from frozen CMC ledger; not new market validation.",
+  "configurations": 18,
+  "methodHoldingRows": 225,
+  "decimalReturnComparisons": 900,
+  "sourceCohorts": 4645,
+  "artifactBytes": 71436,
+  "sha256": {
+    "artifact": "9c13695b74782a985fc2573e0714f777ab6011f302333259a74cbf12458e271f",
+    "exporter": "1e0413406318bc298eb596226ef18fb21c2e41bdc0a2ff9d4e151dd069f2c419",
+    "verifier": "719b15bb391ab3a71dd355f8ed0660bd951b9b06e444834787f1de96e0af4118",
+    "protocol": "e8f98b92572b84c8e9cc91fb59d1ad361312ac27659fa1c8921ea8e8f39e2525",
+    "ledger": "7e37fcd1be5741df67fe15cc7da061c2c5770dec144a7176f9ebf5a865858463",
+    "scorer": "208a534f4dff743833c7cc3d263bb6341c5338f9e62546b49bb223d8a6aa33aa"
+  }
+}

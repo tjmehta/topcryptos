@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-09-13T07:41:16.992727+00:00",
+  "commit": "cf7819407ceec20c659c3afe2e752b0755a2551f",
+  "purpose": "Immutable pre-change scorer and local dependencies for before/after backtests",
+  "sha256": {
+    "processRankings.ts": "3d9d8b46c5ee66eb2237285e27b4ad4c64ede65410a9ff5ec408bda190e0c689",
+    "MinMax.ts": "924dcc97f341c53b1a4324c12cda0050c6a0d2637de1e9d410b05632456f24a5",
+    "SortedList.ts": "7629fc53de9d9f00fd009a9e793f0eb7b384212f395a5a6303d9660993dc49f4",
+    "compareDates.ts": "d6f3880058e8f598f9115eaceb443f0c824f506d3d83d5709a40fb1eaeeefea9",
+    "last.ts": "a3ddefad65d81058618acaf6f26025d8bf75135d24704a72a86ac3e8ca52a569",
+    "uiTypes.ts": "c7f6cb8d2b3e9aed1581679bec0d0e7a822520cb46b6f0c0c9f01fcd96e15186"
+  }
+}

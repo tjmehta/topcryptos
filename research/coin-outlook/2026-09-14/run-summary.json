@@ -1,0 +1,16 @@
+{
+  "replayed": 324,
+  "scoreChecks": 3240,
+  "warningCount": 3168,
+  "sourceCohorts": 4645,
+  "classifications": 16200,
+  "stateCounts": {
+    "fading": 75,
+    "extended": 1235,
+    "building": 9895,
+    "mixed": 4995,
+    "unavailable": 0
+  },
+  "cells": 917,
+  "artifactBytes": 1492081
+}

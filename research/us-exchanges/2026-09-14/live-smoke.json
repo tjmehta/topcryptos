@@ -1,0 +1,853 @@
+{
+  "checked_at": "2026-09-14T04:48:04.458Z",
+  "exchanges": [
+    {
+      "exchange": "coinbase",
+      "elapsed_ms": 8113,
+      "source": "Coinbase public spot market data",
+      "source_url": "https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-candles",
+      "signal_date": "2026-09-12",
+      "entry_date": "2026-09-14",
+      "volume_method": "close-times-base-volume",
+      "expected_instruments": 50,
+      "instruments": [
+        {
+          "symbol": "BTC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 76799.85,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ETH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2475.86,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ZEC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1061.79,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "XRP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1.3406,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "SOL-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 99.26,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "HYPE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 77.38,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LINK-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 11.199,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "FIL-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.9528,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "DOGE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.08245,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "VTHO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.00078416,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "SUI-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.7019,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "NEAR-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2.2991,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "USELESS-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.21386,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "VVV-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 21.4611,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ADA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.20344,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "TAO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 231.54,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LTC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 53.741,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "UNI-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 6.1261,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PUMP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.003476,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "XLM-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.177087,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LIGHTER-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 4.113,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "REZ-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.004403,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ONDO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.34299,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ARB-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.13301,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AVAX-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 7.29,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "HBAR-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.07512,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AAVE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 124.41,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "BNB-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 716.17,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "DOT-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.9996,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "INJ-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 5.9,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "B3-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.0007247,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "FLOCK-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.067816,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ENA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.13618,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "BCH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 221.03,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "CVC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.03144,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ICP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2.7676,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "FET-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.16606,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "FORTH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.42,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ILV-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 3.4188,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "POWR-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.0621,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "RAY-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1.3784,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "DASH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 53.09,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "CRV-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.3456,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AERO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.55652,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ALGO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.09473,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PENDLE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2.0879,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PEPE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.00000337,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "WLD-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.3792,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PENGU-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.006999,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "TRUMP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1.93,
+          "entry_unavailable_reason": null
+        }
+      ],
+      "views": [
+        {
+          "view_observations": 3,
+          "eligible": 41,
+          "selected": 1
+        },
+        {
+          "view_observations": 4,
+          "eligible": 41,
+          "selected": 1
+        },
+        {
+          "view_observations": 5,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 6,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 7,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 10,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 14,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 21,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 30,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 45,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 60,
+          "eligible": 41,
+          "selected": 0
+        },
+        {
+          "view_observations": 90,
+          "eligible": 41,
+          "selected": 0
+        }
+      ]
+    },
+    {
+      "exchange": "kraken",
+      "elapsed_ms": 7842,
+      "source": "Kraken public spot market data",
+      "source_url": "https://docs.kraken.com/api-reference/market-data/get-ohlc-data",
+      "signal_date": "2026-09-12",
+      "entry_date": "2026-09-14",
+      "volume_method": "vwap-times-base-volume",
+      "expected_instruments": 50,
+      "instruments": [
+        {
+          "symbol": "BTC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 76800.2,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ETH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2475.95,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "XRP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1.34078,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ZEC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1062.08,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "SOL-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 99.25,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "HYPE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 77.3,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LSK-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.787413,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "TAO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 231.3458,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "NEAR-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2.2982,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "FIL-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.953,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ADA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.203619,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "DOGE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.0824174,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LINK-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 11.20397,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "XMR-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 517.56,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "SUI-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.7021,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "VVV-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 21.43,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LAPTOP-USD",
+          "bars": 4,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.2675,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "UNI-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 6.1224,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LTC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 53.74,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "USELESS-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.21376,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PUMP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.003476,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "BNB-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 716.47,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "INJ-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 5.906,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "LIGHTER-USD",
+          "bars": 27,
+          "last_bar": "2026-09-12",
+          "entry_price": 4.122,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "CRV-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.34497,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ARB-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.133,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AAVE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 124.37,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PEPE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.000003363,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "MINA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.09607,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ENA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.1363,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "UAI-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.50372,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "RAY-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 1.381,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ALGO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.09474,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AKE-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.01511928,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "DASH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 53.017,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "XLM-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.177124,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "XTZ-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.28378,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "TRX-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.33813,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "BCH-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 221.17,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "PAXG-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 4334.52,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "VTHO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.000788,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ONDO-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.34256,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "CVC-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.03128,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "ICP-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 2.767,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AVAX-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 7.288,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "HBAR-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.0752,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "MANA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.07485,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "AVA-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.172,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "BAT-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.07845,
+          "entry_unavailable_reason": null
+        },
+        {
+          "symbol": "KAS-USD",
+          "bars": 98,
+          "last_bar": "2026-09-12",
+          "entry_price": 0.03327,
+          "entry_unavailable_reason": null
+        }
+      ],
+      "views": [
+        {
+          "view_observations": 3,
+          "eligible": 31,
+          "selected": 1
+        },
+        {
+          "view_observations": 4,
+          "eligible": 31,
+          "selected": 1
+        },
+        {
+          "view_observations": 5,
+          "eligible": 31,
+          "selected": 1
+        },
+        {
+          "view_observations": 6,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 7,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 10,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 14,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 21,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 30,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 45,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 60,
+          "eligible": 31,
+          "selected": 0
+        },
+        {
+          "view_observations": 90,
+          "eligible": 31,
+          "selected": 0
+        }
+      ]
+    }
+  ]
+}

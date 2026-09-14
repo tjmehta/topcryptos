@@ -1,0 +1,17 @@
+# Prequential sell-zone calibration — 2026-09-13
+
+Frozen before generating this experiment's forecasts or inspecting calibration outcomes. Existing sell-zone results and raw forecasts have already been examined. The 2023–2025 evaluation is retrospective; it is not an untouched holdout.
+
+## Fixed experiment
+
+Replay the unchanged `sell-zone-forecast/2026-09-13/run.py` five entry-known features and standardized L2 logistic model (C=1, lbfgs, max_iter=1000), separately for SMAATRBracket and ResistanceSMAATR, monthly from January 2020 through December 2025. Base training requires 200 known-label rows and both classes, with common hard-horizon exit strictly before the forecast month. Deduplicate identity/signal/holding/policy events; never expand duplicate selections across algorithms or view settings. Generate predictions for every feature-valid event in eligible months, including subsequently unknown outcomes. Verify reproduced 2023–2025 raw predictions against the frozen original ledger.
+
+At each month, fit exactly one intercept offset per policy, pooling 14/30/60/90-day horizons. Input probabilities must come from earlier genuinely prequential base forecasts whose hard-horizon exit precedes this forecast month. Never use fitted/in-sample base probabilities, early simulated sell dates, or current/future labels. Require 200 mature known-label prequential predictions and both classes; otherwise set offset to zero and record raw fallback. Find the unique unpenalized intercept-only logistic maximum-likelihood offset with slope fixed at one; clip input probabilities only to [1e-12, 1-1e-12] for finite logits. No calibration grid, hyperparameter selection, threshold tuning or alternative calibrator search.
+
+Compare raw probabilities, offset-calibrated probabilities, and a same-holding historical empirical baseline, smoothed (hits+1)/(n+2), calculated from exactly the mature feature-valid base training events of that policy and holding. Evaluate only 2023 onward. Pre-2023 predictions warm up calibration; earlier evaluation predictions may later join calibration only after full hard-horizon maturity. Report all policy/year/holding cells, Brier score, log loss, mean probability, observed frequency, fixed ten-bin reliability, distinct entry dates, unknown-label counts, fit/fallback counts. Overlapping holds and symbols are not independent observations. Unknown labels are excluded from fitting and scoring but retained and counted.
+
+This predicts a complete daily bar high reaching the frozen target before the hard-horizon exit open. It does not predict target-before-stop, realized profit, attainable fills, rank, or a recommended sell decision. No selling policy or production integration is part of this bounded experiment.
+
+## Verification and provenance
+
+Hash unchanged source ledger, original forecast runner/protocol/predictions, new protocol/runner, and deterministic compressed result ledger; save UTC start/end, package versions, all fitted base coefficients/scalers, calibration offset/support/cutoff and immutable event identities. Refuse to overwrite outputs. Independently reconstruct mature membership, feature and probability arithmetic, same-holding baselines, calibration score equations, and every reported metric/reliability cell. Add tests showing future-label perturbations, strict boundary exits, and misleading early actual exits cannot alter earlier fits or probabilities.

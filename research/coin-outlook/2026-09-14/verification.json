@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "date": "2026-09-14",
+  "scope": "Independent Python classifications and Decimal aggregation from frozen selection/outcome ledger; no predictive validation.",
+  "classifications": 16200,
+  "sourceQuoteChecks": 144082,
+  "cells": 917,
+  "decimalComparisons": 25676,
+  "sourceCohorts": 4645,
+  "hashes": {
+    "artifact": "ac1131f596fd1c2cc976b2816d821a79ca9851221ba1cbe8b6525c3ad5d64995",
+    "traces": "5572eac85a23b7ba70cfa4841c4c2744fbfca66f01906e6dcf54c24a16c212a3",
+    "stateLedger": "ee3b78147f6d82644af31fdd19f340f22825295ff5d6d9e7f7591a4833d210ed",
+    "verifier": "467615ed973a46ff142f9ad99b0ee0a938af85215812cb779d7f38f5ca354441"
+  }
+}

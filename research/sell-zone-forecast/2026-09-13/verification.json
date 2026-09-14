@@ -1,0 +1,81 @@
+{
+  "verified_forecasts": 7800,
+  "verified_fits": 66,
+  "forecast_ledger_sha256": "2ed277b473dd27874dd808edf88ceb9bc449147d2de4a63a7bdefb54b01d9724",
+  "verifier_sha256": "d59fed029108d1081e2e3daae8455cd167c87596814347cfd90986565bd7762b",
+  "scope": "Arithmetic/source/maturity checks and post-result same-holding baseline; no refit",
+  "summary": [
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "known": 3894,
+      "model_brier": 0.2301552912801943,
+      "pooled_baseline_brier": 0.24398652975885032,
+      "same_holding_baseline_brier": 0.2290343168909336,
+      "improvement_over_same_holding": -0.0011209743892607038
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "known": 1324,
+      "model_brier": 0.2334594193280654,
+      "pooled_baseline_brier": 0.25039990774235776,
+      "same_holding_baseline_brier": 0.23505984031684166,
+      "improvement_over_same_holding": 0.0016004209887762466
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "known": 1342,
+      "model_brier": 0.2306458785232025,
+      "pooled_baseline_brier": 0.2502145259026854,
+      "same_holding_baseline_brier": 0.2324990461149044,
+      "improvement_over_same_holding": 0.0018531675917018986
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "known": 1228,
+      "model_brier": 0.22605672970405552,
+      "pooled_baseline_brier": 0.23026561503963985,
+      "same_holding_baseline_brier": 0.21875136930585942,
+      "improvement_over_same_holding": -0.007305360398196098
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "known": 3896,
+      "model_brier": 0.22214159261772348,
+      "pooled_baseline_brier": 0.25117548264464623,
+      "same_holding_baseline_brier": 0.23972754047786593,
+      "improvement_over_same_holding": 0.017585947860142448
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "known": 1324,
+      "model_brier": 0.22424170206772742,
+      "pooled_baseline_brier": 0.24917756624035958,
+      "same_holding_baseline_brier": 0.23747436737569158,
+      "improvement_over_same_holding": 0.013232665307964159
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "known": 1344,
+      "model_brier": 0.2070937551140966,
+      "pooled_baseline_brier": 0.2445425116576271,
+      "same_holding_baseline_brier": 0.2321326778967543,
+      "improvement_over_same_holding": 0.02503892278265768
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "known": 1228,
+      "model_brier": 0.23634659969677008,
+      "pooled_baseline_brier": 0.26058912623245495,
+      "same_holding_baseline_brier": 0.2504691500025344,
+      "improvement_over_same_holding": 0.014122550305764314
+    }
+  ]
+}

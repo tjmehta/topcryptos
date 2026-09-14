@@ -1,0 +1,1034 @@
+{
+  "protocolSha256": "75f355c79e68b8736f736494daa4abb978f03a7a1f4173b139e9d5f128788e09",
+  "runnerSha256": "31f8e02f95ef574e46117b0fdab01680dd5f1861e30d32a3c16ae62f277e71d2",
+  "inputFingerprint": "7f99bf1ca69b05a9a3323b444ad7503d624d323279e5e576680d98d16bd5f3af",
+  "node": "v22.22.2",
+  "typescript": "5.9.3",
+  "timezone": "UTC",
+  "sourceHashes": {
+    "modules/processRankings.ts": "3d9d8b46c5ee66eb2237285e27b4ad4c64ede65410a9ff5ec408bda190e0c689",
+    "modules/MinMax.ts": "924dcc97f341c53b1a4324c12cda0050c6a0d2637de1e9d410b05632456f24a5",
+    "modules/SortedList.ts": "7629fc53de9d9f00fd009a9e793f0eb7b384212f395a5a6303d9660993dc49f4",
+    "modules/compareDates.ts": "d6f3880058e8f598f9115eaceb443f0c824f506d3d83d5709a40fb1eaeeefea9",
+    "modules/last.ts": "a3ddefad65d81058618acaf6f26025d8bf75135d24704a72a86ac3e8ca52a569"
+  },
+  "interpretationWarnings": [
+    "The 2020-2021 era is diagnostic-only: 2021-01-28 is mislabeled start=1 but contains ranks 1300-1800, with zero overlap on adjacent days. Do not interpret its missing endpoints as economic losses.",
+    "2020-11-30 has only 173/170 IDs in common with adjacent daily snapshots; cause unresolved. No source exclusion or score retuning was made after seeing results.",
+    "Primary preliminary comparison is the separately reported 2026 era. Minor rank metadata exceptions (501) remain inventoried, not silently removed.",
+    "Missing=0 and missing=-100% are scenarios, not unbiased estimates. Endpoint absence does not establish delisting.",
+    "Quote timestamps are not ingestion/publication evidence. Historical data were fetched retrospectively; cache is selectively seeded."
+  ],
+  "scorerWarnings": 34442,
+  "warningMeaning": "Actual scorer warns on one-quote groups/no total; counted, suppressed from stdout, never treated as eligible.",
+  "skipped": [
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-01-28T23:00:00.000Z",
+      "reason": "forward-crosses-holdout-boundary"
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-01-29T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-01-30T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-01-31T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-02-01T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-02-02T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-02-03T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2021-02-04T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 21,
+      "forward": 7,
+      "decision": "2021-01-27T23:00:00.000Z",
+      "reason": "forward-crosses-holdout-boundary"
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 21,
+      "forward": 7,
+      "decision": "2021-02-03T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 21,
+      "forward": 7,
+      "decision": "2021-02-10T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2020-11-18_2021-03-06",
+      "lookback": 21,
+      "forward": 7,
+      "decision": "2021-02-17T23:00:00.000Z",
+      "reason": "under-10-shared-coins",
+      "n": 0
+    },
+    {
+      "era": "2026-07-04_2026-09-10",
+      "lookback": 7,
+      "forward": 1,
+      "decision": "2026-08-18T23:03:00.000Z",
+      "reason": "forward-crosses-holdout-boundary"
+    },
+    {
+      "era": "2026-07-04_2026-09-10",
+      "lookback": 21,
+      "forward": 7,
+      "decision": "2026-08-15T23:04:00.000Z",
+      "reason": "forward-crosses-holdout-boundary"
+    }
+  ],
+  "summaries": [
+    {
+      "group": "2020-11-18_2021-03-06|7/1|exploratory",
+      "decisions": 64,
+      "firstDecision": "2020-11-25T23:00:00.000Z",
+      "lastDecision": "2021-01-27T23:00:00.000Z",
+      "sharedUniverse": {
+        "min": 162,
+        "max": 472,
+        "mean": 425.6875
+      },
+      "nativeCurrentEligible": {
+        "min": 175,
+        "max": 494,
+        "mean": 480.875
+      },
+      "nativeEligible": {
+        "min": 477,
+        "max": 508,
+        "mean": 499.578125
+      },
+      "nativeClassicTop10Overlap": 8.453125,
+      "btcMean": 0.008786293547393957,
+      "btcMissing": 1,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": -0.01250028597859249,
+          "meanMissingTotalLoss": -0.04218778597859249,
+          "meanConditionalObservedOnly": -0.012945311649510937,
+          "completeDecisions": 60,
+          "missingEndpoints": 19,
+          "totalEndpoints": 640,
+          "meanExcessUniverseMissingZero": -0.02478216201616401,
+          "meanExcessBTCMissingZero": -0.021484996763741885,
+          "meanTop10OverlapReturn": 4.5625,
+          "meanSpearmanReturn": 0.981402633449832,
+          "meanTurnover": 0.7634920634920634,
+          "costScenarioPerSideBps": {
+            "10": -0.01450028597859249,
+            "50": -0.02250028597859249,
+            "100": -0.03250028597859249
+          }
+        },
+        "Return": {
+          "meanMissingZero": -0.014342005369261387,
+          "meanMissingTotalLoss": -0.047154505369261385,
+          "meanConditionalObservedOnly": -0.014902281768260828,
+          "completeDecisions": 57,
+          "missingEndpoints": 21,
+          "totalEndpoints": 640,
+          "meanExcessUniverseMissingZero": -0.02662388140683291,
+          "meanExcessBTCMissingZero": -0.02335594979553251,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.39999999999999997,
+          "costScenarioPerSideBps": {
+            "10": -0.016342005369261385,
+            "50": -0.024342005369261385,
+            "100": -0.03434200536926139
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": 0.003513804842993206,
+          "meanMissingTotalLoss": -0.023048695157006794,
+          "meanConditionalObservedOnly": 0.003097368367826801,
+          "completeDecisions": 60,
+          "missingEndpoints": 17,
+          "totalEndpoints": 640,
+          "meanExcessUniverseMissingZero": -0.008768071194578314,
+          "meanExcessBTCMissingZero": -0.005216714024353244,
+          "meanTop10OverlapReturn": 7.25,
+          "meanSpearmanReturn": 0.9260078788142085,
+          "meanTurnover": 0.30793650793650784,
+          "costScenarioPerSideBps": {
+            "10": 0.0015138048429932062,
+            "50": -0.006486195157006794,
+            "100": -0.016486195157006795
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.017019433806788095,
+          "meanMissingTotalLoss": -0.011105566193211904,
+          "meanConditionalObservedOnly": 0.01685600500029687,
+          "completeDecisions": 62,
+          "missingEndpoints": 18,
+          "totalEndpoints": 640,
+          "meanExcessUniverseMissingZero": 0.0047375577692165775,
+          "meanExcessBTCMissingZero": 0.008503290002359026,
+          "meanTop10OverlapReturn": 3,
+          "meanSpearmanReturn": 0.9140927252460308,
+          "meanTurnover": 0.4888888888888889,
+          "costScenarioPerSideBps": {
+            "10": 0.015019433806788095,
+            "50": 0.007019433806788095,
+            "100": -0.0029805661932119053
+          }
+        },
+        "Universe": {
+          "meanMissingZero": 0.01228187603757152,
+          "meanMissingTotalLoss": -0.019958426679513017,
+          "meanConditionalObservedOnly": 0.01275684798957286,
+          "completeDecisions": 9,
+          "missingEndpoints": 938,
+          "totalEndpoints": 27244,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": 0.003690532903472346,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2020-11-18_2021-03-06|7/1|holdout",
+      "decisions": 29,
+      "firstDecision": "2021-02-05T23:00:00.000Z",
+      "lastDecision": "2021-03-05T23:00:00.000Z",
+      "sharedUniverse": {
+        "min": 452,
+        "max": 473,
+        "mean": 461.2068965517241
+      },
+      "nativeCurrentEligible": {
+        "min": 473,
+        "max": 490,
+        "mean": 483.1034482758621
+      },
+      "nativeEligible": {
+        "min": 492,
+        "max": 504,
+        "mean": 498
+      },
+      "nativeClassicTop10Overlap": 9.379310344827585,
+      "btcMean": 0.00998655880661303,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": 0.019159166562685518,
+          "meanMissingTotalLoss": 0.019159166562685518,
+          "meanConditionalObservedOnly": 0.019159166562685518,
+          "completeDecisions": 29,
+          "missingEndpoints": 0,
+          "totalEndpoints": 290,
+          "meanExcessUniverseMissingZero": 0.0024387656344953233,
+          "meanExcessBTCMissingZero": 0.009172607756072485,
+          "meanTop10OverlapReturn": 4.586206896551724,
+          "meanSpearmanReturn": 0.9770410521524846,
+          "meanTurnover": 0.7250000000000003,
+          "costScenarioPerSideBps": {
+            "10": 0.01715916656268552,
+            "50": 0.009159166562685518,
+            "100": -0.0008408334373144824
+          }
+        },
+        "Return": {
+          "meanMissingZero": 0.00431736062850942,
+          "meanMissingTotalLoss": 0.00431736062850942,
+          "meanConditionalObservedOnly": 0.00431736062850942,
+          "completeDecisions": 29,
+          "missingEndpoints": 0,
+          "totalEndpoints": 290,
+          "meanExcessUniverseMissingZero": -0.012403040299680769,
+          "meanExcessBTCMissingZero": -0.00566919817810361,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.38571428571428573,
+          "costScenarioPerSideBps": {
+            "10": 0.00231736062850942,
+            "50": -0.00568263937149058,
+            "100": -0.01568263937149058
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": -0.0016999572599561501,
+          "meanMissingTotalLoss": -0.0016999572599561501,
+          "meanConditionalObservedOnly": -0.0016999572599561501,
+          "completeDecisions": 29,
+          "missingEndpoints": 0,
+          "totalEndpoints": 290,
+          "meanExcessUniverseMissingZero": -0.018420358188146344,
+          "meanExcessBTCMissingZero": -0.011686516066569178,
+          "meanTop10OverlapReturn": 7.103448275862069,
+          "meanSpearmanReturn": 0.9358575851190415,
+          "meanTurnover": 0.37142857142857144,
+          "costScenarioPerSideBps": {
+            "10": -0.00369995725995615,
+            "50": -0.01169995725995615,
+            "100": -0.02169995725995615
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.009070753679766798,
+          "meanMissingTotalLoss": 0.005622477817697834,
+          "meanConditionalObservedOnly": 0.008993980576117163,
+          "completeDecisions": 28,
+          "missingEndpoints": 1,
+          "totalEndpoints": 290,
+          "meanExcessUniverseMissingZero": -0.007649647248423393,
+          "meanExcessBTCMissingZero": -0.0009158051268462312,
+          "meanTop10OverlapReturn": 2.896551724137931,
+          "meanSpearmanReturn": 0.8769704437901262,
+          "meanTurnover": 0.5607142857142856,
+          "costScenarioPerSideBps": {
+            "10": 0.0070707536797667975,
+            "50": -0.0009292463202332027,
+            "100": -0.010929246320233203
+          }
+        },
+        "Universe": {
+          "meanMissingZero": 0.016720400928190198,
+          "meanMissingTotalLoss": 0.009765194127741761,
+          "meanConditionalObservedOnly": 0.016868760878540955,
+          "completeDecisions": 2,
+          "missingEndpoints": 93,
+          "totalEndpoints": 13375,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": 0.006733842121577162,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2020-11-18_2021-03-06|21/7|exploratory",
+      "decisions": 7,
+      "firstDecision": "2020-12-09T23:00:00.000Z",
+      "lastDecision": "2021-01-20T23:00:00.000Z",
+      "sharedUniverse": {
+        "min": 156,
+        "max": 442,
+        "mean": 354.57142857142856
+      },
+      "nativeCurrentEligible": {
+        "min": 470,
+        "max": 484,
+        "mean": 478.14285714285717
+      },
+      "nativeEligible": {
+        "min": 509,
+        "max": 519,
+        "mean": 513
+      },
+      "nativeClassicTop10Overlap": 8.142857142857142,
+      "btcMean": 0.08271247156799574,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": 0.07983244275246083,
+          "meanMissingTotalLoss": 0.07983244275246083,
+          "meanConditionalObservedOnly": 0.07983244275246083,
+          "completeDecisions": 7,
+          "missingEndpoints": 0,
+          "totalEndpoints": 70,
+          "meanExcessUniverseMissingZero": 0.01328655335175998,
+          "meanExcessBTCMissingZero": -0.0028800288155349124,
+          "meanTop10OverlapReturn": 6,
+          "meanSpearmanReturn": 0.9804041133035932,
+          "meanTurnover": 0.7666666666666667,
+          "costScenarioPerSideBps": {
+            "10": 0.07783244275246083,
+            "50": 0.06983244275246084,
+            "100": 0.05983244275246083
+          }
+        },
+        "Return": {
+          "meanMissingZero": 0.11689232791123115,
+          "meanMissingTotalLoss": 0.08832089933980257,
+          "meanConditionalObservedOnly": 0.1152695516322023,
+          "completeDecisions": 6,
+          "missingEndpoints": 2,
+          "totalEndpoints": 70,
+          "meanExcessUniverseMissingZero": 0.050346438510530285,
+          "meanExcessBTCMissingZero": 0.03417985634323541,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.65,
+          "costScenarioPerSideBps": {
+            "10": 0.11489232791123115,
+            "50": 0.10689232791123116,
+            "100": 0.09689232791123115
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": 0.09443200610960979,
+          "meanMissingTotalLoss": 0.08014629182389552,
+          "meanConditionalObservedOnly": 0.09399254667603955,
+          "completeDecisions": 6,
+          "missingEndpoints": 1,
+          "totalEndpoints": 70,
+          "meanExcessUniverseMissingZero": 0.027886116708908937,
+          "meanExcessBTCMissingZero": 0.011719534541614063,
+          "meanTop10OverlapReturn": 6.714285714285714,
+          "meanSpearmanReturn": 0.9043308179417554,
+          "meanTurnover": 0.7166666666666667,
+          "costScenarioPerSideBps": {
+            "10": 0.09243200610960979,
+            "50": 0.0844320061096098,
+            "100": 0.07443200610960979
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.18321679114168823,
+          "meanMissingTotalLoss": 0.18321679114168823,
+          "meanConditionalObservedOnly": 0.18321679114168823,
+          "completeDecisions": 7,
+          "missingEndpoints": 0,
+          "totalEndpoints": 70,
+          "meanExcessUniverseMissingZero": 0.11667090174098739,
+          "meanExcessBTCMissingZero": 0.10050431957369252,
+          "meanTop10OverlapReturn": 4,
+          "meanSpearmanReturn": 0.9398966285769059,
+          "meanTurnover": 0.6333333333333334,
+          "costScenarioPerSideBps": {
+            "10": 0.18121679114168823,
+            "50": 0.17321679114168823,
+            "100": 0.16321679114168824
+          }
+        },
+        "Universe": {
+          "meanMissingZero": 0.06654588940070084,
+          "meanMissingTotalLoss": 0.04536935515936732,
+          "meanConditionalObservedOnly": 0.06779331823101499,
+          "completeDecisions": 0,
+          "missingEndpoints": 59,
+          "totalEndpoints": 2482,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": -0.016166582167294892,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2020-11-18_2021-03-06|21/7|holdout",
+      "decisions": 1,
+      "firstDecision": "2021-02-24T23:00:00.000Z",
+      "lastDecision": "2021-02-24T23:00:00.000Z",
+      "sharedUniverse": {
+        "min": 412,
+        "max": 412,
+        "mean": 412
+      },
+      "nativeCurrentEligible": {
+        "min": 474,
+        "max": 474,
+        "mean": 474
+      },
+      "nativeEligible": {
+        "min": 515,
+        "max": 515,
+        "mean": 515
+      },
+      "nativeClassicTop10Overlap": 9,
+      "btcMean": 0.01675695629634366,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": -0.0468491028919087,
+          "meanMissingTotalLoss": -0.0468491028919087,
+          "meanConditionalObservedOnly": -0.0468491028919087,
+          "completeDecisions": 1,
+          "missingEndpoints": 0,
+          "totalEndpoints": 10,
+          "meanExcessUniverseMissingZero": -0.11237485329552421,
+          "meanExcessBTCMissingZero": -0.06360605918825236,
+          "meanTop10OverlapReturn": 4,
+          "meanSpearmanReturn": 0.9729472808378674,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": {
+            "10": -0.048849102891908705,
+            "50": -0.056849102891908705,
+            "100": -0.06684910289190871
+          }
+        },
+        "Return": {
+          "meanMissingZero": -0.21169418329472717,
+          "meanMissingTotalLoss": -0.21169418329472717,
+          "meanConditionalObservedOnly": -0.21169418329472717,
+          "completeDecisions": 1,
+          "missingEndpoints": 0,
+          "totalEndpoints": 10,
+          "meanExcessUniverseMissingZero": -0.2772199336983427,
+          "meanExcessBTCMissingZero": -0.22845113959107083,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": {
+            "10": -0.21369418329472717,
+            "50": -0.22169418329472718,
+            "100": -0.23169418329472716
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": -0.04328501010276705,
+          "meanMissingTotalLoss": -0.04328501010276705,
+          "meanConditionalObservedOnly": -0.04328501010276705,
+          "completeDecisions": 1,
+          "missingEndpoints": 0,
+          "totalEndpoints": 10,
+          "meanExcessUniverseMissingZero": -0.10881076050638255,
+          "meanExcessBTCMissingZero": -0.06004196639911071,
+          "meanTop10OverlapReturn": 5,
+          "meanSpearmanReturn": 0.9290785630292374,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": {
+            "10": -0.04528501010276705,
+            "50": -0.05328501010276705,
+            "100": -0.06328501010276705
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.06698186010049041,
+          "meanMissingTotalLoss": 0.06698186010049041,
+          "meanConditionalObservedOnly": 0.06698186010049041,
+          "completeDecisions": 1,
+          "missingEndpoints": 0,
+          "totalEndpoints": 10,
+          "meanExcessUniverseMissingZero": 0.001456109696874902,
+          "meanExcessBTCMissingZero": 0.05022490380414675,
+          "meanTop10OverlapReturn": 4,
+          "meanSpearmanReturn": 0.9452788964973834,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": {
+            "10": 0.06498186010049041,
+            "50": 0.05698186010049041,
+            "100": 0.04698186010049041
+          }
+        },
+        "Universe": {
+          "meanMissingZero": 0.06552575040361551,
+          "meanMissingTotalLoss": 0.05338982807351843,
+          "meanConditionalObservedOnly": 0.06633073505230858,
+          "completeDecisions": 0,
+          "missingEndpoints": 5,
+          "totalEndpoints": 412,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": 0.04876879410727185,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2026-07-04_2026-09-10|7/1|exploratory",
+      "decisions": 38,
+      "firstDecision": "2026-07-11T22:59:00.000Z",
+      "lastDecision": "2026-08-17T23:04:00.000Z",
+      "sharedUniverse": {
+        "min": 413,
+        "max": 480,
+        "mean": 464.7894736842105
+      },
+      "nativeCurrentEligible": {
+        "min": 447,
+        "max": 496,
+        "mean": 485.7894736842105
+      },
+      "nativeEligible": {
+        "min": 452,
+        "max": 508,
+        "mean": 498.89473684210526
+      },
+      "nativeClassicTop10Overlap": 9.131578947368421,
+      "btcMean": 0.0002879673178457878,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": -0.016551953311449603,
+          "meanMissingTotalLoss": -0.016551953311449603,
+          "meanConditionalObservedOnly": -0.016551953311449603,
+          "completeDecisions": 38,
+          "missingEndpoints": 0,
+          "totalEndpoints": 380,
+          "meanExcessUniverseMissingZero": -0.014737499546478641,
+          "meanExcessBTCMissingZero": -0.016839920629295388,
+          "meanTop10OverlapReturn": 5.078947368421052,
+          "meanSpearmanReturn": 0.9801340470472729,
+          "meanTurnover": 0.7783783783783784,
+          "costScenarioPerSideBps": {
+            "10": -0.018551953311449605,
+            "50": -0.026551953311449605,
+            "100": -0.0365519533114496
+          }
+        },
+        "Return": {
+          "meanMissingZero": -0.005321125255657866,
+          "meanMissingTotalLoss": -0.010584283150394707,
+          "meanConditionalObservedOnly": -0.005263212326817031,
+          "completeDecisions": 36,
+          "missingEndpoints": 2,
+          "totalEndpoints": 380,
+          "meanExcessUniverseMissingZero": -0.003506671490686902,
+          "meanExcessBTCMissingZero": -0.00560909257350365,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.38648648648648654,
+          "costScenarioPerSideBps": {
+            "10": -0.007321125255657866,
+            "50": -0.015321125255657866,
+            "100": -0.025321125255657866
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": -0.010165774466016311,
+          "meanMissingTotalLoss": -0.010165774466016311,
+          "meanConditionalObservedOnly": -0.010165774466016311,
+          "completeDecisions": 38,
+          "missingEndpoints": 0,
+          "totalEndpoints": 380,
+          "meanExcessUniverseMissingZero": -0.00835132070104535,
+          "meanExcessBTCMissingZero": -0.010453741783862098,
+          "meanTop10OverlapReturn": 7.105263157894737,
+          "meanSpearmanReturn": 0.9290956216085602,
+          "meanTurnover": 0.32432432432432445,
+          "costScenarioPerSideBps": {
+            "10": -0.012165774466016311,
+            "50": -0.020165774466016313,
+            "100": -0.03016577446601631
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": -0.004738603093806864,
+          "meanMissingTotalLoss": -0.012633339935912122,
+          "meanConditionalObservedOnly": -0.004499261498588178,
+          "completeDecisions": 37,
+          "missingEndpoints": 3,
+          "totalEndpoints": 380,
+          "meanExcessUniverseMissingZero": -0.0029241493288359017,
+          "meanExcessBTCMissingZero": -0.005026570411652651,
+          "meanTop10OverlapReturn": 2.289473684210526,
+          "meanSpearmanReturn": 0.9100810182195027,
+          "meanTurnover": 0.4756756756756757,
+          "costScenarioPerSideBps": {
+            "10": -0.006738603093806864,
+            "50": -0.014738603093806864,
+            "100": -0.024738603093806863
+          }
+        },
+        "Universe": {
+          "meanMissingZero": -0.0018144537649709604,
+          "meanMissingTotalLoss": -0.008706496044840162,
+          "meanConditionalObservedOnly": -0.0018130129568730386,
+          "completeDecisions": 7,
+          "missingEndpoints": 123,
+          "totalEndpoints": 17662,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": -0.0021024210828167493,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2026-07-04_2026-09-10|7/1|holdout",
+      "decisions": 22,
+      "firstDecision": "2026-08-19T23:03:00.000Z",
+      "lastDecision": "2026-09-09T23:03:00.000Z",
+      "sharedUniverse": {
+        "min": 472,
+        "max": 487,
+        "mean": 479.27272727272725
+      },
+      "nativeCurrentEligible": {
+        "min": 486,
+        "max": 496,
+        "mean": 491.5
+      },
+      "nativeEligible": {
+        "min": 496,
+        "max": 502,
+        "mean": 499.3636363636364
+      },
+      "nativeClassicTop10Overlap": 9.454545454545455,
+      "btcMean": 0.005095166238140037,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": 0.006264033036064496,
+          "meanMissingTotalLoss": 0.006264033036064496,
+          "meanConditionalObservedOnly": 0.006264033036064496,
+          "completeDecisions": 22,
+          "missingEndpoints": 0,
+          "totalEndpoints": 220,
+          "meanExcessUniverseMissingZero": 0.000692308509552594,
+          "meanExcessBTCMissingZero": 0.0011688667979244604,
+          "meanTop10OverlapReturn": 4.409090909090909,
+          "meanSpearmanReturn": 0.9796842551436583,
+          "meanTurnover": 0.7761904761904762,
+          "costScenarioPerSideBps": {
+            "10": 0.0042640330360644955,
+            "50": -0.0037359669639355046,
+            "100": -0.013735966963935505
+          }
+        },
+        "Return": {
+          "meanMissingZero": 0.01341632765576316,
+          "meanMissingTotalLoss": 0.01341632765576316,
+          "meanConditionalObservedOnly": 0.01341632765576316,
+          "completeDecisions": 22,
+          "missingEndpoints": 0,
+          "totalEndpoints": 220,
+          "meanExcessUniverseMissingZero": 0.007844603129251256,
+          "meanExcessBTCMissingZero": 0.008321161417623122,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.33809523809523806,
+          "costScenarioPerSideBps": {
+            "10": 0.01141632765576316,
+            "50": 0.0034163276557631593,
+            "100": -0.006583672344236841
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": 0.017984914911782154,
+          "meanMissingTotalLoss": 0.017984914911782154,
+          "meanConditionalObservedOnly": 0.017984914911782154,
+          "completeDecisions": 22,
+          "missingEndpoints": 0,
+          "totalEndpoints": 220,
+          "meanExcessUniverseMissingZero": 0.01241319038527025,
+          "meanExcessBTCMissingZero": 0.01288974867364212,
+          "meanTop10OverlapReturn": 7.090909090909091,
+          "meanSpearmanReturn": 0.9371851603489131,
+          "meanTurnover": 0.3095238095238095,
+          "costScenarioPerSideBps": {
+            "10": 0.015984914911782153,
+            "50": 0.007984914911782154,
+            "100": -0.002015085088217846
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.018778556507949712,
+          "meanMissingTotalLoss": 0.014233101962495167,
+          "meanConditionalObservedOnly": 0.018618156813019496,
+          "completeDecisions": 21,
+          "missingEndpoints": 1,
+          "totalEndpoints": 220,
+          "meanExcessUniverseMissingZero": 0.013206831981437806,
+          "meanExcessBTCMissingZero": 0.013683390269809676,
+          "meanTop10OverlapReturn": 2,
+          "meanSpearmanReturn": 0.8759778153657657,
+          "meanTurnover": 0.49523809523809514,
+          "costScenarioPerSideBps": {
+            "10": 0.01677855650794971,
+            "50": 0.008778556507949712,
+            "100": -0.0012214434920502885
+          }
+        },
+        "Universe": {
+          "meanMissingZero": 0.005571724526511904,
+          "meanMissingTotalLoss": 0.0013070891220885203,
+          "meanConditionalObservedOnly": 0.005610452379541024,
+          "completeDecisions": 2,
+          "missingEndpoints": 45,
+          "totalEndpoints": 10544,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": 0.00047655828837186586,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2026-07-04_2026-09-10|21/7|exploratory",
+      "decisions": 3,
+      "firstDecision": "2026-07-25T22:59:00.000Z",
+      "lastDecision": "2026-08-08T23:06:00.000Z",
+      "sharedUniverse": {
+        "min": 402,
+        "max": 455,
+        "mean": 421.6666666666667
+      },
+      "nativeCurrentEligible": {
+        "min": 454,
+        "max": 484,
+        "mean": 464
+      },
+      "nativeEligible": {
+        "min": 509,
+        "max": 517,
+        "mean": 514
+      },
+      "nativeClassicTop10Overlap": 8.666666666666666,
+      "btcMean": -0.006293136506927495,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": -0.03112086129712267,
+          "meanMissingTotalLoss": -0.064454194630456,
+          "meanConditionalObservedOnly": -0.031046977595711817,
+          "completeDecisions": 2,
+          "missingEndpoints": 1,
+          "totalEndpoints": 30,
+          "meanExcessUniverseMissingZero": -0.024222146813514228,
+          "meanExcessBTCMissingZero": -0.024827724790195172,
+          "meanTop10OverlapReturn": 5.333333333333333,
+          "meanSpearmanReturn": 0.9742051406990667,
+          "meanTurnover": 0.6499999999999999,
+          "costScenarioPerSideBps": {
+            "10": -0.03312086129712267,
+            "50": -0.04112086129712267,
+            "100": -0.05112086129712267
+          }
+        },
+        "Return": {
+          "meanMissingZero": 0.09474695248957178,
+          "meanMissingTotalLoss": 0.09474695248957178,
+          "meanConditionalObservedOnly": 0.09474695248957178,
+          "completeDecisions": 3,
+          "missingEndpoints": 0,
+          "totalEndpoints": 30,
+          "meanExcessUniverseMissingZero": 0.10164566697318023,
+          "meanExcessBTCMissingZero": 0.10104008899649929,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.6,
+          "costScenarioPerSideBps": {
+            "10": 0.09274695248957178,
+            "50": 0.08474695248957179,
+            "100": 0.07474695248957178
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": 0.09246398767112547,
+          "meanMissingTotalLoss": 0.09246398767112547,
+          "meanConditionalObservedOnly": 0.09246398767112547,
+          "completeDecisions": 3,
+          "missingEndpoints": 0,
+          "totalEndpoints": 30,
+          "meanExcessUniverseMissingZero": 0.09936270215473392,
+          "meanExcessBTCMissingZero": 0.09875712417805298,
+          "meanTop10OverlapReturn": 7.333333333333333,
+          "meanSpearmanReturn": 0.9202338470495599,
+          "meanTurnover": 0.6499999999999999,
+          "costScenarioPerSideBps": {
+            "10": 0.09046398767112547,
+            "50": 0.08246398767112548,
+            "100": 0.07246398767112547
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.01852805476382231,
+          "meanMissingTotalLoss": -0.014805278569511018,
+          "meanConditionalObservedOnly": 0.018963801473452075,
+          "completeDecisions": 2,
+          "missingEndpoints": 1,
+          "totalEndpoints": 30,
+          "meanExcessUniverseMissingZero": 0.025426769247430748,
+          "meanExcessBTCMissingZero": 0.024821191270749804,
+          "meanTop10OverlapReturn": 5.333333333333333,
+          "meanSpearmanReturn": 0.9248782753865884,
+          "meanTurnover": 0.75,
+          "costScenarioPerSideBps": {
+            "10": 0.01652805476382231,
+            "50": 0.00852805476382231,
+            "100": -0.0014719452361776908
+          }
+        },
+        "Universe": {
+          "meanMissingZero": -0.006898714483608441,
+          "meanMissingTotalLoss": -0.04315810917144913,
+          "meanConditionalObservedOnly": -0.008078038158764884,
+          "completeDecisions": 0,
+          "missingEndpoints": 49,
+          "totalEndpoints": 1265,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": -0.000605577976680944,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    },
+    {
+      "group": "2026-07-04_2026-09-10|21/7|holdout",
+      "decisions": 2,
+      "firstDecision": "2026-08-22T23:04:00.000Z",
+      "lastDecision": "2026-08-29T23:03:00.000Z",
+      "sharedUniverse": {
+        "min": 450,
+        "max": 454,
+        "mean": 452
+      },
+      "nativeCurrentEligible": {
+        "min": 483,
+        "max": 487,
+        "mean": 485
+      },
+      "nativeEligible": {
+        "min": 502,
+        "max": 509,
+        "mean": 505.5
+      },
+      "nativeClassicTop10Overlap": 10,
+      "btcMean": 0.017611105379967573,
+      "btcMissing": 0,
+      "portfolios": {
+        "Classic": {
+          "meanMissingZero": 0.011773375390446594,
+          "meanMissingTotalLoss": 0.011773375390446594,
+          "meanConditionalObservedOnly": 0.011773375390446594,
+          "completeDecisions": 2,
+          "missingEndpoints": 0,
+          "totalEndpoints": 20,
+          "meanExcessUniverseMissingZero": -0.024003180665146263,
+          "meanExcessBTCMissingZero": -0.005837729989520979,
+          "meanTop10OverlapReturn": 4,
+          "meanSpearmanReturn": 0.973361340711558,
+          "meanTurnover": 0.8,
+          "costScenarioPerSideBps": {
+            "10": 0.009773375390446594,
+            "50": 0.001773375390446594,
+            "100": -0.008226624609553406
+          }
+        },
+        "Return": {
+          "meanMissingZero": 0.12298656200145228,
+          "meanMissingTotalLoss": 0.12298656200145228,
+          "meanConditionalObservedOnly": 0.12298656200145228,
+          "completeDecisions": 2,
+          "missingEndpoints": 0,
+          "totalEndpoints": 20,
+          "meanExcessUniverseMissingZero": 0.08721000594585941,
+          "meanExcessBTCMissingZero": 0.1053754566214847,
+          "meanTop10OverlapReturn": 10,
+          "meanSpearmanReturn": 1,
+          "meanTurnover": 0.6,
+          "costScenarioPerSideBps": {
+            "10": 0.12098656200145227,
+            "50": 0.11298656200145228,
+            "100": 0.10298656200145227
+          }
+        },
+        "TrendQuality": {
+          "meanMissingZero": 0.094366468080326,
+          "meanMissingTotalLoss": 0.094366468080326,
+          "meanConditionalObservedOnly": 0.094366468080326,
+          "completeDecisions": 2,
+          "missingEndpoints": 0,
+          "totalEndpoints": 20,
+          "meanExcessUniverseMissingZero": 0.05858991202473315,
+          "meanExcessBTCMissingZero": 0.07675536270035843,
+          "meanTop10OverlapReturn": 5.5,
+          "meanSpearmanReturn": 0.882219556791636,
+          "meanTurnover": 0.7,
+          "costScenarioPerSideBps": {
+            "10": 0.092366468080326,
+            "50": 0.08436646808032601,
+            "100": 0.074366468080326
+          }
+        },
+        "VolAdjusted": {
+          "meanMissingZero": 0.01189323198058781,
+          "meanMissingTotalLoss": 0.01189323198058781,
+          "meanConditionalObservedOnly": 0.01189323198058781,
+          "completeDecisions": 2,
+          "missingEndpoints": 0,
+          "totalEndpoints": 20,
+          "meanExcessUniverseMissingZero": -0.023883324075005048,
+          "meanExcessBTCMissingZero": -0.005717873399379764,
+          "meanTop10OverlapReturn": 3.5,
+          "meanSpearmanReturn": 0.8652628050798911,
+          "meanTurnover": 0.6,
+          "costScenarioPerSideBps": {
+            "10": 0.00989323198058781,
+            "50": 0.0018932319805878093,
+            "100": -0.008106768019412191
+          }
+        },
+        "Universe": {
+          "meanMissingZero": 0.03577655605559286,
+          "meanMissingTotalLoss": 0.02581571415642497,
+          "meanConditionalObservedOnly": 0.03611259494534023,
+          "completeDecisions": 0,
+          "missingEndpoints": 9,
+          "totalEndpoints": 904,
+          "meanExcessUniverseMissingZero": 0,
+          "meanExcessBTCMissingZero": 0.018165450675625285,
+          "meanTop10OverlapReturn": null,
+          "meanSpearmanReturn": null,
+          "meanTurnover": null,
+          "costScenarioPerSideBps": null
+        }
+      }
+    }
+  ],
+  "decisionCount": 166,
+  "decisionsSha256": "cf29023c8659fe91f5d4df18d6b9fef29f5b2327acbdee0259a2dbbc933b2c37"
+}

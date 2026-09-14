@@ -1,0 +1,1020 @@
+{
+  "status": "passed",
+  "started_utc": "2026-09-13T20:56:50.334978+00:00",
+  "completed_utc": "2026-09-13T20:57:04.850539+00:00",
+  "hashes": {
+    "research/outlook/2026-09-13/verify.py": "9ea8fa85e86fbf85cbe5a691ae56c9ac0762acd2724c65f951e45c0af6ea664a",
+    "research/outlook/2026-09-13/test_outlook.py": "a2eaf40dafe422478775689516d1c06187a1625629d3444a9080803f6813bd0d",
+    "research/outlook/2026-09-13/outlook.py": "78efe062463f3361610c70af67858c7150b3f4c534c5d1050c43f91edd0e3cdd",
+    "research/outlook/2026-09-13/model-bundle.json": "8632b290aca42c45e16cf5d204806341ad77b95399601d5a74c87977899e8670",
+    "research/outlook/2026-09-13/bundle-manifest.json": "1be645cbca2e0986750e2bce072a0c1dbbd9130466e14fa6cff7d29be47e85bd",
+    "research/outlook/2026-09-13/example-input.json": "7a82eb80fae3f659f7e84c544582638c5a7cf090f9b0cfb8a5ef361c7317569a",
+    "research/daily-breakouts/2026-09-13/ledger.json.gz": "ccd0108188f99f0269383775b20b5eb243ab2dee6b5dbef811206bc461585e1b",
+    "research/daily-breakouts/2026-09-13/forecast-ledger.json.gz": "dd83c95a731974b12bfea876e4dd669c1e36d0f29af115e540b6fce80bc36d7b",
+    "research/daily-breakouts/2026-09-13/forecast-verification.json": "8c6f877f28485801799c733536556604b1c5a56ed39e25e45cb4c62d94c77ab9"
+  },
+  "behavioral_tests": 13,
+  "exported_fits_checked": 74,
+  "historical_probability_cases": 148,
+  "checked_fit_ids": [
+    "SMAATRBracket:2023-01-01",
+    "SMAATRBracket:2023-02-01",
+    "SMAATRBracket:2023-03-01",
+    "SMAATRBracket:2023-04-01",
+    "SMAATRBracket:2023-05-01",
+    "SMAATRBracket:2023-06-01",
+    "SMAATRBracket:2023-07-01",
+    "SMAATRBracket:2023-08-01",
+    "SMAATRBracket:2023-09-01",
+    "SMAATRBracket:2023-10-01",
+    "SMAATRBracket:2023-11-01",
+    "SMAATRBracket:2023-12-01",
+    "SMAATRBracket:2024-01-01",
+    "SMAATRBracket:2024-02-01",
+    "SMAATRBracket:2024-03-01",
+    "SMAATRBracket:2024-04-01",
+    "SMAATRBracket:2024-05-01",
+    "SMAATRBracket:2024-06-01",
+    "SMAATRBracket:2024-07-01",
+    "SMAATRBracket:2024-08-01",
+    "SMAATRBracket:2024-09-01",
+    "SMAATRBracket:2024-10-01",
+    "SMAATRBracket:2024-11-01",
+    "SMAATRBracket:2024-12-01",
+    "SMAATRBracket:2025-01-01",
+    "SMAATRBracket:2025-02-01",
+    "SMAATRBracket:2025-03-01",
+    "SMAATRBracket:2025-04-01",
+    "SMAATRBracket:2025-05-01",
+    "SMAATRBracket:2025-06-01",
+    "SMAATRBracket:2025-07-01",
+    "SMAATRBracket:2025-08-01",
+    "SMAATRBracket:2025-09-01",
+    "SMAATRBracket:2025-10-01",
+    "SMAATRBracket:2025-11-01",
+    "SMAATRBracket:2025-12-01",
+    "SMAATRBracket:2026-01-01",
+    "ResistanceSMAATR:2023-01-01",
+    "ResistanceSMAATR:2023-02-01",
+    "ResistanceSMAATR:2023-03-01",
+    "ResistanceSMAATR:2023-04-01",
+    "ResistanceSMAATR:2023-05-01",
+    "ResistanceSMAATR:2023-06-01",
+    "ResistanceSMAATR:2023-07-01",
+    "ResistanceSMAATR:2023-08-01",
+    "ResistanceSMAATR:2023-09-01",
+    "ResistanceSMAATR:2023-10-01",
+    "ResistanceSMAATR:2023-11-01",
+    "ResistanceSMAATR:2023-12-01",
+    "ResistanceSMAATR:2024-01-01",
+    "ResistanceSMAATR:2024-02-01",
+    "ResistanceSMAATR:2024-03-01",
+    "ResistanceSMAATR:2024-04-01",
+    "ResistanceSMAATR:2024-05-01",
+    "ResistanceSMAATR:2024-06-01",
+    "ResistanceSMAATR:2024-07-01",
+    "ResistanceSMAATR:2024-08-01",
+    "ResistanceSMAATR:2024-09-01",
+    "ResistanceSMAATR:2024-10-01",
+    "ResistanceSMAATR:2024-11-01",
+    "ResistanceSMAATR:2024-12-01",
+    "ResistanceSMAATR:2025-01-01",
+    "ResistanceSMAATR:2025-02-01",
+    "ResistanceSMAATR:2025-03-01",
+    "ResistanceSMAATR:2025-04-01",
+    "ResistanceSMAATR:2025-05-01",
+    "ResistanceSMAATR:2025-06-01",
+    "ResistanceSMAATR:2025-07-01",
+    "ResistanceSMAATR:2025-08-01",
+    "ResistanceSMAATR:2025-09-01",
+    "ResistanceSMAATR:2025-10-01",
+    "ResistanceSMAATR:2025-11-01",
+    "ResistanceSMAATR:2025-12-01",
+    "ResistanceSMAATR:2026-01-01"
+  ],
+  "historical_requests": [
+    {
+      "key": "[\"2023:ALGOUSDT:segment-01\",\"2023-01-01\",30]",
+      "fit_id": "SMAATRBracket:2023-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-01-29\",30]",
+      "fit_id": "SMAATRBracket:2023-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APEUSDT:segment-01\",\"2023-01-30\",30]",
+      "fit_id": "SMAATRBracket:2023-02-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-02-26\",30]",
+      "fit_id": "SMAATRBracket:2023-02-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APTUSDT:segment-01\",\"2023-02-27\",30]",
+      "fit_id": "SMAATRBracket:2023-03-01",
+      "view": 45,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-03-29\",30]",
+      "fit_id": "SMAATRBracket:2023-03-01",
+      "view": 3,
+      "method": "VolumeBreakout"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-03-30\",30]",
+      "fit_id": "SMAATRBracket:2023-04-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-04-28\",30]",
+      "fit_id": "SMAATRBracket:2023-04-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-04-29\",30]",
+      "fit_id": "SMAATRBracket:2023-05-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-05-29\",30]",
+      "fit_id": "SMAATRBracket:2023-05-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-05-30\",30]",
+      "fit_id": "SMAATRBracket:2023-06-01",
+      "view": 90,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-06-28\",30]",
+      "fit_id": "SMAATRBracket:2023-06-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APEUSDT:segment-01\",\"2023-06-29\",30]",
+      "fit_id": "SMAATRBracket:2023-07-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-07-29\",30]",
+      "fit_id": "SMAATRBracket:2023-07-01",
+      "view": 21,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-07-30\",30]",
+      "fit_id": "SMAATRBracket:2023-08-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-08-29\",30]",
+      "fit_id": "SMAATRBracket:2023-08-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APEUSDT:segment-01\",\"2023-08-30\",30]",
+      "fit_id": "SMAATRBracket:2023-09-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-09-28\",30]",
+      "fit_id": "SMAATRBracket:2023-09-01",
+      "view": 4,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2023:ALGOUSDT:segment-01\",\"2023-09-29\",30]",
+      "fit_id": "SMAATRBracket:2023-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XMRUSDT:segment-01\",\"2023-10-29\",30]",
+      "fit_id": "SMAATRBracket:2023-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-10-30\",30]",
+      "fit_id": "SMAATRBracket:2023-11-01",
+      "view": 3,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2023:UNIUSDT:segment-01\",\"2023-11-28\",30]",
+      "fit_id": "SMAATRBracket:2023-11-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ALGOUSDT:segment-01\",\"2023-11-29\",30]",
+      "fit_id": "SMAATRBracket:2023-12-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:WAVESUSDT:segment-01\",\"2023-12-29\",30]",
+      "fit_id": "SMAATRBracket:2023-12-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-12-30\",30]",
+      "fit_id": "SMAATRBracket:2024-01-01",
+      "view": 30,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:TRXUSDT:segment-01\",\"2024-01-29\",30]",
+      "fit_id": "SMAATRBracket:2024-01-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-01-30\",30]",
+      "fit_id": "SMAATRBracket:2024-02-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-02-27\",30]",
+      "fit_id": "SMAATRBracket:2024-02-01",
+      "view": 3,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-02-28\",30]",
+      "fit_id": "SMAATRBracket:2024-03-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-03-29\",30]",
+      "fit_id": "SMAATRBracket:2024-03-01",
+      "view": 45,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-03-30\",30]",
+      "fit_id": "SMAATRBracket:2024-04-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-04-28\",30]",
+      "fit_id": "SMAATRBracket:2024-04-01",
+      "view": 90,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-04-29\",30]",
+      "fit_id": "SMAATRBracket:2024-05-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-05-29\",30]",
+      "fit_id": "SMAATRBracket:2024-05-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-05-30\",30]",
+      "fit_id": "SMAATRBracket:2024-06-01",
+      "view": 7,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-06-28\",30]",
+      "fit_id": "SMAATRBracket:2024-06-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-06-29\",30]",
+      "fit_id": "SMAATRBracket:2024-07-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-07-29\",30]",
+      "fit_id": "SMAATRBracket:2024-07-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:AUCTIONUSDT:segment-01\",\"2024-07-30\",30]",
+      "fit_id": "SMAATRBracket:2024-08-01",
+      "view": 7,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-08-29\",30]",
+      "fit_id": "SMAATRBracket:2024-08-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-08-30\",30]",
+      "fit_id": "SMAATRBracket:2024-09-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-09-28\",30]",
+      "fit_id": "SMAATRBracket:2024-09-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:BLURUSDT:segment-01\",\"2024-09-29\",30]",
+      "fit_id": "SMAATRBracket:2024-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-10-29\",30]",
+      "fit_id": "SMAATRBracket:2024-10-01",
+      "view": 21,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-10-30\",30]",
+      "fit_id": "SMAATRBracket:2024-11-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-11-28\",30]",
+      "fit_id": "SMAATRBracket:2024-11-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-11-29\",30]",
+      "fit_id": "SMAATRBracket:2024-12-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-12-29\",30]",
+      "fit_id": "SMAATRBracket:2024-12-01",
+      "view": 30,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-12-30\",30]",
+      "fit_id": "SMAATRBracket:2025-01-01",
+      "view": 45,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-01-29\",30]",
+      "fit_id": "SMAATRBracket:2025-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-01-30\",30]",
+      "fit_id": "SMAATRBracket:2025-02-01",
+      "view": 3,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-02-26\",30]",
+      "fit_id": "SMAATRBracket:2025-02-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:ACTUSDT:segment-01\",\"2025-02-27\",30]",
+      "fit_id": "SMAATRBracket:2025-03-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-03-29\",30]",
+      "fit_id": "SMAATRBracket:2025-03-01",
+      "view": 90,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:ACTUSDT:segment-01\",\"2025-03-30\",30]",
+      "fit_id": "SMAATRBracket:2025-04-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-04-28\",30]",
+      "fit_id": "SMAATRBracket:2025-04-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:ADAUSDT:segment-01\",\"2025-04-29\",30]",
+      "fit_id": "SMAATRBracket:2025-05-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:WLDUSDT:segment-01\",\"2025-05-29\",30]",
+      "fit_id": "SMAATRBracket:2025-05-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-05-30\",30]",
+      "fit_id": "SMAATRBracket:2025-06-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-06-28\",30]",
+      "fit_id": "SMAATRBracket:2025-06-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-06-29\",30]",
+      "fit_id": "SMAATRBracket:2025-07-01",
+      "view": 4,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-07-29\",30]",
+      "fit_id": "SMAATRBracket:2025-07-01",
+      "view": 21,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-07-30\",30]",
+      "fit_id": "SMAATRBracket:2025-08-01",
+      "view": 7,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XLMUSDT:segment-01\",\"2025-08-29\",30]",
+      "fit_id": "SMAATRBracket:2025-08-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-08-30\",30]",
+      "fit_id": "SMAATRBracket:2025-09-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-09-28\",30]",
+      "fit_id": "SMAATRBracket:2025-09-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-09-29\",30]",
+      "fit_id": "SMAATRBracket:2025-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-10-29\",30]",
+      "fit_id": "SMAATRBracket:2025-10-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-10-30\",30]",
+      "fit_id": "SMAATRBracket:2025-11-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-11-28\",30]",
+      "fit_id": "SMAATRBracket:2025-11-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-11-29\",30]",
+      "fit_id": "SMAATRBracket:2025-12-01",
+      "view": 5,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:VETUSDT:segment-01\",\"2025-12-29\",30]",
+      "fit_id": "SMAATRBracket:2025-12-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-12-30\",30]",
+      "fit_id": "SMAATRBracket:2026-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:VETUSDT:segment-01\",\"2025-12-31\",30]",
+      "fit_id": "SMAATRBracket:2026-01-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ALGOUSDT:segment-01\",\"2023-01-01\",30]",
+      "fit_id": "ResistanceSMAATR:2023-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-01-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APEUSDT:segment-01\",\"2023-01-30\",30]",
+      "fit_id": "ResistanceSMAATR:2023-02-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-02-26\",30]",
+      "fit_id": "ResistanceSMAATR:2023-02-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APTUSDT:segment-01\",\"2023-02-27\",30]",
+      "fit_id": "ResistanceSMAATR:2023-03-01",
+      "view": 45,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-03-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-03-01",
+      "view": 3,
+      "method": "VolumeBreakout"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-03-30\",30]",
+      "fit_id": "ResistanceSMAATR:2023-04-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-04-28\",30]",
+      "fit_id": "ResistanceSMAATR:2023-04-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-04-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-05-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-05-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-05-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-05-30\",30]",
+      "fit_id": "ResistanceSMAATR:2023-06-01",
+      "view": 90,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:YFIIUSDT:segment-01\",\"2023-06-28\",30]",
+      "fit_id": "ResistanceSMAATR:2023-06-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APEUSDT:segment-01\",\"2023-06-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-07-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-07-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-07-01",
+      "view": 21,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-07-30\",30]",
+      "fit_id": "ResistanceSMAATR:2023-08-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-08-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-08-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:APEUSDT:segment-01\",\"2023-08-30\",30]",
+      "fit_id": "ResistanceSMAATR:2023-09-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XRPUSDT:segment-01\",\"2023-09-28\",30]",
+      "fit_id": "ResistanceSMAATR:2023-09-01",
+      "view": 4,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2023:ALGOUSDT:segment-01\",\"2023-09-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:XMRUSDT:segment-01\",\"2023-10-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-10-30\",30]",
+      "fit_id": "ResistanceSMAATR:2023-11-01",
+      "view": 3,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2023:UNIUSDT:segment-01\",\"2023-11-28\",30]",
+      "fit_id": "ResistanceSMAATR:2023-11-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ALGOUSDT:segment-01\",\"2023-11-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-12-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:WAVESUSDT:segment-01\",\"2023-12-29\",30]",
+      "fit_id": "ResistanceSMAATR:2023-12-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2023:ADAUSDT:segment-01\",\"2023-12-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-01-01",
+      "view": 30,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:TRXUSDT:segment-01\",\"2024-01-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-01-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-01-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-02-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-02-27\",30]",
+      "fit_id": "ResistanceSMAATR:2024-02-01",
+      "view": 3,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-02-28\",30]",
+      "fit_id": "ResistanceSMAATR:2024-03-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-03-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-03-01",
+      "view": 45,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-03-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-04-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-04-28\",30]",
+      "fit_id": "ResistanceSMAATR:2024-04-01",
+      "view": 90,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-04-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-05-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-05-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-05-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-05-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-06-01",
+      "view": 7,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-06-28\",30]",
+      "fit_id": "ResistanceSMAATR:2024-06-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-06-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-07-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-07-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-07-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:AUCTIONUSDT:segment-01\",\"2024-07-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-08-01",
+      "view": 7,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-08-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-08-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-08-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-09-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-09-28\",30]",
+      "fit_id": "ResistanceSMAATR:2024-09-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:BLURUSDT:segment-01\",\"2024-09-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:WLDUSDT:segment-01\",\"2024-10-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-10-01",
+      "view": 21,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:APTUSDT:segment-01\",\"2024-10-30\",30]",
+      "fit_id": "ResistanceSMAATR:2024-11-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-11-28\",30]",
+      "fit_id": "ResistanceSMAATR:2024-11-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-11-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-12-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:XRPUSDT:segment-01\",\"2024-12-29\",30]",
+      "fit_id": "ResistanceSMAATR:2024-12-01",
+      "view": 30,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2024:ADAUSDT:segment-01\",\"2024-12-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-01-01",
+      "view": 45,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-01-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-01-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-02-01",
+      "view": 3,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-02-26\",30]",
+      "fit_id": "ResistanceSMAATR:2025-02-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:ACTUSDT:segment-01\",\"2025-02-27\",30]",
+      "fit_id": "ResistanceSMAATR:2025-03-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-03-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-03-01",
+      "view": 90,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:ACTUSDT:segment-01\",\"2025-03-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-04-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-04-28\",30]",
+      "fit_id": "ResistanceSMAATR:2025-04-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:ADAUSDT:segment-01\",\"2025-04-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-05-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:WLDUSDT:segment-01\",\"2025-05-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-05-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-05-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-06-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-06-28\",30]",
+      "fit_id": "ResistanceSMAATR:2025-06-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-06-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-07-01",
+      "view": 4,
+      "method": "Breakout"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-07-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-07-01",
+      "view": 21,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-07-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-08-01",
+      "view": 7,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XLMUSDT:segment-01\",\"2025-08-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-08-01",
+      "view": 60,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-08-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-09-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-09-28\",30]",
+      "fit_id": "ResistanceSMAATR:2025-09-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-09-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-10-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-10-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-10-01",
+      "view": 6,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-10-30\",30]",
+      "fit_id": "ResistanceSMAATR:2025-11-01",
+      "view": 14,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:XRPUSDT:segment-01\",\"2025-11-28\",30]",
+      "fit_id": "ResistanceSMAATR:2025-11-01",
+      "view": 10,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:AAVEUSDT:segment-01\",\"2025-11-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-12-01",
+      "view": 5,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:VETUSDT:segment-01\",\"2025-12-29\",30]",
+      "fit_id": "ResistanceSMAATR:2025-12-01",
+      "view": 4,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:1MBABYDOGEUSDT:segment-01\",\"2025-12-30\",30]",
+      "fit_id": "ResistanceSMAATR:2026-01-01",
+      "view": 3,
+      "method": "Momentum"
+    },
+    {
+      "key": "[\"2025:VETUSDT:segment-01\",\"2025-12-31\",30]",
+      "fit_id": "ResistanceSMAATR:2026-01-01",
+      "view": 14,
+      "method": "Momentum"
+    }
+  ],
+  "ranking_dates": [
+    "2020-03-01",
+    "2021-07-01",
+    "2022-12-31",
+    "2023-01-01",
+    "2024-07-01",
+    "2025-12-31"
+  ],
+  "ranking_views": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    14,
+    21,
+    30,
+    45,
+    60,
+    90
+  ],
+  "whole_universe_rankings": 216,
+  "eligibility_and_score_checks": 10908,
+  "golden_example_key": "[\"2024:BTCUSDT:segment-01\",\"2024-01-01\",30]",
+  "golden_probabilities": {
+    "SMAATRBracket": 0.5751501318232669,
+    "ResistanceSMAATR": 0.641916029086595
+  },
+  "limits": [
+    "Research interface only; caller supplies cohort membership and actual executable entry open.",
+    "Representative probability requests cover all 74 models; all saved source forecast arithmetic has its own hashed verification.",
+    "Retrospective validation metrics do not enter signal scores or forecast probabilities.",
+    "No unsupported-hour or unvalidated-horizon prediction, orders, provider membership verification or live recommendation."
+  ]
+}

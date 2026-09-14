@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "started_utc": "2026-09-13T20:43:33.506777+00:00",
+  "completed_utc": "2026-09-13T20:43:49.787937+00:00",
+  "verifier_sha256": "6e0170eda986e03b6bae6e18677a363104501ef133b7e1369ef3b9bf0cf9660a",
+  "checked_ledger_sha256": "c94a546d12a2d335682c4ff3204507fe3b95cb18f236ce4629a80f2254ab9173",
+  "source_hashes": {
+    "exposure.py": "bedb512c6dfbcea9fb73a993c6f7e800f9045fd2d579eaee06fe806580a1e15c",
+    "exposure-protocol.md": "0ee604da1a0d648bf59771431b0e0474b674cf13e00f652d9ef7a555e381fa28",
+    "capital.py": "2c3e2ec46ca3eadafed4b748dc1645bc667ae94ff59654102999d6446ea0acf8",
+    "ledger.json.gz": "ccd0108188f99f0269383775b20b5eb243ab2dee6b5dbef811206bc461585e1b",
+    "summary.json": "3d6332517fdf5115e655c09def8f2be747120f0f9960d556cf30b4dc11be2c78",
+    "capital-ledger.json.gz": "b4ce6be865b1ba865b7e7ae10005c1bb9ebe1778fe93a006fe4a968b00fa61f8",
+    "capital-summary.json": "4435fcab2767b34168930480a5035ca7bf2e927cfe46942c8e6a7ae3c9d1dbad",
+    "verification.json": "71ea361209ced7d96cff14755b0b2498cb0ba5d1d444a22a76c97991853dc140",
+    "capital-verification.json": "1662869dca06e6292bdcc8b3dcd98418c8b5e45f1efe35cad0a0158b9e17480d"
+  },
+  "signal_score_selection_checks": 52272,
+  "cohort_cost_mark_checks": 418176,
+  "cohort_metric_checks": 104544,
+  "daily_summary_scenario_checks": 864,
+  "unchanged_candidate_schedules": 1536,
+  "schedule_decisions": 125301,
+  "independent_capital_role_scenarios": 12288,
+  "original_candidate_scenario_parity": 6144,
+  "phase_summary_scenario_checks": 192,
+  "benchmark_overlap_conflicts": 0,
+  "scope": "All top-K Momentum identities/order from signal-time scores; matched offered counts and ten-slot returns; saved hit/missing/loser metrics; all unchanged entry schedules and four cost/missing capital paths; checkpoint/annual/drawdown/best-batch and phase aggregates. Source price/bar correctness is covered by the separately hashed daily verification."
+}

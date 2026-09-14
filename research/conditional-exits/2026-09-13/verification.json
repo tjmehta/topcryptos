@@ -1,0 +1,15 @@
+{
+  "verified_at_utc": "2026-09-13T20:10:28.309771+00:00",
+  "scope": "Independent raw feature reconstruction, source targets, mature training membership/scaling, fit arithmetic, choices and original-slot return aggregation; no refit or significance claim.",
+  "ledger_sha256": "436e3e57176f2db871aa7c9a8330fcda51346af381013899f4c9a3a381973786",
+  "verifier_sha256": "aee0dab1e758156ab30af42fec0e35643c8a3a7da7bfc81cdd1853169fb3abc2",
+  "initial_ledger_byte_identical": true,
+  "unique_events": 7540,
+  "raw_geometry_vectors_checked": 15080,
+  "raw_state_vectors_checked": 15080,
+  "prior_review": "Before the BTC continuity guard correction, independent NumPy reconstruction also matched all 15,080 candidate state vectors; all 22-date BTC paths were complete. This verifier repeats the reconstruction against the corrected frozen run.",
+  "verified_fits": 198,
+  "replayed_choices": 11700,
+  "source_cohorts_preserved": 3432,
+  "verified_summary_rows": 2304
+}

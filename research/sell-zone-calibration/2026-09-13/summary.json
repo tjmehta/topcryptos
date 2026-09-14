@@ -1,0 +1,6259 @@
+{
+  "started_at_utc": "2026-09-13T20:03:13.821875+00:00",
+  "completed_at_utc": "2026-09-13T20:03:17.588606+00:00",
+  "source_ledger_sha256": "305b361e7965a01e880660e1e18ddf253af045c794cea2788d3aa33c099b83d4",
+  "original_predictions_sha256": "2ed277b473dd27874dd808edf88ceb9bc449147d2de4a63a7bdefb54b01d9724",
+  "original_runner_sha256": "ad317c167ba81760e29d6fed8618b9aa0b43cab58fbc9fae5e394fd150421105",
+  "original_protocol_sha256": "84701d543a0fabc92d2287bf1a9a22f50e2760830ab4e013ee6400d12f6260fa",
+  "runner_sha256": "5c10de72ba652197cf937115fae498f611b8f494148ed31d3d13183f2884d891",
+  "protocol_sha256": "2bff04f72d17e25a7ce52651788628914dc7532cd96fbd067b5a12e77519c59d",
+  "predictions_sha256": "eca9dc74a7332bc13f1d01d86bc352df315371ac12e3c791601488e729f5e7f7",
+  "numpy": "2.5.3",
+  "sklearn": "1.9.1",
+  "all_forecasts": 14200,
+  "warmup_forecasts": 6400,
+  "evaluation_forecasts": 7800,
+  "fit_count": 124,
+  "max_original_replay_error": 0.0,
+  "skipped_features": {},
+  "skipped_base_months": [
+    {
+      "policy": "SMAATRBracket",
+      "month": "2020-01-01",
+      "training_n": 0,
+      "events": 180
+    },
+    {
+      "policy": "SMAATRBracket",
+      "month": "2020-02-01",
+      "training_n": 23,
+      "events": 80
+    },
+    {
+      "policy": "SMAATRBracket",
+      "month": "2020-03-01",
+      "training_n": 68,
+      "events": 104
+    },
+    {
+      "policy": "SMAATRBracket",
+      "month": "2020-04-01",
+      "training_n": 175,
+      "events": 76
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "month": "2020-01-01",
+      "training_n": 0,
+      "events": 180
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "month": "2020-02-01",
+      "training_n": 23,
+      "events": 80
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "month": "2020-03-01",
+      "training_n": 68,
+      "events": 104
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "month": "2020-04-01",
+      "training_n": 175,
+      "events": 76
+    }
+  ],
+  "evaluation_calibration_status": {
+    "calibrated": 7800
+  },
+  "summary": [
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": "all",
+      "events": 3900,
+      "known": 3894,
+      "unknown": 6,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.40215716486902925,
+      "raw_probability": {
+        "brier": 0.2301552912801943,
+        "mean_probability": 0.4835503074136236,
+        "log_loss": 0.653232597617165,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 10,
+            "mean_probability": 0.023304917123696593,
+            "hit_rate": 0.3
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 41,
+            "mean_probability": 0.165994729010083,
+            "hit_rate": 0.21951219512195122
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 362,
+            "mean_probability": 0.26361063430722614,
+            "hit_rate": 0.17679558011049723
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 807,
+            "mean_probability": 0.3517107649084179,
+            "hit_rate": 0.24659231722428748
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 782,
+            "mean_probability": 0.45340007379538383,
+            "hit_rate": 0.3989769820971867
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 912,
+            "mean_probability": 0.5507267289080391,
+            "hit_rate": 0.47039473684210525
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 871,
+            "mean_probability": 0.6445873842107736,
+            "hit_rate": 0.5614236509758898
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 108,
+            "mean_probability": 0.7181402550899941,
+            "hit_rate": 0.5555555555555556
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 1,
+            "mean_probability": 0.8320334382657374,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2264544011192488,
+        "mean_probability": 0.39818184496327685,
+        "log_loss": 0.6452518460347981,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 17,
+            "mean_probability": 0.04251854858700471,
+            "hit_rate": 0.17647058823529413
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 208,
+            "mean_probability": 0.17207900179827865,
+            "hit_rate": 0.1971153846153846
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 884,
+            "mean_probability": 0.2552901271851969,
+            "hit_rate": 0.2330316742081448
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 818,
+            "mean_probability": 0.35150853433231294,
+            "hit_rate": 0.3960880195599022
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 933,
+            "mean_probability": 0.4499969987305147,
+            "hit_rate": 0.4587352625937835
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 822,
+            "mean_probability": 0.5447347993937421,
+            "hit_rate": 0.5498783454987834
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 208,
+            "mean_probability": 0.6262545930212896,
+            "hit_rate": 0.5240384615384616
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 4,
+            "mean_probability": 0.7285607014445938,
+            "hit_rate": 0.75
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.22903431689093356,
+        "mean_probability": 0.4486114298346017,
+        "log_loss": 0.6493115537674897,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 862,
+            "mean_probability": 0.2798923849083028,
+            "hit_rate": 0.22505800464037123
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 140,
+            "mean_probability": 0.32798781494655305,
+            "hit_rate": 0.1
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 980,
+            "mean_probability": 0.4169641788792052,
+            "hit_rate": 0.4010204081632653
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 1897,
+            "mean_probability": 0.5493105714219337,
+            "hit_rate": 0.5060622034791776
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 15,
+            "mean_probability": 0.6026885735623598,
+            "hit_rate": 0.3333333333333333
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0037008901609454914,
+      "improvement_over_holding_baseline": 0.00257991577168476
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 14,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.21149897330595482,
+      "raw_probability": {
+        "brier": 0.17545212745609937,
+        "mean_probability": 0.3159359811343009,
+        "log_loss": 0.5366247781321599,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.020068557489780325,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 34,
+            "mean_probability": 0.1663936179599947,
+            "hit_rate": 0.20588235294117646
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 324,
+            "mean_probability": 0.26309249123912637,
+            "hit_rate": 0.1574074074074074
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 561,
+            "mean_probability": 0.34729916422430257,
+            "hit_rate": 0.22281639928698752
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 51,
+            "mean_probability": 0.4186337618953499,
+            "hit_rate": 0.43137254901960786
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 1,
+            "mean_probability": 0.5769367937264049,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.16654316759569945,
+        "mean_probability": 0.24200373463908087,
+        "log_loss": 0.5154192944993709,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 9,
+            "mean_probability": 0.05896102745465849,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 187,
+            "mean_probability": 0.17340791971864453,
+            "hit_rate": 0.1925133689839572
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 669,
+            "mean_probability": 0.25096880551105494,
+            "hit_rate": 0.20179372197309417
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 108,
+            "mean_probability": 0.3182514433101228,
+            "hit_rate": 0.3148148148148148
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 1,
+            "mean_probability": 0.4844205395972908,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.17204051365083542,
+        "mean_probability": 0.28339734962362906,
+        "log_loss": 0.5295438319167707,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 862,
+            "mean_probability": 0.2798923849083028,
+            "hit_rate": 0.22505800464037123
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 112,
+            "mean_probability": 0.31037306020051514,
+            "hit_rate": 0.10714285714285714
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.008908959860399912,
+      "improvement_over_holding_baseline": 0.005497346055135965
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 30,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.37474332648870634,
+      "raw_probability": {
+        "brier": 0.23620315002613276,
+        "mean_probability": 0.4367559743803959,
+        "log_loss": 0.6671621814415739,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.0325717451431011,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 5,
+            "mean_probability": 0.17550301142337216,
+            "hit_rate": 0.2
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 31,
+            "mean_probability": 0.2687615908223144,
+            "hit_rate": 0.3870967741935484
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 221,
+            "mean_probability": 0.3627461816236394,
+            "hit_rate": 0.2986425339366516
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 530,
+            "mean_probability": 0.45215773577428986,
+            "hit_rate": 0.3849056603773585
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 182,
+            "mean_probability": 0.5218120909251707,
+            "hit_rate": 0.4340659340659341
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 2,
+            "mean_probability": 0.6565863954443283,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.23523679381033621,
+        "mean_probability": 0.3493915293710878,
+        "log_loss": 0.6664999606830236,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.021208948104601288,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 16,
+            "mean_probability": 0.1589331662540493,
+            "hit_rate": 0.1875
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 193,
+            "mean_probability": 0.2699991171815523,
+            "hit_rate": 0.33678756476683935
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 541,
+            "mean_probability": 0.35314208066752606,
+            "hit_rate": 0.3789279112754159
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 217,
+            "mean_probability": 0.42566968071822764,
+            "hit_rate": 0.41013824884792627
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 3,
+            "mean_probability": 0.5194861905982532,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 1,
+            "mean_probability": 0.612317558239523,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2370316896532146,
+        "mean_probability": 0.41365364274229083,
+        "log_loss": 0.6670663394155064,
+        "reliability": [
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 28,
+            "mean_probability": 0.39844683393070507,
+            "hit_rate": 0.07142857142857142
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 946,
+            "mean_probability": 0.41410373856335253,
+            "hit_rate": 0.38372093023255816
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0009663562157965488,
+      "improvement_over_holding_baseline": 0.0017948958428783968
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 60,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.4815195071868583,
+      "raw_probability": {
+        "brier": 0.2535906650800097,
+        "mean_probability": 0.5566388619537331,
+        "log_loss": 0.7021612574562413,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.01616160255908774,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.11912511312890595,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 6,
+            "mean_probability": 0.2623572688316779,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 16,
+            "mean_probability": 0.3545361446681664,
+            "hit_rate": 0.375
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 166,
+            "mean_probability": 0.4644022879959917,
+            "hit_rate": 0.39156626506024095
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 482,
+            "mean_probability": 0.555805967675769,
+            "hit_rate": 0.4854771784232365
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 298,
+            "mean_probability": 0.6293815443794506,
+            "hit_rate": 0.5369127516778524
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 3,
+            "mean_probability": 0.7410416149589057,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2516929429482428,
+        "mean_probability": 0.46535803654612895,
+        "log_loss": 0.6986869221894675,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.03330780228711667,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 4,
+            "mean_probability": 0.18028004151986565,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 14,
+            "mean_probability": 0.26003678352789117,
+            "hit_rate": 0.2857142857142857
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 140,
+            "mean_probability": 0.36699701474467955,
+            "hit_rate": 0.4785714285714286
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 481,
+            "mean_probability": 0.45425487984859214,
+            "hit_rate": 0.4656964656964657
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 319,
+            "mean_probability": 0.5354574289171165,
+            "hit_rate": 0.5203761755485894
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 12,
+            "mean_probability": 0.6158911067903182,
+            "hit_rate": 0.4166666666666667
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 1,
+            "mean_probability": 0.7193766761264467,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2540588600590014,
+        "mean_probability": 0.5205839105383034,
+        "log_loss": 0.7012766045138756,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 34,
+            "mean_probability": 0.49655172413793097,
+            "hit_rate": 0.8823529411764706
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 940,
+            "mean_probability": 0.521453159833636,
+            "hit_rate": 0.46702127659574466
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0018977221317669213,
+      "improvement_over_holding_baseline": 0.0023659171107586197
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 90,
+      "events": 975,
+      "known": 972,
+      "unknown": 3,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.5411522633744856,
+      "raw_probability": {
+        "brier": 0.2554271154212479,
+        "mean_probability": 0.6251611942946497,
+        "log_loss": 0.7070927692737088,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.021402529110073072,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.15176070852781604,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "mean_probability": 0.2793295292571441,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 9,
+            "mean_probability": 0.35069685530494515,
+            "hit_rate": 0.2222222222222222
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 35,
+            "mean_probability": 0.47069017381768713,
+            "hit_rate": 0.6
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 247,
+            "mean_probability": 0.562014425110541,
+            "hit_rate": 0.46558704453441296
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 571,
+            "mean_probability": 0.6524811534704359,
+            "hit_rate": 0.5726795096322241
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 105,
+            "mean_probability": 0.717485930522311,
+            "hit_rate": 0.5523809523809524
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 1,
+            "mean_probability": 0.8320334382657374,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2523979723428885,
+        "mean_probability": 0.5362576024127225,
+        "log_loss": 0.70051468281822,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.014307913855999874,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.10110056051118034,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 8,
+            "mean_probability": 0.25349961992353104,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 29,
+            "mean_probability": 0.3701164655500706,
+            "hit_rate": 0.6206896551724138
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 234,
+            "mean_probability": 0.4636575271493362,
+            "hit_rate": 0.48717948717948717
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 500,
+            "mean_probability": 0.5508052534106025,
+            "hit_rate": 0.57
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 195,
+            "mean_probability": 0.6269638179933583,
+            "hit_rate": 0.5282051282051282
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 3,
+            "mean_probability": 0.7316220432173095,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2530555290716907,
+        "mean_probability": 0.5770746011802734,
+        "log_loss": 0.6994624184119875,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 957,
+            "mean_probability": 0.5766731282589241,
+            "hit_rate": 0.5444096133751306
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 15,
+            "mean_probability": 0.6026885735623598,
+            "hit_rate": 0.3333333333333333
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0030291430783593865,
+      "improvement_over_holding_baseline": 0.0006575567288021889
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": "all",
+      "events": 1324,
+      "known": 1324,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.4554380664652568,
+      "raw_probability": {
+        "brier": 0.23345941932806544,
+        "mean_probability": 0.49396143705055645,
+        "log_loss": 0.6635514204784114,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 6,
+            "mean_probability": 0.03138815966533883,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 10,
+            "mean_probability": 0.15284068689087799,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 86,
+            "mean_probability": 0.26980946062088723,
+            "hit_rate": 0.23255813953488372
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 275,
+            "mean_probability": 0.35624844060873745,
+            "hit_rate": 0.27636363636363637
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 266,
+            "mean_probability": 0.45359951945930266,
+            "hit_rate": 0.43609022556390975
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 328,
+            "mean_probability": 0.5521277851044536,
+            "hit_rate": 0.47560975609756095
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 328,
+            "mean_probability": 0.6445313628023074,
+            "hit_rate": 0.6341463414634146
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 25,
+            "mean_probability": 0.7181839743057921,
+            "hit_rate": 0.76
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.23667452946296072,
+        "mean_probability": 0.3963617073460417,
+        "log_loss": 0.6720197610058871,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 9,
+            "mean_probability": 0.03923019648067146,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 49,
+            "mean_probability": 0.17134840440241067,
+            "hit_rate": 0.32653061224489793
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 310,
+            "mean_probability": 0.25685831469848425,
+            "hit_rate": 0.2870967741935484
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 292,
+            "mean_probability": 0.3533036746531866,
+            "hit_rate": 0.4212328767123288
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 327,
+            "mean_probability": 0.4518175161849701,
+            "hit_rate": 0.4801223241590214
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 305,
+            "mean_probability": 0.5429751884109952,
+            "hit_rate": 0.6327868852459017
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 32,
+            "mean_probability": 0.6216014415317405,
+            "hit_rate": 0.6875
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.23505984031684166,
+        "mean_probability": 0.4520779350276519,
+        "log_loss": 0.6624361785829727,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 219,
+            "mean_probability": 0.29190981901382845,
+            "hit_rate": 0.3378995433789954
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 112,
+            "mean_probability": 0.31037306020051514,
+            "hit_rate": 0.10714285714285714
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 365,
+            "mean_probability": 0.4234670617232502,
+            "hit_rate": 0.4767123287671233
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 628,
+            "mean_probability": 0.5498338779317493,
+            "hit_rate": 0.5461783439490446
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.0032151101348952826,
+      "improvement_over_holding_baseline": -0.0016146891461190638
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 14,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.2598187311178248,
+      "raw_probability": {
+        "brier": 0.19803822647116803,
+        "mean_probability": 0.3336968667417084,
+        "log_loss": 0.585723619346153,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.02749824795582501,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 6,
+            "mean_probability": 0.15145055789869735,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 79,
+            "mean_probability": 0.27045076312271743,
+            "hit_rate": 0.20253164556962025
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 216,
+            "mean_probability": 0.35372574018179853,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 28,
+            "mean_probability": 0.4185568886513749,
+            "hit_rate": 0.4642857142857143
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.1927129866282083,
+        "mean_probability": 0.24772012817537392,
+        "log_loss": 0.5749372004591552,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 4,
+            "mean_probability": 0.0468810241083706,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 42,
+            "mean_probability": 0.17524062967097132,
+            "hit_rate": 0.2857142857142857
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 249,
+            "mean_probability": 0.25334234427188035,
+            "hit_rate": 0.24899598393574296
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 36,
+            "mean_probability": 0.31570800443711894,
+            "hit_rate": 0.3333333333333333
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.1957747320351363,
+        "mean_probability": 0.2981571997174807,
+        "log_loss": 0.5811897799197081,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 219,
+            "mean_probability": 0.29190981901382845,
+            "hit_rate": 0.3378995433789954
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 112,
+            "mean_probability": 0.31037306020051514,
+            "hit_rate": 0.10714285714285714
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.005325239842959739,
+      "improvement_over_holding_baseline": 0.003061745406927996
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 30,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.4350453172205438,
+      "raw_probability": {
+        "brier": 0.24811952541947774,
+        "mean_probability": 0.4500494475566593,
+        "log_loss": 0.696724599321236,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.044601173018541544,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.1744088499299367,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 5,
+            "mean_probability": 0.2652796586145306,
+            "hit_rate": 0.6
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 53,
+            "mean_probability": 0.3685402098346301,
+            "hit_rate": 0.3584905660377358
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 192,
+            "mean_probability": 0.4553799250697366,
+            "hit_rate": 0.4322916666666667
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 77,
+            "mean_probability": 0.5225502865929843,
+            "hit_rate": 0.4805194805194805
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2556155134854037,
+        "mean_probability": 0.35021533818370937,
+        "log_loss": 0.7155192901862819,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.028951275863306893,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 4,
+            "mean_probability": 0.14160946218568726,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 54,
+            "mean_probability": 0.27280677789494834,
+            "hit_rate": 0.42592592592592593
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 207,
+            "mean_probability": 0.3557947589229748,
+            "hit_rate": 0.42028985507246375
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 64,
+            "mean_probability": 0.42056024117117896,
+            "hit_rate": 0.484375
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24858242867729655,
+        "mean_probability": 0.41595987585588123,
+        "log_loss": 0.6904627714175762,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 331,
+            "mean_probability": 0.41595987585588123,
+            "hit_rate": 0.4350453172205438
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.00749598806592594,
+      "improvement_over_holding_baseline": -0.007033084808107132
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 60,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.525679758308157,
+      "raw_probability": {
+        "brier": 0.24985616629122823,
+        "mean_probability": 0.5636855240774759,
+        "log_loss": 0.6982721932870685,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.0188906437528265,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.11912511312890595,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 2,
+            "mean_probability": 0.25580251681448285,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 3,
+            "mean_probability": 0.34456748900662393,
+            "hit_rate": 0.6666666666666666
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 38,
+            "mean_probability": 0.4659065907186319,
+            "hit_rate": 0.3684210526315789
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 180,
+            "mean_probability": 0.5593980340696041,
+            "hit_rate": 0.5111111111111111
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 106,
+            "mean_probability": 0.6273631003045017,
+            "hit_rate": 0.6037735849056604
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.254451792386406,
+        "mean_probability": 0.4600631100135232,
+        "log_loss": 0.709230026061806,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.04543814563601764,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.18421348014169986,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 4,
+            "mean_probability": 0.2676525951890414,
+            "hit_rate": 0.75
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 41,
+            "mean_probability": 0.37013978893570104,
+            "hit_rate": 0.43902439024390244
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 187,
+            "mean_probability": 0.4573989602621282,
+            "hit_rate": 0.5026737967914439
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 93,
+            "mean_probability": 0.5250834804729494,
+            "hit_rate": 0.5913978494623656
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 2,
+            "mean_probability": 0.6044375913993056,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2518945552545791,
+        "mean_probability": 0.5207147719879366,
+        "log_loss": 0.6969389762446159,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 34,
+            "mean_probability": 0.49655172413793097,
+            "hit_rate": 0.8823529411764706
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 297,
+            "mean_probability": 0.5234809121458498,
+            "hit_rate": 0.48484848484848486
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.004595626095177746,
+      "improvement_over_holding_baseline": -0.0025572371318268727
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 90,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.6012084592145015,
+      "raw_probability": {
+        "brier": 0.2378237591303877,
+        "mean_probability": 0.6284139098263825,
+        "log_loss": 0.673485269959188,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.025239472290473398,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.15176070852781604,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 3,
+            "mean_probability": 0.3324092332930198,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 8,
+            "mean_probability": 0.47506040415482154,
+            "hit_rate": 0.75
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 71,
+            "mean_probability": 0.565773173437637,
+            "hit_rate": 0.38028169014084506
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 222,
+            "mean_probability": 0.6527288214724308,
+            "hit_rate": 0.6486486486486487
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 25,
+            "mean_probability": 0.7181839743057921,
+            "hit_rate": 0.76
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.24391782535182494,
+        "mean_probability": 0.5274482530115603,
+        "log_loss": 0.6883925273163053,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.016768828893911635,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.10110056051118034,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 3,
+            "mean_probability": 0.24721914858284766,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 8,
+            "mean_probability": 0.37174229944683423,
+            "hit_rate": 0.75
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 76,
+            "mean_probability": 0.46440614195410257,
+            "hit_rate": 0.42105263157894735
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 212,
+            "mean_probability": 0.5508239093460814,
+            "hit_rate": 0.6509433962264151
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 30,
+            "mean_probability": 0.6227456982072361,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24398764530035474,
+        "mean_probability": 0.5734798925493089,
+        "log_loss": 0.6811531867499908,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 331,
+            "mean_probability": 0.5734798925493089,
+            "hit_rate": 0.6012084592145015
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.006094066221437239,
+      "improvement_over_holding_baseline": 6.9819948529809e-05
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": "all",
+      "events": 1344,
+      "known": 1342,
+      "unknown": 2,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.4426229508196721,
+      "raw_probability": {
+        "brier": 0.23064587852320254,
+        "mean_probability": 0.4762637201493178,
+        "log_loss": 0.6528173420037785,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 4,
+            "mean_probability": 0.01118005331123322,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 17,
+            "mean_probability": 0.16497291116490734,
+            "hit_rate": 0.11764705882352941
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 143,
+            "mean_probability": 0.26093334726584344,
+            "hit_rate": 0.1958041958041958
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 275,
+            "mean_probability": 0.35038736108895635,
+            "hit_rate": 0.29818181818181816
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 270,
+            "mean_probability": 0.45105095697472203,
+            "hit_rate": 0.45925925925925926
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 324,
+            "mean_probability": 0.549558704787617,
+            "hit_rate": 0.5648148148148148
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 262,
+            "mean_probability": 0.6440230052985572,
+            "hit_rate": 0.5916030534351145
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 46,
+            "mean_probability": 0.7221700047392787,
+            "hit_rate": 0.41304347826086957
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 1,
+            "mean_probability": 0.8320334382657374,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2366197065607691,
+        "mean_probability": 0.39505872944393416,
+        "log_loss": 0.6646934384869806,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 8,
+            "mean_probability": 0.04621794470662961,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 86,
+            "mean_probability": 0.17226457972454448,
+            "hit_rate": 0.2441860465116279
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 286,
+            "mean_probability": 0.2523284672859482,
+            "hit_rate": 0.26223776223776224
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 294,
+            "mean_probability": 0.3479574089386767,
+            "hit_rate": 0.445578231292517
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 328,
+            "mean_probability": 0.4494441263099192,
+            "hit_rate": 0.5609756097560976
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 251,
+            "mean_probability": 0.5439362062009602,
+            "hit_rate": 0.5776892430278885
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 85,
+            "mean_probability": 0.6312822780725975,
+            "hit_rate": 0.4117647058823529
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 4,
+            "mean_probability": 0.7285607014445938,
+            "hit_rate": 0.75
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2324990461149044,
+        "mean_probability": 0.4502263046504802,
+        "log_loss": 0.6570020368469086,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 336,
+            "mean_probability": 0.2834022833119797,
+            "hit_rate": 0.24702380952380953
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 336,
+            "mean_probability": 0.41781792629465897,
+            "hit_rate": 0.3869047619047619
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 655,
+            "mean_probability": 0.548936460778135,
+            "hit_rate": 0.5740458015267176
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 15,
+            "mean_probability": 0.6026885735623598,
+            "hit_rate": 0.3333333333333333
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.005973828037566575,
+      "improvement_over_holding_baseline": -0.0041206604458647045
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 14,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.24702380952380953,
+      "raw_probability": {
+        "brier": 0.18794574985619028,
+        "mean_probability": 0.30961402975964997,
+        "log_loss": 0.5629796158071952,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.005209176557690951,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 14,
+            "mean_probability": 0.1625601523247455,
+            "hit_rate": 0.14285714285714285
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 126,
+            "mean_probability": 0.2598769508593477,
+            "hit_rate": 0.1984126984126984
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 173,
+            "mean_probability": 0.34459716204434554,
+            "hit_rate": 0.27167630057803466
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 21,
+            "mean_probability": 0.41964385973629864,
+            "hit_rate": 0.38095238095238093
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 1,
+            "mean_probability": 0.5769367937264049,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.18543615792529458,
+        "mean_probability": 0.23991878439503747,
+        "log_loss": 0.5580855699096036,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 5,
+            "mean_probability": 0.0686250301316888,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 77,
+            "mean_probability": 0.1737697136745328,
+            "hit_rate": 0.2597402597402597
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 201,
+            "mean_probability": 0.24680014765692584,
+            "hit_rate": 0.23880597014925373
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 52,
+            "mean_probability": 0.3230397737403026,
+            "hit_rate": 0.2692307692307692
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 1,
+            "mean_probability": 0.4844205395972908,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.18874605684967996,
+        "mean_probability": 0.2834022833119797,
+        "log_loss": 0.5658847736352464,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 336,
+            "mean_probability": 0.2834022833119797,
+            "hit_rate": 0.24702380952380953
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0025095919308956993,
+      "improvement_over_holding_baseline": 0.0033098989243853794
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 30,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.3869047619047619,
+      "raw_probability": {
+        "brier": 0.23719643852012376,
+        "mean_probability": 0.42948775910698006,
+        "log_loss": 0.6658252156310295,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.008512889392220209,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.1762324524189958,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 12,
+            "mean_probability": 0.26892539517662944,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 91,
+            "mean_probability": 0.3598059680434627,
+            "hit_rate": 0.34065934065934067
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 167,
+            "mean_probability": 0.4485808296239017,
+            "hit_rate": 0.437125748502994
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 60,
+            "mean_probability": 0.5262509606856864,
+            "hit_rate": 0.35
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 2,
+            "mean_probability": 0.6565863954443283,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.24057374659652977,
+        "mean_probability": 0.3466389294744174,
+        "log_loss": 0.6738374805419289,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.005724292587190066,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 7,
+            "mean_probability": 0.15454181393939087,
+            "hit_rate": 0.14285714285714285
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 76,
+            "mean_probability": 0.26727312617540805,
+            "hit_rate": 0.32894736842105265
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 169,
+            "mean_probability": 0.3472514421911799,
+            "hit_rate": 0.4437869822485207
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 79,
+            "mean_probability": 0.4330903273869191,
+            "hit_rate": 0.34177215189873417
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 3,
+            "mean_probability": 0.5194861905982532,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 1,
+            "mean_probability": 0.612317558239523,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.23973357366181028,
+        "mean_probability": 0.41781792629465897,
+        "log_loss": 0.6725358409450021,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 336,
+            "mean_probability": 0.41781792629465897,
+            "hit_rate": 0.3869047619047619
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.003377308076406016,
+      "improvement_over_holding_baseline": -0.0008401729347194964
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 60,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5357142857142857,
+      "raw_probability": {
+        "brier": 0.2518063382346947,
+        "mean_probability": 0.5491050430480154,
+        "log_loss": 0.69652373564173,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.013432561365348976,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 4,
+            "mean_probability": 0.2656346448402755,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 7,
+            "mean_probability": 0.36975026066883776,
+            "hit_rate": 0.42857142857142855
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 67,
+            "mean_probability": 0.4622579132174491,
+            "hit_rate": 0.5223880597014925
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 163,
+            "mean_probability": 0.5512977320467044,
+            "hit_rate": 0.6012269938650306
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 91,
+            "mean_probability": 0.6349355620292997,
+            "hit_rate": 0.46153846153846156
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 3,
+            "mean_probability": 0.7410416149589057,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2631887772702665,
+        "mean_probability": 0.46201069410273704,
+        "log_loss": 0.7190775046951032,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.009047115589314734,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.17634660289803142,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 5,
+            "mean_probability": 0.25036046309923965,
+            "hit_rate": 0.2
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 61,
+            "mean_probability": 0.3661365363707717,
+            "hit_rate": 0.5737704918032787
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 158,
+            "mean_probability": 0.45075410056131116,
+            "hit_rate": 0.5949367088607594
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 98,
+            "mean_probability": 0.5425242775461447,
+            "hit_rate": 0.46938775510204084
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 10,
+            "mean_probability": 0.6181818098685208,
+            "hit_rate": 0.3
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 1,
+            "mean_probability": 0.7193766761264467,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.25469855516434403,
+        "mean_probability": 0.521584967506858,
+        "log_loss": 0.7025690146724847,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 336,
+            "mean_probability": 0.521584967506858,
+            "hit_rate": 0.5357142857142857
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.01138243903557179,
+      "improvement_over_holding_baseline": -0.008490222105922485
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 90,
+      "events": 336,
+      "known": 334,
+      "unknown": 2,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.6017964071856288,
+      "raw_probability": {
+        "brier": 0.24572474262526597,
+        "mean_probability": 0.6176898710091722,
+        "log_loss": 0.6861391450006167,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.017565585929672747,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "mean_probability": 0.2793295292571441,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 4,
+            "mean_probability": 0.3526550872885652,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 15,
+            "mean_probability": 0.47246390639679997,
+            "hit_rate": 0.5333333333333333
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 100,
+            "mean_probability": 0.5604349559270753,
+            "hit_rate": 0.63
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 169,
+            "mean_probability": 0.6487675648086809,
+            "hit_rate": 0.6568047337278107
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 43,
+            "mean_probability": 0.7208533807704676,
+            "hit_rate": 0.3953488372093023
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 1,
+            "mean_probability": 0.8320334382657374,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.25740385964793294,
+        "mean_probability": 0.5324845204643808,
+        "log_loss": 0.7080311614378997,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.011846998818088112,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 4,
+            "mean_probability": 0.2486380149779745,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 12,
+            "mean_probability": 0.3734656287123929,
+            "hit_rate": 0.5833333333333334
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 90,
+            "mean_probability": 0.4611107681978046,
+            "hit_rate": 0.6888888888888889
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 150,
+            "mean_probability": 0.5453476665674938,
+            "hit_rate": 0.6533333333333333
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 74,
+            "mean_probability": 0.6333088916114332,
+            "hit_rate": 0.4189189189189189
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 3,
+            "mean_probability": 0.7316220432173095,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24690374101533358,
+        "mean_probability": 0.5788657524874535,
+        "log_loss": 0.6871982575438117,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 319,
+            "mean_probability": 0.5777455571391038,
+            "hit_rate": 0.6144200626959248
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 15,
+            "mean_probability": 0.6026885735623598,
+            "hit_rate": 0.3333333333333333
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.011679117022666968,
+      "improvement_over_holding_baseline": -0.010500118632599365
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": "all",
+      "events": 1232,
+      "known": 1228,
+      "unknown": 4,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.3004885993485342,
+      "raw_probability": {
+        "brier": 0.22605672970405555,
+        "mean_probability": 0.48028830779587056,
+        "log_loss": 0.6425608969370956,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 14,
+            "mean_probability": 0.1766312521929427,
+            "hit_rate": 0.14285714285714285
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 133,
+            "mean_probability": 0.2624809574947668,
+            "hit_rate": 0.12030075187969924
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 257,
+            "mean_probability": 0.3482713689269548,
+            "hit_rate": 0.15953307392996108
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 246,
+            "mean_probability": 0.4557627119863442,
+            "hit_rate": 0.2926829268292683
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 260,
+            "mean_probability": 0.5504147803795499,
+            "hit_rate": 0.34615384615384615
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 281,
+            "mean_probability": 0.6451789938085588,
+            "hit_rate": 0.4483985765124555
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 37,
+            "mean_probability": 0.713100756055885,
+            "hit_rate": 0.5945945945945946
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.20432631493879702,
+        "mean_probability": 0.4035573199080465,
+        "log_loss": 0.5951448944936327,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 73,
+            "mean_probability": 0.1723507767399042,
+            "hit_rate": 0.0547945205479452
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 288,
+            "mean_probability": 0.25654324038681514,
+            "hit_rate": 0.14583333333333334
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 232,
+            "mean_probability": 0.3537492666255629,
+            "hit_rate": 0.3017241379310345
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 278,
+            "mean_probability": 0.44850790860946593,
+            "hit_rate": 0.3129496402877698
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 266,
+            "mean_probability": 0.5475059581949681,
+            "hit_rate": 0.42857142857142855
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 91,
+            "mean_probability": 0.6231946767389202,
+            "hit_rate": 0.5714285714285714
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2187513693058594,
+        "mean_probability": 0.4431091375882605,
+        "log_loss": 0.6267564792167731,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 307,
+            "mean_probability": 0.2674782352902393,
+            "hit_rate": 0.12052117263843648
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 28,
+            "mean_probability": 0.39844683393070507,
+            "hit_rate": 0.07142857142857142
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 279,
+            "mean_probability": 0.407428654256736,
+            "hit_rate": 0.31899641577060933
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 614,
+            "mean_probability": 0.5491744248152952,
+            "hit_rate": 0.3925081433224756
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.021730414765258527,
+      "improvement_over_holding_baseline": 0.014425054367062373
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 14,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.12052117263843648,
+      "raw_probability": {
+        "brier": 0.13742653820392256,
+        "mean_probability": 0.30370576134873345,
+        "log_loss": 0.4548432084232231,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 14,
+            "mean_probability": 0.1766312521929427,
+            "hit_rate": 0.14285714285714285
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 119,
+            "mean_probability": 0.2616122778697851,
+            "hit_rate": 0.08403361344537816
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 172,
+            "mean_probability": 0.341946291958683,
+            "hit_rate": 0.13953488372093023
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 2,
+            "mean_probability": 0.4091039599810393,
+            "hit_rate": 0.5
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.1176498293204408,
+        "mean_probability": 0.23812235685890357,
+        "log_loss": 0.4045518827386971,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 68,
+            "mean_probability": 0.1718662733568633,
+            "hit_rate": 0.058823529411764705
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 219,
+            "mean_probability": 0.25209615289568704,
+            "hit_rate": 0.1141552511415525
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 20,
+            "mean_probability": 0.31037997416306157,
+            "hit_rate": 0.4
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.12816726023058994,
+        "mean_probability": 0.2674782352902393,
+        "log_loss": 0.4340866162608092,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 307,
+            "mean_probability": 0.2674782352902393,
+            "hit_rate": 0.12052117263843648
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.019776708883481764,
+      "improvement_over_holding_baseline": 0.010517430910149145
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 30,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.2964169381107492,
+      "raw_probability": {
+        "brier": 0.22226808426333738,
+        "mean_probability": 0.4303780613853616,
+        "log_loss": 0.6367519540610356,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 14,
+            "mean_probability": 0.26986473430710983,
+            "hit_rate": 0.42857142857142855
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 77,
+            "mean_probability": 0.3622328821510885,
+            "hit_rate": 0.2077922077922078
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 171,
+            "mean_probability": 0.45203307485258826,
+            "hit_rate": 0.2807017543859649
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 45,
+            "mean_probability": 0.5146304631017797,
+            "hit_rate": 0.4666666666666667
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2074238545640549,
+        "mean_probability": 0.351515936043086,
+        "log_loss": 0.6056178605586895,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 5,
+            "mean_probability": 0.17894002274926074,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 63,
+            "mean_probability": 0.27088104794256157,
+            "hit_rate": 0.2698412698412698
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 165,
+            "mean_probability": 0.35584761705312956,
+            "hit_rate": 0.2606060606060606
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 74,
+            "mean_probability": 0.4221666137477479,
+            "hit_rate": 0.4189189189189189
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2216208504224027,
+        "mean_probability": 0.406609465432212,
+        "log_loss": 0.635854705843534,
+        "reliability": [
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 28,
+            "mean_probability": 0.39844683393070507,
+            "hit_rate": 0.07142857142857142
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 279,
+            "mean_probability": 0.407428654256736,
+            "hit_rate": 0.31899641577060933
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.01484422969928248,
+      "improvement_over_holding_baseline": 0.0141969958583478
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 60,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.3745928338762215,
+      "raw_probability": {
+        "brier": 0.2595699905494318,
+        "mean_probability": 0.5572868032871607,
+        "log_loss": 0.712524409148984,
+        "reliability": [
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 6,
+            "mean_probability": 0.3417706704981544,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 61,
+            "mean_probability": 0.4658204782697958,
+            "hit_rate": 0.26229508196721313
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 139,
+            "mean_probability": 0.5564410069322233,
+            "hit_rate": 0.31654676258992803
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 101,
+            "mean_probability": 0.6264957965161668,
+            "hit_rate": 0.5346534653465347
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.23613665794422992,
+        "mean_probability": 0.4747304396186768,
+        "log_loss": 0.6650028729919509,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 5,
+            "mean_probability": 0.26362045462762246,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 38,
+            "mean_probability": 0.3649874210335349,
+            "hit_rate": 0.3684210526315789
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 136,
+            "mean_probability": 0.45399885109902727,
+            "hit_rate": 0.2647058823529412
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 128,
+            "mean_probability": 0.5375841948519815,
+            "hit_rate": 0.5078125
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.25569223899994165,
+        "mean_probability": 0.5193471995244178,
+        "log_loss": 0.7045388362527435,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 307,
+            "mean_probability": 0.5193471995244178,
+            "hit_rate": 0.3745928338762215
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.02343333260520189,
+      "improvement_over_holding_baseline": 0.01955558105571173
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 90,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.41042345276872966,
+      "raw_probability": {
+        "brier": 0.28496230579953036,
+        "mean_probability": 0.6297826051622261,
+        "log_loss": 0.7661240161151396,
+        "reliability": [
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 2,
+            "mean_probability": 0.3742118243555934,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 12,
+            "mean_probability": 0.46555952120237315,
+            "hit_rate": 0.5833333333333334
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 76,
+            "mean_probability": 0.5605812117832084,
+            "hit_rate": 0.32894736842105265
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 180,
+            "mean_probability": 0.6556623434004009,
+            "hit_rate": 0.4
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 37,
+            "mean_probability": 0.713100756055885,
+            "hit_rate": 0.5945945945945946
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2560949179264624,
+        "mean_probability": 0.5498605471115198,
+        "log_loss": 0.7054069616851936,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "mean_probability": 0.2917874537278077,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 9,
+            "mean_probability": 0.36420572898096215,
+            "hit_rate": 0.5555555555555556
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 68,
+            "mean_probability": 0.4661915503916245,
+            "hit_rate": 0.29411764705882354
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 138,
+            "mean_probability": 0.5567087531797673,
+            "hit_rate": 0.35507246376811596
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 91,
+            "mean_probability": 0.6231946767389202,
+            "hit_rate": 0.5714285714285714
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.26952512757050345,
+        "mean_probability": 0.5790016501061728,
+        "log_loss": 0.7325457585100059,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 307,
+            "mean_probability": 0.5790016501061728,
+            "hit_rate": 0.41042345276872966
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.028867387873067973,
+      "improvement_over_holding_baseline": 0.013430209644041069
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": "all",
+      "events": 3900,
+      "known": 3896,
+      "unknown": 4,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.5349075975359343,
+      "raw_probability": {
+        "brier": 0.22214159261772348,
+        "mean_probability": 0.60684517906468,
+        "log_loss": 0.6353176352918315,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 16,
+            "mean_probability": 0.05111222620985588,
+            "hit_rate": 0.1875
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 36,
+            "mean_probability": 0.17119010172522692,
+            "hit_rate": 0.1111111111111111
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 154,
+            "mean_probability": 0.25918349584724554,
+            "hit_rate": 0.19480519480519481
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 345,
+            "mean_probability": 0.3567716724173882,
+            "hit_rate": 0.2492753623188406
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 519,
+            "mean_probability": 0.45182421648300436,
+            "hit_rate": 0.3911368015414258
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 690,
+            "mean_probability": 0.5512883608247455,
+            "hit_rate": 0.4666666666666667
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 820,
+            "mean_probability": 0.652107153532876,
+            "hit_rate": 0.5841463414634146
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 744,
+            "mean_probability": 0.7489600118497252,
+            "hit_rate": 0.678763440860215
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 517,
+            "mean_probability": 0.8450532729696354,
+            "hit_rate": 0.7736943907156673
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 55,
+            "mean_probability": 0.9191872517789704,
+            "hit_rate": 0.9454545454545454
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.21967532570472,
+        "mean_probability": 0.5244573603392545,
+        "log_loss": 0.6293133970287784,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 23,
+            "mean_probability": 0.051096994306342305,
+            "hit_rate": 0.17391304347826086
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 111,
+            "mean_probability": 0.16618207286060985,
+            "hit_rate": 0.1891891891891892
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 367,
+            "mean_probability": 0.2570709197952062,
+            "hit_rate": 0.2670299727520436
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 551,
+            "mean_probability": 0.35259021802142826,
+            "hit_rate": 0.37749546279491836
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 689,
+            "mean_probability": 0.4518195397012471,
+            "hit_rate": 0.47750362844702465
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 755,
+            "mean_probability": 0.5523630457456422,
+            "hit_rate": 0.5774834437086093
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 647,
+            "mean_probability": 0.6499646290543134,
+            "hit_rate": 0.6306027820710973
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 494,
+            "mean_probability": 0.7467293259672968,
+            "hit_rate": 0.7246963562753036
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 246,
+            "mean_probability": 0.8348603804130702,
+            "hit_rate": 0.8536585365853658
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 13,
+            "mean_probability": 0.916721479291893,
+            "hit_rate": 0.9230769230769231
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2397275404778659,
+        "mean_probability": 0.5660797183416701,
+        "log_loss": 0.6725908799518492,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 974,
+            "mean_probability": 0.4301307046559693,
+            "hit_rate": 0.3675564681724846
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 974,
+            "mean_probability": 0.5354118989979177,
+            "hit_rate": 0.5092402464065708
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 1948,
+            "mean_probability": 0.6493881348563967,
+            "hit_rate": 0.6314168377823408
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.002466266913003473,
+      "improvement_over_holding_baseline": 0.020052214773145893
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 14,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.3675564681724846,
+      "raw_probability": {
+        "brier": 0.20952149171318132,
+        "mean_probability": 0.4608213357734115,
+        "log_loss": 0.6071524470658451,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 7,
+            "mean_probability": 0.05642340091219641,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 26,
+            "mean_probability": 0.17520712767516083,
+            "hit_rate": 0.11538461538461539
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 122,
+            "mean_probability": 0.2576243671660916,
+            "hit_rate": 0.18032786885245902
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 212,
+            "mean_probability": 0.3551295599526265,
+            "hit_rate": 0.22169811320754718
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 219,
+            "mean_probability": 0.44433694440320476,
+            "hit_rate": 0.3287671232876712
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 172,
+            "mean_probability": 0.5481827207847566,
+            "hit_rate": 0.4186046511627907
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 161,
+            "mean_probability": 0.6482471613799343,
+            "hit_rate": 0.5838509316770186
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 48,
+            "mean_probability": 0.7368083823648592,
+            "hit_rate": 0.8541666666666666
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 7,
+            "mean_probability": 0.834311182597231,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.20229503907713745,
+        "mean_probability": 0.37573405564296697,
+        "log_loss": 0.591993331557565,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 10,
+            "mean_probability": 0.05479245638997288,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 93,
+            "mean_probability": 0.16686622791575184,
+            "hit_rate": 0.20430107526881722
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 243,
+            "mean_probability": 0.25489522331513603,
+            "hit_rate": 0.2345679012345679
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 233,
+            "mean_probability": 0.3459838359708968,
+            "hit_rate": 0.2832618025751073
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 174,
+            "mean_probability": 0.4481693169284271,
+            "hit_rate": 0.41954022988505746
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 153,
+            "mean_probability": 0.5518495392850988,
+            "hit_rate": 0.5620915032679739
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 55,
+            "mean_probability": 0.6405042268516238,
+            "hit_rate": 0.8181818181818182
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 10,
+            "mean_probability": 0.726102350319516,
+            "hit_rate": 0.9
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 3,
+            "mean_probability": 0.8138389177290976,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.23713167210432093,
+        "mean_probability": 0.4301307046559693,
+        "log_loss": 0.6672643082997214,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 974,
+            "mean_probability": 0.4301307046559693,
+            "hit_rate": 0.3675564681724846
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0072264526360438786,
+      "improvement_over_holding_baseline": 0.03483663302718348
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 30,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.5092402464065708,
+      "raw_probability": {
+        "brier": 0.2351224711685844,
+        "mean_probability": 0.5724774751857417,
+        "log_loss": 0.6623518562527824,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 4,
+            "mean_probability": 0.04842521760321229,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 5,
+            "mean_probability": 0.15905849973603683,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 26,
+            "mean_probability": 0.26887297839786073,
+            "hit_rate": 0.3076923076923077
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 105,
+            "mean_probability": 0.3578427690947277,
+            "hit_rate": 0.2857142857142857
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 169,
+            "mean_probability": 0.45478999829386396,
+            "hit_rate": 0.44970414201183434
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 243,
+            "mean_probability": 0.5478950361494684,
+            "hit_rate": 0.45267489711934156
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 186,
+            "mean_probability": 0.651217693700642,
+            "hit_rate": 0.5483870967741935
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 187,
+            "mean_probability": 0.7485329401267438,
+            "hit_rate": 0.6737967914438503
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 46,
+            "mean_probability": 0.8303952923636853,
+            "hit_rate": 0.8695652173913043
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 3,
+            "mean_probability": 0.9138471639315627,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2338322836178608,
+        "mean_probability": 0.48554380696463034,
+        "log_loss": 0.6602344784637882,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 6,
+            "mean_probability": 0.051351036984665754,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 12,
+            "mean_probability": 0.17015835995822506,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 101,
+            "mean_probability": 0.2599127984197828,
+            "hit_rate": 0.33663366336633666
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 198,
+            "mean_probability": 0.35593450024334666,
+            "hit_rate": 0.4494949494949495
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 223,
+            "mean_probability": 0.44947324936276645,
+            "hit_rate": 0.4484304932735426
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 181,
+            "mean_probability": 0.5512065616647434,
+            "hit_rate": 0.5414364640883977
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 157,
+            "mean_probability": 0.6508000861754688,
+            "hit_rate": 0.5923566878980892
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 84,
+            "mean_probability": 0.7343590415517465,
+            "hit_rate": 0.8095238095238095
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 12,
+            "mean_probability": 0.8317285387043184,
+            "hit_rate": 0.9166666666666666
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2520515275933432,
+        "mean_probability": 0.5354118989979177,
+        "log_loss": 0.6972701690262947,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 974,
+            "mean_probability": 0.5354118989979177,
+            "hit_rate": 0.5092402464065708
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0012901875507236038,
+      "improvement_over_holding_baseline": 0.018219243975482413
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 60,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.606776180698152,
+      "raw_probability": {
+        "brier": 0.22621866640131036,
+        "mean_probability": 0.6707688436712715,
+        "log_loss": 0.6439999460071335,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.05008019029812321,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.1741447382909961,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 3,
+            "mean_probability": 0.2532005567197786,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 23,
+            "mean_probability": 0.3667388651561301,
+            "hit_rate": 0.34782608695652173
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 92,
+            "mean_probability": 0.45988140107207975,
+            "hit_rate": 0.41304347826086957
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 160,
+            "mean_probability": 0.5567873986627283,
+            "hit_rate": 0.525
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 257,
+            "mean_probability": 0.6509527152848036,
+            "hit_rate": 0.5719844357976653
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 233,
+            "mean_probability": 0.7523747973504253,
+            "hit_rate": 0.6738197424892703
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 186,
+            "mean_probability": 0.8420137798967371,
+            "hit_rate": 0.7688172043010753
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 14,
+            "mean_probability": 0.9181265732140079,
+            "hit_rate": 0.9285714285714286
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2257411432773906,
+        "mean_probability": 0.5891118530228729,
+        "log_loss": 0.6415111902513848,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 4,
+            "mean_probability": 0.04844657577421648,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.1443436715764214,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 18,
+            "mean_probability": 0.26997715436268677,
+            "hit_rate": 0.3888888888888889
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 86,
+            "mean_probability": 0.35813871291276317,
+            "hit_rate": 0.4186046511627907
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 177,
+            "mean_probability": 0.45612275619292053,
+            "hit_rate": 0.5480225988700564
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 227,
+            "mean_probability": 0.5523096632369419,
+            "hit_rate": 0.5550660792951542
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 198,
+            "mean_probability": 0.6524959366286798,
+            "hit_rate": 0.6464646464646465
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 188,
+            "mean_probability": 0.7513044194828492,
+            "hit_rate": 0.6861702127659575
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 70,
+            "mean_probability": 0.8315162777130323,
+            "hit_rate": 0.9142857142857143
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 3,
+            "mean_probability": 0.9183407604423129,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24125418484737488,
+        "mean_probability": 0.6256337257854114,
+        "log_loss": 0.6758142086886336,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 974,
+            "mean_probability": 0.6256337257854114,
+            "hit_rate": 0.606776180698152
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0004775231239197708,
+      "improvement_over_holding_baseline": 0.015513041569984287
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 90,
+      "events": 975,
+      "known": 974,
+      "unknown": 1,
+      "distinct_entry_dates": 36,
+      "hit_rate": 0.6560574948665298,
+      "raw_probability": {
+        "brier": 0.2177037411878178,
+        "mean_probability": 0.723313061628295,
+        "log_loss": 0.6277662918415655,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.0394451858325502,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.14486581450040742,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 3,
+            "mean_probability": 0.24459548590297353,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 5,
+            "mean_probability": 0.3580551241009412,
+            "hit_rate": 0.2
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 39,
+            "mean_probability": 0.4620097158995658,
+            "hit_rate": 0.4358974358974359
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 115,
+            "mean_probability": 0.5554527254238169,
+            "hit_rate": 0.48695652173913045
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 216,
+            "mean_probability": 0.6571237687883096,
+            "hit_rate": 0.6296296296296297
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 276,
+            "mean_probability": 0.7484799234649709,
+            "hit_rate": 0.6557971014492754
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 278,
+            "mean_probability": 0.8497827961784111,
+            "hit_rate": 0.7553956834532374
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 38,
+            "mean_probability": 0.9199996139750677,
+            "hit_rate": 0.9473684210526315
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.21683283684649118,
+        "mean_probability": 0.6474397257265476,
+        "log_loss": 0.6235145878423751,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.04180459338042799,
+            "hit_rate": 0.6666666666666666
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.15090651904493468,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 5,
+            "mean_probability": 0.25894137606724044,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 34,
+            "mean_probability": 0.36435341146787437,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 115,
+            "mean_probability": 0.455269036996253,
+            "hit_rate": 0.5130434782608696
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 194,
+            "mean_probability": 0.5539094784084302,
+            "hit_rate": 0.6494845360824743
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 237,
+            "mean_probability": 0.6494918714737308,
+            "hit_rate": 0.5991561181434599
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 212,
+            "mean_probability": 0.7485465715638071,
+            "hit_rate": 0.7169811320754716
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 161,
+            "mean_probability": 0.8369394715780366,
+            "hit_rate": 0.8198757763975155
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 10,
+            "mean_probability": 0.9162356949467669,
+            "hit_rate": 0.9
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.22847277736642468,
+        "mean_probability": 0.673142543927382,
+        "log_loss": 0.6500148337927472,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 974,
+            "mean_probability": 0.673142543927382,
+            "hit_rate": 0.6560574948665298
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0008709043413266115,
+      "improvement_over_holding_baseline": 0.0116399405199335
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": "all",
+      "events": 1324,
+      "known": 1324,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5566465256797583,
+      "raw_probability": {
+        "brier": 0.22424170206772745,
+        "mean_probability": 0.6072691168728028,
+        "log_loss": 0.6414355317596302,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 7,
+            "mean_probability": 0.050541330153206845,
+            "hit_rate": 0.42857142857142855
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 5,
+            "mean_probability": 0.1567029197794665,
+            "hit_rate": 0.2
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 35,
+            "mean_probability": 0.2626658095726657,
+            "hit_rate": 0.22857142857142856
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 105,
+            "mean_probability": 0.3576886430555118,
+            "hit_rate": 0.3047619047619048
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 189,
+            "mean_probability": 0.4512649682308418,
+            "hit_rate": 0.3968253968253968
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 253,
+            "mean_probability": 0.5540254321174533,
+            "hit_rate": 0.4624505928853755
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 321,
+            "mean_probability": 0.6535424410102385,
+            "hit_rate": 0.6199376947040498
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 254,
+            "mean_probability": 0.7487594119056785,
+            "hit_rate": 0.6929133858267716
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 146,
+            "mean_probability": 0.8382862314342787,
+            "hit_rate": 0.8013698630136986
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 9,
+            "mean_probability": 0.9241198527411826,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.22590225272287306,
+        "mean_probability": 0.5121423882491677,
+        "log_loss": 0.6456841866304249,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 9,
+            "mean_probability": 0.043474854815823416,
+            "hit_rate": 0.4444444444444444
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 23,
+            "mean_probability": 0.1665820581225714,
+            "hit_rate": 0.2608695652173913
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 127,
+            "mean_probability": 0.26009312419537134,
+            "hit_rate": 0.30708661417322836
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 198,
+            "mean_probability": 0.35303709581169535,
+            "hit_rate": 0.41919191919191917
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 260,
+            "mean_probability": 0.45348825292073336,
+            "hit_rate": 0.49615384615384617
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 292,
+            "mean_probability": 0.5521353082533591,
+            "hit_rate": 0.6027397260273972
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 222,
+            "mean_probability": 0.6494934183154148,
+            "hit_rate": 0.6711711711711712
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 151,
+            "mean_probability": 0.7460900266959841,
+            "hit_rate": 0.7615894039735099
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 39,
+            "mean_probability": 0.8253363397966089,
+            "hit_rate": 0.8461538461538461
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 3,
+            "mean_probability": 0.9183277832178544,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.23747436737569155,
+        "mean_probability": 0.5688614796874725,
+        "log_loss": 0.6677931888995896,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 331,
+            "mean_probability": 0.4446323976291725,
+            "hit_rate": 0.38972809667673713
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 331,
+            "mean_probability": 0.5378485869411113,
+            "hit_rate": 0.5287009063444109
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 662,
+            "mean_probability": 0.646482467089803,
+            "hit_rate": 0.6540785498489426
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.001660550655145615,
+      "improvement_over_holding_baseline": 0.011572114652818488
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 14,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.38972809667673713,
+      "raw_probability": {
+        "brier": 0.2247602506638235,
+        "mean_probability": 0.4644245072010885,
+        "log_loss": 0.6393748796825637,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.028135202589608756,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.15740663851566158,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 30,
+            "mean_probability": 0.26054424654820607,
+            "hit_rate": 0.2
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 75,
+            "mean_probability": 0.3563808278533272,
+            "hit_rate": 0.30666666666666664
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 94,
+            "mean_probability": 0.44281659619182134,
+            "hit_rate": 0.3617021276595745
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 69,
+            "mean_probability": 0.5569384077211588,
+            "hit_rate": 0.4492753623188406
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 51,
+            "mean_probability": 0.6504041666119466,
+            "hit_rate": 0.5490196078431373
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 4,
+            "mean_probability": 0.7385398571692496,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 3,
+            "mean_probability": 0.8242833255703177,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.22118069617997463,
+        "mean_probability": 0.3667084482197326,
+        "log_loss": 0.6326736539006935,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 3,
+            "mean_probability": 0.04198191667151416,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 20,
+            "mean_probability": 0.16679669987296633,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 97,
+            "mean_probability": 0.25990023232551035,
+            "hit_rate": 0.29896907216494845
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 85,
+            "mean_probability": 0.34414733271347475,
+            "hit_rate": 0.35294117647058826
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 69,
+            "mean_probability": 0.4520407292694898,
+            "hit_rate": 0.463768115942029
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 47,
+            "mean_probability": 0.5456302912914461,
+            "hit_rate": 0.5319148936170213
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 7,
+            "mean_probability": 0.6254295601778562,
+            "hit_rate": 0.7142857142857143
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 2,
+            "mean_probability": 0.7208406697439494,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 1,
+            "mean_probability": 0.8006485260121122,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24350374577841744,
+        "mean_probability": 0.4446323976291725,
+        "log_loss": 0.6801480636070713,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 331,
+            "mean_probability": 0.4446323976291725,
+            "hit_rate": 0.38972809667673713
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.0035795544838488624,
+      "improvement_over_holding_baseline": 0.022323049598442807
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 30,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5287009063444109,
+      "raw_probability": {
+        "brier": 0.2408747902690927,
+        "mean_probability": 0.573675943794712,
+        "log_loss": 0.6775837665618449,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.04540373788994503,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.19703254238034484,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 4,
+            "mean_probability": 0.27462977178035997,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 25,
+            "mean_probability": 0.3606904431534388,
+            "hit_rate": 0.32
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 62,
+            "mean_probability": 0.45784153353882073,
+            "hit_rate": 0.43548387096774194
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 99,
+            "mean_probability": 0.546809475841371,
+            "hit_rate": 0.5050505050505051
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 74,
+            "mean_probability": 0.6571231660343132,
+            "hit_rate": 0.5945945945945946
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 58,
+            "mean_probability": 0.7449472822513499,
+            "hit_rate": 0.6379310344827587
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 5,
+            "mean_probability": 0.8433656913676237,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 1,
+            "mean_probability": 0.9119189102738017,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.24391512818531877,
+        "mean_probability": 0.47349044950029046,
+        "log_loss": 0.6852821754896092,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.0289079938824355,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.1651511131199386,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 24,
+            "mean_probability": 0.26151400957771803,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 80,
+            "mean_probability": 0.35913252179302474,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 89,
+            "mean_probability": 0.44686516825909234,
+            "hit_rate": 0.47191011235955055
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 69,
+            "mean_probability": 0.5598600716911531,
+            "hit_rate": 0.5942028985507246
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 51,
+            "mean_probability": 0.6486769848915154,
+            "hit_rate": 0.5882352941176471
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 11,
+            "mean_probability": 0.7266251736707512,
+            "hit_rate": 0.9090909090909091
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 2,
+            "mean_probability": 0.8441917112849581,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2518477651998579,
+        "mean_probability": 0.5378485869411113,
+        "log_loss": 0.6968658781661454,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 331,
+            "mean_probability": 0.5378485869411113,
+            "hit_rate": 0.5287009063444109
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.0030403379162260713,
+      "improvement_over_holding_baseline": 0.00793263701453914
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 60,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.6163141993957704,
+      "raw_probability": {
+        "brier": 0.22943632447589793,
+        "mean_probability": 0.6697798458797799,
+        "log_loss": 0.6542910755345127,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.07022102446119204,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "mean_probability": 0.2784568514756779,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 3,
+            "mean_probability": 0.36257876108990295,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 24,
+            "mean_probability": 0.46048210997039435,
+            "hit_rate": 0.4166666666666667
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 57,
+            "mean_probability": 0.5607288728117584,
+            "hit_rate": 0.47368421052631576
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 105,
+            "mean_probability": 0.6489114046932644,
+            "hit_rate": 0.6285714285714286
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 92,
+            "mean_probability": 0.75611395855993,
+            "hit_rate": 0.6956521739130435
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 44,
+            "mean_probability": 0.8343150492741708,
+            "hit_rate": 0.7272727272727273
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 3,
+            "mean_probability": 0.92311118820328,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.23180227271221918,
+        "mean_probability": 0.5752657182530331,
+        "log_loss": 0.6582350281950451,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.0451822944405566,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 4,
+            "mean_probability": 0.25086568981438256,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 24,
+            "mean_probability": 0.359071052546952,
+            "hit_rate": 0.375
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 69,
+            "mean_probability": 0.4604358278682203,
+            "hit_rate": 0.5797101449275363
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 92,
+            "mean_probability": 0.5479096318462066,
+            "hit_rate": 0.5652173913043478
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 77,
+            "mean_probability": 0.6593587946873446,
+            "hit_rate": 0.7012987012987013
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 56,
+            "mean_probability": 0.746984254243879,
+            "hit_rate": 0.6964285714285714
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 6,
+            "mean_probability": 0.8345006554098194,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 1,
+            "mean_probability": 0.9149125186885527,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.23844617132707538,
+        "mean_probability": 0.6247312145511359,
+        "log_loss": 0.6699967703376044,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 331,
+            "mean_probability": 0.6247312145511359,
+            "hit_rate": 0.6163141993957704
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.002365948236321247,
+      "improvement_over_holding_baseline": 0.006643898614856203
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 90,
+      "events": 331,
+      "known": 331,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.6918429003021148,
+      "raw_probability": {
+        "brier": 0.20189544286209568,
+        "mean_probability": 0.7211961706156306,
+        "log_loss": 0.5944924052595991,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.06626938119095627,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.11426214097000281,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 2,
+            "mean_probability": 0.3618740348617604,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 9,
+            "mean_probability": 0.46961924832239327,
+            "hit_rate": 0.4444444444444444
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 28,
+            "mean_probability": 0.5587142976567779,
+            "hit_rate": 0.32142857142857145
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 91,
+            "mean_probability": 0.6577329592059927,
+            "hit_rate": 0.6703296703296703
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 100,
+            "mean_probability": 0.7446130463727348,
+            "hit_rate": 0.71
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 94,
+            "mean_probability": 0.8403217998701289,
+            "hit_rate": 0.8191489361702128
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 5,
+            "mean_probability": 0.9271652399574005,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.2067109138139796,
+        "mean_probability": 0.6331049370236144,
+        "log_loss": 0.6065458889363514,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.05857368334094204,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 2,
+            "mean_probability": 0.270852624057446,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 9,
+            "mean_probability": 0.36672385394461104,
+            "hit_rate": 0.4444444444444444
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 33,
+            "mean_probability": 0.4598504042978627,
+            "hit_rate": 0.45454545454545453
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 84,
+            "mean_probability": 0.5540578005088372,
+            "hit_rate": 0.6904761904761905
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 87,
+            "mean_probability": 0.6431767646480949,
+            "hit_rate": 0.6896551724137931
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 82,
+            "mean_probability": 0.7487063115069537,
+            "hit_rate": 0.7804878048780488
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 30,
+            "mean_probability": 0.8230693790342266,
+            "hit_rate": 0.8
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 2,
+            "mean_probability": 0.9200354154825052,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2160997871974156,
+        "mean_probability": 0.6682337196284701,
+        "log_loss": 0.6241620434875373,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 331,
+            "mean_probability": 0.6682337196284701,
+            "hit_rate": 0.6918429003021148
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.004815470951883921,
+      "improvement_over_holding_baseline": 0.009388873383435997
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": "all",
+      "events": 1344,
+      "known": 1344,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5900297619047619,
+      "raw_probability": {
+        "brier": 0.2070937551140966,
+        "mean_probability": 0.6050167317423352,
+        "log_loss": 0.6016217340937289,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 8,
+            "mean_probability": 0.04590379959780609,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 18,
+            "mean_probability": 0.1713331743849771,
+            "hit_rate": 0.1111111111111111
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 62,
+            "mean_probability": 0.254360344834179,
+            "hit_rate": 0.24193548387096775
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 127,
+            "mean_probability": 0.35520103569150446,
+            "hit_rate": 0.2440944881889764
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 173,
+            "mean_probability": 0.45275268631634447,
+            "hit_rate": 0.47398843930635837
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 226,
+            "mean_probability": 0.5484990309593816,
+            "hit_rate": 0.584070796460177
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 252,
+            "mean_probability": 0.6511405634328801,
+            "hit_rate": 0.6547619047619048
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 260,
+            "mean_probability": 0.7497262645753654,
+            "hit_rate": 0.7346153846153847
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 190,
+            "mean_probability": 0.8511002227181156,
+            "hit_rate": 0.7789473684210526
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 28,
+            "mean_probability": 0.9213606497419923,
+            "hit_rate": 0.9642857142857143
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.21490005260514491,
+        "mean_probability": 0.5250395275316377,
+        "log_loss": 0.6172845800004972,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 12,
+            "mean_probability": 0.05183979573340609,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 54,
+            "mean_probability": 0.16641159812877307,
+            "hit_rate": 0.24074074074074073
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 129,
+            "mean_probability": 0.2568511004513026,
+            "hit_rate": 0.26356589147286824
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 186,
+            "mean_probability": 0.35341826866168163,
+            "hit_rate": 0.43548387096774194
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 228,
+            "mean_probability": 0.4497385323796904,
+            "hit_rate": 0.6008771929824561
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 231,
+            "mean_probability": 0.5527137772863508,
+            "hit_rate": 0.6493506493506493
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 215,
+            "mean_probability": 0.6501470133726462,
+            "hit_rate": 0.6790697674418604
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 167,
+            "mean_probability": 0.7450525770022789,
+            "hit_rate": 0.7784431137724551
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 114,
+            "mean_probability": 0.8368696150754646,
+            "hit_rate": 0.8245614035087719
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 8,
+            "mean_probability": 0.9186798670821016,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.23213267789675426,
+        "mean_probability": 0.5649977124440592,
+        "log_loss": 0.6569424852128914,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 336,
+            "mean_probability": 0.4276856924123363,
+            "hit_rate": 0.4226190476190476
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 336,
+            "mean_probability": 0.5357073888500367,
+            "hit_rate": 0.5476190476190477
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 672,
+            "mean_probability": 0.6482988842569319,
+            "hit_rate": 0.6949404761904762
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.007806297491048303,
+      "improvement_over_holding_baseline": 0.01723262529160935
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 14,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.4226190476190476,
+      "raw_probability": {
+        "brier": 0.20511678484073906,
+        "mean_probability": 0.4622298291404546,
+        "log_loss": 0.5975618415820317,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 4,
+            "mean_probability": 0.060479372425839985,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 12,
+            "mean_probability": 0.1767762782706841,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 48,
+            "mean_probability": 0.2532763753209468,
+            "hit_rate": 0.2708333333333333
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 68,
+            "mean_probability": 0.35405545582931913,
+            "hit_rate": 0.17647058823529413
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 66,
+            "mean_probability": 0.44738870940350306,
+            "hit_rate": 0.4090909090909091
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 52,
+            "mean_probability": 0.5412847683239396,
+            "hit_rate": 0.5192307692307693
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 56,
+            "mean_probability": 0.6526692266702512,
+            "hit_rate": 0.6071428571428571
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 26,
+            "mean_probability": 0.7354494223831629,
+            "hit_rate": 0.8846153846153846
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 4,
+            "mean_probability": 0.8418320753674162,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.20644612445374375,
+        "mean_probability": 0.3796761463010343,
+        "log_loss": 0.6013908371609582,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 5,
+            "mean_probability": 0.0520198373965194,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 43,
+            "mean_probability": 0.1665944216094996,
+            "hit_rate": 0.27906976744186046
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 73,
+            "mean_probability": 0.25083450036544797,
+            "hit_rate": 0.2054794520547945
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 75,
+            "mean_probability": 0.34851612396637505,
+            "hit_rate": 0.3466666666666667
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 55,
+            "mean_probability": 0.44471439986789196,
+            "hit_rate": 0.5272727272727272
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 50,
+            "mean_probability": 0.5595679608979833,
+            "hit_rate": 0.6
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 28,
+            "mean_probability": 0.6411620410780513,
+            "hit_rate": 0.8214285714285714
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 5,
+            "mean_probability": 0.7333605203613534,
+            "hit_rate": 1.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 2,
+            "mean_probability": 0.8204341135875901,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24499907230533083,
+        "mean_probability": 0.4276856924123363,
+        "log_loss": 0.6831384829787397,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 336,
+            "mean_probability": 0.4276856924123363,
+            "hit_rate": 0.4226190476190476
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.0013293396130046875,
+      "improvement_over_holding_baseline": 0.03855294785158708
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 30,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5476190476190477,
+      "raw_probability": {
+        "brier": 0.22204316478457992,
+        "mean_probability": 0.5712528873239572,
+        "log_loss": 0.6320814906329356,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.05144669731647955,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.13238904838878907,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 12,
+            "mean_probability": 0.2622374990262537,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 45,
+            "mean_probability": 0.35414851230259176,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 53,
+            "mean_probability": 0.45417243736191526,
+            "hit_rate": 0.5283018867924528
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 72,
+            "mean_probability": 0.5490628613965473,
+            "hit_rate": 0.4861111111111111
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 56,
+            "mean_probability": 0.6420846635613395,
+            "hit_rate": 0.5892857142857143
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 68,
+            "mean_probability": 0.7527655267667416,
+            "hit_rate": 0.7058823529411765
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 24,
+            "mean_probability": 0.8296533685700087,
+            "hit_rate": 0.875
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 2,
+            "mean_probability": 0.9148112907604434,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.22814069939488246,
+        "mean_probability": 0.4871036933869834,
+        "log_loss": 0.6449894627260118,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 4,
+            "mean_probability": 0.06257255853578088,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 6,
+            "mean_probability": 0.18397854760687504,
+            "hit_rate": 0.16666666666666666
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 46,
+            "mean_probability": 0.2617175594557615,
+            "hit_rate": 0.34782608695652173
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 59,
+            "mean_probability": 0.3547237195998726,
+            "hit_rate": 0.4915254237288136
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 65,
+            "mean_probability": 0.451184878001323,
+            "hit_rate": 0.5230769230769231
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 59,
+            "mean_probability": 0.5425750738476612,
+            "hit_rate": 0.5423728813559322
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 48,
+            "mean_probability": 0.6519972605157222,
+            "hit_rate": 0.6875
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 42,
+            "mean_probability": 0.7345509613941363,
+            "hit_rate": 0.7619047619047619
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 7,
+            "mean_probability": 0.8370024223540213,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.24889086724117257,
+        "mean_probability": 0.5357073888500367,
+        "log_loss": 0.6909403650881724,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 336,
+            "mean_probability": 0.5357073888500367,
+            "hit_rate": 0.5476190476190477
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.006097534610302546,
+      "improvement_over_holding_baseline": 0.020750167846290107
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 60,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.6726190476190477,
+      "raw_probability": {
+        "brier": 0.20580645858908542,
+        "mean_probability": 0.6674460119491814,
+        "log_loss": 0.5987415225400815,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.009798521971985559,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.1741447382909961,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 12,
+            "mean_probability": 0.362589252723535,
+            "hit_rate": 0.25
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 38,
+            "mean_probability": 0.4574932953158332,
+            "hit_rate": 0.5526315789473685
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 52,
+            "mean_probability": 0.5527948786871979,
+            "hit_rate": 0.6730769230769231
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 77,
+            "mean_probability": 0.6520262890139294,
+            "hit_rate": 0.6493506493506493
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 72,
+            "mean_probability": 0.7472847486055958,
+            "hit_rate": 0.7638888888888888
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 74,
+            "mean_probability": 0.8483996375258245,
+            "hit_rate": 0.7432432432432432
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 7,
+            "mean_probability": 0.922339714439305,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.21824613621033423,
+        "mean_probability": 0.58817293805758,
+        "log_loss": 0.6232748535615955,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.05171085710787636,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.1330376634846035,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 9,
+            "mean_probability": 0.27687529437652936,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 38,
+            "mean_probability": 0.35903718970410753,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 57,
+            "mean_probability": 0.4530276850152104,
+            "hit_rate": 0.6842105263157895
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 66,
+            "mean_probability": 0.5559891002819101,
+            "hit_rate": 0.6666666666666666
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 64,
+            "mean_probability": 0.6477438004082596,
+            "hit_rate": 0.6875
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 59,
+            "mean_probability": 0.7556306425133232,
+            "hit_rate": 0.7288135593220338
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 37,
+            "mean_probability": 0.8304199926078627,
+            "hit_rate": 0.8648648648648649
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 2,
+            "mean_probability": 0.9200548813191931,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.22603320164342447,
+        "mean_probability": 0.6234966982303839,
+        "log_loss": 0.6448436437835878,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 336,
+            "mean_probability": 0.6234966982303839,
+            "hit_rate": 0.6726190476190477
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.012439677621248812,
+      "improvement_over_holding_baseline": 0.00778706543309024
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 90,
+      "events": 336,
+      "known": 336,
+      "unknown": 0,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.7172619047619048,
+      "raw_probability": {
+        "brier": 0.19540861224198203,
+        "mean_probability": 0.7191381985557476,
+        "log_loss": 0.5781020816198663,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.012620990474144144,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.17546948803081205,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 2,
+            "mean_probability": 0.2331126879993054,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 2,
+            "mean_probability": 0.37350322506415334,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 16,
+            "mean_probability": 0.45891721936957625,
+            "hit_rate": 0.375
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 50,
+            "mean_probability": 0.5507222666337939,
+            "hit_rate": 0.7
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 63,
+            "mean_probability": 0.6567488869530815,
+            "hit_rate": 0.7619047619047619
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 94,
+            "mean_probability": 0.7533466605094833,
+            "hit_rate": 0.6914893617021277
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 88,
+            "mean_probability": 0.8596415908225121,
+            "hit_rate": 0.7727272727272727
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 19,
+            "mean_probability": 0.9216893479041978,
+            "hit_rate": 0.9473684210526315
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.20676725036161933,
+        "mean_probability": 0.6452053323809535,
+        "log_loss": 0.5994831665534233,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.008266413459399873,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.15090651904493468,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "mean_probability": 0.2919880471865359,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 14,
+            "mean_probability": 0.35892685774614896,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 51,
+            "mean_probability": 0.4496372210565167,
+            "hit_rate": 0.6862745098039216
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 56,
+            "mean_probability": 0.553415616654104,
+            "hit_rate": 0.7857142857142857
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 75,
+            "mean_probability": 0.6543679865873362,
+            "hit_rate": 0.6133333333333333
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 61,
+            "mean_probability": 0.743010319192361,
+            "hit_rate": 0.819672131147541
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 68,
+            "mean_probability": 0.8408486942420401,
+            "hit_rate": 0.7794117647058824
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 6,
+            "mean_probability": 0.9182215290030712,
+            "hit_rate": 1.0
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.20860757039708924,
+        "mean_probability": 0.67310107028348,
+        "log_loss": 0.6088474490010657,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 336,
+            "mean_probability": 0.67310107028348,
+            "hit_rate": 0.7172619047619048
+          }
+        ]
+      },
+      "calibration_brier_improvement": -0.011358638119637304,
+      "improvement_over_holding_baseline": 0.0018403200354699112
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": "all",
+      "events": 1232,
+      "known": 1228,
+      "unknown": 4,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.4511400651465798,
+      "raw_probability": {
+        "brier": 0.2363465996967701,
+        "mean_probability": 0.6083892666406381,
+        "log_loss": 0.665600368424474,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.0967759115027974,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 13,
+            "mean_probability": 0.17656399417548066,
+            "hit_rate": 0.07692307692307693
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 57,
+            "mean_probability": 0.26229146746865634,
+            "hit_rate": 0.12280701754385964
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 113,
+            "mean_probability": 0.3576848489411428,
+            "hit_rate": 0.20353982300884957
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 157,
+            "mean_probability": 0.4514743606772138,
+            "hit_rate": 0.2929936305732484
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 211,
+            "mean_probability": 0.5509940931115569,
+            "hit_rate": 0.3459715639810427
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 247,
+            "mean_probability": 0.6512280176015626,
+            "hit_rate": 0.46558704453441296
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 230,
+            "mean_probability": 0.7483153452285135,
+            "hit_rate": 0.6
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 181,
+            "mean_probability": 0.8441641437538946,
+            "hit_rate": 0.7458563535911602
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 18,
+            "mean_probability": 0.9133401100220525,
+            "hit_rate": 0.8888888888888888
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.21818796061823326,
+        "mean_probability": 0.5370979062193131,
+        "log_loss": 0.6248278959322228,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.08093981345129464,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 34,
+            "mean_probability": 0.1655469544633765,
+            "hit_rate": 0.058823529411764705
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 111,
+            "mean_probability": 0.2538685480523469,
+            "hit_rate": 0.22522522522522523
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 167,
+            "mean_probability": 0.35113812687436224,
+            "hit_rate": 0.2634730538922156
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 201,
+            "mean_probability": 0.452021550806961,
+            "hit_rate": 0.31343283582089554
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 232,
+            "mean_probability": 0.5523004610984139,
+            "hit_rate": 0.47413793103448276
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 210,
+            "mean_probability": 0.6502760393190461,
+            "hit_rate": 0.5380952380952381
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 176,
+            "mean_probability": 0.7488688218032411,
+            "hit_rate": 0.6420454545454546
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 93,
+            "mean_probability": 0.8363914001176832,
+            "hit_rate": 0.8924731182795699
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 2,
+            "mean_probability": 0.906478472242117,
+            "hit_rate": 0.5
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.2504691500025344,
+        "mean_probability": 0.5642647052346237,
+        "log_loss": 0.6948902166638615,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 307,
+            "mean_probability": 0.41717130315671985,
+            "hit_rate": 0.28338762214983715
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 307,
+            "mean_probability": 0.5324613182177586,
+            "hit_rate": 0.44625407166123776
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 614,
+            "mean_probability": 0.6537130997820083,
+            "hit_rate": 0.5374592833876222
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.018158639078536848,
+      "improvement_over_holding_baseline": 0.032281189384301134
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 14,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.28338762214983715,
+      "raw_probability": {
+        "brier": 0.1979122158059437,
+        "mean_probability": 0.45539493996270275,
+        "log_loss": 0.5829075553603968,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 1,
+            "mean_probability": 0.0967759115027974,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 11,
+            "mean_probability": 0.17835000588718064,
+            "hit_rate": 0.09090909090909091
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 44,
+            "mean_probability": 0.260376804145717,
+            "hit_rate": 0.06818181818181818
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 69,
+            "mean_probability": 0.35482802354439985,
+            "hit_rate": 0.17391304347826086
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 59,
+            "mean_probability": 0.44334535528202423,
+            "hit_rate": 0.1864406779661017
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 51,
+            "mean_probability": 0.5433699978308493,
+            "hit_rate": 0.27450980392156865
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 54,
+            "mean_probability": 0.6416241442856683,
+            "hit_rate": 0.5925925925925926
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 18,
+            "mean_probability": 0.7383865523818889,
+            "hit_rate": 0.7777777777777778
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.17738977136515424,
+        "mean_probability": 0.38115077745397674,
+        "log_loss": 0.537847570716146,
+        "reliability": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "n": 2,
+            "mean_probability": 0.08093981345129464,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 30,
+            "mean_probability": 0.16730216898323694,
+            "hit_rate": 0.06666666666666667
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 73,
+            "mean_probability": 0.25230545484008016,
+            "hit_rate": 0.1780821917808219
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 73,
+            "mean_probability": 0.34552056442596524,
+            "hit_rate": 0.136986301369863
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 50,
+            "mean_probability": 0.4466271766643494,
+            "hit_rate": 0.24
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 56,
+            "mean_probability": 0.550177817411125,
+            "hit_rate": 0.5535714285714286
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 20,
+            "mean_probability": 0.644859420270444,
+            "hit_rate": 0.85
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 3,
+            "mean_probability": 0.7175131873001649,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.22165088105003658,
+        "mean_probability": 0.41717130315671985,
+        "log_loss": 0.6359996643294188,
+        "reliability": [
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 307,
+            "mean_probability": 0.41717130315671985,
+            "hit_rate": 0.28338762214983715
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.02052244444078946,
+      "improvement_over_holding_baseline": 0.04426110968488234
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 30,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.44625407166123776,
+      "raw_probability": {
+        "brier": 0.2432352702655136,
+        "mean_probability": 0.5725255807622577,
+        "log_loss": 0.6790589589758076,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.16674092976113059,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 10,
+            "mean_probability": 0.2745328362907895,
+            "hit_rate": 0.4
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 35,
+            "mean_probability": 0.36055847492839427,
+            "hit_rate": 0.2
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 54,
+            "mean_probability": 0.4518925083717522,
+            "hit_rate": 0.3888888888888889
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 72,
+            "mean_probability": 0.548219856326024,
+            "hit_rate": 0.3472222222222222
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 56,
+            "mean_probability": 0.6525470639704503,
+            "hit_rate": 0.44642857142857145
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 61,
+            "mean_probability": 0.7472239608685962,
+            "hit_rate": 0.6721311475409836
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 17,
+            "mean_probability": 0.8276278909535998,
+            "hit_rate": 0.8235294117647058
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.22919042937386125,
+        "mean_probability": 0.49683220918868864,
+        "log_loss": 0.6499137539437433,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 3,
+            "mean_probability": 0.1475252314992116,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 31,
+            "mean_probability": 0.2559951185667035,
+            "hit_rate": 0.3225806451612903
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 59,
+            "mean_probability": 0.3528089804804778,
+            "hit_rate": 0.3389830508474576
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 69,
+            "mean_probability": 0.4512248922137928,
+            "hit_rate": 0.34782608695652173
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 53,
+            "mean_probability": 0.5495493086342824,
+            "hit_rate": 0.4716981132075472
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 58,
+            "mean_probability": 0.6516761861263215,
+            "hit_rate": 0.5172413793103449
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 31,
+            "mean_probability": 0.7368432968198293,
+            "hit_rate": 0.8387096774193549
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 3,
+            "mean_probability": 0.8111140284679182,
+            "hit_rate": 0.6666666666666666
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.25573044365384157,
+        "mean_probability": 0.5324613182177586,
+        "log_loss": 0.7046337989869417,
+        "reliability": [
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 307,
+            "mean_probability": 0.5324613182177586,
+            "hit_rate": 0.44625407166123776
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.014044840891652338,
+      "improvement_over_holding_baseline": 0.026540014279980317
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 60,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5244299674267101,
+      "raw_probability": {
+        "brier": 0.24508986184827808,
+        "mean_probability": 0.6754718720999555,
+        "log_loss": 0.6824379473470905,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 2,
+            "mean_probability": 0.24057240934182889,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 8,
+            "mean_probability": 0.3745233228298579,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 30,
+            "mean_probability": 0.46242576791134055,
+            "hit_rate": 0.23333333333333334
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 51,
+            "mean_probability": 0.5564530263535693,
+            "hit_rate": 0.43137254901960786
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 75,
+            "mean_probability": 0.6527083477510561,
+            "hit_rate": 0.41333333333333333
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 69,
+            "mean_probability": 0.7527006042830817,
+            "hit_rate": 0.5507246376811594
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 68,
+            "mean_probability": 0.8400459958208609,
+            "hit_rate": 0.8235294117647058
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 4,
+            "mean_probability": 0.9070151148277839,
+            "hit_rate": 0.75
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.22740918409694322,
+        "mean_probability": 0.605068029039666,
+        "log_loss": 0.6434389386827125,
+        "reliability": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.16695568776005715,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 5,
+            "mean_probability": 0.2728496739764136,
+            "hit_rate": 0.4
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 24,
+            "mean_probability": 0.3557837850256121,
+            "hit_rate": 0.3333333333333333
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 51,
+            "mean_probability": 0.45374662112495573,
+            "hit_rate": 0.35294117647058826
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 69,
+            "mean_probability": 0.5546569102366482,
+            "hit_rate": 0.43478260869565216
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 57,
+            "mean_probability": 0.6485607900951659,
+            "hit_rate": 0.5263157894736842
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 73,
+            "mean_probability": 0.7511219824223607,
+            "hit_rate": 0.6438356164383562
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 27,
+            "mean_probability": 0.8323553992949044,
+            "hit_rate": 0.9629629629629629
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.26094051328954576,
+        "mean_probability": 0.6289456882513218,
+        "log_loss": 0.7159825536472201,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 307,
+            "mean_probability": 0.6289456882513218,
+            "hit_rate": 0.5244299674267101
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.01768067775133486,
+      "improvement_over_holding_baseline": 0.033531329192602544
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 90,
+      "events": 308,
+      "known": 307,
+      "unknown": 1,
+      "distinct_entry_dates": 12,
+      "hit_rate": 0.5504885993485342,
+      "raw_probability": {
+        "brier": 0.259149050867345,
+        "mean_probability": 0.7301646737376365,
+        "log_loss": 0.7179970120146006,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "mean_probability": 0.2675610817103098,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 1,
+            "mean_probability": 0.31952110065287836,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 14,
+            "mean_probability": 0.46065215537630777,
+            "hit_rate": 0.5
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 37,
+            "mean_probability": 0.5593770204772824,
+            "hit_rate": 0.32432432432432434
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 62,
+            "mean_probability": 0.656610562782023,
+            "hit_rate": 0.43548387096774194
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 82,
+            "mean_probability": 0.7476166847703302,
+            "hit_rate": 0.5487804878048781
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 96,
+            "mean_probability": 0.8500094599731788,
+            "hit_rate": 0.6770833333333334
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 14,
+            "mean_probability": 0.9151472515061293,
+            "hit_rate": 0.9285714285714286
+          }
+        ]
+      },
+      "calibrated_probability": {
+        "brier": 0.23876245763697426,
+        "mean_probability": 0.6653406091949208,
+        "log_loss": 0.6681113203862893,
+        "reliability": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 2,
+            "mean_probability": 0.2305067925173872,
+            "hit_rate": 0.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 11,
+            "mean_probability": 0.3693204814509221,
+            "hit_rate": 0.5454545454545454
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 31,
+            "mean_probability": 0.4596573431889443,
+            "hit_rate": 0.2903225806451613
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 54,
+            "mean_probability": 0.554190908071543,
+            "hit_rate": 0.4444444444444444
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 75,
+            "mean_probability": 0.6519412802778628,
+            "hit_rate": 0.48
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 69,
+            "mean_probability": 0.7532511037278676,
+            "hit_rate": 0.5507246376811594
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 63,
+            "mean_probability": 0.8393247991202913,
+            "hit_rate": 0.873015873015873
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 2,
+            "mean_probability": 0.906478472242117,
+            "hit_rate": 0.5
+          }
+        ]
+      },
+      "holding_baseline_probability": {
+        "brier": 0.26355476201671363,
+        "mean_probability": 0.6784805113126947,
+        "log_loss": 0.7229448496918657,
+        "reliability": [
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 307,
+            "mean_probability": 0.6784805113126947,
+            "hit_rate": 0.5504885993485342
+          }
+        ]
+      },
+      "calibration_brier_improvement": 0.02038659323037076,
+      "improvement_over_holding_baseline": 0.024792304379739366
+    }
+  ]
+}

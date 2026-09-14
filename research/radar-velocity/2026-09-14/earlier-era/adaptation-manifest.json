@@ -1,0 +1,17 @@
+{
+  "createdAt": "2026-09-14T06:05:18.344969+00:00",
+  "sourceSha256": "2287c9dbc25852981a6084c08d414b2bf7a9c7eb27f25af8c54639ee45867d76",
+  "parentHashes": {
+    "run.py": "8d04da8c7bba3e2f7357689dffef19c09e1779d3ec252d144d46140d48ae8e01",
+    "verify.py": "5397f0a4988cbc122282b2e6ce7dd16b4fa3e53744eedaa2249506423e59b254",
+    "protocol.md": "8d6a42e9a670ee6cc80cd1eda3f4b07c57b6a4349008d8c183d69e3c2f6adcc2"
+  },
+  "inventorySha256": "bf6b3765444dd5a803ca9ad436b0c65568f515603d448ad8bf9c9048e5698d87",
+  "adaptations": {
+    "ROOT=HERE.parents[2]": "ROOT=HERE.parents[3]",
+    "SOURCE=ROOT/'research/cumulative/2026-09-13/cmc-inputs.json.gz'": "SOURCE=HERE/'inputs.json.gz'",
+    "BOUNDS={300:200,200:150,100:50,50:25}": "BOUNDS={300:200,200:150}",
+    "GRID={'daily':([7,3,14,30],[1,7,14,30]),'hourly':([3,6,12],[1,3,6,12])}": "GRID={'daily':([7],[7,14,30])}"
+  },
+  "snapshotCount": 110
+}

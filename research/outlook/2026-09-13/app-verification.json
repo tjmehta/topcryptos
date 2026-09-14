@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-09-13T21:19:30.464379+00:00",
+  "checks": {
+    "application_tests": {
+      "suites": 19,
+      "tests": 149,
+      "snapshots": 11
+    },
+    "typecheck": "passed",
+    "production_build": "passed",
+    "typescript_historical_parity": {
+      "universe_rankings": 36,
+      "views": 12,
+      "methods": 3,
+      "complete_outlooks": 148,
+      "historical_fits": 74
+    },
+    "provider_live_smoke": {
+      "instruments": 50,
+      "known_entry_opens": 50,
+      "signal_date": "2026-09-11",
+      "entry_date": "2026-09-13",
+      "fetched_at_utc": "2026-09-13T21:16:42Z"
+    },
+    "browser": {
+      "desktop": {
+        "width": 1440,
+        "route": "/breakouts",
+        "result": "current RAYUSDT screen, dates, probability, source displayed"
+      },
+      "mobile": {
+        "width": 390,
+        "scroll_width": 390,
+        "route": "/breakouts?d=14&algo=Momentum",
+        "result": "controls change URL and selections; H30 evaluated reference displayed, no horizontal overflow"
+      },
+      "screenshots": [
+        "browser/topcryptos-ohlc-desktop.png",
+        "browser/topcryptos-ohlc-mobile.png"
+      ]
+    },
+    "local_documentation_links": {
+      "checked": 46,
+      "missing": 0
+    }
+  },
+  "limitations": [
+    "No deployment or trade performed",
+    "Current rolling-volume universe differs from the annual historical cohorts",
+    "Current fits use mature outcomes through 2026-02-01; current-period calibration is unevaluated",
+    "Entry-reference forecasts calculated now are not predictions issued at the historical entry open",
+    "Automatic interval/holding selectors failed validation"
+  ],
+  "sha256": {
+    "modules/ohlcAlgorithms.ts": "5d982b27dd61b526a252e4a41ce21e7e6f0c2147eacb162c08e7a09a8c21b78b",
+    "modules/binanceOhlc.ts": "e4a3d6c94db0524dcbbbb2f1d14223b2a3ea4c873496cf75941d3d97aceb8887",
+    "modules/ohlcScreen.ts": "0f319ac588ed311341f0e0aa201894e80791f45f5a3eef621784145264134af4",
+    "modules/data/ohlc-models.json": "a77ec2c94993a38b99927591a8753b78526c916caaf0960cd79a27e9c4fa678b",
+    "pages/api/rankings/ohlc.ts": "6715e8d27cd4233dd8ea2596d2c2521b29753fa00241cd006f6cbaf6e1e91344",
+    "pages/breakouts.tsx": "ffead804ff23fddd6306ff1076a66964e596d6d5bc0aba691b0ee1bc4a00e8bb",
+    "components/BreakoutsView.tsx": "4d0fac3e36bb2eb871fb9e8889b273644d7031e5d2bbe41622172f76fdfd7210",
+    "components/RankingsView.tsx": "6047b302944f90390f5a5d2c7c262302a0155c9063e2108cfe1477c25856cb8b",
+    "modules/__tests__/ohlcAlgorithms.test.ts": "9c9b1f71899013afbd8cd504f7d158e30acf38dd9c29e6abbe41fb5a1ef0022e",
+    "modules/__tests__/binanceOhlc.test.ts": "2919396f973f4c013ac2674830496c130489aad6d0bf8b5ca5d3d1f9e8c0b3da",
+    "modules/__tests__/ohlcRoute.test.ts": "115e8a18557e08a50f2e9571ae302afa6781fe019996137c6556fd37e72aed26",
+    "components/__tests__/BreakoutsView.test.tsx": "19599e5be53222008f91029716a15f6e33235116134de863ffcdd64f5d79e9f7",
+    "modules/__tests__/fixtures/ohlc-parity.json.gz": "aa4f098dcfe9db5bc3f3045ebac4bb7c9a6a4843379188c322daf892d1963ed8"
+  }
+}

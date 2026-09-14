@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "verified-export",
+  "created_utc": "2026-09-13T21:06:11.119591+00:00",
+  "completed_utc": "2026-09-13T21:06:14.649789+00:00",
+  "output": "modules/data/ohlc-models.json",
+  "bundle_sha256": "a77ec2c94993a38b99927591a8753b78526c916caaf0960cd79a27e9c4fa678b",
+  "hashes": {
+    "research/outlook/2026-09-13/export-current-model.py": "ebf998802b9bb8a87b9234e9e2c061b5fcfd7bf48a6734c283d162cf8e62f4e2",
+    "research/outlook/2026-09-13/model-bundle.json": "8632b290aca42c45e16cf5d204806341ad77b95399601d5a74c87977899e8670",
+    "research/outlook/2026-09-13/bundle-manifest.json": "1be645cbca2e0986750e2bce072a0c1dbbd9130466e14fa6cff7d29be47e85bd",
+    "research/daily-breakouts/2026-09-13/exit-ledger.json.gz": "e5c11881986ead5fd9623230e43839a54fe6db5ef20a28ff137beb8a403091d2",
+    "research/daily-breakouts/2026-09-13/exit-summary.json": "f7579db0aab059eab8f2a3d02264a8559a946e45bfcf0ea8146fa634784b8436",
+    "research/daily-breakouts/2026-09-13/forecast-summary.json": "256e28f1c13e9fe99607af14250f6ed79f9af2f2044dad5757175e5ba929327b",
+    "research/daily-breakouts/2026-09-13/forecast-verification.json": "8c6f877f28485801799c733536556604b1c5a56ed39e25e45cb4c62d94c77ab9",
+    "research/sell-zone-forecast/2026-09-13/run.py": "ad317c167ba81760e29d6fed8618b9aa0b43cab58fbc9fae5e394fd150421105"
+  },
+  "requested_cutoff": "2026-09-01",
+  "original_fits": 74,
+  "new_fits": 2,
+  "metrics": 296,
+  "packages": {
+    "sklearn": "1.9.1",
+    "numpy": "2.5.3"
+  },
+  "verification": [
+    {
+      "policy": "SMAATRBracket",
+      "cutoff": "2026-09-01",
+      "training_n": 52017,
+      "training_hits": 20982,
+      "latest_training_exit": "2026-02-01",
+      "prediction_arithmetic_checks": 52139,
+      "max_probability_error": 1.6653345369377348e-16,
+      "max_objective_gradient": 5.827294920148813e-05,
+      "constant_h_scale": 1.0,
+      "constant_h_logit_contribution": 3.4731231055435645e-24
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "cutoff": "2026-09-01",
+      "training_n": 52020,
+      "training_hits": 27116,
+      "latest_training_exit": "2026-02-01",
+      "prediction_arithmetic_checks": 52139,
+      "max_probability_error": 2.220446049250313e-16,
+      "max_objective_gradient": 3.387982196588032e-05,
+      "constant_h_scale": 1.0,
+      "constant_h_logit_contribution": 3.0900225744708605e-25
+    }
+  ],
+  "captured_fit_warnings": [
+    {
+      "policy": "SMAATRBracket",
+      "category": "RuntimeWarning",
+      "message": "invalid value encountered in sqrt"
+    }
+  ],
+  "performance_validation": "Not performed for current cutoff. Verification covers causal data eligibility, fitting arithmetic and unchanged export only."
+}

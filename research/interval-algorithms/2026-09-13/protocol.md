@@ -1,0 +1,31 @@
+# Exact application algorithm replay — 2026-09-13
+
+Protocol written before this run's results. Earlier research has been inspected. This is an exploratory code-change evaluation, not untouched validation, an executable portfolio, or permission to claim an optimal sell horizon.
+
+## Inputs and chronology
+
+Use only local raw CMC cache files. Preserve `cmc_rank`. Select one snapshot per UTC day nearest 23:00 within 30 minutes, or one per UTC hour nearest its boundary within 30 minutes; ties use earlier time then filename. Primary inputs are 2026 only. Consecutive slots form separate blocks; never bridge missing slots. Save input file hashes and inventory. Historical quote timestamps do not prove contemporaneous publication availability.
+
+Apply the application's first-500-row and market-cap > $10m filters, with no personal hidden/exchange filters. Decision time is the latest finite quote timestamp in the signal payload within one hour of its modal timestamp. Remove any input quote later than this decision before either implementation sees it. Native old caller sees up to 90 daily or 25 hourly snapshots, oldest first, with its old `last_updated.split(':')[0] + ':' + id` deduplication and old now-minus-(N-1)-interval start. Native new caller sees the same fetch depth, without that deduplication, and uses the actual new `getRankingWindow` helper and scorer options.
+
+Read frozen old scorer dependencies from `baseline/`. Execute actual new modules through the installed TypeScript compiler. Do not alter production or frozen research outputs. Record all imported source hashes, baseline manifest, runner/protocol hashes, start/completion UTC timestamps and Node version.
+
+## Configurations and comparisons
+
+Daily views: 3,4,5,6,7,10,14,21,30,45,60,90 observations. Daily signal indices begin at view-1 and advance by seven slots within each block. Entry is the next snapshot; fixed holds are 1,7,14,30,60,90,365 days after entry. Hourly views: 3,6,9,12,18,24 observations; signal every eligible hourly slot; entry next hour; fixed holds 1,3,6,12,24 hours. Only available fixed exit dates are evaluated. Missing entire forward snapshots produce unsupported cells, not invented prices. The sample calendar can differ between views and mature horizons; do not select a winner by comparing unmatched aggregates. H greater than signal cadence overlaps; cohort count is not independent event count.
+
+Native comparison: old Classic versus new Classic, Momentum and TrendQuality, each using its own signal eligibility. This measures full caller/scorer changes together. Common-input comparison: use exactly the selected N snapshot window without old caller deduplication, restrict timestamps to the exact new start/end, determine the intersection of all four scorers' scoreable signal IDs, disable all other IDs, and rerun all four on this same input and universe. Record only IDs remaining scoreable across the common rerun. This intentionally removes the old caller's broader hourly window; its results describe formula changes on common information. Do not confuse native and common comparisons.
+
+Use each actual scorer's `cryptosSortedByScore` ordering directly, including its native tie semantics (new scorer: lexical CMC-ID ascending; old scorer: its original SortedList order). The initial numeric-tie run is preserved under `superseded-numeric-ties/`; this amendment was recorded before recomputing outcomes and avoids representing a research tie rule as product behavior. All methods may select losing coins. Take at most ten scoreable IDs; each has an immutable 10% capital slot and unfilled slots stay cash. The latest positive-only Binance study is not this full signed ranking policy. No entry/exit availability may affect selected IDs or replace them.
+
+## Outcomes
+
+Price proxies must be positive finite, within one hour of the relevant daily snapshot modal time or 15 minutes of the hourly modal time, and have timestamps strictly later than the decision (entry) or entry (exit). Missing entry stays cash. Missing exit after entry is reported under both zero-gross-return and total-loss marks. Net round-trip return is `(1+gross)*(1-fee)/(1+fee)-1`, fee=50bps each side; report 0 and 100bps sensitivities too. These do not model spreads, depth, capacity or guaranteed fills.
+
+Report sampled +20% future-price hits per ten available slots, selected-alert precision, and hours/days from entry to first observed threshold. The future path includes entry through scheduled exit, including exit snapshot. Prices are snapshot observations, not intraday highs. A known hit stays known despite another missing sample; only an incomplete path with no known hit contributes to upper-bound unknown-hit counts. Future highs never become sell prices. Report fixed-hold net returns, known-position median and loss rate, worst-decile cutoff, maximum favorable/adverse excursion for complete sampled paths, missing-entry/exit counts, selected-ID turnover (half the asset-ID symmetric difference divided by ten between consecutive signals within a block), and identity concentration. No compounded wealth, annualization, calibrated probabilities, rank-X forecasts, selected optimal hold or automatic interval-method map.
+
+Primary discovery diagnostic is seven-day +20% known hits per ten slots; fixed-hold returns and false alerts remain separate. Hourly labels are descriptive because sample support is inadequate. Record unsupported view/hold cells explicitly. Review full before/after change before accepting formula fixes; future automatic selection would additionally require maturity-aware chronological evaluation of the selector itself, purged horizon boundaries, sufficient independent calendar support, and prospective evidence.
+
+## Checks
+
+Synthetic checks cover delayed chronology, exact two-sided fees, immutable missing-entry cash/missing-exit loss accounting, incomplete-path known-hit bounds, and never selling at a peak. Assert no score quote exceeds decision time, no selected ID outside signal eligibility, all compared common IDs identical, horizon selections unchanged, source hashes stable through execution, and saved ledger hash. Refuse to overwrite result artifacts. Preserve failures honestly and fix code before generating final artifacts.

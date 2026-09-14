@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-09-13T20:22:25.304365+00:00",
+  "hashes": {
+    "ledger.json.gz": "86e02ac882f48e696938fc647cb2a9f24093ce5d467f2a9bbe2faaa70c8003da",
+    "summary.json": "61bf12efdc46d38c592dbb6de0581655b13662e20e289f8da0b2251079c05d27",
+    "selection.json": "c520fdc015b6e6088ceb721e4508fccbdcdd11cd66257f48df8b4582d79d9e8b",
+    "selection-ledger.json.gz": "8878a047be4b1da8cae475d2d8cfbd8871b7ec3281face61bb8bd1192e7fd143",
+    "selector.py": "6103d497669031db40f10e259d2c8b85db30920b582e69b8ff664093668875f9",
+    "selection-sensitivity.py": "ae4c960943ed0c18ea70fa1b86fab3655c5a2bd6b8a2cf02523bdceacb2ffd5a",
+    "selection-sensitivity.json": "cf85cbef532273eb28c77cea9359c10abf6d870861e9374dea98c06c853c7c12",
+    "protocol.md": "56a9604c531b2ef53da180f62a8850d4e678c9a19eeb30996acac34666854d87",
+    "sensitivity-protocol.md": "daf4f007246a4832566ae0079eb642f7dc0512eb699346c2e44b88e8b2616905",
+    "verify-selection.py": "6b9805d9c68e8012ab65384b2ea8641d7338f8ce5ab3e0d6c6228212ae480cd0",
+    "selection-verification.json": "6076f9dd44b077e4cc692fd4c1e6d3c8a98f597b10583b2abd0b61a66e8c6609",
+    "verify-sensitivity.py": "21740753116435464ae4542b9fcedde16663ce0132e93fc7d7c873afe690bf5a"
+  },
+  "counts": {
+    "phase_zero_exact_primary_matches": 384,
+    "omitted_best_scenario_paths": 4464,
+    "verified_paths": 1152,
+    "executed_records": 24318,
+    "empty_cash_scenario_paths": 144,
+    "policies_with_identical_2024_onward_execution_dates_across_all_phases": 251,
+    "policies_compared_for_later_alignment": 384,
+    "compared_values": 83610
+  },
+  "scope": "All 1152 initial-date sensitivity outputs independently replayed from frozen main cohorts and previously verified annual choices, with no training or source implementation imports. All four cost/missing scenarios, initial cutoffs, scheduled signal IDs, wealth, annual returns, drawdown and schedule-preserving best-cohort omission arithmetic matched.",
+  "source_review": "selection-sensitivity.py invokes replay with original annual choices; there is no fitting, parameter selection or shifted full signal-calendar generation.",
+  "limitations": "These offsets delay only initial capital availability on the existing calendar. They do not shift every yearly alert date and do not test daily alerts. 251 of 384 policies have identical execution dates from 2024 onward across all initial offsets, so this is a limited initial-date concentration check, not independent calendar-phase or out-of-sample evidence."
+}

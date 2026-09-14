@@ -4,21 +4,62 @@ Guidance for Claude Code when working in this repo.
 
 ## What this is
 
+Product corrections recorded September 13, 2026 local time: exit guidance belongs with
+our native Daily/Hourly algorithms and the selected interval. Native Exit timing now
+shows matched CMC holding evidence and a manual UTC planner; automatic recommendations
+remain unvalidated. The user is in the US and uses Coinbase and Kraken; do not let
+Binance.com availability define their tradable coin universe. Distinguish data feeds
+from exchange access. Do not call a profitable but inconclusive comparison a failed
+backtest. See `research/PRODUCT_LEARNINGS.md` for the mistakes, evidence rules and
+unfinished work before extending this feature.
+
 **topcryptos** (package name `cryptovisualize`) — a Next.js site that ranks and visualizes
 top-performing cryptocurrencies over a trailing window. It scores each coin from the
 velocity/acceleration of its price, market cap, and market-cap rank, then renders a D3
 "spaghetti" chart of rank-over-time alongside a sortable table.
 
-Scores are **signed percentile ranks** of coverage-adjusted velocity (70%) plus price/rank
+Classic scores are **signed percentile ranks** of coverage-adjusted velocity (70%) plus price/rank
 acceleration sums (20%/10%) — see `processRankings.ts`. Coins without enough history in
 the window (`MIN_QUOTES_TO_SCORE`, `MIN_COVERAGE_TO_SCORE`) get `NAN_SCORE`, sort last,
-and render as a "New" badge instead of a rank — a newly listed coin's 4-hour pump must
+and render as an "Insufficient history" badge instead of a rank — a newly listed coin's 4-hour pump must
 not outrank coins measured over the full window.
+
+The `algo` URL parameter also supports `momentum` (signed endpoint return),
+`trend-quality` (log-price OLS slope × R²), `cumulative` (time-average log-price gain
+within the selected window), and `hybrid` (equal blend of separately normalized Momentum
+and Cumulative). Classic remains the default: the verified September 13 Cumulative/Hybrid
+study failed both daily promotion gates; hourly passes were sensitive to missing prices.
+Definitions, results and independent verification: `research/cumulative/2026-09-13/README.md`. All methods
+use the selected UTC bucket window from `modules/rankingWindow.ts`; the current partial
+bucket counts toward N. Explicit scorer options enforce timestamps, coverage, observation
+density, gaps and freshness. Keep complete client snapshots: the scorer normalizes quotes
+after preserving provider market-cap ranks. Never deduplicate rows in the fetch client.
+
+Dated setup, before/after results, data/source hashes and limitations are recorded in
+`research/interval-algorithms/2026-09-13/README.md` and `NOTES.md`. Longer price-only holding
+research is in `research/holding-horizons/README.md`. These exploratory studies do not
+establish an automatic method selector or optimal sell period.
 
 - `/` — daily rankings (3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90 days)
 - `/hourly` — same view on an hourly window
+- `/breakouts` — Coinbase/Kraken USD daily OHLC rankings, entry references and H30 reference levels; separate current rolling-volume universe
 
-Both pages are thin wrappers over `components/RankingsView.tsx`.
+The Daily and Hourly pages are thin wrappers over `components/RankingsView.tsx`.
+`NativeExitPanel.tsx` uses `modules/data/native-exit-evidence.json` and
+`modules/nativeExitEvidence.ts` for matched holding comparisons and a manual exit-date
+planner. See `research/native-exits/2026-09-14/README.md`. Do not promote the largest
+retrospective average into an automatic hold recommendation.
+
+`/breakouts` uses `BreakoutsView.tsx` and `/api/rankings/ohlc`, backed by public Coinbase
+and Kraken USD spot data through `modules/exchangeOhlc.ts`. The `exchange` parameter
+defaults to `coinbase`; `kraken` is the other supported value. Its top-50 rolling-volume
+roster is not the fixed annual backtest cohort. `modules/ohlcAlgorithms.ts` retains the
+independently verified ranking and level formulas. No legacy Binance probability fits
+are loaded by this route: probabilities and validation metrics are null on these new
+venues. Coinbase turnover is close times base volume; Kraken uses VWAP times base
+volume. Preserve these distinctions and missing/gapped entry handling.
+See `research/us-exchanges/2026-09-14/README.md` for provider checks and limitations.
+Historical Binance models and research remain archived as separate evidence.
 
 ## Stack
 
@@ -43,7 +84,7 @@ cmc.listings({hourlyCron})   pages/api/rankings/{daily,hourly}.ts
                               RankingsChart (D3) + RankingsTable (TanStack)
 ```
 
-**The web app never calls upstream APIs for historical data.** It only reads snapshots the
+**The CMC historical ranking path is designed to read snapshots.** It reads snapshots the
 cron previously wrote. A miss on a given bucket silently drops that data point
 (`.filter((v) => v != null)`), so the chart renders with fewer points rather than erroring.
 
@@ -71,7 +112,7 @@ cron previously wrote. A miss on a given bucket silently drops that data point
 ```bash
 npm run dev         # next dev
 npm run build       # next build  (see NODE_ENV gotcha below)
-npm test            # jest — 63 tests, all green
+npm test            # jest
 npm run typecheck   # tsc --noEmit
 npm run build-cron  # tsc for the legacy DigitalOcean cron only
 ```
@@ -88,7 +129,7 @@ USE_FS_CACHE=true npm run dev
 ```
 
 `.env.local` then only needs inert placeholder values (`env-var`'s `.required()` just checks
-for non-empty). The seeded `.cache/` is gitignored.
+for non-empty). The seeded `.cache/` is gitignored. Hourly now refreshes its recent CMC snapshots automatically when loaded; the script remains useful for daily history.
 
 ### ⚠️ NODE_ENV gotcha
 
@@ -142,11 +183,15 @@ Read at **module load time** via `env-var`, so a missing one throws on import:
 
 ## Known rough edges
 
-- **Local dev: live listings fall back to CoinGecko and their ids don't join.** With the
-  placeholder `CMC_API_KEY`, the live (no-date) fetch fails over to CoinGecko, whose shim
-  emits slug string ids (`"bitcoin"`) while cron snapshots carry CMC numeric ids. Every
-  coin then splits into two groups client-side; single-quote groups get dropped, so coins
-  can be missing or mis-scored **only in local dev**. Production uses CMC for both paths.
+- **Local hourly history refreshes automatically.** In non-production FS-cache mode,
+  `/api/rankings/hourly` calls `cmc.refreshLocalHourlyCache()` before reading history.
+  This fetches the public production hourly endpoint in five bounded chunks covering
+  25 hours, shares concurrent work and refreshes at most every five minutes. Only
+  native numeric CMC IDs and actual recent quote timestamps are written. Production
+  and S3 mode never mirror their own public API. The open Hourly page reloads every
+  five minutes while visible and on return after a stale background interval.
+  Daily historical backfills still use the manual seed script; hourly refresh does
+  not call the potentially paid historical endpoint. Live cache expiry is 15 minutes.
 
 - **1MB response cap.** `topCryptos.getDailyRankings` issues 10 parallel requests of 9 days
   each rather than one 90-day request (commit `70908cf`), and both cached readers blank
@@ -156,9 +201,9 @@ Read at **module load time** via `env-var`, so a missing one throws on import:
   must include the flag or it silently never matches — this was a live bug that left
   `/hourly` blank for years while the data sat in S3. Don't "clean it up" out of the key
   without migrating every existing S3 object. `modules/__tests__/cache.test.ts` guards this.
-- **`compareDates` uses local date parts** (`getFullYear`/`getMonth`/`getDate`), so day
-  windowing depends on the viewer's timezone — a 23:00 UTC snapshot lands on the next day
-  for anyone east of UTC. Jest pins `TZ=UTC` so tests are deterministic. Not yet fixed.
+- **Legacy `compareDates` uses local date parts.** The ranking scorer no longer uses it:
+  ranking windows use UTC buckets and exact timestamp comparisons. Keep the remaining
+  legacy utility tests pinned to UTC.
 - **`.cache/` has 414 pre-existing tracked files (~137MB)** from 2020–2021, committed before
   the directory was gitignored. Still tracked; removing them is a separate decision.
 - **The exchange map converges over several cron runs, by design.** Keyless CoinGecko
@@ -182,3 +227,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+
+### Coin Outlook update — 2026-09-14 UTC
+
+Daily/Hourly: `components/CoinOutlook.tsx` provides watch pins and explicit row/leader Outlook actions; inline desktop panel and installed shadcn mobile Sheet. `modules/coinOutlook.ts` describes observed states and raw-snapshot rank crossings; these are not buy/sell policies. `pages/api/outlook-evidence.ts` serves one filtered slice of `modules/data/coin-outlook-evidence.json` on demand; keep the full ledger out of client imports. Only eligible numeric-CMC unmodified top-ten coins can show matched descriptive evidence. Exchange filters affect display; hidden exclusions change scoring. Scored data is keyed to exact context/input to suppress stale interval/method results. The user rejected the manual planner; NativeExitPanel is no longer imported or mounted by RankingsView. Keep it out of the product flow. Outlook evidence is labeled Past outcomes with compact context and figures.
+
+Research and current limits: `research/coin-outlook/2026-09-14/APP_INTEGRATION.md`, `research/radar-velocity/2026-09-14/README.md`, and its `earlier-era/README.md`. All recommendations remain null; no rank-to-5x promise, calibrated probability, tested stop, new default, or automatic exit was established. Optional helper audit: `COIN_OUTLOOK_TRACE_PARITY=1 npm test -- --runInBand modules/__tests__/coinOutlook.test.ts`. Full suite 203 tests/11 snapshots and isolated production build passed. Local only; no deployment.

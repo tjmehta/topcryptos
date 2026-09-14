@@ -1,0 +1,14 @@
+{
+  "verifiedAt": "2026-09-14T06:05:32.032146+00:00",
+  "passed": true,
+  "checks": {
+    "basketSelections": 2064,
+    "numericComparisons": 84352,
+    "positions": 9440,
+    "phaseMetrics": 96
+  },
+  "sourceSha256": "2287c9dbc25852981a6084c08d414b2bf7a9c7eb27f25af8c54639ee45867d76",
+  "ledgerSha256": "26919920146e450bf5181555d9b5448e31517694ae626ef99dfb9c0b9eeabb2b",
+  "verifierSha256": "ad4fbe55903dda22cb92f5c04fba382939d76aca1d8a766899735713d30dae3d",
+  "note": "Independent implementation reconstructs selection, all ledger prices/returns/path touches and phase summary means. Same frozen data; verification does not establish predictive validity."
+}

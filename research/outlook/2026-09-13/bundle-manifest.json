@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-13T20:50:10.374988+00:00",
+  "completed_utc": "2026-09-13T20:50:13.706352+00:00",
+  "bundle_sha256": "8632b290aca42c45e16cf5d204806341ad77b95399601d5a74c87977899e8670",
+  "hashes": {
+    "research/outlook/2026-09-13/build-bundle.py": "e2932bd7b8df4f05c1fb25711400bb99e40b03f3e60f1b9e4e5eb03f7a4fa437",
+    "research/outlook/2026-09-13/example-input.json": "7a82eb80fae3f659f7e84c544582638c5a7cf090f9b0cfb8a5ef361c7317569a",
+    "research/daily-breakouts/2026-09-13/forecast-ledger.json.gz": "dd83c95a731974b12bfea876e4dd669c1e36d0f29af115e540b6fce80bc36d7b",
+    "research/daily-breakouts/2026-09-13/forecast-summary.json": "256e28f1c13e9fe99607af14250f6ed79f9af2f2044dad5757175e5ba929327b",
+    "research/daily-breakouts/2026-09-13/forecast-verification.json": "8c6f877f28485801799c733536556604b1c5a56ed39e25e45cb4c62d94c77ab9",
+    "research/daily-breakouts/2026-09-13/ledger.json.gz": "ccd0108188f99f0269383775b20b5eb243ab2dee6b5dbef811206bc461585e1b",
+    "research/daily-breakouts/2026-09-13/summary.json": "3d6332517fdf5115e655c09def8f2be747120f0f9960d556cf30b4dc11be2c78",
+    "research/algorithm-comparison/high-flier-data/final/daily-panel.csv.gz": "91dfcdc1afac7a35087a1f9a56b1c75bbede3c504f81a85b4192ef6fe6f7340c"
+  },
+  "export_counts": {
+    "fits": 74,
+    "metrics": 296,
+    "example_bars": 60
+  },
+  "example_selection": {
+    "rule": "Earliest 2024 signal date with selected BTCUSDT in Breakout/view7; lexicographic identity breaks ties. Fallback only if BTCUSDT has no selected event.",
+    "selected_event_key": "[\"2024:BTCUSDT:segment-01\",\"2024-01-01\",30]",
+    "used_preferred_btc": true,
+    "signal": "2024-01-01",
+    "first_bar": "2023-11-03",
+    "last_bar": "2024-01-01",
+    "entry_date": "2024-01-03"
+  },
+  "checks": [
+    "All source and independent-verification hashes match.",
+    "All 74 fits and 296 summary rows round-trip unchanged.",
+    "Example is chronological and selected without consulting returns or labels.",
+    "Example contains 60 consecutive same-identity complete bars through signal only.",
+    "Example entry date/price matches the frozen executable t+2 open."
+  ]
+}

@@ -1,0 +1,2268 @@
+{
+  "generatedAt": "2026-09-14T05:41:05.827180+00:00",
+  "sourceSha256": "6f4933db0fb25a1f92a25396d347345bac83a0dfecc0870636150ec86ab2e9bc",
+  "runnerSha256": "00f84cc81793d4f62da361f267a1cb5d6a5dbc348a9356e498ff124827fdee32",
+  "protocolSha256": "c70dded1b1f005593ec6ed50c29a695f5821b9849370e7df87def84fa76a4958",
+  "coverage": [
+    {
+      "snapshots": 71,
+      "from": "cryptocurrency_listings:{\"date\":\"2026-07-04T23:00:00.000Z\",\"hourlyCron\":\"true\",\"limit\":\"500\",\"start\":\"1\"}.json",
+      "through": "cryptocurrency_listings:{\"date\":\"2026-09-12T23:00:00.000Z\",\"hourlyCron\":\"true\",\"limit\":\"500\",\"start\":\"1\"}.json"
+    }
+  ],
+  "eventCount": 4793,
+  "cells": [
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 40,
+      "kind": "approach",
+      "events": 57,
+      "coins": 10,
+      "dates": 39,
+      "touchInside": {
+        "yes": 13,
+        "no": 44,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 56,
+        "no": 1,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 10,
+        "no": 47,
+        "unknown": 0
+      },
+      "priceUp": 22,
+      "priceKnown": 57,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.02176209915530627,
+      "medianNetLoss": -0.013567579882170833,
+      "meanNetFlat": -0.02176209915530627
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 40,
+      "kind": "cross",
+      "events": 11,
+      "coins": 6,
+      "dates": 9,
+      "touchInside": {
+        "yes": 9,
+        "no": 2,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 8,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 6,
+        "no": 5,
+        "unknown": 0
+      },
+      "priceUp": 3,
+      "priceKnown": 11,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.07111073522723393,
+      "medianNetLoss": -0.08753663541148249,
+      "meanNetFlat": -0.07111073522723393
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 50,
+      "kind": "approach",
+      "events": 70,
+      "coins": 15,
+      "dates": 48,
+      "touchInside": {
+        "yes": 18,
+        "no": 52,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 68,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 10,
+        "no": 60,
+        "unknown": 0
+      },
+      "priceUp": 28,
+      "priceKnown": 70,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.01777471688219565,
+      "medianNetLoss": -0.009793433311685418,
+      "meanNetFlat": 0.01777471688219565
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 50,
+      "kind": "cross",
+      "events": 18,
+      "coins": 8,
+      "dates": 17,
+      "touchInside": {
+        "yes": 14,
+        "no": 4,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 12,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 12,
+        "no": 6,
+        "unknown": 0
+      },
+      "priceUp": 12,
+      "priceKnown": 18,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.041449337236247975,
+      "medianNetLoss": -0.0355308445195654,
+      "meanNetFlat": -0.041449337236247975
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 60,
+      "kind": "approach",
+      "events": 86,
+      "coins": 15,
+      "dates": 49,
+      "touchInside": {
+        "yes": 38,
+        "no": 48,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 83,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 19,
+        "no": 67,
+        "unknown": 0
+      },
+      "priceUp": 57,
+      "priceKnown": 86,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.02061624138960446,
+      "medianNetLoss": -0.0053082583905931235,
+      "meanNetFlat": 0.02061624138960446
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 60,
+      "kind": "cross",
+      "events": 30,
+      "coins": 13,
+      "dates": 30,
+      "touchInside": {
+        "yes": 26,
+        "no": 4,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 22,
+        "no": 8,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 15,
+        "no": 15,
+        "unknown": 0
+      },
+      "priceUp": 14,
+      "priceKnown": 30,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.004689954420020784,
+      "medianNetLoss": -0.007365849304627525,
+      "meanNetFlat": -0.004689954420020784
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 80,
+      "kind": "approach",
+      "events": 111,
+      "coins": 22,
+      "dates": 54,
+      "touchInside": {
+        "yes": 23,
+        "no": 88,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 108,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 14,
+        "no": 97,
+        "unknown": 0
+      },
+      "priceUp": 49,
+      "priceKnown": 111,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.0059638946628575214,
+      "medianNetLoss": -0.009718149434350232,
+      "meanNetFlat": 0.0059638946628575214
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 80,
+      "kind": "cross",
+      "events": 22,
+      "coins": 14,
+      "dates": 19,
+      "touchInside": {
+        "yes": 18,
+        "no": 4,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 16,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 9,
+        "no": 13,
+        "unknown": 0
+      },
+      "priceUp": 10,
+      "priceKnown": 22,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.002440711759166739,
+      "medianNetLoss": -0.013563633552706567,
+      "meanNetFlat": -0.002440711759166739
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 100,
+      "kind": "approach",
+      "events": 172,
+      "coins": 26,
+      "dates": 57,
+      "touchInside": {
+        "yes": 51,
+        "no": 121,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 166,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 38,
+        "no": 134,
+        "unknown": 0
+      },
+      "priceUp": 88,
+      "priceKnown": 172,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.004571588175575353,
+      "medianNetLoss": -0.007360259937228386,
+      "meanNetFlat": 0.004571588175575353
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 100,
+      "kind": "cross",
+      "events": 33,
+      "coins": 23,
+      "dates": 28,
+      "touchInside": {
+        "yes": 30,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 22,
+        "no": 11,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 19,
+        "no": 14,
+        "unknown": 0
+      },
+      "priceUp": 16,
+      "priceKnown": 33,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.034332740418269704,
+      "medianNetLoss": -0.010530671207604536,
+      "meanNetFlat": -0.034332740418269704
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 120,
+      "kind": "approach",
+      "events": 215,
+      "coins": 35,
+      "dates": 61,
+      "touchInside": {
+        "yes": 57,
+        "no": 158,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 207,
+        "no": 8,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 43,
+        "no": 172,
+        "unknown": 0
+      },
+      "priceUp": 101,
+      "priceKnown": 215,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.005562418112507079,
+      "medianNetLoss": -0.03225379238232906,
+      "meanNetFlat": -0.005562418112507079
+    },
+    {
+      "view": 3,
+      "horizon": 7,
+      "boundary": 120,
+      "kind": "cross",
+      "events": 36,
+      "coins": 23,
+      "dates": 29,
+      "touchInside": {
+        "yes": 33,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 23,
+        "no": 13,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 21,
+        "no": 15,
+        "unknown": 0
+      },
+      "priceUp": 12,
+      "priceKnown": 36,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.01787431322910819,
+      "medianNetLoss": -0.03449390386984125,
+      "meanNetFlat": -0.01787431322910819
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 40,
+      "kind": "approach",
+      "events": 51,
+      "coins": 10,
+      "dates": 34,
+      "touchInside": {
+        "yes": 13,
+        "no": 38,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 50,
+        "no": 1,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 8,
+        "no": 43,
+        "unknown": 0
+      },
+      "priceUp": 18,
+      "priceKnown": 51,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.025558309561719336,
+      "medianNetLoss": -0.01226745016096531,
+      "meanNetFlat": -0.025558309561719336
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 40,
+      "kind": "cross",
+      "events": 10,
+      "coins": 6,
+      "dates": 8,
+      "touchInside": {
+        "yes": 9,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 7,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 4,
+        "no": 6,
+        "unknown": 0
+      },
+      "priceUp": 5,
+      "priceKnown": 10,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.042584937387220814,
+      "medianNetLoss": -0.021620162282518784,
+      "meanNetFlat": -0.042584937387220814
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 50,
+      "kind": "approach",
+      "events": 66,
+      "coins": 14,
+      "dates": 45,
+      "touchInside": {
+        "yes": 29,
+        "no": 37,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 64,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 17,
+        "no": 49,
+        "unknown": 0
+      },
+      "priceUp": 30,
+      "priceKnown": 66,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.04596217821337485,
+      "medianNetLoss": -0.01022004170224583,
+      "meanNetFlat": 0.04596217821337485
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 50,
+      "kind": "cross",
+      "events": 13,
+      "coins": 7,
+      "dates": 12,
+      "touchInside": {
+        "yes": 10,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 8,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 8,
+        "no": 5,
+        "unknown": 0
+      },
+      "priceUp": 8,
+      "priceKnown": 13,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.10296431482635132,
+      "medianNetLoss": -0.006342751092061949,
+      "meanNetFlat": -0.10296431482635132
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 60,
+      "kind": "approach",
+      "events": 73,
+      "coins": 14,
+      "dates": 42,
+      "touchInside": {
+        "yes": 42,
+        "no": 31,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 71,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 19,
+        "no": 54,
+        "unknown": 0
+      },
+      "priceUp": 52,
+      "priceKnown": 73,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.06638259502967973,
+      "medianNetLoss": 0.057386731735959096,
+      "meanNetFlat": 0.06638259502967973
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 60,
+      "kind": "cross",
+      "events": 27,
+      "coins": 12,
+      "dates": 27,
+      "touchInside": {
+        "yes": 25,
+        "no": 2,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 21,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 14,
+        "no": 13,
+        "unknown": 0
+      },
+      "priceUp": 16,
+      "priceKnown": 27,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.04680896545524846,
+      "medianNetLoss": 0.017570439396906945,
+      "meanNetFlat": 0.04680896545524846
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 80,
+      "kind": "approach",
+      "events": 96,
+      "coins": 21,
+      "dates": 48,
+      "touchInside": {
+        "yes": 30,
+        "no": 66,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 95,
+        "no": 1,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 18,
+        "no": 78,
+        "unknown": 0
+      },
+      "priceUp": 46,
+      "priceKnown": 96,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.032299155877970324,
+      "medianNetLoss": -0.009009477320935877,
+      "meanNetFlat": 0.032299155877970324
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 80,
+      "kind": "cross",
+      "events": 19,
+      "coins": 14,
+      "dates": 16,
+      "touchInside": {
+        "yes": 18,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 15,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 13,
+        "no": 6,
+        "unknown": 0
+      },
+      "priceUp": 11,
+      "priceKnown": 19,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.02869609899696935,
+      "medianNetLoss": 0.006250202118975645,
+      "meanNetFlat": 0.02869609899696935
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 100,
+      "kind": "approach",
+      "events": 156,
+      "coins": 25,
+      "dates": 51,
+      "touchInside": {
+        "yes": 69,
+        "no": 87,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 152,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 40,
+        "no": 116,
+        "unknown": 0
+      },
+      "priceUp": 76,
+      "priceKnown": 156,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.018304508514572604,
+      "medianNetLoss": -0.01382194520013974,
+      "meanNetFlat": 0.018304508514572604
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 100,
+      "kind": "cross",
+      "events": 23,
+      "coins": 17,
+      "dates": 22,
+      "touchInside": {
+        "yes": 20,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 15,
+        "no": 8,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 11,
+        "no": 12,
+        "unknown": 0
+      },
+      "priceUp": 9,
+      "priceKnown": 23,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.14653409951274177,
+      "medianNetLoss": -0.07708405653999917,
+      "meanNetFlat": -0.14653409951274177
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 120,
+      "kind": "approach",
+      "events": 195,
+      "coins": 31,
+      "dates": 54,
+      "touchInside": {
+        "yes": 67,
+        "no": 128,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 190,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 41,
+        "no": 154,
+        "unknown": 0
+      },
+      "priceUp": 99,
+      "priceKnown": 195,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.03962931701239939,
+      "medianNetLoss": -0.00806340453114296,
+      "meanNetFlat": 0.03962931701239939
+    },
+    {
+      "view": 3,
+      "horizon": 14,
+      "boundary": 120,
+      "kind": "cross",
+      "events": 30,
+      "coins": 19,
+      "dates": 25,
+      "touchInside": {
+        "yes": 29,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 25,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 15,
+        "no": 15,
+        "unknown": 0
+      },
+      "priceUp": 8,
+      "priceKnown": 30,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.05506020112516473,
+      "medianNetLoss": -0.08982871908092938,
+      "meanNetFlat": -0.05506020112516473
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 40,
+      "kind": "approach",
+      "events": 69,
+      "coins": 11,
+      "dates": 49,
+      "touchInside": {
+        "yes": 18,
+        "no": 51,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 66,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 13,
+        "no": 56,
+        "unknown": 0
+      },
+      "priceUp": 21,
+      "priceKnown": 69,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.029452836508078034,
+      "medianNetLoss": -0.03039242259875996,
+      "meanNetFlat": -0.029452836508078034
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 40,
+      "kind": "cross",
+      "events": 10,
+      "coins": 6,
+      "dates": 9,
+      "touchInside": {
+        "yes": 9,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 7,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 7,
+        "no": 3,
+        "unknown": 0
+      },
+      "priceUp": 4,
+      "priceKnown": 10,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.025729252706740445,
+      "medianNetLoss": -0.020522018407150344,
+      "meanNetFlat": -0.025729252706740445
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 50,
+      "kind": "approach",
+      "events": 83,
+      "coins": 15,
+      "dates": 51,
+      "touchInside": {
+        "yes": 26,
+        "no": 57,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 81,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 18,
+        "no": 65,
+        "unknown": 0
+      },
+      "priceUp": 41,
+      "priceKnown": 83,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.043349336889946744,
+      "medianNetLoss": -0.0018961680243017032,
+      "meanNetFlat": 0.043349336889946744
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 50,
+      "kind": "cross",
+      "events": 13,
+      "coins": 8,
+      "dates": 12,
+      "touchInside": {
+        "yes": 10,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 9,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 8,
+        "no": 5,
+        "unknown": 0
+      },
+      "priceUp": 9,
+      "priceKnown": 13,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.04993391630298243,
+      "medianNetLoss": -0.02819064284481798,
+      "meanNetFlat": -0.04993391630298243
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 60,
+      "kind": "approach",
+      "events": 79,
+      "coins": 15,
+      "dates": 47,
+      "touchInside": {
+        "yes": 43,
+        "no": 36,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 76,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 18,
+        "no": 61,
+        "unknown": 0
+      },
+      "priceUp": 47,
+      "priceKnown": 79,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.007463336023493329,
+      "medianNetLoss": -0.0007509185834920773,
+      "meanNetFlat": 0.007463336023493329
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 60,
+      "kind": "cross",
+      "events": 25,
+      "coins": 12,
+      "dates": 25,
+      "touchInside": {
+        "yes": 22,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 19,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 14,
+        "no": 11,
+        "unknown": 0
+      },
+      "priceUp": 9,
+      "priceKnown": 25,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.004500536369647561,
+      "medianNetLoss": -0.004602248713778789,
+      "meanNetFlat": 0.004500536369647561
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 80,
+      "kind": "approach",
+      "events": 135,
+      "coins": 19,
+      "dates": 52,
+      "touchInside": {
+        "yes": 31,
+        "no": 104,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 131,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 20,
+        "no": 115,
+        "unknown": 0
+      },
+      "priceUp": 61,
+      "priceKnown": 135,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.007244438356451282,
+      "medianNetLoss": -0.017852115118406342,
+      "meanNetFlat": 0.007244438356451282
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 80,
+      "kind": "cross",
+      "events": 18,
+      "coins": 12,
+      "dates": 15,
+      "touchInside": {
+        "yes": 14,
+        "no": 4,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 13,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 9,
+        "no": 9,
+        "unknown": 0
+      },
+      "priceUp": 9,
+      "priceKnown": 18,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.02870424957442649,
+      "medianNetLoss": -0.017665893532025412,
+      "meanNetFlat": -0.02870424957442649
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 100,
+      "kind": "approach",
+      "events": 172,
+      "coins": 25,
+      "dates": 56,
+      "touchInside": {
+        "yes": 53,
+        "no": 119,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 167,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 29,
+        "no": 143,
+        "unknown": 0
+      },
+      "priceUp": 81,
+      "priceKnown": 172,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.0030554664567444463,
+      "medianNetLoss": -0.013892537222859436,
+      "meanNetFlat": -0.0030554664567444463
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 100,
+      "kind": "cross",
+      "events": 29,
+      "coins": 18,
+      "dates": 25,
+      "touchInside": {
+        "yes": 25,
+        "no": 4,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 21,
+        "no": 8,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 16,
+        "no": 13,
+        "unknown": 0
+      },
+      "priceUp": 17,
+      "priceKnown": 29,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.013983916523082196,
+      "medianNetLoss": 0.014823981321872015,
+      "meanNetFlat": -0.013983916523082196
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 120,
+      "kind": "approach",
+      "events": 209,
+      "coins": 32,
+      "dates": 54,
+      "touchInside": {
+        "yes": 61,
+        "no": 148,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 203,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 37,
+        "no": 172,
+        "unknown": 0
+      },
+      "priceUp": 95,
+      "priceKnown": 209,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 5.993847009387605e-05,
+      "medianNetLoss": -0.026185757473451643,
+      "meanNetFlat": 5.993847009387605e-05
+    },
+    {
+      "view": 7,
+      "horizon": 7,
+      "boundary": 120,
+      "kind": "cross",
+      "events": 32,
+      "coins": 20,
+      "dates": 28,
+      "touchInside": {
+        "yes": 30,
+        "no": 2,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 19,
+        "no": 13,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 18,
+        "no": 14,
+        "unknown": 0
+      },
+      "priceUp": 11,
+      "priceKnown": 32,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.01787507189645034,
+      "medianNetLoss": -0.03708924672363484,
+      "meanNetFlat": -0.01787507189645034
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 40,
+      "kind": "approach",
+      "events": 61,
+      "coins": 10,
+      "dates": 42,
+      "touchInside": {
+        "yes": 13,
+        "no": 48,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 60,
+        "no": 1,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 6,
+        "no": 55,
+        "unknown": 0
+      },
+      "priceUp": 16,
+      "priceKnown": 61,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.038175514050325855,
+      "medianNetLoss": -0.03083102311553887,
+      "meanNetFlat": -0.038175514050325855
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 40,
+      "kind": "cross",
+      "events": 10,
+      "coins": 6,
+      "dates": 9,
+      "touchInside": {
+        "yes": 9,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 7,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 4,
+        "no": 6,
+        "unknown": 0
+      },
+      "priceUp": 6,
+      "priceKnown": 10,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.04915301069630721,
+      "medianNetLoss": -0.02158541898221289,
+      "meanNetFlat": -0.04915301069630721
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 50,
+      "kind": "approach",
+      "events": 76,
+      "coins": 14,
+      "dates": 46,
+      "touchInside": {
+        "yes": 40,
+        "no": 36,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 74,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 27,
+        "no": 49,
+        "unknown": 0
+      },
+      "priceUp": 36,
+      "priceKnown": 76,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.09683053959764704,
+      "medianNetLoss": -0.007110409693603659,
+      "meanNetFlat": 0.09683053959764704
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 50,
+      "kind": "cross",
+      "events": 9,
+      "coins": 6,
+      "dates": 8,
+      "touchInside": {
+        "yes": 7,
+        "no": 2,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 5,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 6,
+        "no": 3,
+        "unknown": 0
+      },
+      "priceUp": 6,
+      "priceKnown": 9,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.16494474379699667,
+      "medianNetLoss": -0.006342751092061949,
+      "meanNetFlat": -0.16494474379699667
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 60,
+      "kind": "approach",
+      "events": 70,
+      "coins": 13,
+      "dates": 41,
+      "touchInside": {
+        "yes": 51,
+        "no": 19,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 68,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 22,
+        "no": 48,
+        "unknown": 0
+      },
+      "priceUp": 49,
+      "priceKnown": 70,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.06478552005825931,
+      "medianNetLoss": 0.06401002433024405,
+      "meanNetFlat": 0.06478552005825931
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 60,
+      "kind": "cross",
+      "events": 23,
+      "coins": 10,
+      "dates": 23,
+      "touchInside": {
+        "yes": 23,
+        "no": 0,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 20,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 13,
+        "no": 10,
+        "unknown": 0
+      },
+      "priceUp": 15,
+      "priceKnown": 23,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.07718978537681251,
+      "medianNetLoss": 0.046199907394742556,
+      "meanNetFlat": 0.07718978537681251
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 80,
+      "kind": "approach",
+      "events": 121,
+      "coins": 16,
+      "dates": 46,
+      "touchInside": {
+        "yes": 44,
+        "no": 77,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 119,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 29,
+        "no": 92,
+        "unknown": 0
+      },
+      "priceUp": 67,
+      "priceKnown": 121,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.06007664873767621,
+      "medianNetLoss": 0.003671705436214534,
+      "meanNetFlat": 0.06007664873767621
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 80,
+      "kind": "cross",
+      "events": 16,
+      "coins": 12,
+      "dates": 13,
+      "touchInside": {
+        "yes": 16,
+        "no": 0,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 12,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 12,
+        "no": 4,
+        "unknown": 0
+      },
+      "priceUp": 11,
+      "priceKnown": 16,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.055849520963572284,
+      "medianNetLoss": 0.012210910945010478,
+      "meanNetFlat": 0.055849520963572284
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 100,
+      "kind": "approach",
+      "events": 159,
+      "coins": 24,
+      "dates": 50,
+      "touchInside": {
+        "yes": 72,
+        "no": 87,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 156,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 42,
+        "no": 117,
+        "unknown": 0
+      },
+      "priceUp": 76,
+      "priceKnown": 159,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.0023045846614337916,
+      "medianNetLoss": -0.01782971271101108,
+      "meanNetFlat": 0.0023045846614337916
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 100,
+      "kind": "cross",
+      "events": 21,
+      "coins": 13,
+      "dates": 20,
+      "touchInside": {
+        "yes": 18,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 17,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 8,
+        "no": 13,
+        "unknown": 0
+      },
+      "priceUp": 8,
+      "priceKnown": 21,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.14610783407827216,
+      "medianNetLoss": -0.07708405653999917,
+      "meanNetFlat": -0.14610783407827216
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 120,
+      "kind": "approach",
+      "events": 188,
+      "coins": 28,
+      "dates": 48,
+      "touchInside": {
+        "yes": 67,
+        "no": 121,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 185,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 37,
+        "no": 151,
+        "unknown": 0
+      },
+      "priceUp": 107,
+      "priceKnown": 188,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.039866034042249233,
+      "medianNetLoss": 0.0017868738840954856,
+      "meanNetFlat": 0.039866034042249233
+    },
+    {
+      "view": 7,
+      "horizon": 14,
+      "boundary": 120,
+      "kind": "cross",
+      "events": 27,
+      "coins": 16,
+      "dates": 24,
+      "touchInside": {
+        "yes": 27,
+        "no": 0,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 21,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 13,
+        "no": 14,
+        "unknown": 0
+      },
+      "priceUp": 9,
+      "priceKnown": 27,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.04263340371846481,
+      "medianNetLoss": -0.07331059458222389,
+      "meanNetFlat": -0.04263340371846481
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 40,
+      "kind": "approach",
+      "events": 73,
+      "coins": 10,
+      "dates": 45,
+      "touchInside": {
+        "yes": 20,
+        "no": 53,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 71,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 10,
+        "no": 63,
+        "unknown": 0
+      },
+      "priceUp": 26,
+      "priceKnown": 73,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.020787496285868227,
+      "medianNetLoss": -0.014134053637795851,
+      "meanNetFlat": -0.020787496285868227
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 40,
+      "kind": "cross",
+      "events": 11,
+      "coins": 5,
+      "dates": 10,
+      "touchInside": {
+        "yes": 8,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 8,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 6,
+        "no": 5,
+        "unknown": 0
+      },
+      "priceUp": 3,
+      "priceKnown": 11,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.06446809984118541,
+      "medianNetLoss": -0.04510502487060941,
+      "meanNetFlat": -0.06446809984118541
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 50,
+      "kind": "approach",
+      "events": 65,
+      "coins": 13,
+      "dates": 37,
+      "touchInside": {
+        "yes": 23,
+        "no": 42,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 62,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 15,
+        "no": 50,
+        "unknown": 0
+      },
+      "priceUp": 30,
+      "priceKnown": 65,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.05694450395113272,
+      "medianNetLoss": -0.009912714409573309,
+      "meanNetFlat": 0.05694450395113272
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 50,
+      "kind": "cross",
+      "events": 9,
+      "coins": 7,
+      "dates": 9,
+      "touchInside": {
+        "yes": 6,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 5,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 5,
+        "no": 4,
+        "unknown": 0
+      },
+      "priceUp": 5,
+      "priceKnown": 9,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.09666525239369275,
+      "medianNetLoss": -0.04456171390101382,
+      "meanNetFlat": -0.09666525239369275
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 60,
+      "kind": "approach",
+      "events": 84,
+      "coins": 13,
+      "dates": 42,
+      "touchInside": {
+        "yes": 43,
+        "no": 41,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 79,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 29,
+        "no": 55,
+        "unknown": 0
+      },
+      "priceUp": 58,
+      "priceKnown": 84,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.0520450003440607,
+      "medianNetLoss": 0.03020289333100279,
+      "meanNetFlat": 0.0520450003440607
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 60,
+      "kind": "cross",
+      "events": 21,
+      "coins": 10,
+      "dates": 21,
+      "touchInside": {
+        "yes": 18,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 14,
+        "no": 7,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 12,
+        "no": 9,
+        "unknown": 0
+      },
+      "priceUp": 11,
+      "priceKnown": 21,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.021872289535786422,
+      "medianNetLoss": 0.028807366994491934,
+      "meanNetFlat": 0.021872289535786422
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 80,
+      "kind": "approach",
+      "events": 109,
+      "coins": 15,
+      "dates": 46,
+      "touchInside": {
+        "yes": 42,
+        "no": 67,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 103,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 24,
+        "no": 85,
+        "unknown": 0
+      },
+      "priceUp": 44,
+      "priceKnown": 109,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.009253665324662284,
+      "medianNetLoss": -0.02092012583392233,
+      "meanNetFlat": 0.009253665324662284
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 80,
+      "kind": "cross",
+      "events": 18,
+      "coins": 11,
+      "dates": 15,
+      "touchInside": {
+        "yes": 15,
+        "no": 3,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 12,
+        "no": 6,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 9,
+        "no": 9,
+        "unknown": 0
+      },
+      "priceUp": 9,
+      "priceKnown": 18,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.004317474594163657,
+      "medianNetLoss": -0.01821633473735179,
+      "meanNetFlat": 0.004317474594163657
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 100,
+      "kind": "approach",
+      "events": 177,
+      "coins": 23,
+      "dates": 48,
+      "touchInside": {
+        "yes": 70,
+        "no": 107,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 173,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 38,
+        "no": 139,
+        "unknown": 0
+      },
+      "priceUp": 89,
+      "priceKnown": 177,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.013819060731708709,
+      "medianNetLoss": -0.009194464858072848,
+      "meanNetFlat": -0.013819060731708709
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 100,
+      "kind": "cross",
+      "events": 28,
+      "coins": 16,
+      "dates": 23,
+      "touchInside": {
+        "yes": 23,
+        "no": 5,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 23,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 14,
+        "no": 14,
+        "unknown": 0
+      },
+      "priceUp": 15,
+      "priceKnown": 28,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.03454375599094478,
+      "medianNetLoss": 0.010281314315907397,
+      "meanNetFlat": -0.03454375599094478
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 120,
+      "kind": "approach",
+      "events": 210,
+      "coins": 29,
+      "dates": 49,
+      "touchInside": {
+        "yes": 40,
+        "no": 170,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 202,
+        "no": 8,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 30,
+        "no": 180,
+        "unknown": 0
+      },
+      "priceUp": 102,
+      "priceKnown": 210,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.013481745879797044,
+      "medianNetLoss": -0.009328370612056824,
+      "meanNetFlat": 0.013481745879797044
+    },
+    {
+      "view": 14,
+      "horizon": 7,
+      "boundary": 120,
+      "kind": "cross",
+      "events": 22,
+      "coins": 14,
+      "dates": 21,
+      "touchInside": {
+        "yes": 21,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 14,
+        "no": 8,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 11,
+        "no": 11,
+        "unknown": 0
+      },
+      "priceUp": 10,
+      "priceKnown": 22,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.007268590259676567,
+      "medianNetLoss": -0.011172773287596471,
+      "meanNetFlat": -0.007268590259676567
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 40,
+      "kind": "approach",
+      "events": 62,
+      "coins": 10,
+      "dates": 39,
+      "touchInside": {
+        "yes": 22,
+        "no": 40,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 61,
+        "no": 1,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 11,
+        "no": 51,
+        "unknown": 0
+      },
+      "priceUp": 24,
+      "priceKnown": 62,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.01723500854493338,
+      "medianNetLoss": -0.011687106097649669,
+      "meanNetFlat": -0.01723500854493338
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 40,
+      "kind": "cross",
+      "events": 10,
+      "coins": 5,
+      "dates": 9,
+      "touchInside": {
+        "yes": 8,
+        "no": 2,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 7,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 4,
+        "no": 6,
+        "unknown": 0
+      },
+      "priceUp": 6,
+      "priceKnown": 10,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.056978352921760136,
+      "medianNetLoss": -0.01018613477747482,
+      "meanNetFlat": -0.056978352921760136
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 50,
+      "kind": "approach",
+      "events": 59,
+      "coins": 12,
+      "dates": 33,
+      "touchInside": {
+        "yes": 34,
+        "no": 25,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 56,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 22,
+        "no": 37,
+        "unknown": 0
+      },
+      "priceUp": 34,
+      "priceKnown": 59,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.11371038369710978,
+      "medianNetLoss": 0.00977629516060774,
+      "meanNetFlat": 0.11371038369710978
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 50,
+      "kind": "cross",
+      "events": 8,
+      "coins": 6,
+      "dates": 8,
+      "touchInside": {
+        "yes": 6,
+        "no": 2,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 5,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 5,
+        "no": 3,
+        "unknown": 0
+      },
+      "priceUp": 5,
+      "priceKnown": 8,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.14818490401502943,
+      "medianNetLoss": 0.019932825398775056,
+      "meanNetFlat": -0.14818490401502943
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 60,
+      "kind": "approach",
+      "events": 69,
+      "coins": 12,
+      "dates": 35,
+      "touchInside": {
+        "yes": 52,
+        "no": 17,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 67,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 26,
+        "no": 43,
+        "unknown": 0
+      },
+      "priceUp": 55,
+      "priceKnown": 69,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.10160146361944947,
+      "medianNetLoss": 0.09903894945220282,
+      "meanNetFlat": 0.10160146361944947
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 60,
+      "kind": "cross",
+      "events": 19,
+      "coins": 9,
+      "dates": 19,
+      "touchInside": {
+        "yes": 18,
+        "no": 1,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 15,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 11,
+        "no": 8,
+        "unknown": 0
+      },
+      "priceUp": 13,
+      "priceKnown": 19,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.0675558922601368,
+      "medianNetLoss": 0.046199907394742556,
+      "meanNetFlat": 0.0675558922601368
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 80,
+      "kind": "approach",
+      "events": 93,
+      "coins": 15,
+      "dates": 39,
+      "touchInside": {
+        "yes": 47,
+        "no": 46,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 89,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 31,
+        "no": 62,
+        "unknown": 0
+      },
+      "priceUp": 62,
+      "priceKnown": 93,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.06056565465219008,
+      "medianNetLoss": 0.003727934451717374,
+      "meanNetFlat": 0.06056565465219008
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 80,
+      "kind": "cross",
+      "events": 15,
+      "coins": 11,
+      "dates": 12,
+      "touchInside": {
+        "yes": 15,
+        "no": 0,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 12,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 11,
+        "no": 4,
+        "unknown": 0
+      },
+      "priceUp": 11,
+      "priceKnown": 15,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.068107295371746,
+      "medianNetLoss": 0.013683009494670717,
+      "meanNetFlat": 0.068107295371746
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 100,
+      "kind": "approach",
+      "events": 144,
+      "coins": 22,
+      "dates": 41,
+      "touchInside": {
+        "yes": 81,
+        "no": 63,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 142,
+        "no": 2,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 41,
+        "no": 103,
+        "unknown": 0
+      },
+      "priceUp": 74,
+      "priceKnown": 144,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.024087061958982654,
+      "medianNetLoss": -0.007415676086216738,
+      "meanNetFlat": -0.024087061958982654
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 100,
+      "kind": "cross",
+      "events": 17,
+      "coins": 11,
+      "dates": 16,
+      "touchInside": {
+        "yes": 13,
+        "no": 4,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 14,
+        "no": 3,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 4,
+        "no": 13,
+        "unknown": 0
+      },
+      "priceUp": 6,
+      "priceKnown": 17,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.22630569232655073,
+      "medianNetLoss": -0.14179719636915755,
+      "meanNetFlat": -0.22630569232655073
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 120,
+      "kind": "approach",
+      "events": 177,
+      "coins": 26,
+      "dates": 42,
+      "touchInside": {
+        "yes": 54,
+        "no": 123,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 173,
+        "no": 4,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 39,
+        "no": 138,
+        "unknown": 0
+      },
+      "priceUp": 106,
+      "priceKnown": 177,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": 0.06506077586136441,
+      "medianNetLoss": 0.02615749504708198,
+      "meanNetFlat": 0.06506077586136441
+    },
+    {
+      "view": 14,
+      "horizon": 14,
+      "boundary": 120,
+      "kind": "cross",
+      "events": 18,
+      "coins": 11,
+      "dates": 17,
+      "touchInside": {
+        "yes": 18,
+        "no": 0,
+        "unknown": 0
+      },
+      "touchOutside": {
+        "yes": 13,
+        "no": 5,
+        "unknown": 0
+      },
+      "endInside": {
+        "yes": 10,
+        "no": 8,
+        "unknown": 0
+      },
+      "priceUp": 8,
+      "priceKnown": 18,
+      "entryMissing": 0,
+      "exitMissing": 0,
+      "meanNetLoss": -0.015863561850144592,
+      "medianNetLoss": -0.008468450264541294,
+      "meanNetFlat": -0.015863561850144592
+    }
+  ],
+  "rankPriceDisconnect": {
+    "3": {
+      "improvedRank": 13456,
+      "priceNotUp": 3441,
+      "coins": 622,
+      "dates": 69
+    },
+    "7": {
+      "improvedRank": 13473,
+      "priceNotUp": 3640,
+      "coins": 587,
+      "dates": 65
+    },
+    "14": {
+      "improvedRank": 12538,
+      "priceNotUp": 3408,
+      "coins": 536,
+      "dates": 58
+    }
+  }
+}

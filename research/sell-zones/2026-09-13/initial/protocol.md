@@ -1,0 +1,13 @@
+# Frozen level exit experiment — 2026-09-13
+
+Declared 2026-09-13T19:50:12Z before this experiment's outcomes. No optimization or production selector.
+
+Reuse exactly the existing holding-horizons ledger's Momentum and TrendQuality selections (positive-only price signals, not the signed production modes), all 12 viewed intervals and hard holds 14/30/60/90 days. Ten equal initial slots with unfilled slots cash; identical selections compare three policies. Existing annual preselected Binance identities are retained, with no future symbol joins. This limits generalization to the contemporary whole market. Latest period 2023–2025 is descriptive, already inspected data, not an untouched holdout.
+
+- FixedH: entry at signal t+2 open, exit entry+H open.
+- SMAATRBracket: freeze simple mean of 14 true ranges at signal t (the existing loader's atr14_by_date; not Wilder TA-Lib ATR). At executed entry price E, target E+3 ATR, stop max(0,E−2 ATR).
+- ResistanceSMAATR: same stop, target min(prior-20-day resistance,E+3 ATR) if resistance>E; otherwise E+3 ATR. Resistance is highest high on the 20 consecutive complete bars strictly before signal t; no signal-day or later bars enter resistance.
+
+Indicator source date is signal t. Prices become entry-scaled zones only at t+2 actual entry; these are mechanical candidate levels, not calibrated price predictions. A complete daily close at/above target or at/below stop triggers a scheduled open fill two calendar days later, capped at hard exit. Process closes entry through hard−2 inclusive; no future-high or threshold fills. First missing/incomplete trigger bar makes trigger order unknown. Missing target inputs likewise produce unknown execution. Missing entry leaves cash; missing exits/order use zero-gross minus modeled costs and −100% sensitivity, never survivor deletion. Fees 50 bps each side use exact units.
+
+Future high target reachability and low stop reachability over entry through hard−1 are evaluation labels only. A known hit stays known if other bars are missing; a no-hit incomplete path is unknown. Outcomes cache by source identity, signal, H and policy across views/methods. Report paired cohort mean net difference vs fixed, date-win fraction, each year and 2023–2025, trigger reason, duration and unknown counts. Cohorts overlap and share assets: no compounded equity or independent-trade significance claim. Report both methods and all cells, including negative results. Frozen ledger is not overwritten. Synthetic checks cover delayed fills, highs not triggering, missing ordering, no future indicator leakage, and exact fixed ledger parity; independent selected-sample replay checks execution.

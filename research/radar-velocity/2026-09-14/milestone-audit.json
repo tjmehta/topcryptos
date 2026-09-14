@@ -1,0 +1,3026 @@
+[
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 137,
+    "alreadyAtMilestone": 7,
+    "pending": 130,
+    "newMilestoneTouch": {
+      "True": 5,
+      "False": 124,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 5,
+      "False": 124,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 57,
+      "False": 79,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.027080999424679838,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 67,
+    "alreadyAtMilestone": 3,
+    "pending": 64,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 63,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 64,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 25,
+      "False": 42,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.031117111502038483,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 34,
+    "alreadyAtMilestone": 0,
+    "pending": 34,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 34,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 34,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 14,
+      "False": 20,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.018661736963661704,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 15,
+    "alreadyAtMilestone": 0,
+    "pending": 15,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 15,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 15,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 7,
+      "False": 8,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.03953041198895531,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 7,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 122,
+    "alreadyAtMilestone": 7,
+    "pending": 115,
+    "newMilestoneTouch": {
+      "True": 16,
+      "False": 97,
+      "None": 2
+    },
+    "newMilestoneEnd": {
+      "True": 9,
+      "False": 104,
+      "None": 2
+    },
+    "anyRecross": {
+      "True": 69,
+      "False": 52,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.09795507449624068,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 7,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 59,
+    "alreadyAtMilestone": 3,
+    "pending": 56,
+    "newMilestoneTouch": {
+      "True": 2,
+      "False": 54,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 1,
+      "False": 55,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 36,
+      "False": 23,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08132036204231395,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 7,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 29,
+    "alreadyAtMilestone": 0,
+    "pending": 29,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 29,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 29,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 21,
+      "False": 8,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.07545310701516604,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 7,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 13,
+    "alreadyAtMilestone": 0,
+    "pending": 13,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 13,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 13,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.1407179987709964,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 14,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 108,
+    "alreadyAtMilestone": 6,
+    "pending": 102,
+    "newMilestoneTouch": {
+      "True": 17,
+      "False": 82,
+      "None": 3
+    },
+    "newMilestoneEnd": {
+      "True": 10,
+      "False": 90,
+      "None": 2
+    },
+    "anyRecross": {
+      "True": 72,
+      "False": 35,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.12358862195333215,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 14,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 47,
+    "alreadyAtMilestone": 0,
+    "pending": 47,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 47,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 47,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 37,
+      "False": 10,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08731323839114667,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 14,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 21,
+    "alreadyAtMilestone": 0,
+    "pending": 21,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 21,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 21,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 18,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.18807413304566808,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 14,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 9,
+    "alreadyAtMilestone": 0,
+    "pending": 9,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.24158198734151465,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 30,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 65,
+    "alreadyAtMilestone": 5,
+    "pending": 60,
+    "newMilestoneTouch": {
+      "True": 11,
+      "False": 44,
+      "None": 5
+    },
+    "newMilestoneEnd": {
+      "True": 8,
+      "False": 47,
+      "None": 5
+    },
+    "anyRecross": {
+      "True": 47,
+      "False": 17,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.16187266885828638,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 30,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 26,
+    "alreadyAtMilestone": 0,
+    "pending": 26,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 26,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 26,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 22,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.09956950853838621,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 30,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 14,
+    "alreadyAtMilestone": 0,
+    "pending": 14,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 13,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 13,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 13,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.2881890216325244,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 7,
+    "hold": 30,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 4,
+    "alreadyAtMilestone": 0,
+    "pending": 4,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.5220108243224449,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 176,
+    "alreadyAtMilestone": 11,
+    "pending": 165,
+    "newMilestoneTouch": {
+      "True": 9,
+      "False": 154,
+      "None": 2
+    },
+    "newMilestoneEnd": {
+      "True": 9,
+      "False": 154,
+      "None": 2
+    },
+    "anyRecross": {
+      "True": 79,
+      "False": 96,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.031107659244652155,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 101,
+    "alreadyAtMilestone": 3,
+    "pending": 98,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 97,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 98,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 37,
+      "False": 64,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.029751845523713794,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 37,
+    "alreadyAtMilestone": 0,
+    "pending": 37,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 37,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 37,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 16,
+      "False": 21,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.025238615562975963,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 20,
+    "alreadyAtMilestone": 0,
+    "pending": 20,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 20,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 20,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 11,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.03293569725189659,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 7,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 161,
+    "alreadyAtMilestone": 11,
+    "pending": 150,
+    "newMilestoneTouch": {
+      "True": 17,
+      "False": 126,
+      "None": 7
+    },
+    "newMilestoneEnd": {
+      "True": 11,
+      "False": 132,
+      "None": 7
+    },
+    "anyRecross": {
+      "True": 95,
+      "False": 64,
+      "None": 2
+    },
+    "meanObservedWorstGross": -0.10562870996623186,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 7,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 94,
+    "alreadyAtMilestone": 3,
+    "pending": 91,
+    "newMilestoneTouch": {
+      "True": 2,
+      "False": 89,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 1,
+      "False": 90,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 51,
+      "False": 43,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08057172038222879,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 7,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 33,
+    "alreadyAtMilestone": 0,
+    "pending": 33,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 33,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 33,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 22,
+      "False": 11,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08602312008052915,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 7,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 18,
+    "alreadyAtMilestone": 0,
+    "pending": 18,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 18,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 18,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 12,
+      "False": 6,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.11171563541958476,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 14,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 141,
+    "alreadyAtMilestone": 10,
+    "pending": 131,
+    "newMilestoneTouch": {
+      "True": 20,
+      "False": 103,
+      "None": 8
+    },
+    "newMilestoneEnd": {
+      "True": 10,
+      "False": 116,
+      "None": 5
+    },
+    "anyRecross": {
+      "True": 97,
+      "False": 42,
+      "None": 2
+    },
+    "meanObservedWorstGross": -0.14070772727929826,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 14,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 81,
+    "alreadyAtMilestone": 0,
+    "pending": 81,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 81,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 81,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 61,
+      "False": 20,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.10103576828009057,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 14,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 23,
+    "alreadyAtMilestone": 0,
+    "pending": 23,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 23,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 23,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 16,
+      "False": 7,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.18909086187044286,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 14,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 13,
+    "alreadyAtMilestone": 0,
+    "pending": 13,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 13,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 13,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.18396105164087934,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 30,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 98,
+    "alreadyAtMilestone": 9,
+    "pending": 89,
+    "newMilestoneTouch": {
+      "True": 17,
+      "False": 57,
+      "None": 15
+    },
+    "newMilestoneEnd": {
+      "True": 11,
+      "False": 64,
+      "None": 14
+    },
+    "anyRecross": {
+      "True": 75,
+      "False": 21,
+      "None": 2
+    },
+    "meanObservedWorstGross": -0.1934957029530268,
+    "maximumSelected": 10
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 30,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 53,
+    "alreadyAtMilestone": 0,
+    "pending": 53,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 52,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 53,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 43,
+      "False": 10,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.14252148111817461,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 30,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 17,
+    "alreadyAtMilestone": 0,
+    "pending": 17,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 16,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 16,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 13,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.2723322990793784,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 3,
+    "hold": 30,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 8,
+    "alreadyAtMilestone": 0,
+    "pending": 8,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 8,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 8,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.29293197167158047,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 109,
+    "alreadyAtMilestone": 2,
+    "pending": 107,
+    "newMilestoneTouch": {
+      "True": 5,
+      "False": 101,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 5,
+      "False": 101,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 47,
+      "False": 61,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.027517104888698404,
+    "maximumSelected": 9
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 61,
+    "alreadyAtMilestone": 3,
+    "pending": 58,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 57,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 58,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 25,
+      "False": 36,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.03227447784610082,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 32,
+    "alreadyAtMilestone": 0,
+    "pending": 32,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 32,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 32,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 17,
+      "False": 15,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.019381036197170014,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 11,
+    "alreadyAtMilestone": 0,
+    "pending": 11,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 11,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 11,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 7,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.05183736307870481,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 7,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 95,
+    "alreadyAtMilestone": 2,
+    "pending": 93,
+    "newMilestoneTouch": {
+      "True": 13,
+      "False": 78,
+      "None": 2
+    },
+    "newMilestoneEnd": {
+      "True": 8,
+      "False": 83,
+      "None": 2
+    },
+    "anyRecross": {
+      "True": 56,
+      "False": 38,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.08928816117742351,
+    "maximumSelected": 9
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 7,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 55,
+    "alreadyAtMilestone": 3,
+    "pending": 52,
+    "newMilestoneTouch": {
+      "True": 2,
+      "False": 50,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 1,
+      "False": 51,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 35,
+      "False": 20,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08449164171216324,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 7,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 28,
+    "alreadyAtMilestone": 0,
+    "pending": 28,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 28,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 28,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 23,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.10031715806157979,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 7,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 9,
+    "alreadyAtMilestone": 0,
+    "pending": 9,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.1880546022181545,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 14,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 82,
+    "alreadyAtMilestone": 1,
+    "pending": 81,
+    "newMilestoneTouch": {
+      "True": 13,
+      "False": 66,
+      "None": 2
+    },
+    "newMilestoneEnd": {
+      "True": 7,
+      "False": 72,
+      "None": 2
+    },
+    "anyRecross": {
+      "True": 56,
+      "False": 25,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.11515042943528747,
+    "maximumSelected": 9
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 14,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 41,
+    "alreadyAtMilestone": 0,
+    "pending": 41,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 41,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 41,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 33,
+      "False": 8,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08239356126019325,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 14,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 17,
+    "alreadyAtMilestone": 0,
+    "pending": 17,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 17,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 17,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 15,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.2571259520006198,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 14,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 8,
+    "alreadyAtMilestone": 0,
+    "pending": 8,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 8,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 8,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.2466984757711456,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 30,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 41,
+    "alreadyAtMilestone": 1,
+    "pending": 40,
+    "newMilestoneTouch": {
+      "True": 7,
+      "False": 29,
+      "None": 4
+    },
+    "newMilestoneEnd": {
+      "True": 5,
+      "False": 31,
+      "None": 4
+    },
+    "anyRecross": {
+      "True": 32,
+      "False": 8,
+      "None": 1
+    },
+    "meanObservedWorstGross": -0.155271563252813,
+    "maximumSelected": 9
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 30,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 18,
+    "alreadyAtMilestone": 0,
+    "pending": 18,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 18,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 18,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 15,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08482728248758706,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 30,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 10,
+    "alreadyAtMilestone": 0,
+    "pending": 10,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 9,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 9,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 10,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.3559169130565895,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 14,
+    "hold": 30,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 4,
+    "alreadyAtMilestone": 0,
+    "pending": 4,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.5149687328451887,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 73,
+    "alreadyAtMilestone": 1,
+    "pending": 72,
+    "newMilestoneTouch": {
+      "True": 2,
+      "False": 70,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 2,
+      "False": 70,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 32,
+      "False": 41,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.027971493574382826,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 40,
+    "alreadyAtMilestone": 2,
+    "pending": 38,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 37,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 38,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 14,
+      "False": 26,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0300265094057945,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 23,
+    "alreadyAtMilestone": 0,
+    "pending": 23,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 23,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 23,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 12,
+      "False": 11,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.022339859865548935,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.08873093090676865,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 7,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 61,
+    "alreadyAtMilestone": 1,
+    "pending": 60,
+    "newMilestoneTouch": {
+      "True": 6,
+      "False": 54,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 4,
+      "False": 56,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 36,
+      "False": 25,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.09960455726965421,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 7,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 33,
+    "alreadyAtMilestone": 2,
+    "pending": 31,
+    "newMilestoneTouch": {
+      "True": 2,
+      "False": 29,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 1,
+      "False": 30,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 18,
+      "False": 15,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.07239154765275706,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 7,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 19,
+    "alreadyAtMilestone": 0,
+    "pending": 19,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 19,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 19,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 15,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.11127580148160791,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 7,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 5,
+    "alreadyAtMilestone": 0,
+    "pending": 5,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.2075095872107436,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 14,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 44,
+    "alreadyAtMilestone": 0,
+    "pending": 44,
+    "newMilestoneTouch": {
+      "True": 6,
+      "False": 38,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 5,
+      "False": 39,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 33,
+      "False": 11,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.12803529749083972,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 14,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 21,
+    "alreadyAtMilestone": 0,
+    "pending": 21,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 21,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 21,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 16,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.07444753273618182,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 14,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 9,
+    "alreadyAtMilestone": 0,
+    "pending": 9,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 7,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.2849198058467279,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 14,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 5,
+    "alreadyAtMilestone": 0,
+    "pending": 5,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.22255818760590224,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 30,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 10,
+    "alreadyAtMilestone": 0,
+    "pending": 10,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 8,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 1,
+      "False": 8,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 10,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.285523232481638,
+    "maximumSelected": 4
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 30,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 4,
+    "alreadyAtMilestone": 0,
+    "pending": 4,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.07271418839906027,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 30,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 3,
+    "alreadyAtMilestone": 0,
+    "pending": 3,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 2,
+      "None": 1
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 2,
+      "None": 1
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.3509851069326634,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "daily",
+    "view": 30,
+    "hold": 30,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 1,
+    "alreadyAtMilestone": 0,
+    "pending": 1,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 1,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.945032525089346,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 47,
+    "alreadyAtMilestone": 0,
+    "pending": 47,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 47,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 47,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 21,
+      "False": 26,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.005408280117766058,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 31,
+    "alreadyAtMilestone": 1,
+    "pending": 30,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 30,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 30,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 18,
+      "False": 13,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.001916549992603754,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 8,
+    "alreadyAtMilestone": 0,
+    "pending": 8,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 8,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 8,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.047719662459691614,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 14,
+    "alreadyAtMilestone": 0,
+    "pending": 14,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 14,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 14,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 7,
+      "False": 7,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.002853483040962176,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 3,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 40,
+    "alreadyAtMilestone": 0,
+    "pending": 40,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 40,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 40,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 23,
+      "False": 17,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.011960016198045362,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 3,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 25,
+    "alreadyAtMilestone": 1,
+    "pending": 24,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 24,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 24,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 15,
+      "False": 10,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0047213999955199835,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 3,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0032214556835367483,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 3,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 12,
+    "alreadyAtMilestone": 0,
+    "pending": 12,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.004367302069961544,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 6,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 28,
+    "alreadyAtMilestone": 0,
+    "pending": 28,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 27,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 1,
+      "False": 27,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 17,
+      "False": 11,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.021090134254139522,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 6,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 23,
+    "alreadyAtMilestone": 1,
+    "pending": 22,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 22,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 22,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 14,
+      "False": 9,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.008438063447041755,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 6,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 5,
+    "alreadyAtMilestone": 0,
+    "pending": 5,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.04138093616455676,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 6,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 10,
+    "alreadyAtMilestone": 0,
+    "pending": 10,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 10,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 10,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.008521520824635188,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 12,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 19,
+    "alreadyAtMilestone": 0,
+    "pending": 19,
+    "newMilestoneTouch": {
+      "True": 1,
+      "False": 18,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 19,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 13,
+      "False": 6,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.027644275405770833,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 12,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 14,
+    "alreadyAtMilestone": 1,
+    "pending": 13,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 13,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 13,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.025874774832396,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 12,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 4,
+    "alreadyAtMilestone": 0,
+    "pending": 4,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.06797919501224134,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 3,
+    "hold": 12,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.00543735668712414,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 29,
+    "alreadyAtMilestone": 0,
+    "pending": 29,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 29,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 29,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 15,
+      "False": 14,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.004954048010125962,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 15,
+    "alreadyAtMilestone": 0,
+    "pending": 15,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 15,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 15,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 10,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.002667663016473698,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 7,
+    "alreadyAtMilestone": 0,
+    "pending": 7,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 7,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 7,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.05394878538025537,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 12,
+    "alreadyAtMilestone": 0,
+    "pending": 12,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 7,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0036552694271846467,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 3,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 25,
+    "alreadyAtMilestone": 0,
+    "pending": 25,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 25,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 25,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 16,
+      "False": 9,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.008523665405841898,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 3,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 14,
+    "alreadyAtMilestone": 0,
+    "pending": 14,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 14,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 14,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.005080517193374664,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 3,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 5,
+    "alreadyAtMilestone": 0,
+    "pending": 5,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.03471104220219083,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 3,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 11,
+    "alreadyAtMilestone": 0,
+    "pending": 11,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 11,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 11,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.005047097758387923,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 6,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 16,
+    "alreadyAtMilestone": 0,
+    "pending": 16,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 16,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 16,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 9,
+      "False": 7,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.010572022494599875,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 6,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 12,
+    "alreadyAtMilestone": 0,
+    "pending": 12,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.00972105878672642,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 6,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 4,
+    "alreadyAtMilestone": 0,
+    "pending": 4,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.11117423208412527,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 6,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 10,
+    "alreadyAtMilestone": 0,
+    "pending": 10,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 10,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 10,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.00943751429851981,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 12,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 12,
+    "alreadyAtMilestone": 0,
+    "pending": 12,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.016279314013184148,
+    "maximumSelected": 2
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 12,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0387133519202064,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 12,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 3,
+    "alreadyAtMilestone": 0,
+    "pending": 3,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 3,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 3,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 2,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.1667521681756625,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 6,
+    "hold": 12,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.006964012476931847,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 1,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 18,
+    "alreadyAtMilestone": 0,
+    "pending": 18,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 18,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 18,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 10,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0031520479863647033,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 1,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 9,
+    "alreadyAtMilestone": 0,
+    "pending": 9,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 4,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0037499071532079986,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 1,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 5,
+    "alreadyAtMilestone": 0,
+    "pending": 5,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 2,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.07552829953235751,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 1,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 1,
+      "False": 5,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0018065304376399898,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 3,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 16,
+    "alreadyAtMilestone": 0,
+    "pending": 16,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 16,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 16,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 10,
+      "False": 6,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.005058094810213201,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 3,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 9,
+    "alreadyAtMilestone": 0,
+    "pending": 9,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 9,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 5,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.006790255863242173,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 3,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 3,
+    "alreadyAtMilestone": 0,
+    "pending": 3,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 3,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 3,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 2,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0050709773618250464,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 3,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 5,
+    "alreadyAtMilestone": 0,
+    "pending": 5,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 5,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 1,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0024790734842514484,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 6,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 12,
+    "alreadyAtMilestone": 0,
+    "pending": 12,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 12,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 8,
+      "False": 4,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0036424186661784632,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 6,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 6,
+    "alreadyAtMilestone": 0,
+    "pending": 6,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 6,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 3,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.005866404519049888,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 6,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 2,
+    "alreadyAtMilestone": 0,
+    "pending": 2,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 2,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 2,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 1,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.010272860224389724,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 6,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 4,
+    "alreadyAtMilestone": 0,
+    "pending": 4,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 4,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 1,
+      "False": 3,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.009091077210005238,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 12,
+    "boundary": 300,
+    "milestone": 200,
+    "positions": 7,
+    "alreadyAtMilestone": 0,
+    "pending": 7,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 7,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 7,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 7,
+      "False": 0,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.0020932032253461663,
+    "maximumSelected": 3
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 12,
+    "boundary": 200,
+    "milestone": 150,
+    "positions": 1,
+    "alreadyAtMilestone": 0,
+    "pending": 1,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": 0.0,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 12,
+    "boundary": 100,
+    "milestone": 50,
+    "positions": 1,
+    "alreadyAtMilestone": 0,
+    "pending": 1,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": -0.014383694682471693,
+    "maximumSelected": 1
+  },
+  {
+    "mode": "hourly",
+    "view": 12,
+    "hold": 12,
+    "boundary": 50,
+    "milestone": 25,
+    "positions": 1,
+    "alreadyAtMilestone": 0,
+    "pending": 1,
+    "newMilestoneTouch": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "newMilestoneEnd": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "anyRecross": {
+      "True": 0,
+      "False": 1,
+      "None": 0
+    },
+    "meanObservedWorstGross": 0.0,
+    "maximumSelected": 1
+  }
+]

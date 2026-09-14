@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-09-13T20:32:12.305669+00:00",
+  "completed_at_utc": "2026-09-13T20:33:22.728813+00:00",
+  "verifier_sha256": "75b4b7069c47617b54b5299ff9d4662417b10d188932a78b3e82fd2418ec9be3",
+  "runner_sha256": "7017ba2c94c45d7f8401d690d1f42be693f22125415ac1ae2f5b034d254a51c2",
+  "ledger_sha256": "ccd0108188f99f0269383775b20b5eb243ab2dee6b5dbef811206bc461585e1b",
+  "summary_sha256": "3d6332517fdf5115e655c09def8f2be747120f0f9960d556cf30b4dc11be2c78",
+  "panel_sha256": "91dfcdc1afac7a35087a1f9a56b1c75bbede3c504f81a85b4192ef6fe6f7340c",
+  "source_artifact_hashes": 11601,
+  "raw_panel_rows": 143175,
+  "score_values": 3622026,
+  "formations": 26136,
+  "skipped_formations": 168,
+  "outcomes": 52146,
+  "cohorts": 78408,
+  "summary_rows": 324,
+  "overlap_formations": 858,
+  "overlap_cohorts": 2574,
+  "overlap_position_records": 11160,
+  "maximum_absolute_numeric_difference": 2.7755575615628914e-17,
+  "independence": "Standard-library raw CSV reconstruction; no experiment or scorer imports. Checks every daily eligibility, score, ordering, fill, mark, path label, cohort mean, paired summary and sampled-date parity.",
+  "limitations": [
+    "Verifies implementation, not an untouched holdout or deployable superiority.",
+    "Daily overlapping observations and annual venue universes are not independent trials."
+  ]
+}

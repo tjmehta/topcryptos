@@ -1,0 +1,4694 @@
+{
+  "generatedAt": "2026-09-14T06:05:28.004859+00:00",
+  "sourceSha256": "2287c9dbc25852981a6084c08d414b2bf7a9c7eb27f25af8c54639ee45867d76",
+  "protocolSha256": "eed1f1c46f4a224a5c0702c5d5c8435bab8542135afcef837b3d41d50900d9e3",
+  "runnerSha256": "a3d999a2f3443a73c1683c03e1da8f3f016dc08bbd578a2634ee85e38ba14ce4",
+  "quality": {
+    "rawRows": 55000
+  },
+  "coverage": [
+    {
+      "mode": "daily",
+      "block": 0,
+      "snapshots": 110,
+      "start": "2020-11-18T23:00:00+00:00",
+      "end": "2021-03-07T07:47:06+00:00",
+      "arrivals": 2697,
+      "departures": 2697
+    }
+  ],
+  "rankPriceDisconnect": [
+    {
+      "mode": "daily",
+      "view": 7,
+      "rankImproved": 16830,
+      "priceNotUp": 2809
+    }
+  ],
+  "cells": [
+    {
+      "mode": "daily",
+      "view": 7,
+      "hold": 7,
+      "boundary": 300,
+      "milestone": 200,
+      "signalDates": 96,
+      "strategies": {
+        "rank_velocity": {
+          "all": {
+            "baskets": 96,
+            "positions": 346,
+            "coins": 188,
+            "activeDates": 84,
+            "meanSlots": 3.6041666666666665,
+            "entryMissing": 6,
+            "exitMissing": 12,
+            "supplyJumpPositions": 30,
+            "meanNet": {
+              "loss50": 0.008482847148381835,
+              "loss100": 0.004874214740649603,
+              "flat50": 0.0208584690389291,
+              "flat100": 0.017126689988174355
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.00544268027123903,
+            "investedPositionMeanLoss50": 0.023951568418960477,
+            "rankTouch": {
+              "True": 117,
+              "False": 186,
+              "None": 43
+            },
+            "rankEnd": {
+              "True": 65,
+              "False": 268,
+              "None": 13
+            },
+            "priceTouches": {
+              "20": {
+                "True": 108,
+                "False": 193,
+                "None": 45
+              },
+              "100": {
+                "True": 16,
+                "False": 271,
+                "None": 59
+              },
+              "400": {
+                "True": 1,
+                "False": 285,
+                "None": 60
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 136,
+            "coins": 89,
+            "activeDates": 37,
+            "meanSlots": 3.317073170731707,
+            "entryMissing": 5,
+            "exitMissing": 4,
+            "supplyJumpPositions": 6,
+            "meanNet": {
+              "loss50": 0.022354810886361313,
+              "loss100": 0.018952979889711584,
+              "flat50": 0.032013832849715276,
+              "flat100": 0.028515887399974807
+            },
+            "medianNetLoss50": 0.00103305440004835,
+            "removeBestDateMean": 0.015481213646596636,
+            "investedPositionMeanLoss50": 0.06996543865197052,
+            "rankTouch": {
+              "True": 40,
+              "False": 78,
+              "None": 18
+            },
+            "rankEnd": {
+              "True": 23,
+              "False": 108,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 41,
+                "False": 76,
+                "None": 19
+              },
+              "100": {
+                "True": 9,
+                "False": 107,
+                "None": 20
+              },
+              "400": {
+                "True": 1,
+                "False": 114,
+                "None": 21
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 178,
+            "coins": 116,
+            "activeDates": 40,
+            "meanSlots": 3.7083333333333335,
+            "entryMissing": 1,
+            "exitMissing": 7,
+            "supplyJumpPositions": 23,
+            "meanNet": {
+              "loss50": 0.0016742928123901807,
+              "loss100": -0.0020117044293869457,
+              "flat50": 0.016112518351361987,
+              "flat100": 0.012282850026058598
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.003954874831308069,
+            "investedPositionMeanLoss50": 0.004540455084447948,
+            "rankTouch": {
+              "True": 64,
+              "False": 90,
+              "None": 24
+            },
+            "rankEnd": {
+              "True": 34,
+              "False": 137,
+              "None": 7
+            },
+            "priceTouches": {
+              "20": {
+                "True": 59,
+                "False": 94,
+                "None": 25
+              },
+              "100": {
+                "True": 6,
+                "False": 134,
+                "None": 38
+              },
+              "400": {
+                "True": 0,
+                "False": 140,
+                "None": 38
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 43,
+            "coins": 41,
+            "activeDates": 12,
+            "meanSlots": 3.5833333333333335,
+            "entryMissing": 1,
+            "exitMissing": 0,
+            "supplyJumpPositions": 5,
+            "meanNet": {
+              "loss50": -0.007118876919039511,
+              "loss100": -0.010530799134880723,
+              "flat50": -0.007118876919039511,
+              "flat100": -0.010530799134880723
+            },
+            "medianNetLoss50": -0.01419761844104342,
+            "removeBestDateMean": -0.015206660730961108,
+            "investedPositionMeanLoss50": -0.020339648340112888,
+            "rankTouch": {
+              "True": 16,
+              "False": 24,
+              "None": 3
+            },
+            "rankEnd": {
+              "True": 7,
+              "False": 36,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 8,
+                "False": 32,
+                "None": 3
+              },
+              "100": {
+                "True": 2,
+                "False": 38,
+                "None": 3
+              },
+              "400": {
+                "True": 0,
+                "False": 39,
+                "None": 4
+              }
+            }
+          }
+        },
+        "cross_price": {
+          "all": {
+            "baskets": 96,
+            "positions": 346,
+            "coins": 188,
+            "activeDates": 84,
+            "meanSlots": 3.6041666666666665,
+            "entryMissing": 6,
+            "exitMissing": 12,
+            "supplyJumpPositions": 30,
+            "meanNet": {
+              "loss50": 0.008482847148381835,
+              "loss100": 0.004874214740649603,
+              "flat50": 0.0208584690389291,
+              "flat100": 0.017126689988174355
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.00544268027123903,
+            "investedPositionMeanLoss50": 0.023951568418960477,
+            "rankTouch": {
+              "True": 117,
+              "False": 186,
+              "None": 43
+            },
+            "rankEnd": {
+              "True": 65,
+              "False": 268,
+              "None": 13
+            },
+            "priceTouches": {
+              "20": {
+                "True": 108,
+                "False": 193,
+                "None": 45
+              },
+              "100": {
+                "True": 16,
+                "False": 271,
+                "None": 59
+              },
+              "400": {
+                "True": 1,
+                "False": 285,
+                "None": 60
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 136,
+            "coins": 89,
+            "activeDates": 37,
+            "meanSlots": 3.317073170731707,
+            "entryMissing": 5,
+            "exitMissing": 4,
+            "supplyJumpPositions": 6,
+            "meanNet": {
+              "loss50": 0.022354810886361313,
+              "loss100": 0.018952979889711584,
+              "flat50": 0.032013832849715276,
+              "flat100": 0.028515887399974807
+            },
+            "medianNetLoss50": 0.00103305440004835,
+            "removeBestDateMean": 0.015481213646596636,
+            "investedPositionMeanLoss50": 0.06996543865197052,
+            "rankTouch": {
+              "True": 40,
+              "False": 78,
+              "None": 18
+            },
+            "rankEnd": {
+              "True": 23,
+              "False": 108,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 41,
+                "False": 76,
+                "None": 19
+              },
+              "100": {
+                "True": 9,
+                "False": 107,
+                "None": 20
+              },
+              "400": {
+                "True": 1,
+                "False": 114,
+                "None": 21
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 178,
+            "coins": 116,
+            "activeDates": 40,
+            "meanSlots": 3.7083333333333335,
+            "entryMissing": 1,
+            "exitMissing": 7,
+            "supplyJumpPositions": 23,
+            "meanNet": {
+              "loss50": 0.0016742928123901807,
+              "loss100": -0.0020117044293869457,
+              "flat50": 0.016112518351361987,
+              "flat100": 0.012282850026058598
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.003954874831308069,
+            "investedPositionMeanLoss50": 0.004540455084447948,
+            "rankTouch": {
+              "True": 64,
+              "False": 90,
+              "None": 24
+            },
+            "rankEnd": {
+              "True": 34,
+              "False": 137,
+              "None": 7
+            },
+            "priceTouches": {
+              "20": {
+                "True": 59,
+                "False": 94,
+                "None": 25
+              },
+              "100": {
+                "True": 6,
+                "False": 134,
+                "None": 38
+              },
+              "400": {
+                "True": 0,
+                "False": 140,
+                "None": 38
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 43,
+            "coins": 41,
+            "activeDates": 12,
+            "meanSlots": 3.5833333333333335,
+            "entryMissing": 1,
+            "exitMissing": 0,
+            "supplyJumpPositions": 5,
+            "meanNet": {
+              "loss50": -0.007118876919039511,
+              "loss100": -0.010530799134880723,
+              "flat50": -0.007118876919039511,
+              "flat100": -0.010530799134880723
+            },
+            "medianNetLoss50": -0.01419761844104342,
+            "removeBestDateMean": -0.015206660730961108,
+            "investedPositionMeanLoss50": -0.020339648340112888,
+            "rankTouch": {
+              "True": 16,
+              "False": 24,
+              "None": 3
+            },
+            "rankEnd": {
+              "True": 7,
+              "False": 36,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 8,
+                "False": 32,
+                "None": 3
+              },
+              "100": {
+                "True": 2,
+                "False": 38,
+                "None": 3
+              },
+              "400": {
+                "True": 0,
+                "False": 39,
+                "None": 4
+              }
+            }
+          }
+        },
+        "cross_only": {
+          "all": {
+            "baskets": 96,
+            "positions": 532,
+            "coins": 221,
+            "activeDates": 88,
+            "meanSlots": 5.541666666666667,
+            "entryMissing": 6,
+            "exitMissing": 16,
+            "supplyJumpPositions": 48,
+            "meanNet": {
+              "loss50": 0.013518649298976846,
+              "loss100": 0.007931950299368438,
+              "flat50": 0.030019478486373197,
+              "flat100": 0.024268583962734774
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.009854144327547354,
+            "investedPositionMeanLoss50": 0.02467282001334177,
+            "rankTouch": {
+              "True": 173,
+              "False": 302,
+              "None": 57
+            },
+            "rankEnd": {
+              "True": 96,
+              "False": 419,
+              "None": 17
+            },
+            "priceTouches": {
+              "20": {
+                "True": 153,
+                "False": 318,
+                "None": 61
+              },
+              "100": {
+                "True": 21,
+                "False": 434,
+                "None": 77
+              },
+              "400": {
+                "True": 1,
+                "False": 453,
+                "None": 78
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 219,
+            "coins": 116,
+            "activeDates": 40,
+            "meanSlots": 5.341463414634147,
+            "entryMissing": 5,
+            "exitMissing": 6,
+            "supplyJumpPositions": 12,
+            "meanNet": {
+              "loss50": 0.023604698668122287,
+              "loss100": 0.01817601148786137,
+              "flat50": 0.038093231613153235,
+              "flat100": 0.032520372753256206
+            },
+            "medianNetLoss50": 0.004471359018873478,
+            "removeBestDateMean": 0.01668276407800277,
+            "investedPositionMeanLoss50": 0.0452239553921969,
+            "rankTouch": {
+              "True": 73,
+              "False": 120,
+              "None": 26
+            },
+            "rankEnd": {
+              "True": 44,
+              "False": 168,
+              "None": 7
+            },
+            "priceTouches": {
+              "20": {
+                "True": 59,
+                "False": 132,
+                "None": 28
+              },
+              "100": {
+                "True": 10,
+                "False": 179,
+                "None": 30
+              },
+              "400": {
+                "True": 1,
+                "False": 187,
+                "None": 31
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 264,
+            "coins": 143,
+            "activeDates": 41,
+            "meanSlots": 5.5,
+            "entryMissing": 1,
+            "exitMissing": 9,
+            "supplyJumpPositions": 34,
+            "meanNet": {
+              "loss50": 0.00605822716744024,
+              "loss100": 0.0005457649172376398,
+              "flat50": 0.024621660003261134,
+              "flat100": 0.01892447778852477
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.0015074833520775973,
+            "investedPositionMeanLoss50": 0.011056840457685605,
+            "rankTouch": {
+              "True": 83,
+              "False": 151,
+              "None": 30
+            },
+            "rankEnd": {
+              "True": 42,
+              "False": 213,
+              "None": 9
+            },
+            "priceTouches": {
+              "20": {
+                "True": 83,
+                "False": 149,
+                "None": 32
+              },
+              "100": {
+                "True": 9,
+                "False": 209,
+                "None": 46
+              },
+              "400": {
+                "True": 0,
+                "False": 218,
+                "None": 46
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 71,
+            "coins": 63,
+            "activeDates": 12,
+            "meanSlots": 5.916666666666667,
+            "entryMissing": 1,
+            "exitMissing": 0,
+            "supplyJumpPositions": 11,
+            "meanNet": {
+              "loss50": -0.02282336755878869,
+              "loss100": -0.028400858635703446,
+              "flat50": -0.02282336755878869,
+              "flat100": -0.028400858635703446
+            },
+            "medianNetLoss50": -0.014899799333642721,
+            "removeBestDateMean": -0.03233883233796021,
+            "investedPositionMeanLoss50": -0.03912577295792347,
+            "rankTouch": {
+              "True": 23,
+              "False": 44,
+              "None": 4
+            },
+            "rankEnd": {
+              "True": 10,
+              "False": 61,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 12,
+                "False": 54,
+                "None": 5
+              },
+              "100": {
+                "True": 2,
+                "False": 64,
+                "None": 5
+              },
+              "400": {
+                "True": 0,
+                "False": 65,
+                "None": 6
+              }
+            }
+          }
+        },
+        "band_momentum": {
+          "all": {
+            "baskets": 96,
+            "positions": 888,
+            "coins": 219,
+            "activeDates": 89,
+            "meanSlots": 9.25,
+            "entryMissing": 25,
+            "exitMissing": 30,
+            "supplyJumpPositions": 56,
+            "meanNet": {
+              "loss50": -0.013276100558830259,
+              "loss100": -0.02208929756141256,
+              "flat50": 0.017662954167537902,
+              "flat100": 0.008541890557399321
+            },
+            "medianNetLoss50": -0.014031339722120569,
+            "removeBestDateMean": -0.019010098010657193,
+            "investedPositionMeanLoss50": -0.014768315801248029,
+            "rankTouch": {
+              "True": 226,
+              "False": 527,
+              "None": 135
+            },
+            "rankEnd": {
+              "True": 167,
+              "False": 687,
+              "None": 34
+            },
+            "priceTouches": {
+              "20": {
+                "True": 275,
+                "False": 489,
+                "None": 124
+              },
+              "100": {
+                "True": 39,
+                "False": 693,
+                "None": 156
+              },
+              "400": {
+                "True": 1,
+                "False": 721,
+                "None": 166
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 408,
+            "coins": 120,
+            "activeDates": 41,
+            "meanSlots": 9.951219512195122,
+            "entryMissing": 10,
+            "exitMissing": 8,
+            "supplyJumpPositions": 18,
+            "meanNet": {
+              "loss50": 0.030206322685134995,
+              "loss100": 0.020246244770788867,
+              "flat50": 0.04952436661184292,
+              "flat100": 0.039372059791315306
+            },
+            "medianNetLoss50": -0.009488184735393168,
+            "removeBestDateMean": 0.017675139318145162,
+            "investedPositionMeanLoss50": 0.031117066082676753,
+            "rankTouch": {
+              "True": 114,
+              "False": 243,
+              "None": 51
+            },
+            "rankEnd": {
+              "True": 85,
+              "False": 315,
+              "None": 8
+            },
+            "priceTouches": {
+              "20": {
+                "True": 133,
+                "False": 224,
+                "None": 51
+              },
+              "100": {
+                "True": 25,
+                "False": 319,
+                "None": 64
+              },
+              "400": {
+                "True": 1,
+                "False": 339,
+                "None": 68
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 410,
+            "coins": 122,
+            "activeDates": 41,
+            "meanSlots": 8.541666666666666,
+            "entryMissing": 13,
+            "exitMissing": 20,
+            "supplyJumpPositions": 38,
+            "meanNet": {
+              "loss50": -0.03336569440193933,
+              "loss100": -0.0412637752908532,
+              "flat50": 0.007886378566551552,
+              "flat100": -0.00042219113243735366
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.04208290297727359,
+            "investedPositionMeanLoss50": -0.04034139373534226,
+            "rankTouch": {
+              "True": 97,
+              "False": 233,
+              "None": 80
+            },
+            "rankEnd": {
+              "True": 71,
+              "False": 316,
+              "None": 23
+            },
+            "priceTouches": {
+              "20": {
+                "True": 128,
+                "False": 213,
+                "None": 69
+              },
+              "100": {
+                "True": 12,
+                "False": 310,
+                "None": 88
+              },
+              "400": {
+                "True": 0,
+                "False": 316,
+                "None": 94
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 120,
+            "coins": 102,
+            "activeDates": 12,
+            "meanSlots": 10.0,
+            "entryMissing": 10,
+            "exitMissing": 2,
+            "supplyJumpPositions": 7,
+            "meanNet": {
+              "loss50": -0.020368336653065828,
+              "loss100": -0.029287171719622432,
+              "flat50": -0.0038675074656694744,
+              "flat100": -0.012950538056256098
+            },
+            "medianNetLoss50": -0.05620990840346643,
+            "removeBestDateMean": -0.05173445437673619,
+            "investedPositionMeanLoss50": -0.022220003621526364,
+            "rankTouch": {
+              "True": 30,
+              "False": 73,
+              "None": 17
+            },
+            "rankEnd": {
+              "True": 23,
+              "False": 95,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 35,
+                "False": 66,
+                "None": 19
+              },
+              "100": {
+                "True": 5,
+                "False": 94,
+                "None": 21
+              },
+              "400": {
+                "True": 0,
+                "False": 98,
+                "None": 22
+              }
+            }
+          }
+        }
+      },
+      "paired": {
+        "cross_price": {
+          "meanNetDifference": 0.0,
+          "datesAhead": 0,
+          "datesBehind": 0,
+          "sameSelections": 96,
+          "laterMeanDifference": 0.0
+        },
+        "cross_only": {
+          "meanNetDifference": -0.00503580215059501,
+          "datesAhead": 36,
+          "datesBehind": 44,
+          "sameSelections": 16,
+          "laterMeanDifference": -0.004383934355050059
+        },
+        "band_momentum": {
+          "meanNetDifference": 0.021758947707212095,
+          "datesAhead": 53,
+          "datesBehind": 35,
+          "sameSelections": 7,
+          "laterMeanDifference": 0.035039987214329514
+        }
+      }
+    },
+    {
+      "mode": "daily",
+      "view": 7,
+      "hold": 7,
+      "boundary": 200,
+      "milestone": 150,
+      "signalDates": 96,
+      "strategies": {
+        "rank_velocity": {
+          "all": {
+            "baskets": 96,
+            "positions": 161,
+            "coins": 87,
+            "activeDates": 71,
+            "meanSlots": 1.6770833333333333,
+            "entryMissing": 0,
+            "exitMissing": 5,
+            "supplyJumpPositions": 12,
+            "meanNet": {
+              "loss50": -0.001396136546689783,
+              "loss100": -0.0030510666107391843,
+              "flat50": 0.0037603725743715773,
+              "flat100": 0.002054131409062796
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.003951146852855812,
+            "investedPositionMeanLoss50": -0.008324789346721687,
+            "rankTouch": {
+              "True": 15,
+              "False": 124,
+              "None": 22
+            },
+            "rankEnd": {
+              "True": 11,
+              "False": 145,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 45,
+                "False": 100,
+                "None": 16
+              },
+              "100": {
+                "True": 3,
+                "False": 135,
+                "None": 23
+              },
+              "400": {
+                "True": 0,
+                "False": 137,
+                "None": 24
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 69,
+            "coins": 49,
+            "activeDates": 32,
+            "meanSlots": 1.6829268292682926,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.005027793095339877,
+              "loss100": 0.0033031254400120464,
+              "flat50": 0.007442548586178367,
+              "flat100": 0.005693852317577852
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.0008797581407537017,
+            "investedPositionMeanLoss50": 0.029875292305642745,
+            "rankTouch": {
+              "True": 6,
+              "False": 56,
+              "None": 7
+            },
+            "rankEnd": {
+              "True": 3,
+              "False": 65,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 20,
+                "False": 42,
+                "None": 7
+              },
+              "100": {
+                "True": 1,
+                "False": 61,
+                "None": 7
+              },
+              "400": {
+                "True": 0,
+                "False": 62,
+                "None": 7
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 78,
+            "coins": 50,
+            "activeDates": 32,
+            "meanSlots": 1.625,
+            "entryMissing": 0,
+            "exitMissing": 4,
+            "supplyJumpPositions": 11,
+            "meanNet": {
+              "loss50": -0.0063772410391092675,
+              "loss100": -0.00793077861770414,
+              "flat50": 0.0018731735545889088,
+              "flat100": 0.00023753821397902864
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.009313519323930862,
+            "investedPositionMeanLoss50": -0.03924456024067242,
+            "rankTouch": {
+              "True": 8,
+              "False": 55,
+              "None": 15
+            },
+            "rankEnd": {
+              "True": 7,
+              "False": 67,
+              "None": 4
+            },
+            "priceTouches": {
+              "20": {
+                "True": 23,
+                "False": 46,
+                "None": 9
+              },
+              "100": {
+                "True": 2,
+                "False": 60,
+                "None": 16
+              },
+              "400": {
+                "True": 0,
+                "False": 61,
+                "None": 17
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 20,
+            "coins": 19,
+            "activeDates": 9,
+            "meanSlots": 1.6666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": -0.004793933918708819,
+              "loss100": -0.006404688013419592,
+              "flat50": -0.004793933918708819,
+              "flat100": -0.006404688013419592
+            },
+            "medianNetLoss50": -0.00427746665286387,
+            "removeBestDateMean": -0.010179721267700977,
+            "investedPositionMeanLoss50": -0.028763603512252916,
+            "rankTouch": {
+              "True": 1,
+              "False": 18,
+              "None": 1
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 19,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 4,
+                "False": 15,
+                "None": 1
+              },
+              "100": {
+                "True": 0,
+                "False": 19,
+                "None": 1
+              },
+              "400": {
+                "True": 0,
+                "False": 19,
+                "None": 1
+              }
+            }
+          }
+        },
+        "cross_price": {
+          "all": {
+            "baskets": 96,
+            "positions": 161,
+            "coins": 87,
+            "activeDates": 71,
+            "meanSlots": 1.6770833333333333,
+            "entryMissing": 0,
+            "exitMissing": 5,
+            "supplyJumpPositions": 12,
+            "meanNet": {
+              "loss50": -0.001798298076058182,
+              "loss100": -0.0034492263337553425,
+              "flat50": 0.0033582110450031785,
+              "flat100": 0.0016559716860466377
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.00435754166148072,
+            "investedPositionMeanLoss50": -0.010722771136744438,
+            "rankTouch": {
+              "True": 15,
+              "False": 124,
+              "None": 22
+            },
+            "rankEnd": {
+              "True": 11,
+              "False": 145,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 45,
+                "False": 100,
+                "None": 16
+              },
+              "100": {
+                "True": 3,
+                "False": 135,
+                "None": 23
+              },
+              "400": {
+                "True": 0,
+                "False": 137,
+                "None": 24
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 69,
+            "coins": 49,
+            "activeDates": 32,
+            "meanSlots": 1.6829268292682926,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.004086146587550455,
+              "loss100": 0.0023708490153888464,
+              "flat50": 0.006500902078388945,
+              "flat100": 0.004761575892954652
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.0018449458112378594,
+            "investedPositionMeanLoss50": 0.024280001462256326,
+            "rankTouch": {
+              "True": 6,
+              "False": 56,
+              "None": 7
+            },
+            "rankEnd": {
+              "True": 3,
+              "False": 65,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 20,
+                "False": 42,
+                "None": 7
+              },
+              "100": {
+                "True": 1,
+                "False": 61,
+                "None": 7
+              },
+              "400": {
+                "True": 0,
+                "False": 62,
+                "None": 7
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 78,
+            "coins": 50,
+            "activeDates": 32,
+            "meanSlots": 1.625,
+            "entryMissing": 0,
+            "exitMissing": 4,
+            "supplyJumpPositions": 11,
+            "meanNet": {
+              "loss50": -0.0063772410391092675,
+              "loss100": -0.00793077861770414,
+              "flat50": 0.0018731735545889088,
+              "flat100": 0.00023753821397902864
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.009313519323930862,
+            "investedPositionMeanLoss50": -0.03924456024067242,
+            "rankTouch": {
+              "True": 8,
+              "False": 55,
+              "None": 15
+            },
+            "rankEnd": {
+              "True": 7,
+              "False": 67,
+              "None": 4
+            },
+            "priceTouches": {
+              "20": {
+                "True": 23,
+                "False": 46,
+                "None": 9
+              },
+              "100": {
+                "True": 2,
+                "False": 60,
+                "None": 16
+              },
+              "400": {
+                "True": 0,
+                "False": 61,
+                "None": 17
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 20,
+            "coins": 19,
+            "activeDates": 9,
+            "meanSlots": 1.6666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": -0.004793933918708819,
+              "loss100": -0.006404688013419592,
+              "flat50": -0.004793933918708819,
+              "flat100": -0.006404688013419592
+            },
+            "medianNetLoss50": -0.00427746665286387,
+            "removeBestDateMean": -0.010179721267700977,
+            "investedPositionMeanLoss50": -0.028763603512252916,
+            "rankTouch": {
+              "True": 1,
+              "False": 18,
+              "None": 1
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 19,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 4,
+                "False": 15,
+                "None": 1
+              },
+              "100": {
+                "True": 0,
+                "False": 19,
+                "None": 1
+              },
+              "400": {
+                "True": 0,
+                "False": 19,
+                "None": 1
+              }
+            }
+          }
+        },
+        "cross_only": {
+          "all": {
+            "baskets": 96,
+            "positions": 252,
+            "coins": 103,
+            "activeDates": 86,
+            "meanSlots": 2.625,
+            "entryMissing": 1,
+            "exitMissing": 5,
+            "supplyJumpPositions": 13,
+            "meanNet": {
+              "loss50": 0.0034236179268828998,
+              "loss100": 0.000787845487853915,
+              "flat50": 0.00858012704794426,
+              "flat100": 0.005893043507655895
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.0009193418783334245,
+            "investedPositionMeanLoss50": 0.013094315576922646,
+            "rankTouch": {
+              "True": 24,
+              "False": 198,
+              "None": 30
+            },
+            "rankEnd": {
+              "True": 15,
+              "False": 232,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 66,
+                "False": 163,
+                "None": 23
+              },
+              "100": {
+                "True": 4,
+                "False": 217,
+                "None": 31
+              },
+              "400": {
+                "True": 0,
+                "False": 220,
+                "None": 32
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 117,
+            "coins": 59,
+            "activeDates": 38,
+            "meanSlots": 2.8536585365853657,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.008413962489538882,
+              "loss100": 0.005490634800120728,
+              "flat50": 0.010828717980377371,
+              "flat100": 0.007881361677686534
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.0025910654883002774,
+            "investedPositionMeanLoss50": 0.029484825818042234,
+            "rankTouch": {
+              "True": 14,
+              "False": 94,
+              "None": 9
+            },
+            "rankEnd": {
+              "True": 6,
+              "False": 110,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 27,
+                "False": 81,
+                "None": 9
+              },
+              "100": {
+                "True": 1,
+                "False": 107,
+                "None": 9
+              },
+              "400": {
+                "True": 0,
+                "False": 108,
+                "None": 9
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 117,
+            "coins": 69,
+            "activeDates": 41,
+            "meanSlots": 2.4375,
+            "entryMissing": 1,
+            "exitMissing": 4,
+            "supplyJumpPositions": 12,
+            "meanNet": {
+              "loss50": -0.00048713439104368513,
+              "loss100": -0.002887050130887701,
+              "flat50": 0.007763280202654491,
+              "flat100": 0.005281266700795468
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -0.0032980912578213324,
+            "investedPositionMeanLoss50": -0.0020157285146635237,
+            "rankTouch": {
+              "True": 9,
+              "False": 87,
+              "None": 21
+            },
+            "rankEnd": {
+              "True": 8,
+              "False": 105,
+              "None": 4
+            },
+            "priceTouches": {
+              "20": {
+                "True": 36,
+                "False": 67,
+                "None": 14
+              },
+              "100": {
+                "True": 3,
+                "False": 92,
+                "None": 22
+              },
+              "400": {
+                "True": 0,
+                "False": 94,
+                "None": 23
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 35,
+            "coins": 32,
+            "activeDates": 12,
+            "meanSlots": 2.9166666666666665,
+            "entryMissing": 1,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": -0.008371891762352162,
+              "loss100": -0.011107962627280593,
+              "flat50": -0.008371891762352162,
+              "flat100": -0.011107962627280593
+            },
+            "medianNetLoss50": -0.007859832382626896,
+            "removeBestDateMean": -0.014057214550730878,
+            "investedPositionMeanLoss50": -0.02954785327888998,
+            "rankTouch": {
+              "True": 1,
+              "False": 31,
+              "None": 3
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 34,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 8,
+                "False": 24,
+                "None": 3
+              },
+              "100": {
+                "True": 0,
+                "False": 32,
+                "None": 3
+              },
+              "400": {
+                "True": 0,
+                "False": 32,
+                "None": 3
+              }
+            }
+          }
+        },
+        "band_momentum": {
+          "all": {
+            "baskets": 96,
+            "positions": 890,
+            "coins": 146,
+            "activeDates": 89,
+            "meanSlots": 9.270833333333334,
+            "entryMissing": 14,
+            "exitMissing": 12,
+            "supplyJumpPositions": 34,
+            "meanNet": {
+              "loss50": 0.029909516261746837,
+              "loss100": 0.02053184059368621,
+              "flat50": 0.0422851381522941,
+              "flat100": 0.03278431584121096
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.023888678241029488,
+            "investedPositionMeanLoss50": 0.03277755206766777,
+            "rankTouch": {
+              "True": 502,
+              "False": 339,
+              "None": 49
+            },
+            "rankEnd": {
+              "True": 397,
+              "False": 481,
+              "None": 12
+            },
+            "priceTouches": {
+              "20": {
+                "True": 272,
+                "False": 547,
+                "None": 71
+              },
+              "100": {
+                "True": 28,
+                "False": 764,
+                "None": 98
+              },
+              "400": {
+                "True": 0,
+                "False": 782,
+                "None": 108
+              }
+            }
+          },
+          "early": {
+            "baskets": 41,
+            "positions": 410,
+            "coins": 92,
+            "activeDates": 41,
+            "meanSlots": 10.0,
+            "entryMissing": 4,
+            "exitMissing": 1,
+            "supplyJumpPositions": 10,
+            "meanNet": {
+              "loss50": 0.023908102447267876,
+              "loss100": 0.013816535654031414,
+              "flat50": 0.02632285793810637,
+              "flat100": 0.016207262531597218
+            },
+            "medianNetLoss50": -0.007216946018434545,
+            "removeBestDateMean": 0.009458576802702212,
+            "investedPositionMeanLoss50": 0.02414365025463012,
+            "rankTouch": {
+              "True": 217,
+              "False": 171,
+              "None": 22
+            },
+            "rankEnd": {
+              "True": 173,
+              "False": 236,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 112,
+                "False": 275,
+                "None": 23
+              },
+              "100": {
+                "True": 7,
+                "False": 376,
+                "None": 27
+              },
+              "400": {
+                "True": 0,
+                "False": 383,
+                "None": 27
+              }
+            }
+          },
+          "later": {
+            "baskets": 48,
+            "positions": 410,
+            "coins": 99,
+            "activeDates": 41,
+            "meanSlots": 8.541666666666666,
+            "entryMissing": 10,
+            "exitMissing": 11,
+            "supplyJumpPositions": 24,
+            "meanNet": {
+              "loss50": 0.028139026187502494,
+              "loss100": 0.019566735431536114,
+              "flat50": 0.05082766632017248,
+              "flat100": 0.042029606718664826
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.019404493985954733,
+            "investedPositionMeanLoss50": 0.033766831425002995,
+            "rankTouch": {
+              "True": 243,
+              "False": 140,
+              "None": 27
+            },
+            "rankEnd": {
+              "True": 189,
+              "False": 210,
+              "None": 11
+            },
+            "priceTouches": {
+              "20": {
+                "True": 139,
+                "False": 223,
+                "None": 48
+              },
+              "100": {
+                "True": 16,
+                "False": 323,
+                "None": 71
+              },
+              "400": {
+                "True": 0,
+                "False": 329,
+                "None": 81
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 12,
+            "positions": 120,
+            "coins": 80,
+            "activeDates": 12,
+            "meanSlots": 10.0,
+            "entryMissing": 10,
+            "exitMissing": 0,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": 0.02148474850018875,
+              "loss100": 0.01214944410527495,
+              "flat50": 0.02148474850018875,
+              "flat100": 0.01214944410527495
+            },
+            "medianNetLoss50": -0.008044925883048476,
+            "removeBestDateMean": 0.0008448463217741807,
+            "investedPositionMeanLoss50": 0.023437907454751362,
+            "rankTouch": {
+              "True": 72,
+              "False": 44,
+              "None": 4
+            },
+            "rankEnd": {
+              "True": 60,
+              "False": 60,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 32,
+                "False": 74,
+                "None": 14
+              },
+              "100": {
+                "True": 2,
+                "False": 103,
+                "None": 15
+              },
+              "400": {
+                "True": 0,
+                "False": 105,
+                "None": 15
+              }
+            }
+          }
+        }
+      },
+      "paired": {
+        "cross_price": {
+          "meanNetDifference": 0.00040216152936839894,
+          "datesAhead": 1,
+          "datesBehind": 0,
+          "sameSelections": 95,
+          "laterMeanDifference": 0.0
+        },
+        "cross_only": {
+          "meanNetDifference": -0.004819754473572683,
+          "datesAhead": 29,
+          "datesBehind": 32,
+          "sameSelections": 34,
+          "laterMeanDifference": -0.005890106648065583
+        },
+        "band_momentum": {
+          "meanNetDifference": -0.03130565280843662,
+          "datesAhead": 39,
+          "datesBehind": 49,
+          "sameSelections": 7,
+          "laterMeanDifference": -0.03451626722661176
+        }
+      }
+    },
+    {
+      "mode": "daily",
+      "view": 7,
+      "hold": 14,
+      "boundary": 300,
+      "milestone": 200,
+      "signalDates": 89,
+      "strategies": {
+        "rank_velocity": {
+          "all": {
+            "baskets": 89,
+            "positions": 317,
+            "coins": 174,
+            "activeDates": 77,
+            "meanSlots": 3.561797752808989,
+            "entryMissing": 6,
+            "exitMissing": 16,
+            "supplyJumpPositions": 28,
+            "meanNet": {
+              "loss50": 0.03496828620764294,
+              "loss100": 0.031143155719013296,
+              "flat50": 0.05276693342101429,
+              "flat100": 0.048764693153655635
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.02684889194174329,
+            "investedPositionMeanLoss50": 0.10007001519229008,
+            "rankTouch": {
+              "True": 117,
+              "False": 144,
+              "None": 56
+            },
+            "rankEnd": {
+              "True": 58,
+              "False": 242,
+              "None": 17
+            },
+            "priceTouches": {
+              "20": {
+                "True": 154,
+                "False": 116,
+                "None": 47
+              },
+              "100": {
+                "True": 35,
+                "False": 207,
+                "None": 75
+              },
+              "400": {
+                "True": 1,
+                "False": 227,
+                "None": 89
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 92,
+            "coins": 62,
+            "activeDates": 26,
+            "meanSlots": 3.066666666666667,
+            "entryMissing": 4,
+            "exitMissing": 5,
+            "supplyJumpPositions": 4,
+            "meanNet": {
+              "loss50": 0.0006403136864160276,
+              "loss100": -0.0022849427643501907,
+              "flat50": 0.017141142873812378,
+              "flat100": 0.014051690899016147
+            },
+            "medianNetLoss50": -0.012528322380828665,
+            "removeBestDateMean": -0.009678365700756699,
+            "investedPositionMeanLoss50": 0.0021828875673273666,
+            "rankTouch": {
+              "True": 25,
+              "False": 49,
+              "None": 18
+            },
+            "rankEnd": {
+              "True": 9,
+              "False": 78,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 32,
+                "False": 41,
+                "None": 19
+              },
+              "100": {
+                "True": 9,
+                "False": 62,
+                "None": 21
+              },
+              "400": {
+                "True": 0,
+                "False": 70,
+                "None": 22
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 169,
+            "coins": 109,
+            "activeDates": 37,
+            "meanSlots": 3.7555555555555555,
+            "entryMissing": 1,
+            "exitMissing": 8,
+            "supplyJumpPositions": 21,
+            "meanNet": {
+              "loss50": 0.05006455863352363,
+              "loss100": 0.04585143467743766,
+              "flat50": 0.06766544310007974,
+              "flat100": 0.06327717725169509
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.03416886720231252,
+            "investedPositionMeanLoss50": 0.13410149633979543,
+            "rankTouch": {
+              "True": 71,
+              "False": 65,
+              "None": 33
+            },
+            "rankEnd": {
+              "True": 39,
+              "False": 122,
+              "None": 8
+            },
+            "priceTouches": {
+              "20": {
+                "True": 87,
+                "False": 57,
+                "None": 25
+              },
+              "100": {
+                "True": 21,
+                "False": 97,
+                "None": 51
+              },
+              "400": {
+                "True": 0,
+                "False": 107,
+                "None": 62
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 20,
+            "coins": 20,
+            "activeDates": 6,
+            "meanSlots": 3.3333333333333335,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.027022393272965437,
+              "loss100": 0.023436585754120703,
+              "flat50": 0.04352322246036179,
+              "flat100": 0.03977321941748704
+            },
+            "medianNetLoss50": 0.03892976285234563,
+            "removeBestDateMean": -0.0019838928333339445,
+            "investedPositionMeanLoss50": 0.08106717981889631,
+            "rankTouch": {
+              "True": 9,
+              "False": 9,
+              "None": 2
+            },
+            "rankEnd": {
+              "True": 6,
+              "False": 13,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 9,
+                "False": 8,
+                "None": 3
+              },
+              "100": {
+                "True": 3,
+                "False": 13,
+                "None": 4
+              },
+              "400": {
+                "True": 0,
+                "False": 15,
+                "None": 5
+              }
+            }
+          }
+        },
+        "cross_price": {
+          "all": {
+            "baskets": 89,
+            "positions": 317,
+            "coins": 174,
+            "activeDates": 77,
+            "meanSlots": 3.561797752808989,
+            "entryMissing": 6,
+            "exitMissing": 16,
+            "supplyJumpPositions": 28,
+            "meanNet": {
+              "loss50": 0.03496828620764294,
+              "loss100": 0.031143155719013296,
+              "flat50": 0.05276693342101429,
+              "flat100": 0.048764693153655635
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.02684889194174329,
+            "investedPositionMeanLoss50": 0.10007001519229008,
+            "rankTouch": {
+              "True": 117,
+              "False": 144,
+              "None": 56
+            },
+            "rankEnd": {
+              "True": 58,
+              "False": 242,
+              "None": 17
+            },
+            "priceTouches": {
+              "20": {
+                "True": 154,
+                "False": 116,
+                "None": 47
+              },
+              "100": {
+                "True": 35,
+                "False": 207,
+                "None": 75
+              },
+              "400": {
+                "True": 1,
+                "False": 227,
+                "None": 89
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 92,
+            "coins": 62,
+            "activeDates": 26,
+            "meanSlots": 3.066666666666667,
+            "entryMissing": 4,
+            "exitMissing": 5,
+            "supplyJumpPositions": 4,
+            "meanNet": {
+              "loss50": 0.0006403136864160276,
+              "loss100": -0.0022849427643501915,
+              "flat50": 0.017141142873812378,
+              "flat100": 0.014051690899016147
+            },
+            "medianNetLoss50": -0.012528322380828665,
+            "removeBestDateMean": -0.009678365700756699,
+            "investedPositionMeanLoss50": 0.0021828875673273666,
+            "rankTouch": {
+              "True": 25,
+              "False": 49,
+              "None": 18
+            },
+            "rankEnd": {
+              "True": 9,
+              "False": 78,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 32,
+                "False": 41,
+                "None": 19
+              },
+              "100": {
+                "True": 9,
+                "False": 62,
+                "None": 21
+              },
+              "400": {
+                "True": 0,
+                "False": 70,
+                "None": 22
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 169,
+            "coins": 109,
+            "activeDates": 37,
+            "meanSlots": 3.7555555555555555,
+            "entryMissing": 1,
+            "exitMissing": 8,
+            "supplyJumpPositions": 21,
+            "meanNet": {
+              "loss50": 0.05006455863352363,
+              "loss100": 0.04585143467743766,
+              "flat50": 0.06766544310007974,
+              "flat100": 0.06327717725169509
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.03416886720231252,
+            "investedPositionMeanLoss50": 0.13410149633979543,
+            "rankTouch": {
+              "True": 71,
+              "False": 65,
+              "None": 33
+            },
+            "rankEnd": {
+              "True": 39,
+              "False": 122,
+              "None": 8
+            },
+            "priceTouches": {
+              "20": {
+                "True": 87,
+                "False": 57,
+                "None": 25
+              },
+              "100": {
+                "True": 21,
+                "False": 97,
+                "None": 51
+              },
+              "400": {
+                "True": 0,
+                "False": 107,
+                "None": 62
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 20,
+            "coins": 20,
+            "activeDates": 6,
+            "meanSlots": 3.3333333333333335,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.027022393272965437,
+              "loss100": 0.023436585754120703,
+              "flat50": 0.04352322246036179,
+              "flat100": 0.03977321941748704
+            },
+            "medianNetLoss50": 0.03892976285234563,
+            "removeBestDateMean": -0.0019838928333339445,
+            "investedPositionMeanLoss50": 0.08106717981889631,
+            "rankTouch": {
+              "True": 9,
+              "False": 9,
+              "None": 2
+            },
+            "rankEnd": {
+              "True": 6,
+              "False": 13,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 9,
+                "False": 8,
+                "None": 3
+              },
+              "100": {
+                "True": 3,
+                "False": 13,
+                "None": 4
+              },
+              "400": {
+                "True": 0,
+                "False": 15,
+                "None": 5
+              }
+            }
+          }
+        },
+        "cross_only": {
+          "all": {
+            "baskets": 89,
+            "positions": 484,
+            "coins": 209,
+            "activeDates": 81,
+            "meanSlots": 5.438202247191011,
+            "entryMissing": 6,
+            "exitMissing": 22,
+            "supplyJumpPositions": 43,
+            "meanNet": {
+              "loss50": 0.08713233089187211,
+              "loss100": 0.08092096731580097,
+              "flat50": 0.1116054708102577,
+              "flat100": 0.10515058128843419
+            },
+            "medianNetLoss50": 0.01607727084716809,
+            "removeBestDateMean": 0.05230060327472851,
+            "investedPositionMeanLoss50": 0.1622338378530673,
+            "rankTouch": {
+              "True": 171,
+              "False": 228,
+              "None": 85
+            },
+            "rankEnd": {
+              "True": 85,
+              "False": 376,
+              "None": 23
+            },
+            "priceTouches": {
+              "20": {
+                "True": 227,
+                "False": 191,
+                "None": 66
+              },
+              "100": {
+                "True": 49,
+                "False": 329,
+                "None": 106
+              },
+              "400": {
+                "True": 2,
+                "False": 359,
+                "None": 123
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 141,
+            "coins": 81,
+            "activeDates": 29,
+            "meanSlots": 4.7,
+            "entryMissing": 4,
+            "exitMissing": 6,
+            "supplyJumpPositions": 9,
+            "meanNet": {
+              "loss50": 0.11848742306529844,
+              "loss100": 0.1127642120624429,
+              "flat50": 0.1382884180901741,
+              "flat100": 0.1323681724584825
+            },
+            "medianNetLoss50": 0.002465379246548399,
+            "removeBestDateMean": 0.0138723562330498,
+            "investedPositionMeanLoss50": 0.2594615103619674,
+            "rankTouch": {
+              "True": 48,
+              "False": 68,
+              "None": 25
+            },
+            "rankEnd": {
+              "True": 22,
+              "False": 113,
+              "None": 6
+            },
+            "priceTouches": {
+              "20": {
+                "True": 48,
+                "False": 69,
+                "None": 24
+              },
+              "100": {
+                "True": 12,
+                "False": 100,
+                "None": 29
+              },
+              "400": {
+                "True": 1,
+                "False": 110,
+                "None": 30
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 246,
+            "coins": 135,
+            "activeDates": 38,
+            "meanSlots": 5.466666666666667,
+            "entryMissing": 1,
+            "exitMissing": 12,
+            "supplyJumpPositions": 29,
+            "meanNet": {
+              "loss50": 0.05909235215616284,
+              "loss100": 0.053086712108393184,
+              "flat50": 0.085493678855997,
+              "flat100": 0.07922532596977933
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.03936429734971263,
+            "investedPositionMeanLoss50": 0.10853697334805419,
+            "rankTouch": {
+              "True": 91,
+              "False": 101,
+              "None": 54
+            },
+            "rankEnd": {
+              "True": 47,
+              "False": 187,
+              "None": 12
+            },
+            "priceTouches": {
+              "20": {
+                "True": 122,
+                "False": 86,
+                "None": 38
+              },
+              "100": {
+                "True": 28,
+                "False": 145,
+                "None": 73
+              },
+              "400": {
+                "True": 0,
+                "False": 159,
+                "None": 87
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 35,
+            "coins": 32,
+            "activeDates": 6,
+            "meanSlots": 5.833333333333333,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.07045485572162805,
+              "loss100": 0.0639491769410423,
+              "flat50": 0.0869556849090244,
+              "flat100": 0.08028581060440863
+            },
+            "medianNetLoss50": 0.0788167167507677,
+            "removeBestDateMean": 0.03573568138578853,
+            "investedPositionMeanLoss50": 0.12077975266564808,
+            "rankTouch": {
+              "True": 14,
+              "False": 16,
+              "None": 5
+            },
+            "rankEnd": {
+              "True": 7,
+              "False": 27,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 18,
+                "False": 13,
+                "None": 4
+              },
+              "100": {
+                "True": 3,
+                "False": 24,
+                "None": 8
+              },
+              "400": {
+                "True": 0,
+                "False": 26,
+                "None": 9
+              }
+            }
+          }
+        },
+        "band_momentum": {
+          "all": {
+            "baskets": 89,
+            "positions": 818,
+            "coins": 206,
+            "activeDates": 82,
+            "meanSlots": 9.191011235955056,
+            "entryMissing": 25,
+            "exitMissing": 67,
+            "supplyJumpPositions": 50,
+            "meanNet": {
+              "loss50": 0.014596889628686544,
+              "loss100": 0.005585415171412565,
+              "flat50": 0.08912872483467905,
+              "flat100": 0.07937560317897736
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": -5.521004669043685e-06,
+            "investedPositionMeanLoss50": 0.016382385585789437,
+            "rankTouch": {
+              "True": 219,
+              "False": 380,
+              "None": 219
+            },
+            "rankEnd": {
+              "True": 153,
+              "False": 594,
+              "None": 71
+            },
+            "priceTouches": {
+              "20": {
+                "True": 357,
+                "False": 308,
+                "None": 153
+              },
+              "100": {
+                "True": 93,
+                "False": 490,
+                "None": 235
+              },
+              "400": {
+                "True": 5,
+                "False": 547,
+                "None": 266
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 298,
+            "coins": 102,
+            "activeDates": 30,
+            "meanSlots": 9.933333333333334,
+            "entryMissing": 10,
+            "exitMissing": 11,
+            "supplyJumpPositions": 14,
+            "meanNet": {
+              "loss50": 0.02342575362630077,
+              "loss100": 0.013639935887843067,
+              "flat50": 0.05972757783857274,
+              "flat100": 0.04958052994724901
+            },
+            "medianNetLoss50": 0.015442527729361005,
+            "removeBestDateMean": 0.01038953507283983,
+            "investedPositionMeanLoss50": 0.0244018266940633,
+            "rankTouch": {
+              "True": 104,
+              "False": 144,
+              "None": 50
+            },
+            "rankEnd": {
+              "True": 73,
+              "False": 214,
+              "None": 11
+            },
+            "priceTouches": {
+              "20": {
+                "True": 103,
+                "False": 147,
+                "None": 48
+              },
+              "100": {
+                "True": 25,
+                "False": 210,
+                "None": 63
+              },
+              "400": {
+                "True": 1,
+                "False": 230,
+                "None": 67
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 380,
+            "coins": 119,
+            "activeDates": 38,
+            "meanSlots": 8.444444444444445,
+            "entryMissing": 13,
+            "exitMissing": 39,
+            "supplyJumpPositions": 32,
+            "meanNet": {
+              "loss50": 0.03364941467726041,
+              "loss100": 0.02519919356941603,
+              "flat50": 0.11945372645172145,
+              "flat100": 0.11014968861892098
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.0048776053434713695,
+            "investedPositionMeanLoss50": 0.04125950028546917,
+            "rankTouch": {
+              "True": 96,
+              "False": 143,
+              "None": 141
+            },
+            "rankEnd": {
+              "True": 64,
+              "False": 274,
+              "None": 42
+            },
+            "priceTouches": {
+              "20": {
+                "True": 173,
+                "False": 111,
+                "None": 96
+              },
+              "100": {
+                "True": 47,
+                "False": 185,
+                "None": 148
+              },
+              "400": {
+                "True": 3,
+                "False": 206,
+                "None": 171
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 60,
+            "coins": 58,
+            "activeDates": 6,
+            "meanSlots": 10.0,
+            "entryMissing": 0,
+            "exitMissing": 5,
+            "supplyJumpPositions": 4,
+            "meanNet": {
+              "loss50": 0.000503219229654355,
+              "loss100": -0.009452531994084738,
+              "flat50": 0.08300736516663611,
+              "flat100": 0.07223063632274694
+            },
+            "medianNetLoss50": 0.08196654135415057,
+            "removeBestDateMean": -0.04510524410050658,
+            "investedPositionMeanLoss50": 0.0005032192296543484,
+            "rankTouch": {
+              "True": 16,
+              "False": 26,
+              "None": 18
+            },
+            "rankEnd": {
+              "True": 9,
+              "False": 46,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 29,
+                "False": 17,
+                "None": 14
+              },
+              "100": {
+                "True": 8,
+                "False": 31,
+                "None": 21
+              },
+              "400": {
+                "True": 0,
+                "False": 37,
+                "None": 23
+              }
+            }
+          }
+        }
+      },
+      "paired": {
+        "cross_price": {
+          "meanNetDifference": -1.1694765006585216e-19,
+          "datesAhead": 0,
+          "datesBehind": 0,
+          "sameSelections": 89,
+          "laterMeanDifference": -2.312964634635743e-19
+        },
+        "cross_only": {
+          "meanNetDifference": -0.052164044684229166,
+          "datesAhead": 33,
+          "datesBehind": 40,
+          "sameSelections": 16,
+          "laterMeanDifference": -0.009027793522639212
+        },
+        "band_momentum": {
+          "meanNetDifference": 0.020371396578956397,
+          "datesAhead": 45,
+          "datesBehind": 36,
+          "sameSelections": 7,
+          "laterMeanDifference": 0.016415143956263218
+        }
+      }
+    },
+    {
+      "mode": "daily",
+      "view": 7,
+      "hold": 14,
+      "boundary": 200,
+      "milestone": 150,
+      "signalDates": 89,
+      "strategies": {
+        "rank_velocity": {
+          "all": {
+            "baskets": 89,
+            "positions": 149,
+            "coins": 84,
+            "activeDates": 66,
+            "meanSlots": 1.6741573033707866,
+            "entryMissing": 0,
+            "exitMissing": 4,
+            "supplyJumpPositions": 10,
+            "meanNet": {
+              "loss50": 0.034670802869323926,
+              "loss100": 0.032659891548298965,
+              "flat50": 0.03912046467266676,
+              "flat100": 0.037065275906959544
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.026510068781704085,
+            "investedPositionMeanLoss50": 0.2070940574073711,
+            "rankTouch": {
+              "True": 26,
+              "False": 93,
+              "None": 30
+            },
+            "rankEnd": {
+              "True": 15,
+              "False": 130,
+              "None": 4
+            },
+            "priceTouches": {
+              "20": {
+                "True": 72,
+                "False": 60,
+                "None": 17
+              },
+              "100": {
+                "True": 19,
+                "False": 101,
+                "None": 29
+              },
+              "400": {
+                "True": 1,
+                "False": 111,
+                "None": 37
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 48,
+            "coins": 34,
+            "activeDates": 23,
+            "meanSlots": 1.6,
+            "entryMissing": 0,
+            "exitMissing": 2,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.0050417838108641954,
+              "loss100": 0.0033994953008799665,
+              "flat50": 0.011642115485822736,
+              "flat100": 0.009934148766226501
+            },
+            "medianNetLoss50": -0.00014065328613350748,
+            "removeBestDateMean": -0.004456816897627524,
+            "investedPositionMeanLoss50": 0.031511148817901215,
+            "rankTouch": {
+              "True": 7,
+              "False": 33,
+              "None": 8
+            },
+            "rankEnd": {
+              "True": 3,
+              "False": 43,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 16,
+                "False": 25,
+                "None": 7
+              },
+              "100": {
+                "True": 4,
+                "False": 36,
+                "None": 8
+              },
+              "400": {
+                "True": 0,
+                "False": 40,
+                "None": 8
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 75,
+            "coins": 51,
+            "activeDates": 31,
+            "meanSlots": 1.6666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 2,
+            "supplyJumpPositions": 9,
+            "meanNet": {
+              "loss50": 0.053619661394799914,
+              "loss100": 0.05142764857763023,
+              "flat50": 0.05801988251143894,
+              "flat100": 0.05578408422119458
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.03772884909513923,
+            "investedPositionMeanLoss50": 0.32171796836879946,
+            "rankTouch": {
+              "True": 17,
+              "False": 36,
+              "None": 22
+            },
+            "rankEnd": {
+              "True": 10,
+              "False": 63,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 41,
+                "False": 24,
+                "None": 10
+              },
+              "100": {
+                "True": 14,
+                "False": 40,
+                "None": 21
+              },
+              "400": {
+                "True": 1,
+                "False": 45,
+                "None": 29
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 7,
+            "coins": 7,
+            "activeDates": 5,
+            "meanSlots": 1.1666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.03159460187840924,
+              "loss100": 0.0301192919769706,
+              "flat50": 0.03159460187840924,
+              "flat100": 0.0301192919769706
+            },
+            "medianNetLoss50": 0.016880455356039836,
+            "removeBestDateMean": 0.013875724721399332,
+            "investedPositionMeanLoss50": 0.2708108732435078,
+            "rankTouch": {
+              "True": 2,
+              "False": 3,
+              "None": 2
+            },
+            "rankEnd": {
+              "True": 2,
+              "False": 5,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 4,
+                "False": 2,
+                "None": 1
+              },
+              "100": {
+                "True": 2,
+                "False": 3,
+                "None": 2
+              },
+              "400": {
+                "True": 0,
+                "False": 5,
+                "None": 2
+              }
+            }
+          }
+        },
+        "cross_price": {
+          "all": {
+            "baskets": 89,
+            "positions": 149,
+            "coins": 84,
+            "activeDates": 66,
+            "meanSlots": 1.6741573033707866,
+            "entryMissing": 0,
+            "exitMissing": 4,
+            "supplyJumpPositions": 10,
+            "meanNet": {
+              "loss50": 0.034187943187205236,
+              "loss100": 0.03218183667917712,
+              "flat50": 0.03863760499054807,
+              "flat100": 0.03658722103783771
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.026021722057743134,
+            "investedPositionMeanLoss50": 0.204209861990689,
+            "rankTouch": {
+              "True": 26,
+              "False": 93,
+              "None": 30
+            },
+            "rankEnd": {
+              "True": 15,
+              "False": 130,
+              "None": 4
+            },
+            "priceTouches": {
+              "20": {
+                "True": 72,
+                "False": 60,
+                "None": 17
+              },
+              "100": {
+                "True": 19,
+                "False": 101,
+                "None": 29
+              },
+              "400": {
+                "True": 1,
+                "False": 111,
+                "None": 37
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 48,
+            "coins": 34,
+            "activeDates": 23,
+            "meanSlots": 1.6,
+            "entryMissing": 0,
+            "exitMissing": 2,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.0036093000872454155,
+              "loss100": 0.0019812658558185166,
+              "flat50": 0.010209631762203956,
+              "flat100": 0.008515919321165051
+            },
+            "medianNetLoss50": -0.00014065328613350748,
+            "removeBestDateMean": -0.005938696611715918,
+            "investedPositionMeanLoss50": 0.022558125545283844,
+            "rankTouch": {
+              "True": 7,
+              "False": 33,
+              "None": 8
+            },
+            "rankEnd": {
+              "True": 3,
+              "False": 43,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 16,
+                "False": 25,
+                "None": 7
+              },
+              "100": {
+                "True": 4,
+                "False": 36,
+                "None": 8
+              },
+              "400": {
+                "True": 0,
+                "False": 40,
+                "None": 8
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 75,
+            "coins": 51,
+            "activeDates": 31,
+            "meanSlots": 1.6666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 2,
+            "supplyJumpPositions": 9,
+            "meanNet": {
+              "loss50": 0.053619661394799914,
+              "loss100": 0.05142764857763023,
+              "flat50": 0.05801988251143894,
+              "flat100": 0.05578408422119458
+            },
+            "medianNetLoss50": 0.0,
+            "removeBestDateMean": 0.03772884909513923,
+            "investedPositionMeanLoss50": 0.32171796836879946,
+            "rankTouch": {
+              "True": 17,
+              "False": 36,
+              "None": 22
+            },
+            "rankEnd": {
+              "True": 10,
+              "False": 63,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 41,
+                "False": 24,
+                "None": 10
+              },
+              "100": {
+                "True": 14,
+                "False": 40,
+                "None": 21
+              },
+              "400": {
+                "True": 1,
+                "False": 45,
+                "None": 29
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 7,
+            "coins": 7,
+            "activeDates": 5,
+            "meanSlots": 1.1666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.03159460187840924,
+              "loss100": 0.0301192919769706,
+              "flat50": 0.03159460187840924,
+              "flat100": 0.0301192919769706
+            },
+            "medianNetLoss50": 0.016880455356039836,
+            "removeBestDateMean": 0.013875724721399332,
+            "investedPositionMeanLoss50": 0.2708108732435078,
+            "rankTouch": {
+              "True": 2,
+              "False": 3,
+              "None": 2
+            },
+            "rankEnd": {
+              "True": 2,
+              "False": 5,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 4,
+                "False": 2,
+                "None": 1
+              },
+              "100": {
+                "True": 2,
+                "False": 3,
+                "None": 2
+              },
+              "400": {
+                "True": 0,
+                "False": 5,
+                "None": 2
+              }
+            }
+          }
+        },
+        "cross_only": {
+          "all": {
+            "baskets": 89,
+            "positions": 231,
+            "coins": 99,
+            "activeDates": 79,
+            "meanSlots": 2.595505617977528,
+            "entryMissing": 1,
+            "exitMissing": 3,
+            "supplyJumpPositions": 10,
+            "meanNet": {
+              "loss50": 0.04738446542477489,
+              "loss100": 0.0443414142111134,
+              "flat50": 0.05072171177728201,
+              "flat100": 0.04764545248010884
+            },
+            "medianNetLoss50": 0.008981841026600646,
+            "removeBestDateMean": 0.03936820477528517,
+            "investedPositionMeanLoss50": 0.1833572792523898,
+            "rankTouch": {
+              "True": 39,
+              "False": 151,
+              "None": 41
+            },
+            "rankEnd": {
+              "True": 21,
+              "False": 207,
+              "None": 3
+            },
+            "priceTouches": {
+              "20": {
+                "True": 102,
+                "False": 105,
+                "None": 24
+              },
+              "100": {
+                "True": 23,
+                "False": 168,
+                "None": 40
+              },
+              "400": {
+                "True": 1,
+                "False": 181,
+                "None": 49
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 79,
+            "coins": 43,
+            "activeDates": 27,
+            "meanSlots": 2.6333333333333333,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.01819931478055306,
+              "loss100": 0.015397855522740356,
+              "flat50": 0.01819931478055306,
+              "flat100": 0.015397855522740356
+            },
+            "medianNetLoss50": 0.0025302281258998806,
+            "removeBestDateMean": 0.00395021215969078,
+            "investedPositionMeanLoss50": 0.06911132195146731,
+            "rankTouch": {
+              "True": 15,
+              "False": 56,
+              "None": 8
+            },
+            "rankEnd": {
+              "True": 7,
+              "False": 72,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 22,
+                "False": 49,
+                "None": 8
+              },
+              "100": {
+                "True": 5,
+                "False": 66,
+                "None": 8
+              },
+              "400": {
+                "True": 0,
+                "False": 71,
+                "None": 8
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 109,
+            "coins": 65,
+            "activeDates": 38,
+            "meanSlots": 2.422222222222222,
+            "entryMissing": 1,
+            "exitMissing": 2,
+            "supplyJumpPositions": 9,
+            "meanNet": {
+              "loss50": 0.06559194731516063,
+              "loss100": 0.06255108013455302,
+              "flat50": 0.06999216843179966,
+              "flat100": 0.06690751577811738
+            },
+            "medianNetLoss50": 0.002916664596287433,
+            "removeBestDateMean": 0.049973232422780865,
+            "investedPositionMeanLoss50": 0.27329978047983594,
+            "rankTouch": {
+              "True": 19,
+              "False": 58,
+              "None": 32
+            },
+            "rankEnd": {
+              "True": 12,
+              "False": 95,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 57,
+                "False": 37,
+                "None": 15
+              },
+              "100": {
+                "True": 16,
+                "False": 62,
+                "None": 31
+              },
+              "400": {
+                "True": 1,
+                "False": 68,
+                "None": 40
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 15,
+            "coins": 14,
+            "activeDates": 6,
+            "meanSlots": 2.5,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 1,
+            "meanNet": {
+              "loss50": 0.04769782716098571,
+              "loss100": 0.044735512347701595,
+              "flat50": 0.04769782716098571,
+              "flat100": 0.044735512347701595
+            },
+            "medianNetLoss50": 0.057604282849336705,
+            "removeBestDateMean": 0.03319959506049108,
+            "investedPositionMeanLoss50": 0.19079130864394284,
+            "rankTouch": {
+              "True": 2,
+              "False": 7,
+              "None": 6
+            },
+            "rankEnd": {
+              "True": 2,
+              "False": 13,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 7,
+                "False": 5,
+                "None": 3
+              },
+              "100": {
+                "True": 2,
+                "False": 7,
+                "None": 6
+              },
+              "400": {
+                "True": 0,
+                "False": 9,
+                "None": 6
+              }
+            }
+          }
+        },
+        "band_momentum": {
+          "all": {
+            "baskets": 89,
+            "positions": 820,
+            "coins": 140,
+            "activeDates": 82,
+            "meanSlots": 9.213483146067416,
+            "entryMissing": 14,
+            "exitMissing": 12,
+            "supplyJumpPositions": 29,
+            "meanNet": {
+              "loss50": 0.13885480859937177,
+              "loss100": 0.12846152747963976,
+              "flat50": 0.15220379400940026,
+              "flat100": 0.1416776805556215
+            },
+            "medianNetLoss50": 0.06205293684877171,
+            "removeBestDateMean": 0.12663782683950672,
+            "investedPositionMeanLoss50": 0.15332602934670084,
+            "rankTouch": {
+              "True": 498,
+              "False": 245,
+              "None": 77
+            },
+            "rankEnd": {
+              "True": 356,
+              "False": 452,
+              "None": 12
+            },
+            "priceTouches": {
+              "20": {
+                "True": 377,
+                "False": 355,
+                "None": 88
+              },
+              "100": {
+                "True": 88,
+                "False": 585,
+                "None": 147
+              },
+              "400": {
+                "True": 3,
+                "False": 642,
+                "None": 175
+              }
+            }
+          },
+          "early": {
+            "baskets": 30,
+            "positions": 300,
+            "coins": 75,
+            "activeDates": 30,
+            "meanSlots": 10.0,
+            "entryMissing": 4,
+            "exitMissing": 2,
+            "supplyJumpPositions": 9,
+            "meanNet": {
+              "loss50": 0.00906305693918381,
+              "loss100": -0.000845194452485995,
+              "flat50": 0.015663388614142352,
+              "flat100": 0.005689459012860539
+            },
+            "medianNetLoss50": -0.01190319135487552,
+            "removeBestDateMean": -0.005344838445765319,
+            "investedPositionMeanLoss50": 0.009185530681605212,
+            "rankTouch": {
+              "True": 177,
+              "False": 101,
+              "None": 22
+            },
+            "rankEnd": {
+              "True": 134,
+              "False": 164,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 103,
+                "False": 177,
+                "None": 20
+              },
+              "100": {
+                "True": 13,
+                "False": 260,
+                "None": 27
+              },
+              "400": {
+                "True": 0,
+                "False": 272,
+                "None": 28
+              }
+            }
+          },
+          "later": {
+            "baskets": 45,
+            "positions": 380,
+            "coins": 97,
+            "activeDates": 38,
+            "meanSlots": 8.444444444444445,
+            "entryMissing": 10,
+            "exitMissing": 10,
+            "supplyJumpPositions": 19,
+            "meanNet": {
+              "loss50": 0.20337145654118924,
+              "loss100": 0.19316603658235132,
+              "flat50": 0.2253725621243844,
+              "flat100": 0.2149482148001731
+            },
+            "medianNetLoss50": 0.17702110471179705,
+            "removeBestDateMean": 0.18040378047468228,
+            "investedPositionMeanLoss50": 0.24734366336090585,
+            "rankTouch": {
+              "True": 246,
+              "False": 79,
+              "None": 55
+            },
+            "rankEnd": {
+              "True": 169,
+              "False": 201,
+              "None": 10
+            },
+            "priceTouches": {
+              "20": {
+                "True": 197,
+                "False": 115,
+                "None": 68
+              },
+              "100": {
+                "True": 59,
+                "False": 201,
+                "None": 120
+              },
+              "400": {
+                "True": 3,
+                "False": 230,
+                "None": 147
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 6,
+            "positions": 60,
+            "coins": 53,
+            "activeDates": 6,
+            "meanSlots": 10.0,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.1809037718031104,
+              "loss100": 0.16915290089606907,
+              "flat50": 0.1809037718031104,
+              "flat100": 0.16915290089606907
+            },
+            "medianNetLoss50": 0.08602947379700826,
+            "removeBestDateMean": 0.0978773386183617,
+            "investedPositionMeanLoss50": 0.18090377180311043,
+            "rankTouch": {
+              "True": 36,
+              "False": 18,
+              "None": 6
+            },
+            "rankEnd": {
+              "True": 27,
+              "False": 33,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 30,
+                "False": 24,
+                "None": 6
+              },
+              "100": {
+                "True": 8,
+                "False": 42,
+                "None": 10
+              },
+              "400": {
+                "True": 0,
+                "False": 45,
+                "None": 15
+              }
+            }
+          }
+        }
+      },
+      "paired": {
+        "cross_price": {
+          "meanNetDifference": 0.0004828596821186897,
+          "datesAhead": 1,
+          "datesBehind": 0,
+          "sameSelections": 88,
+          "laterMeanDifference": 0.0
+        },
+        "cross_only": {
+          "meanNetDifference": -0.012713662555450962,
+          "datesAhead": 26,
+          "datesBehind": 29,
+          "sameSelections": 33,
+          "laterMeanDifference": -0.011972285920360723
+        },
+        "band_momentum": {
+          "meanNetDifference": -0.10418400573004784,
+          "datesAhead": 29,
+          "datesBehind": 52,
+          "sameSelections": 7,
+          "laterMeanDifference": -0.14975179514638934
+        }
+      }
+    },
+    {
+      "mode": "daily",
+      "view": 7,
+      "hold": 30,
+      "boundary": 300,
+      "milestone": 200,
+      "signalDates": 73,
+      "strategies": {
+        "rank_velocity": {
+          "all": {
+            "baskets": 73,
+            "positions": 237,
+            "coins": 134,
+            "activeDates": 61,
+            "meanSlots": 3.2465753424657535,
+            "entryMissing": 6,
+            "exitMissing": 37,
+            "supplyJumpPositions": 16,
+            "meanNet": {
+              "loss50": 0.11889091083770541,
+              "loss100": 0.11455906082524615,
+              "flat50": 0.16907151466786965,
+              "flat100": 0.16424033032205884
+            },
+            "medianNetLoss50": 0.0036452999146816766,
+            "removeBestDateMean": 0.09812780475975955,
+            "investedPositionMeanLoss50": 0.3757158654178569,
+            "rankTouch": {
+              "True": 94,
+              "False": 41,
+              "None": 102
+            },
+            "rankEnd": {
+              "True": 40,
+              "False": 158,
+              "None": 39
+            },
+            "priceTouches": {
+              "20": {
+                "True": 162,
+                "False": 28,
+                "None": 47
+              },
+              "100": {
+                "True": 80,
+                "False": 60,
+                "None": 97
+              },
+              "400": {
+                "True": 8,
+                "False": 73,
+                "None": 156
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 19,
+            "coins": 15,
+            "activeDates": 6,
+            "meanSlots": 3.1666666666666665,
+            "entryMissing": 2,
+            "exitMissing": 2,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": -0.05757029915368536,
+              "loss100": -0.059816809270404094,
+              "flat50": -0.024568640778892658,
+              "flat100": -0.02714354194367142
+            },
+            "medianNetLoss50": -0.03504855110920446,
+            "removeBestDateMean": -0.06981341896735876,
+            "investedPositionMeanLoss50": -0.2031892911306542,
+            "rankTouch": {
+              "True": 8,
+              "False": 2,
+              "None": 9
+            },
+            "rankEnd": {
+              "True": 2,
+              "False": 14,
+              "None": 3
+            },
+            "priceTouches": {
+              "20": {
+                "True": 8,
+                "False": 3,
+                "None": 8
+              },
+              "100": {
+                "True": 0,
+                "False": 6,
+                "None": 13
+              },
+              "400": {
+                "True": 0,
+                "False": 6,
+                "None": 13
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 122,
+            "coins": 83,
+            "activeDates": 29,
+            "meanSlots": 3.2972972972972974,
+            "entryMissing": 1,
+            "exitMissing": 12,
+            "supplyJumpPositions": 11,
+            "meanNet": {
+              "loss50": 0.26574383152943193,
+              "loss100": 0.2598453205731011,
+              "flat50": 0.2978535531913924,
+              "flat100": 0.2916355266207329
+            },
+            "medianNetLoss50": 0.11959143850887222,
+            "removeBestDateMean": 0.2282968671705326,
+            "investedPositionMeanLoss50": 0.8126051046767753,
+            "rankTouch": {
+              "True": 55,
+              "False": 1,
+              "None": 66
+            },
+            "rankEnd": {
+              "True": 22,
+              "False": 88,
+              "None": 12
+            },
+            "priceTouches": {
+              "20": {
+                "True": 100,
+                "False": 0,
+                "None": 22
+              },
+              "100": {
+                "True": 59,
+                "False": 1,
+                "None": 62
+              },
+              "400": {
+                "True": 6,
+                "False": 2,
+                "None": 114
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 11,
+            "coins": 11,
+            "activeDates": 3,
+            "meanSlots": 3.6666666666666665,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": 0.1550535259216102,
+              "loss100": 0.14986202194043421,
+              "flat50": 0.1880551842964029,
+              "flat100": 0.1825352892671669
+            },
+            "medianNetLoss50": 0.00112668707604191,
+            "removeBestDateMean": -0.015872847883575375,
+            "investedPositionMeanLoss50": 0.42287325251348235,
+            "rankTouch": {
+              "True": 6,
+              "False": 0,
+              "None": 5
+            },
+            "rankEnd": {
+              "True": 3,
+              "False": 7,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 7,
+                "False": 1,
+                "None": 3
+              },
+              "100": {
+                "True": 4,
+                "False": 2,
+                "None": 5
+              },
+              "400": {
+                "True": 1,
+                "False": 2,
+                "None": 8
+              }
+            }
+          }
+        },
+        "cross_price": {
+          "all": {
+            "baskets": 73,
+            "positions": 237,
+            "coins": 134,
+            "activeDates": 61,
+            "meanSlots": 3.2465753424657535,
+            "entryMissing": 6,
+            "exitMissing": 37,
+            "supplyJumpPositions": 16,
+            "meanNet": {
+              "loss50": 0.11889091083770541,
+              "loss100": 0.11455906082524615,
+              "flat50": 0.16907151466786965,
+              "flat100": 0.16424033032205884
+            },
+            "medianNetLoss50": 0.0036452999146816766,
+            "removeBestDateMean": 0.09812780475975955,
+            "investedPositionMeanLoss50": 0.3757158654178569,
+            "rankTouch": {
+              "True": 94,
+              "False": 41,
+              "None": 102
+            },
+            "rankEnd": {
+              "True": 40,
+              "False": 158,
+              "None": 39
+            },
+            "priceTouches": {
+              "20": {
+                "True": 162,
+                "False": 28,
+                "None": 47
+              },
+              "100": {
+                "True": 80,
+                "False": 60,
+                "None": 97
+              },
+              "400": {
+                "True": 8,
+                "False": 73,
+                "None": 156
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 19,
+            "coins": 15,
+            "activeDates": 6,
+            "meanSlots": 3.1666666666666665,
+            "entryMissing": 2,
+            "exitMissing": 2,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": -0.05757029915368536,
+              "loss100": -0.059816809270404094,
+              "flat50": -0.024568640778892658,
+              "flat100": -0.02714354194367142
+            },
+            "medianNetLoss50": -0.03504855110920446,
+            "removeBestDateMean": -0.06981341896735876,
+            "investedPositionMeanLoss50": -0.2031892911306542,
+            "rankTouch": {
+              "True": 8,
+              "False": 2,
+              "None": 9
+            },
+            "rankEnd": {
+              "True": 2,
+              "False": 14,
+              "None": 3
+            },
+            "priceTouches": {
+              "20": {
+                "True": 8,
+                "False": 3,
+                "None": 8
+              },
+              "100": {
+                "True": 0,
+                "False": 6,
+                "None": 13
+              },
+              "400": {
+                "True": 0,
+                "False": 6,
+                "None": 13
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 122,
+            "coins": 83,
+            "activeDates": 29,
+            "meanSlots": 3.2972972972972974,
+            "entryMissing": 1,
+            "exitMissing": 12,
+            "supplyJumpPositions": 11,
+            "meanNet": {
+              "loss50": 0.26574383152943193,
+              "loss100": 0.2598453205731011,
+              "flat50": 0.2978535531913924,
+              "flat100": 0.2916355266207329
+            },
+            "medianNetLoss50": 0.11959143850887222,
+            "removeBestDateMean": 0.2282968671705326,
+            "investedPositionMeanLoss50": 0.8126051046767753,
+            "rankTouch": {
+              "True": 55,
+              "False": 1,
+              "None": 66
+            },
+            "rankEnd": {
+              "True": 22,
+              "False": 88,
+              "None": 12
+            },
+            "priceTouches": {
+              "20": {
+                "True": 100,
+                "False": 0,
+                "None": 22
+              },
+              "100": {
+                "True": 59,
+                "False": 1,
+                "None": 62
+              },
+              "400": {
+                "True": 6,
+                "False": 2,
+                "None": 114
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 11,
+            "coins": 11,
+            "activeDates": 3,
+            "meanSlots": 3.6666666666666665,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": 0.1550535259216102,
+              "loss100": 0.14986202194043421,
+              "flat50": 0.1880551842964029,
+              "flat100": 0.1825352892671669
+            },
+            "medianNetLoss50": 0.00112668707604191,
+            "removeBestDateMean": -0.015872847883575375,
+            "investedPositionMeanLoss50": 0.42287325251348235,
+            "rankTouch": {
+              "True": 6,
+              "False": 0,
+              "None": 5
+            },
+            "rankEnd": {
+              "True": 3,
+              "False": 7,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 7,
+                "False": 1,
+                "None": 3
+              },
+              "100": {
+                "True": 4,
+                "False": 2,
+                "None": 5
+              },
+              "400": {
+                "True": 1,
+                "False": 2,
+                "None": 8
+              }
+            }
+          }
+        },
+        "cross_only": {
+          "all": {
+            "baskets": 73,
+            "positions": 370,
+            "coins": 166,
+            "activeDates": 65,
+            "meanSlots": 5.068493150684931,
+            "entryMissing": 6,
+            "exitMissing": 54,
+            "supplyJumpPositions": 25,
+            "meanNet": {
+              "loss50": 0.19891831473371538,
+              "loss100": 0.19197718878993686,
+              "flat50": 0.27215487167503616,
+              "flat100": 0.26448498751501487
+            },
+            "medianNetLoss50": 0.023540628282557728,
+            "removeBestDateMean": 0.1737185554469078,
+            "investedPositionMeanLoss50": 0.3989295872406929,
+            "rankTouch": {
+              "True": 145,
+              "False": 65,
+              "None": 160
+            },
+            "rankEnd": {
+              "True": 63,
+              "False": 251,
+              "None": 56
+            },
+            "priceTouches": {
+              "20": {
+                "True": 247,
+                "False": 48,
+                "None": 75
+              },
+              "100": {
+                "True": 111,
+                "False": 108,
+                "None": 151
+              },
+              "400": {
+                "True": 13,
+                "False": 128,
+                "None": 229
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 30,
+            "coins": 24,
+            "activeDates": 6,
+            "meanSlots": 5.0,
+            "entryMissing": 2,
+            "exitMissing": 2,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": -0.03411331947907667,
+              "loss100": -0.03841754702460224,
+              "flat50": -0.0011116611042839726,
+              "flat100": -0.0057442796978695665
+            },
+            "medianNetLoss50": -0.025015828030024008,
+            "removeBestDateMean": -0.045644109031403556,
+            "investedPositionMeanLoss50": -0.07309997031230715,
+            "rankTouch": {
+              "True": 13,
+              "False": 2,
+              "None": 15
+            },
+            "rankEnd": {
+              "True": 5,
+              "False": 22,
+              "None": 3
+            },
+            "priceTouches": {
+              "20": {
+                "True": 13,
+                "False": 4,
+                "None": 13
+              },
+              "100": {
+                "True": 2,
+                "False": 8,
+                "None": 20
+              },
+              "400": {
+                "True": 0,
+                "False": 9,
+                "None": 21
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 182,
+            "coins": 105,
+            "activeDates": 30,
+            "meanSlots": 4.918918918918919,
+            "entryMissing": 1,
+            "exitMissing": 21,
+            "supplyJumpPositions": 15,
+            "meanNet": {
+              "loss50": 0.3465458856753086,
+              "loss100": 0.338229700045531,
+              "flat50": 0.40273789858373943,
+              "flat100": 0.3938625606288866
+            },
+            "medianNetLoss50": 0.2352253236328806,
+            "removeBestDateMean": 0.3002471329611822,
+            "investedPositionMeanLoss50": 0.7084087165738353,
+            "rankTouch": {
+              "True": 71,
+              "False": 3,
+              "None": 108
+            },
+            "rankEnd": {
+              "True": 30,
+              "False": 131,
+              "None": 21
+            },
+            "priceTouches": {
+              "20": {
+                "True": 142,
+                "False": 1,
+                "None": 39
+              },
+              "100": {
+                "True": 79,
+                "False": 4,
+                "None": 99
+              },
+              "400": {
+                "True": 8,
+                "False": 5,
+                "None": 169
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 20,
+            "coins": 19,
+            "activeDates": 3,
+            "meanSlots": 6.666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 2,
+            "supplyJumpPositions": 2,
+            "meanNet": {
+              "loss50": 0.13354377022859648,
+              "loss100": 0.12558108117048147,
+              "flat50": 0.19954708697818188,
+              "flat100": 0.19092761582394682
+            },
+            "medianNetLoss50": -0.02977875158384361,
+            "removeBestDateMean": -0.04813748142309593,
+            "investedPositionMeanLoss50": 0.20031565534289472,
+            "rankTouch": {
+              "True": 9,
+              "False": 3,
+              "None": 8
+            },
+            "rankEnd": {
+              "True": 4,
+              "False": 14,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 12,
+                "False": 3,
+                "None": 5
+              },
+              "100": {
+                "True": 4,
+                "False": 7,
+                "None": 9
+              },
+              "400": {
+                "True": 1,
+                "False": 7,
+                "None": 12
+              }
+            }
+          }
+        },
+        "band_momentum": {
+          "all": {
+            "baskets": 73,
+            "positions": 658,
+            "coins": 173,
+            "activeDates": 66,
+            "meanSlots": 9.013698630136986,
+            "entryMissing": 25,
+            "exitMissing": 108,
+            "supplyJumpPositions": 35,
+            "meanNet": {
+              "loss50": 0.13446715359667555,
+              "loss100": 0.12450058370496042,
+              "flat50": 0.28094026747931716,
+              "flat100": 0.2695161811551164
+            },
+            "medianNetLoss50": 0.045487183960211355,
+            "removeBestDateMean": 0.10408274527262507,
+            "investedPositionMeanLoss50": 0.15507270477973645,
+            "rankTouch": {
+              "True": 177,
+              "False": 154,
+              "None": 327
+            },
+            "rankEnd": {
+              "True": 126,
+              "False": 415,
+              "None": 117
+            },
+            "priceTouches": {
+              "20": {
+                "True": 408,
+                "False": 91,
+                "None": 159
+              },
+              "100": {
+                "True": 167,
+                "False": 186,
+                "None": 305
+              },
+              "400": {
+                "True": 23,
+                "False": 245,
+                "None": 390
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 60,
+            "coins": 28,
+            "activeDates": 6,
+            "meanSlots": 10.0,
+            "entryMissing": 9,
+            "exitMissing": 4,
+            "supplyJumpPositions": 5,
+            "meanNet": {
+              "loss50": -0.2438967663769433,
+              "loss100": -0.24992794438204863,
+              "flat50": -0.1778934496273579,
+              "flat100": -0.18458140972858328
+            },
+            "medianNetLoss50": -0.3038914390683353,
+            "removeBestDateMean": -0.2920027293757609,
+            "investedPositionMeanLoss50": -0.28693737220816856,
+            "rankTouch": {
+              "True": 22,
+              "False": 4,
+              "None": 34
+            },
+            "rankEnd": {
+              "True": 14,
+              "False": 41,
+              "None": 5
+            },
+            "priceTouches": {
+              "20": {
+                "True": 27,
+                "False": 5,
+                "None": 28
+              },
+              "100": {
+                "True": 1,
+                "False": 9,
+                "None": 50
+              },
+              "400": {
+                "True": 0,
+                "False": 9,
+                "None": 51
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 300,
+            "coins": 95,
+            "activeDates": 30,
+            "meanSlots": 8.108108108108109,
+            "entryMissing": 15,
+            "exitMissing": 57,
+            "supplyJumpPositions": 20,
+            "meanNet": {
+              "loss50": 0.3223593163639414,
+              "loss100": 0.3114868392592674,
+              "flat50": 0.4748804942582536,
+              "flat100": 0.4624903179855184
+            },
+            "medianNetLoss50": 0.18459807002783632,
+            "removeBestDateMean": 0.2668097264593755,
+            "investedPositionMeanLoss50": 0.4185015686128362,
+            "rankTouch": {
+              "True": 70,
+              "False": 5,
+              "None": 225
+            },
+            "rankEnd": {
+              "True": 49,
+              "False": 187,
+              "None": 64
+            },
+            "priceTouches": {
+              "20": {
+                "True": 203,
+                "False": 3,
+                "None": 94
+              },
+              "100": {
+                "True": 91,
+                "False": 7,
+                "None": 202
+              },
+              "400": {
+                "True": 20,
+                "False": 8,
+                "None": 272
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 30,
+            "coins": 30,
+            "activeDates": 3,
+            "meanSlots": 10.0,
+            "entryMissing": 0,
+            "exitMissing": 4,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": 0.3948911844688634,
+              "loss100": 0.38101097963808706,
+              "flat50": 0.5268978179680344,
+              "flat100": 0.5117040489450178
+            },
+            "medianNetLoss50": -0.0736142654626264,
+            "removeBestDateMean": -0.20751171589745865,
+            "investedPositionMeanLoss50": 0.39489118446886345,
+            "rankTouch": {
+              "True": 7,
+              "False": 7,
+              "None": 16
+            },
+            "rankEnd": {
+              "True": 5,
+              "False": 21,
+              "None": 4
+            },
+            "priceTouches": {
+              "20": {
+                "True": 18,
+                "False": 2,
+                "None": 10
+              },
+              "100": {
+                "True": 11,
+                "False": 4,
+                "None": 15
+              },
+              "400": {
+                "True": 2,
+                "False": 8,
+                "None": 20
+              }
+            }
+          }
+        }
+      },
+      "paired": {
+        "cross_price": {
+          "meanNetDifference": 0.0,
+          "datesAhead": 0,
+          "datesBehind": 0,
+          "sameSelections": 73,
+          "laterMeanDifference": 0.0
+        },
+        "cross_only": {
+          "meanNetDifference": -0.08002740389600996,
+          "datesAhead": 22,
+          "datesBehind": 38,
+          "sameSelections": 13,
+          "laterMeanDifference": -0.0808020541458767
+        },
+        "band_momentum": {
+          "meanNetDifference": -0.015576242758970155,
+          "datesAhead": 28,
+          "datesBehind": 37,
+          "sameSelections": 7,
+          "laterMeanDifference": -0.05661548483450949
+        }
+      }
+    },
+    {
+      "mode": "daily",
+      "view": 7,
+      "hold": 30,
+      "boundary": 200,
+      "milestone": 150,
+      "signalDates": 73,
+      "strategies": {
+        "rank_velocity": {
+          "all": {
+            "baskets": 73,
+            "positions": 117,
+            "coins": 67,
+            "activeDates": 54,
+            "meanSlots": 1.6027397260273972,
+            "entryMissing": 0,
+            "exitMissing": 6,
+            "supplyJumpPositions": 4,
+            "meanNet": {
+              "loss50": 0.1147500457287958,
+              "loss100": 0.11201335217855411,
+              "flat50": 0.1228874409444981,
+              "flat100": 0.12006977425911834
+            },
+            "medianNetLoss50": 0.006049527797657861,
+            "removeBestDateMean": 0.09887845316201652,
+            "investedPositionMeanLoss50": 0.7159618237779566,
+            "rankTouch": {
+              "True": 34,
+              "False": 35,
+              "None": 48
+            },
+            "rankEnd": {
+              "True": 13,
+              "False": 98,
+              "None": 6
+            },
+            "priceTouches": {
+              "20": {
+                "True": 87,
+                "False": 12,
+                "None": 18
+              },
+              "100": {
+                "True": 41,
+                "False": 37,
+                "None": 39
+              },
+              "400": {
+                "True": 8,
+                "False": 45,
+                "None": 64
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 10,
+            "coins": 9,
+            "activeDates": 6,
+            "meanSlots": 1.6666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": -0.007167507625485797,
+              "loss100": -0.008754642896307053,
+              "flat50": -0.007167507625485797,
+              "flat100": -0.008754642896307053
+            },
+            "medianNetLoss50": -0.003528093807750415,
+            "removeBestDateMean": -0.017103951316728393,
+            "investedPositionMeanLoss50": -0.043005045752914785,
+            "rankTouch": {
+              "True": 4,
+              "False": 1,
+              "None": 5
+            },
+            "rankEnd": {
+              "True": 0,
+              "False": 10,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 6,
+                "False": 1,
+                "None": 3
+              },
+              "100": {
+                "True": 0,
+                "False": 4,
+                "None": 6
+              },
+              "400": {
+                "True": 0,
+                "False": 4,
+                "None": 6
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 59,
+            "coins": 35,
+            "activeDates": 26,
+            "meanSlots": 1.5945945945945945,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.20035789413325475,
+              "loss100": 0.1967774438263468,
+              "flat50": 0.20303370427175146,
+              "flat100": 0.19942662766364944
+            },
+            "medianNetLoss50": 0.03731169793806577,
+            "removeBestDateMean": 0.17099270478870893,
+            "investedPositionMeanLoss50": 1.2564817089712585,
+            "rankTouch": {
+              "True": 21,
+              "False": 1,
+              "None": 37
+            },
+            "rankEnd": {
+              "True": 9,
+              "False": 49,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 48,
+                "False": 0,
+                "None": 11
+              },
+              "100": {
+                "True": 32,
+                "False": 1,
+                "None": 26
+              },
+              "400": {
+                "True": 7,
+                "False": 1,
+                "None": 51
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 6,
+            "coins": 6,
+            "activeDates": 3,
+            "meanSlots": 2.0,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": 0.19364130501758509,
+              "loss100": 0.18972428123513235,
+              "flat50": 0.19364130501758509,
+              "flat100": 0.18972428123513235
+            },
+            "medianNetLoss50": 0.00112668707604191,
+            "removeBestDateMean": -0.0009098510269215376,
+            "investedPositionMeanLoss50": 0.9682065250879255,
+            "rankTouch": {
+              "True": 2,
+              "False": 1,
+              "None": 3
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 5,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 5,
+                "False": 0,
+                "None": 1
+              },
+              "100": {
+                "True": 3,
+                "False": 1,
+                "None": 2
+              },
+              "400": {
+                "True": 1,
+                "False": 1,
+                "None": 4
+              }
+            }
+          }
+        },
+        "cross_price": {
+          "all": {
+            "baskets": 73,
+            "positions": 117,
+            "coins": 67,
+            "activeDates": 54,
+            "meanSlots": 1.6027397260273972,
+            "entryMissing": 0,
+            "exitMissing": 7,
+            "supplyJumpPositions": 4,
+            "meanNet": {
+              "loss50": 0.11292570277652325,
+              "loss100": 0.110207162795636,
+              "flat50": 0.12241933052817594,
+              "flat100": 0.11960632188962758
+            },
+            "medianNetLoss50": 0.005177078171292804,
+            "removeBestDateMean": 0.09702877211318463,
+            "investedPositionMeanLoss50": 0.7045791711697604,
+            "rankTouch": {
+              "True": 34,
+              "False": 34,
+              "None": 49
+            },
+            "rankEnd": {
+              "True": 13,
+              "False": 97,
+              "None": 7
+            },
+            "priceTouches": {
+              "20": {
+                "True": 85,
+                "False": 13,
+                "None": 19
+              },
+              "100": {
+                "True": 41,
+                "False": 36,
+                "None": 40
+              },
+              "400": {
+                "True": 8,
+                "False": 44,
+                "None": 65
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 10,
+            "coins": 9,
+            "activeDates": 6,
+            "meanSlots": 1.6666666666666667,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": -0.007167507625485797,
+              "loss100": -0.008754642896307053,
+              "flat50": -0.007167507625485797,
+              "flat100": -0.008754642896307053
+            },
+            "medianNetLoss50": -0.003528093807750415,
+            "removeBestDateMean": -0.017103951316728393,
+            "investedPositionMeanLoss50": -0.043005045752914785,
+            "rankTouch": {
+              "True": 4,
+              "False": 1,
+              "None": 5
+            },
+            "rankEnd": {
+              "True": 0,
+              "False": 10,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 6,
+                "False": 1,
+                "None": 3
+              },
+              "100": {
+                "True": 0,
+                "False": 4,
+                "None": 6
+              },
+              "400": {
+                "True": 0,
+                "False": 4,
+                "None": 6
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 59,
+            "coins": 35,
+            "activeDates": 26,
+            "meanSlots": 1.5945945945945945,
+            "entryMissing": 0,
+            "exitMissing": 1,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.20035789413325475,
+              "loss100": 0.1967774438263468,
+              "flat50": 0.20303370427175146,
+              "flat100": 0.19942662766364944
+            },
+            "medianNetLoss50": 0.03731169793806577,
+            "removeBestDateMean": 0.17099270478870893,
+            "investedPositionMeanLoss50": 1.2564817089712585,
+            "rankTouch": {
+              "True": 21,
+              "False": 1,
+              "None": 37
+            },
+            "rankEnd": {
+              "True": 9,
+              "False": 49,
+              "None": 1
+            },
+            "priceTouches": {
+              "20": {
+                "True": 48,
+                "False": 0,
+                "None": 11
+              },
+              "100": {
+                "True": 32,
+                "False": 1,
+                "None": 26
+              },
+              "400": {
+                "True": 7,
+                "False": 1,
+                "None": 51
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 6,
+            "coins": 6,
+            "activeDates": 3,
+            "meanSlots": 2.0,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": 0.19364130501758509,
+              "loss100": 0.18972428123513235,
+              "flat50": 0.19364130501758509,
+              "flat100": 0.18972428123513235
+            },
+            "medianNetLoss50": 0.00112668707604191,
+            "removeBestDateMean": -0.0009098510269215376,
+            "investedPositionMeanLoss50": 0.9682065250879255,
+            "rankTouch": {
+              "True": 2,
+              "False": 1,
+              "None": 3
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 5,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 5,
+                "False": 0,
+                "None": 1
+              },
+              "100": {
+                "True": 3,
+                "False": 1,
+                "None": 2
+              },
+              "400": {
+                "True": 1,
+                "False": 1,
+                "None": 4
+              }
+            }
+          }
+        },
+        "cross_only": {
+          "all": {
+            "baskets": 73,
+            "positions": 183,
+            "coins": 78,
+            "activeDates": 63,
+            "meanSlots": 2.506849315068493,
+            "entryMissing": 1,
+            "exitMissing": 7,
+            "supplyJumpPositions": 4,
+            "meanNet": {
+              "loss50": 0.1614140404252764,
+              "loss100": 0.15732698028379247,
+              "flat50": 0.17090766817692912,
+              "flat100": 0.16672613937778405
+            },
+            "medianNetLoss50": 0.05280202187476564,
+            "removeBestDateMean": 0.14619055889594826,
+            "investedPositionMeanLoss50": 0.6474299423651196,
+            "rankTouch": {
+              "True": 49,
+              "False": 67,
+              "None": 67
+            },
+            "rankEnd": {
+              "True": 19,
+              "False": 157,
+              "None": 7
+            },
+            "priceTouches": {
+              "20": {
+                "True": 129,
+                "False": 30,
+                "None": 24
+              },
+              "100": {
+                "True": 56,
+                "False": 73,
+                "None": 54
+              },
+              "400": {
+                "True": 11,
+                "False": 86,
+                "None": 86
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 16,
+            "coins": 14,
+            "activeDates": 6,
+            "meanSlots": 2.6666666666666665,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": 0.017252887696586904,
+              "loss100": 0.014427676946168925,
+              "flat50": 0.017252887696586904,
+              "flat100": 0.014427676946168925
+            },
+            "medianNetLoss50": -0.00933312196861515,
+            "removeBestDateMean": -0.012934988311102093,
+            "investedPositionMeanLoss50": 0.0646983288622009,
+            "rankTouch": {
+              "True": 8,
+              "False": 1,
+              "None": 7
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 15,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 10,
+                "False": 1,
+                "None": 5
+              },
+              "100": {
+                "True": 1,
+                "False": 7,
+                "None": 8
+              },
+              "400": {
+                "True": 0,
+                "False": 8,
+                "None": 8
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 82,
+            "coins": 44,
+            "activeDates": 30,
+            "meanSlots": 2.2162162162162162,
+            "entryMissing": 1,
+            "exitMissing": 2,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": 0.24523240198865182,
+              "loss100": 0.24061375110146763,
+              "flat50": 0.2505840222656452,
+              "flat100": 0.2459121187760729
+            },
+            "medianNetLoss50": 0.11307650105363909,
+            "removeBestDateMean": 0.21711372675120036,
+            "investedPositionMeanLoss50": 1.1201973918000143,
+            "rankTouch": {
+              "True": 24,
+              "False": 2,
+              "None": 56
+            },
+            "rankEnd": {
+              "True": 10,
+              "False": 70,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 65,
+                "False": 0,
+                "None": 17
+              },
+              "100": {
+                "True": 40,
+                "False": 2,
+                "None": 40
+              },
+              "400": {
+                "True": 8,
+                "False": 2,
+                "None": 72
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 10,
+            "coins": 10,
+            "activeDates": 3,
+            "meanSlots": 3.3333333333333335,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": 0.19602540176710542,
+              "loss100": 0.19075788860624723,
+              "flat50": 0.19602540176710542,
+              "flat100": 0.19075788860624723
+            },
+            "medianNetLoss50": 0.019889033646332377,
+            "removeBestDateMean": 0.002666294097358912,
+            "investedPositionMeanLoss50": 0.5880762053013163,
+            "rankTouch": {
+              "True": 2,
+              "False": 4,
+              "None": 4
+            },
+            "rankEnd": {
+              "True": 1,
+              "False": 9,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 6,
+                "False": 2,
+                "None": 2
+              },
+              "100": {
+                "True": 3,
+                "False": 4,
+                "None": 3
+              },
+              "400": {
+                "True": 1,
+                "False": 4,
+                "None": 5
+              }
+            }
+          }
+        },
+        "band_momentum": {
+          "all": {
+            "baskets": 73,
+            "positions": 660,
+            "coins": 126,
+            "activeDates": 66,
+            "meanSlots": 9.04109589041096,
+            "entryMissing": 14,
+            "exitMissing": 17,
+            "supplyJumpPositions": 18,
+            "meanNet": {
+              "loss50": 0.5677430265438034,
+              "loss100": 0.5532878344109299,
+              "flat50": 0.5907989796549599,
+              "flat100": 0.5761143636391951
+            },
+            "medianNetLoss50": 0.21824037396927345,
+            "removeBestDateMean": 0.539029153119541,
+            "investedPositionMeanLoss50": 0.6415671971779822,
+            "rankTouch": {
+              "True": 439,
+              "False": 104,
+              "None": 117
+            },
+            "rankEnd": {
+              "True": 258,
+              "False": 384,
+              "None": 18
+            },
+            "priceTouches": {
+              "20": {
+                "True": 459,
+                "False": 135,
+                "None": 66
+              },
+              "100": {
+                "True": 195,
+                "False": 275,
+                "None": 190
+              },
+              "400": {
+                "True": 39,
+                "False": 316,
+                "None": 305
+              }
+            }
+          },
+          "early": {
+            "baskets": 6,
+            "positions": 60,
+            "coins": 29,
+            "activeDates": 6,
+            "meanSlots": 10.0,
+            "entryMissing": 4,
+            "exitMissing": 0,
+            "supplyJumpPositions": 3,
+            "meanNet": {
+              "loss50": -0.012398496159618314,
+              "loss100": -0.021562482797498023,
+              "flat50": -0.012398496159618314,
+              "flat100": -0.021562482797498023
+            },
+            "medianNetLoss50": -0.03732611224877129,
+            "removeBestDateMean": -0.04967565213867539,
+            "investedPositionMeanLoss50": -0.013284103028162476,
+            "rankTouch": {
+              "True": 41,
+              "False": 0,
+              "None": 19
+            },
+            "rankEnd": {
+              "True": 21,
+              "False": 39,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 25,
+                "False": 21,
+                "None": 14
+              },
+              "100": {
+                "True": 3,
+                "False": 33,
+                "None": 24
+              },
+              "400": {
+                "True": 0,
+                "False": 34,
+                "None": 26
+              }
+            }
+          },
+          "later": {
+            "baskets": 37,
+            "positions": 300,
+            "coins": 84,
+            "activeDates": 30,
+            "meanSlots": 8.108108108108109,
+            "entryMissing": 10,
+            "exitMissing": 1,
+            "supplyJumpPositions": 8,
+            "meanNet": {
+              "loss50": 1.02840357801951,
+              "loss100": 1.010370965831806,
+              "flat50": 1.0310793881580067,
+              "flat100": 1.013020149669109
+            },
+            "medianNetLoss50": 1.1273675334241773,
+            "removeBestDateMean": 0.983771957600866,
+            "investedPositionMeanLoss50": 1.3121011167835128,
+            "rankTouch": {
+              "True": 208,
+              "False": 3,
+              "None": 89
+            },
+            "rankEnd": {
+              "True": 135,
+              "False": 163,
+              "None": 2
+            },
+            "priceTouches": {
+              "20": {
+                "True": 258,
+                "False": 1,
+                "None": 41
+              },
+              "100": {
+                "True": 146,
+                "False": 8,
+                "None": 146
+              },
+              "400": {
+                "True": 36,
+                "False": 10,
+                "None": 254
+              }
+            }
+          },
+          "nonoverlapping": {
+            "baskets": 3,
+            "positions": 30,
+            "coins": 29,
+            "activeDates": 3,
+            "meanSlots": 10.0,
+            "entryMissing": 0,
+            "exitMissing": 0,
+            "supplyJumpPositions": 0,
+            "meanNet": {
+              "loss50": 0.6289814844524637,
+              "loss100": 0.6127719070162483,
+              "flat50": 0.6289814844524637,
+              "flat100": 0.6127719070162483
+            },
+            "medianNetLoss50": 0.04025328807219179,
+            "removeBestDateMean": 0.010699827087835456,
+            "investedPositionMeanLoss50": 0.6289814844524638,
+            "rankTouch": {
+              "True": 22,
+              "False": 4,
+              "None": 4
+            },
+            "rankEnd": {
+              "True": 13,
+              "False": 17,
+              "None": 0
+            },
+            "priceTouches": {
+              "20": {
+                "True": 18,
+                "False": 7,
+                "None": 5
+              },
+              "100": {
+                "True": 9,
+                "False": 14,
+                "None": 7
+              },
+              "400": {
+                "True": 3,
+                "False": 15,
+                "None": 12
+              }
+            }
+          }
+        }
+      },
+      "paired": {
+        "cross_price": {
+          "meanNetDifference": 0.001824342952272544,
+          "datesAhead": 1,
+          "datesBehind": 0,
+          "sameSelections": 72,
+          "laterMeanDifference": 0.0
+        },
+        "cross_only": {
+          "meanNetDifference": -0.04666399469648063,
+          "datesAhead": 17,
+          "datesBehind": 27,
+          "sameSelections": 28,
+          "laterMeanDifference": -0.04487450785539705
+        },
+        "band_momentum": {
+          "meanNetDifference": -0.4529929808150076,
+          "datesAhead": 13,
+          "datesBehind": 52,
+          "sameSelections": 7,
+          "laterMeanDifference": -0.8280456838862553
+        }
+      }
+    }
+  ],
+  "basketCount": 2064,
+  "positionCount": 9440
+}

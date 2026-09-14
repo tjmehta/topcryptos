@@ -1,0 +1,3495 @@
+{
+  "started_at_utc": "2026-09-13T19:49:02.371408+00:00",
+  "completed_at_utc": "2026-09-13T19:49:05.854450+00:00",
+  "source_ledger_sha256": "e47cbd43aa694990554dffd559ae625a698dc6ab039ee5654195ead67802003b",
+  "protocol_sha256": "9a01425c6ec718672f33daa51273f11d3c52d7f6db88be3625e5adcf3df972eb",
+  "runner_sha256": "808553a0c5e1172a62269ab70ab894abde224333832586f6077470938dedf0ae",
+  "decision_ledger_sha256": "f96d9ffc07070496f7bdcc49b8270649e9815db57c86d8000bbc3ab8f3998ef0",
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [GCC 13.3.0]",
+  "start": "2023-01-01",
+  "accounting_end": "2026-03-01",
+  "summary": [
+    {
+      "view": 3,
+      "policy": "method-only",
+      "trades": 3,
+      "cash_decisions": 33,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 1.2963654774293836,
+        "net_loss": 1.2963654774293836
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.08949108287144736,
+        "net_loss": -0.08949108287144736
+      },
+      "holding_days": 42,
+      "choices": {
+        "Momentum/14": 2,
+        "TrendQuality/14": 1
+      },
+      "forecast_count": 3,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.15625508947098657
+    },
+    {
+      "view": 3,
+      "policy": "hold-only",
+      "trades": 5,
+      "cash_decisions": 26,
+      "occupied_signals": 5,
+      "terminal_wealth": {
+        "net_zero": 0.5016635586862224,
+        "net_loss": 0.4542868604967399
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6216121543105613,
+        "net_loss": -0.6573467944959962
+      },
+      "holding_days": 192,
+      "choices": {
+        "Momentum/14": 3,
+        "Momentum/60": 1,
+        "Momentum/90": 1
+      },
+      "forecast_count": 5,
+      "forecast_20_80_coverage": 0.4,
+      "forecast_mean_absolute_error": 0.27298903386696405
+    },
+    {
+      "view": 3,
+      "policy": "joint",
+      "trades": 6,
+      "cash_decisions": 25,
+      "occupied_signals": 5,
+      "terminal_wealth": {
+        "net_zero": 0.7110038547892377,
+        "net_loss": 0.7110038547892377
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.46371385317453206,
+        "net_loss": -0.46371385317453206
+      },
+      "holding_days": 222,
+      "choices": {
+        "Momentum/14": 2,
+        "TrendQuality/14": 1,
+        "TrendQuality/60": 3
+      },
+      "forecast_count": 6,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.1983521830132556
+    },
+    {
+      "view": 3,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.23948552688305322,
+        "net_loss": 0.23948552688305322
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.8069707814367278,
+        "net_loss": -0.8069707814367278
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6944444444444444,
+      "forecast_mean_absolute_error": 0.06851136218234768
+    },
+    {
+      "view": 3,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.42612585446232637,
+        "net_loss": 0.34633648983866905
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.729703726745254,
+        "net_loss": -0.7552302868032901
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.11679614112691289
+    },
+    {
+      "view": 3,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 2.4300926325791066,
+        "net_loss": 2.1530441002599114
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3576463617192539,
+        "net_loss": -0.430879427129892
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.19915262891894578
+    },
+    {
+      "view": 3,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.0783823274534474,
+        "net_loss": 0.9169573504645391
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.37286214821411523,
+        "net_loss": -0.46673953354967945
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.2261916709047798
+    },
+    {
+      "view": 3,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 2.0112761965918557,
+        "net_loss": 1.6453511830007206
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.45862807549832185,
+        "net_loss": -0.557123512955804
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.2222222222222222,
+      "forecast_mean_absolute_error": 0.4613781713509367
+    },
+    {
+      "view": 3,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.2758598416737621,
+        "net_loss": 0.2758598416737621
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7726222081382492,
+        "net_loss": -0.7726222081382492
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.06931932408285724
+    },
+    {
+      "view": 3,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.4870427299471923,
+        "net_loss": 0.43712919169386866
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6981124637110661,
+        "net_loss": -0.698112463711066
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5277777777777778,
+      "forecast_mean_absolute_error": 0.11473247802766114
+    },
+    {
+      "view": 3,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 2.5075872139650777,
+        "net_loss": 2.5075872139650777
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.34558663159758585,
+        "net_loss": -0.34558663159758585
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.19030311178527562
+    },
+    {
+      "view": 3,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.1810988257362909,
+        "net_loss": 1.1810988257362909
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.36762139311798236,
+        "net_loss": -0.36762139311798236
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.21593495182647024
+    },
+    {
+      "view": 3,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.8784217988561724,
+        "net_loss": 1.6762344610632496
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5197882769670181,
+        "net_loss": -0.5197882769670181
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.2222222222222222,
+      "forecast_mean_absolute_error": 0.4526250776303862
+    },
+    {
+      "view": 4,
+      "policy": "method-only",
+      "trades": 11,
+      "cash_decisions": 25,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.761834165210624,
+        "net_loss": 0.761834165210624
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.48451987717602596,
+        "net_loss": -0.48451987717602596
+      },
+      "holding_days": 154,
+      "choices": {
+        "TrendQuality/14": 7,
+        "Momentum/14": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.5454545454545454,
+      "forecast_mean_absolute_error": 0.12460528781500756
+    },
+    {
+      "view": 4,
+      "policy": "hold-only",
+      "trades": 11,
+      "cash_decisions": 18,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6592077619114973,
+        "net_loss": 0.6592077619114973
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5596675394718789,
+        "net_loss": -0.5596675394718789
+      },
+      "holding_days": 338,
+      "choices": {
+        "Momentum/14": 7,
+        "Momentum/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.7272727272727273,
+      "forecast_mean_absolute_error": 0.16795020551929926
+    },
+    {
+      "view": 4,
+      "policy": "joint",
+      "trades": 11,
+      "cash_decisions": 17,
+      "occupied_signals": 8,
+      "terminal_wealth": {
+        "net_zero": 0.6520175199459816,
+        "net_loss": 0.6520175199459816
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5585580664094889,
+        "net_loss": -0.5585580664094889
+      },
+      "holding_days": 354,
+      "choices": {
+        "TrendQuality/14": 5,
+        "Momentum/14": 1,
+        "TrendQuality/30": 1,
+        "TrendQuality/60": 1,
+        "Momentum/60": 3
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.7272727272727273,
+      "forecast_mean_absolute_error": 0.1713700020066692
+    },
+    {
+      "view": 4,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.2713062852628338,
+        "net_loss": 0.2713062852628338
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.8011543435943285,
+        "net_loss": -0.8011543435943285
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.06606269961479144
+    },
+    {
+      "view": 4,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6647824628982922,
+        "net_loss": 0.5968260879221742
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.684539030444913,
+        "net_loss": -0.684539030444913
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.11947340676984713
+    },
+    {
+      "view": 4,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 2.9126876604037117,
+        "net_loss": 2.9126876604037117
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3179173022259858,
+        "net_loss": -0.3179173022259858
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.22773600657111448
+    },
+    {
+      "view": 4,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.3383159039187291,
+        "net_loss": 1.3383159039187291
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4189902285239172,
+        "net_loss": -0.4189902285239172
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.2633985705105792
+    },
+    {
+      "view": 4,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 2.0849914700067966,
+        "net_loss": 1.8323769853381864
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.48745529544622435,
+        "net_loss": -0.48745529544622435
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.1111111111111111,
+      "forecast_mean_absolute_error": 0.47213481851546535
+    },
+    {
+      "view": 4,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3770289324848842,
+        "net_loss": 0.3770289324848842
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7153349920094357,
+        "net_loss": -0.7153349920094357
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.062488270625111614
+    },
+    {
+      "view": 4,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.7969497714268192,
+        "net_loss": 0.7154827945933788
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6125673703057338,
+        "net_loss": -0.6125673703057339
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5277777777777778,
+      "forecast_mean_absolute_error": 0.11357196926188214
+    },
+    {
+      "view": 4,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 3.1812651738183635,
+        "net_loss": 3.1812651738183635
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3452860512405991,
+        "net_loss": -0.3452860512405991
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.7222222222222222,
+      "forecast_mean_absolute_error": 0.20837900319851074
+    },
+    {
+      "view": 4,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.897777682417253,
+        "net_loss": 0.897777682417253
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5412761192885964,
+        "net_loss": -0.5412761192885964
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.24318014459747034
+    },
+    {
+      "view": 4,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.8085149370836273,
+        "net_loss": 1.604567648609832
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5734965014446991,
+        "net_loss": -0.5734965014446991
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.2222222222222222,
+      "forecast_mean_absolute_error": 0.46609755603621444
+    },
+    {
+      "view": 5,
+      "policy": "method-only",
+      "trades": 13,
+      "cash_decisions": 23,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6096807728133553,
+        "net_loss": 0.6096807728133553
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5542990735457886,
+        "net_loss": -0.5542990735457886
+      },
+      "holding_days": 182,
+      "choices": {
+        "Momentum/14": 5,
+        "TrendQuality/14": 8
+      },
+      "forecast_count": 13,
+      "forecast_20_80_coverage": 0.6923076923076923,
+      "forecast_mean_absolute_error": 0.11358862999928232
+    },
+    {
+      "view": 5,
+      "policy": "hold-only",
+      "trades": 11,
+      "cash_decisions": 18,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6950341302150659,
+        "net_loss": 0.6950341302150659
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5154598526129746,
+        "net_loss": -0.5154598526129746
+      },
+      "holding_days": 338,
+      "choices": {
+        "Momentum/14": 7,
+        "Momentum/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.7272727272727273,
+      "forecast_mean_absolute_error": 0.15698054902853317
+    },
+    {
+      "view": 5,
+      "policy": "joint",
+      "trades": 11,
+      "cash_decisions": 17,
+      "occupied_signals": 8,
+      "terminal_wealth": {
+        "net_zero": 0.7185178616336887,
+        "net_loss": 0.7185178616336887
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.46780216125234975,
+        "net_loss": -0.46780216125234975
+      },
+      "holding_days": 354,
+      "choices": {
+        "Momentum/14": 3,
+        "TrendQuality/30": 1,
+        "TrendQuality/14": 3,
+        "TrendQuality/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.8181818181818182,
+      "forecast_mean_absolute_error": 0.1460233054067263
+    },
+    {
+      "view": 5,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.24427678064274128,
+        "net_loss": 0.24427678064274128
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.8028118616945512,
+        "net_loss": -0.8028118616945512
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.0609862304742332
+    },
+    {
+      "view": 5,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5703191230583332,
+        "net_loss": 0.5128303664902161
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6933021695843127,
+        "net_loss": -0.6933021695843127
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.11592239346367161
+    },
+    {
+      "view": 5,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 3.367510305570586,
+        "net_loss": 3.367510305570586
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.22900281693274227,
+        "net_loss": -0.22900281693274227
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.19772829872106212
+    },
+    {
+      "view": 5,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.2804192266294825,
+        "net_loss": 1.2804192266294825
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3754342807994455,
+        "net_loss": -0.3754342807994455
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.27337156201534335
+    },
+    {
+      "view": 5,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.4497060144801759,
+        "net_loss": 1.2729821377944883
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4870180018421725,
+        "net_loss": -0.4870180018421725
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.2222222222222222,
+      "forecast_mean_absolute_error": 0.39094241013532255
+    },
+    {
+      "view": 5,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.28506059911730247,
+        "net_loss": 0.28506059911730247
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.776823468651769,
+        "net_loss": -0.776823468651769
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.05756320595626098
+    },
+    {
+      "view": 5,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6798105006070306,
+        "net_loss": 0.6112849001111662
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.637026142705022,
+        "net_loss": -0.6370261427050221
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.10676044291678748
+    },
+    {
+      "view": 5,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 3.125120321403855,
+        "net_loss": 3.125120321403855
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.2675200961323473,
+        "net_loss": -0.2675200961323473
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.19375750521783547
+    },
+    {
+      "view": 5,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.9999638023895621,
+        "net_loss": 0.9999638023895621
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.49014245048847715,
+        "net_loss": -0.49014245048847715
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.2587435565319597
+    },
+    {
+      "view": 5,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.5149869581677136,
+        "net_loss": 1.3369424913274832
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5247321020739194,
+        "net_loss": -0.5247321020739195
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.2222222222222222,
+      "forecast_mean_absolute_error": 0.37654077243667433
+    },
+    {
+      "view": 6,
+      "policy": "method-only",
+      "trades": 9,
+      "cash_decisions": 27,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5961244720847282,
+        "net_loss": 0.5961244720847282
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.49789890026654327,
+        "net_loss": -0.49789890026654327
+      },
+      "holding_days": 126,
+      "choices": {
+        "TrendQuality/14": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.1105989002433539
+    },
+    {
+      "view": 6,
+      "policy": "hold-only",
+      "trades": 9,
+      "cash_decisions": 20,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.7690220003951481,
+        "net_loss": 0.7690220003951481
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3608728293634349,
+        "net_loss": -0.3608728293634349
+      },
+      "holding_days": 310,
+      "choices": {
+        "Momentum/14": 5,
+        "Momentum/60": 4
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.8888888888888888,
+      "forecast_mean_absolute_error": 0.11841955380298101
+    },
+    {
+      "view": 6,
+      "policy": "joint",
+      "trades": 9,
+      "cash_decisions": 20,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.7990465120778346,
+        "net_loss": 0.7990465120778346
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3292826211566826,
+        "net_loss": -0.3292826211566826
+      },
+      "holding_days": 310,
+      "choices": {
+        "TrendQuality/14": 5,
+        "Momentum/60": 1,
+        "TrendQuality/60": 3
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.7777777777777778,
+      "forecast_mean_absolute_error": 0.12307815038267494
+    },
+    {
+      "view": 6,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.2734194385625571,
+        "net_loss": 0.2734194385625571
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7767299377343915,
+        "net_loss": -0.7767299377343915
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.06113589053524223
+    },
+    {
+      "view": 6,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5807832372416858,
+        "net_loss": 0.5212978939872208
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6768752109655141,
+        "net_loss": -0.6768752109655141
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.10875024136348334
+    },
+    {
+      "view": 6,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 2.195657324942359,
+        "net_loss": 2.195657324942359
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3598841750529108,
+        "net_loss": -0.3598841750529108
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.16923042729783183
+    },
+    {
+      "view": 6,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.9593422479455304,
+        "net_loss": 0.9593422479455304
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4552940723120882,
+        "net_loss": -0.4552940723120882
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.24901865861561717
+    },
+    {
+      "view": 6,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.9741005977153082,
+        "net_loss": 0.9741005977153082
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5728692973403849,
+        "net_loss": -0.5728692973403849
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.3333333333333333,
+      "forecast_mean_absolute_error": 0.3979481418971502
+    },
+    {
+      "view": 6,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.29364391372175846,
+        "net_loss": 0.29364391372175846
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7549577475062967,
+        "net_loss": -0.7549577475062967
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.05451239044548455
+    },
+    {
+      "view": 6,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6501077284313096,
+        "net_loss": 0.5835219888673004
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6259477314863156,
+        "net_loss": -0.6259477314863156
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.10292444515597106
+    },
+    {
+      "view": 6,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 2.474155893846396,
+        "net_loss": 2.474155893846396
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.31208239934548065,
+        "net_loss": -0.31208239934548065
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.7222222222222222,
+      "forecast_mean_absolute_error": 0.1618375972235657
+    },
+    {
+      "view": 6,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.9219739904508486,
+        "net_loss": 0.9219739904508486
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.46576486024098795,
+        "net_loss": -0.46576486024098795
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.2408528400253777
+    },
+    {
+      "view": 6,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.158917503916636,
+        "net_loss": 1.0176416921276594
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5316505581443505,
+        "net_loss": -0.5316505581443505
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.3333333333333333,
+      "forecast_mean_absolute_error": 0.3917752516881757
+    },
+    {
+      "view": 7,
+      "policy": "method-only",
+      "trades": 10,
+      "cash_decisions": 26,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5599220899858673,
+        "net_loss": 0.5599220899858673
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5437039553684999,
+        "net_loss": -0.5437039553684999
+      },
+      "holding_days": 140,
+      "choices": {
+        "Momentum/14": 8,
+        "TrendQuality/14": 2
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.6,
+      "forecast_mean_absolute_error": 0.11845732074392584
+    },
+    {
+      "view": 7,
+      "policy": "hold-only",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.7225719962970989,
+        "net_loss": 0.7225719962970989
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4111560344401216,
+        "net_loss": -0.4111560344401216
+      },
+      "holding_days": 324,
+      "choices": {
+        "Momentum/14": 6,
+        "Momentum/60": 4
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.8,
+      "forecast_mean_absolute_error": 0.1260418108288092
+    },
+    {
+      "view": 7,
+      "policy": "joint",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.7225719962970989,
+        "net_loss": 0.7225719962970989
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4111560344401216,
+        "net_loss": -0.4111560344401216
+      },
+      "holding_days": 324,
+      "choices": {
+        "Momentum/14": 6,
+        "Momentum/60": 4
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.8,
+      "forecast_mean_absolute_error": 0.1260418108288092
+    },
+    {
+      "view": 7,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.27277991702003557,
+        "net_loss": 0.27277991702003557
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7864318768311,
+        "net_loss": -0.7864318768311
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.061265565200001725
+    },
+    {
+      "view": 7,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6686168901247475,
+        "net_loss": 0.599391758718357
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6932345191240878,
+        "net_loss": -0.6932345191240876
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.1183147097771338
+    },
+    {
+      "view": 7,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.5995786226186606,
+        "net_loss": 1.5995786226186606
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.41365232191733925,
+        "net_loss": -0.41365232191733925
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.7222222222222222,
+      "forecast_mean_absolute_error": 0.1744774899503563
+    },
+    {
+      "view": 7,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.0742085634048077,
+        "net_loss": 0.9884223489845935
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5457652013654057,
+        "net_loss": -0.5457652013654056
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.26459120490005
+    },
+    {
+      "view": 7,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.2900602239607464,
+        "net_loss": 1.179888348819207
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.622937090117195,
+        "net_loss": -0.6229370901171949
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.3333333333333333,
+      "forecast_mean_absolute_error": 0.44671446101583634
+    },
+    {
+      "view": 7,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.29094022151782867,
+        "net_loss": 0.29094022151782867
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7724817113875406,
+        "net_loss": -0.7724817113875406
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.058608307187929136
+    },
+    {
+      "view": 7,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.641515182307823,
+        "net_loss": 0.5750960214245735
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6864353938047791,
+        "net_loss": -0.6864353938047791
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.1100497291561416
+    },
+    {
+      "view": 7,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.5742058679832376,
+        "net_loss": 1.5742058679832376
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.39395426008333323,
+        "net_loss": -0.39395426008333323
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.7222222222222222,
+      "forecast_mean_absolute_error": 0.14961947669054718
+    },
+    {
+      "view": 7,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.6647712256051678,
+        "net_loss": 0.6073599758706697
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.616347011333154,
+        "net_loss": -0.616347011333154
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.2475307756616774
+    },
+    {
+      "view": 7,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.7599067785225987,
+        "net_loss": 0.6908370938357943
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6710145453816312,
+        "net_loss": -0.6710145453816312
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.37967138307088905
+    },
+    {
+      "view": 10,
+      "policy": "method-only",
+      "trades": 16,
+      "cash_decisions": 20,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.4809346396263831,
+        "net_loss": 0.4809346396263831
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6048381559958851,
+        "net_loss": -0.6048381559958851
+      },
+      "holding_days": 224,
+      "choices": {
+        "Momentum/14": 3,
+        "TrendQuality/14": 13
+      },
+      "forecast_count": 16,
+      "forecast_20_80_coverage": 0.5625,
+      "forecast_mean_absolute_error": 0.12593192611796505
+    },
+    {
+      "view": 10,
+      "policy": "hold-only",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6634263904612047,
+        "net_loss": 0.6634263904612047
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5036361834992907,
+        "net_loss": -0.5036361834992907
+      },
+      "holding_days": 324,
+      "choices": {
+        "Momentum/14": 6,
+        "Momentum/60": 4
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.8,
+      "forecast_mean_absolute_error": 0.17344797774540568
+    },
+    {
+      "view": 10,
+      "policy": "joint",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6172580448151717,
+        "net_loss": 0.6172580448151717
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4928274923074245,
+        "net_loss": -0.4928274923074245
+      },
+      "holding_days": 354,
+      "choices": {
+        "Momentum/14": 3,
+        "TrendQuality/14": 3,
+        "TrendQuality/60": 3,
+        "TrendQuality/90": 1
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.8,
+      "forecast_mean_absolute_error": 0.17107615170032733
+    },
+    {
+      "view": 10,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.25927138203256916,
+        "net_loss": 0.25927138203256916
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.769993538055466,
+        "net_loss": -0.769993538055466
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6944444444444444,
+      "forecast_mean_absolute_error": 0.06907515327750165
+    },
+    {
+      "view": 10,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6058609865989825,
+        "net_loss": 0.5427451042469722
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6806744429292957,
+        "net_loss": -0.6806744429292957
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.12551516529114806
+    },
+    {
+      "view": 10,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.4610642241534835,
+        "net_loss": 1.4610642241534835
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.33417468908048,
+        "net_loss": -0.33417468908048
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.1873716506994611
+    },
+    {
+      "view": 10,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.9524499015993573,
+        "net_loss": 0.9524499015993573
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5115410522176915,
+        "net_loss": -0.5115410522176915
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.24688792218358105
+    },
+    {
+      "view": 10,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.0537510085623474,
+        "net_loss": 0.9228480663691928
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.48610439375343917,
+        "net_loss": -0.4861043937534393
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.2222222222222222,
+      "forecast_mean_absolute_error": 0.354346800014782
+    },
+    {
+      "view": 10,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3290157753073037,
+        "net_loss": 0.3290157753073037
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7117291673475044,
+        "net_loss": -0.7117291673475044
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.7222222222222222,
+      "forecast_mean_absolute_error": 0.05986430678893566
+    },
+    {
+      "view": 10,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.8610607861053972,
+        "net_loss": 0.7716488764816105
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5999677778599654,
+        "net_loss": -0.5999677778599654
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.1134689539523101
+    },
+    {
+      "view": 10,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.5587948432978194,
+        "net_loss": 1.5587948432978194
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.2741092841708772,
+        "net_loss": -0.2741092841708772
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.7222222222222222,
+      "forecast_mean_absolute_error": 0.16216784896563682
+    },
+    {
+      "view": 10,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.2465656934701397,
+        "net_loss": 1.2465656934701397
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.43573549904110065,
+        "net_loss": -0.43573549904110065
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.2514235128526811
+    },
+    {
+      "view": 10,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.35304363791393,
+        "net_loss": 1.35304363791393
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.42261436051576096,
+        "net_loss": -0.42261436051576096
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.30750614143613697
+    },
+    {
+      "view": 14,
+      "policy": "method-only",
+      "trades": 12,
+      "cash_decisions": 24,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5749228613146318,
+        "net_loss": 0.5749228613146318
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6506692507665763,
+        "net_loss": -0.6506692507665763
+      },
+      "holding_days": 168,
+      "choices": {
+        "Momentum/14": 11,
+        "TrendQuality/14": 1
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.1685158912452441
+    },
+    {
+      "view": 14,
+      "policy": "hold-only",
+      "trades": 11,
+      "cash_decisions": 18,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6815411296006872,
+        "net_loss": 0.6815411296006872
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5858865780838924,
+        "net_loss": -0.5858865780838924
+      },
+      "holding_days": 338,
+      "choices": {
+        "Momentum/14": 7,
+        "Momentum/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.7272727272727273,
+      "forecast_mean_absolute_error": 0.19113095875327452
+    },
+    {
+      "view": 14,
+      "policy": "joint",
+      "trades": 11,
+      "cash_decisions": 18,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6815411296006872,
+        "net_loss": 0.6815411296006872
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5858865780838924,
+        "net_loss": -0.5858865780838924
+      },
+      "holding_days": 338,
+      "choices": {
+        "Momentum/14": 7,
+        "Momentum/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.7272727272727273,
+      "forecast_mean_absolute_error": 0.19113095875327452
+    },
+    {
+      "view": 14,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.30813147300821325,
+        "net_loss": 0.30813147300821325
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7735057391929219,
+        "net_loss": -0.7735057391929219
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.07377400394676634
+    },
+    {
+      "view": 14,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6364646563603357,
+        "net_loss": 0.6364646563603357
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7322454814090982,
+        "net_loss": -0.7322454814090982
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5277777777777778,
+      "forecast_mean_absolute_error": 0.1298798223296002
+    },
+    {
+      "view": 14,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.6936733611104686,
+        "net_loss": 1.6936733611104686
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.4192000405934492,
+        "net_loss": -0.4192000405934492
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.22990406486582882
+    },
+    {
+      "view": 14,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.3710262070436405,
+        "net_loss": 1.3710262070436405
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.506236226045923,
+        "net_loss": -0.506236226045923
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.3155832716667811
+    },
+    {
+      "view": 14,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.8963177063493656,
+        "net_loss": 0.7953079161559523
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6331357793934278,
+        "net_loss": -0.6331357793934278
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.3333333333333333,
+      "forecast_mean_absolute_error": 0.34283969316915713
+    },
+    {
+      "view": 14,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3802676249587034,
+        "net_loss": 0.3802676249587034
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6924165609045516,
+        "net_loss": -0.6924165609045516
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.06359384230349271
+    },
+    {
+      "view": 14,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6369269733343998,
+        "net_loss": 0.6369269733343998
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6633543429701626,
+        "net_loss": -0.6633543429701626
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.1162999933963779
+    },
+    {
+      "view": 14,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.2635336615147617,
+        "net_loss": 1.2635336615147617
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.38478222909234794,
+        "net_loss": -0.38478222909234794
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.1917814950536002
+    },
+    {
+      "view": 14,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.8516995926873494,
+        "net_loss": 0.8516995926873494
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5843506724170466,
+        "net_loss": -0.5843506724170466
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.248136284361283
+    },
+    {
+      "view": 14,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.586719364934368,
+        "net_loss": 0.586719364934368
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6483313475077537,
+        "net_loss": -0.6483313475077537
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.24628473173863757
+    },
+    {
+      "view": 21,
+      "policy": "method-only",
+      "trades": 10,
+      "cash_decisions": 26,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.46788240230324823,
+        "net_loss": 0.46788240230324823
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6369478758168272,
+        "net_loss": -0.6369478758168272
+      },
+      "holding_days": 140,
+      "choices": {
+        "TrendQuality/14": 3,
+        "Momentum/14": 7
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.1551263067680787
+    },
+    {
+      "view": 21,
+      "policy": "hold-only",
+      "trades": 11,
+      "cash_decisions": 19,
+      "occupied_signals": 6,
+      "terminal_wealth": {
+        "net_zero": 0.6079330900816027,
+        "net_loss": 0.6079330900816027
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5386220903577177,
+        "net_loss": -0.5386220903577177
+      },
+      "holding_days": 338,
+      "choices": {
+        "Momentum/14": 7,
+        "Momentum/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.6363636363636364,
+      "forecast_mean_absolute_error": 0.14461927150445963
+    },
+    {
+      "view": 21,
+      "policy": "joint",
+      "trades": 11,
+      "cash_decisions": 19,
+      "occupied_signals": 6,
+      "terminal_wealth": {
+        "net_zero": 0.5945994813245262,
+        "net_loss": 0.5945994813245262
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5386220903577177,
+        "net_loss": -0.5386220903577177
+      },
+      "holding_days": 338,
+      "choices": {
+        "TrendQuality/14": 3,
+        "Momentum/14": 4,
+        "Momentum/60": 4
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.6363636363636364,
+      "forecast_mean_absolute_error": 0.14983963842737066
+    },
+    {
+      "view": 21,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.28519842153280184,
+        "net_loss": 0.28519842153280184
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7535523049141168,
+        "net_loss": -0.7535523049141168
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.0696505788150905
+    },
+    {
+      "view": 21,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5232565419620764,
+        "net_loss": 0.47075773435709706
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7580220561338689,
+        "net_loss": -0.758022056133869
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.12366549010175458
+    },
+    {
+      "view": 21,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.2294313551112848,
+        "net_loss": 1.2294313551112848
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.37564017831241414,
+        "net_loss": -0.37564017831241414
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.15022822398891056
+    },
+    {
+      "view": 21,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.0472226677071699,
+        "net_loss": 0.9505529026840289
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3717603453624958,
+        "net_loss": -0.3717603453624958
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.18387752804069457
+    },
+    {
+      "view": 21,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.1950143249164422,
+        "net_loss": 1.0824795409017511
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3604699375613907,
+        "net_loss": -0.3604699375613907
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.28003874448611876
+    },
+    {
+      "view": 21,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.36436857390939686,
+        "net_loss": 0.36436857390939686
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6846816981758219,
+        "net_loss": -0.6846816981758219
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.06813593421735135
+    },
+    {
+      "view": 21,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.4469771835612015,
+        "net_loss": 0.40245808716259474
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.743870602437223,
+        "net_loss": -0.743870602437223
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6388888888888888,
+      "forecast_mean_absolute_error": 0.11389494344833348
+    },
+    {
+      "view": 21,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.0952920606720875,
+        "net_loss": 1.0952920606720875
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.38458890253697653,
+        "net_loss": -0.38458890253697653
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.7777777777777778,
+      "forecast_mean_absolute_error": 0.14095929769884202
+    },
+    {
+      "view": 21,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.8228440598125941,
+        "net_loss": 0.7469962576334599
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.36343724129651667,
+        "net_loss": -0.3634372412965168
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.14799773912638334
+    },
+    {
+      "view": 21,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.0573991715889948,
+        "net_loss": 0.9581194120783281
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3731395839594488,
+        "net_loss": -0.3731395839594488
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.23388371837704838
+    },
+    {
+      "view": 30,
+      "policy": "method-only",
+      "trades": 14,
+      "cash_decisions": 22,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.5308874813269875,
+        "net_loss": 0.5308874813269875
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6413265509220327,
+        "net_loss": -0.6413265509220327
+      },
+      "holding_days": 196,
+      "choices": {
+        "Momentum/14": 7,
+        "TrendQuality/14": 7
+      },
+      "forecast_count": 14,
+      "forecast_20_80_coverage": 0.42857142857142855,
+      "forecast_mean_absolute_error": 0.15305159354948233
+    },
+    {
+      "view": 30,
+      "policy": "hold-only",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.36471236076650804,
+        "net_loss": 0.36471236076650804
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7488776673512647,
+        "net_loss": -0.7488776673512647
+      },
+      "holding_days": 324,
+      "choices": {
+        "Momentum/14": 6,
+        "Momentum/60": 4
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.23173987013910483
+    },
+    {
+      "view": 30,
+      "policy": "joint",
+      "trades": 11,
+      "cash_decisions": 19,
+      "occupied_signals": 6,
+      "terminal_wealth": {
+        "net_zero": 0.6294948529212467,
+        "net_loss": 0.6294948529212467
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5747063209896531,
+        "net_loss": -0.5747063209896531
+      },
+      "holding_days": 292,
+      "choices": {
+        "Momentum/14": 4,
+        "TrendQuality/14": 4,
+        "Momentum/60": 2,
+        "TrendQuality/60": 1
+      },
+      "forecast_count": 11,
+      "forecast_20_80_coverage": 0.45454545454545453,
+      "forecast_mean_absolute_error": 0.18998884340997346
+    },
+    {
+      "view": 30,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3495647342488427,
+        "net_loss": 0.3495647342488427
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7076735255514408,
+        "net_loss": -0.7076735255514408
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.07232182093810828
+    },
+    {
+      "view": 30,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6687981959203967,
+        "net_loss": 0.6021856428630489
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7341954590555217,
+        "net_loss": -0.7341954590555219
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.12982248490214793
+    },
+    {
+      "view": 30,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.251778497693234,
+        "net_loss": 1.251778497693234
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.30032777470375094,
+        "net_loss": -0.30032777470375094
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.15174764134548446
+    },
+    {
+      "view": 30,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.1297657573087805,
+        "net_loss": 1.1297657573087805
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.320709420877196,
+        "net_loss": -0.320709420877196
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.18612830791216467
+    },
+    {
+      "view": 30,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.1673712128822904,
+        "net_loss": 1.1673712128822904
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.39215895761509834,
+        "net_loss": -0.39215895761509834
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.20811746130561512
+    },
+    {
+      "view": 30,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.464301112465391,
+        "net_loss": 0.464301112465391
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6065724799557445,
+        "net_loss": -0.6065724799557445
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.0607321286505806
+    },
+    {
+      "view": 30,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.7849736202837586,
+        "net_loss": 0.7071350278962899
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6201882449758191,
+        "net_loss": -0.6201882449758191
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5277777777777778,
+      "forecast_mean_absolute_error": 0.1082557944741517
+    },
+    {
+      "view": 30,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.3713644838463466,
+        "net_loss": 1.3713644838463466
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.3359668073339708,
+        "net_loss": -0.3359668073339708
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.13879142652857485
+    },
+    {
+      "view": 30,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 1.3815545879756423,
+        "net_loss": 1.3815545879756423
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.1606996937292824,
+        "net_loss": -0.1606996937292824
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.13240307109613006
+    },
+    {
+      "view": 30,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 1.0060108387583695,
+        "net_loss": 1.0060108387583695
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.30403523602121385,
+        "net_loss": -0.30403523602121385
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.7777777777777778,
+      "forecast_mean_absolute_error": 0.15858109297610462
+    },
+    {
+      "view": 45,
+      "policy": "method-only",
+      "trades": 15,
+      "cash_decisions": 21,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.782586397829077,
+        "net_loss": 0.782586397829077
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.570010139415445,
+        "net_loss": -0.570010139415445
+      },
+      "holding_days": 210,
+      "choices": {
+        "TrendQuality/14": 3,
+        "Momentum/14": 12
+      },
+      "forecast_count": 15,
+      "forecast_20_80_coverage": 0.5333333333333333,
+      "forecast_mean_absolute_error": 0.14581242433551672
+    },
+    {
+      "view": 45,
+      "policy": "hold-only",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.623436486267208,
+        "net_loss": 0.623436486267208
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6383414021738191,
+        "net_loss": -0.6383414021738191
+      },
+      "holding_days": 324,
+      "choices": {
+        "Momentum/14": 6,
+        "Momentum/60": 4
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.6,
+      "forecast_mean_absolute_error": 0.21863380734062496
+    },
+    {
+      "view": 45,
+      "policy": "joint",
+      "trades": 10,
+      "cash_decisions": 19,
+      "occupied_signals": 7,
+      "terminal_wealth": {
+        "net_zero": 0.6582227286288528,
+        "net_loss": 0.6582227286288528
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6383414021738191,
+        "net_loss": -0.6383414021738191
+      },
+      "holding_days": 324,
+      "choices": {
+        "TrendQuality/14": 3,
+        "Momentum/14": 3,
+        "TrendQuality/60": 1,
+        "Momentum/60": 3
+      },
+      "forecast_count": 10,
+      "forecast_20_80_coverage": 0.6,
+      "forecast_mean_absolute_error": 0.2115032587589345
+    },
+    {
+      "view": 45,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3563256000793753,
+        "net_loss": 0.3563256000793753
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7177528298419681,
+        "net_loss": -0.7177528298419681
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.07442257614996618
+    },
+    {
+      "view": 45,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.8699482799077848,
+        "net_loss": 0.7833011024692211
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.675612588305261,
+        "net_loss": -0.6756125883052609
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5277777777777778,
+      "forecast_mean_absolute_error": 0.1252901448703181
+    },
+    {
+      "view": 45,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.5969596357157543,
+        "net_loss": 1.5969596357157543
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.38295073725689377,
+        "net_loss": -0.38295073725689377
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.19435820054643174
+    },
+    {
+      "view": 45,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.803277162142141,
+        "net_loss": 0.803277162142141
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6010662860662832,
+        "net_loss": -0.6010662860662832
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.24270277265098733
+    },
+    {
+      "view": 45,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.9544099906007264,
+        "net_loss": 0.9544099906007264
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6494087873253929,
+        "net_loss": -0.6494087873253929
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.3333333333333333,
+      "forecast_mean_absolute_error": 0.3020541343646354
+    },
+    {
+      "view": 45,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3855673739003435,
+        "net_loss": 0.3855673739003435
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6939678289925222,
+        "net_loss": -0.6939678289925222
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.06384434738045455
+    },
+    {
+      "view": 45,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.8143911861245512,
+        "net_loss": 0.7336355251154839
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6684019156574619,
+        "net_loss": -0.6684019156574619
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.11024141151367438
+    },
+    {
+      "view": 45,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.494205729271361,
+        "net_loss": 1.494205729271361
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.2855452542389497,
+        "net_loss": -0.2855452542389497
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.1698548980908807
+    },
+    {
+      "view": 45,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.8733756366853248,
+        "net_loss": 0.8733756366853248
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5715288314584595,
+        "net_loss": -0.5715288314584595
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.23731606741670083
+    },
+    {
+      "view": 45,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.9843418911399676,
+        "net_loss": 0.9843418911399676
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5686229511333444,
+        "net_loss": -0.5686229511333444
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.3333333333333333,
+      "forecast_mean_absolute_error": 0.2523671052061714
+    },
+    {
+      "view": 60,
+      "policy": "method-only",
+      "trades": 9,
+      "cash_decisions": 27,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.9973886701507408,
+        "net_loss": 0.9973886701507408
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.45136384458800394,
+        "net_loss": -0.45136384458800394
+      },
+      "holding_days": 126,
+      "choices": {
+        "Momentum/14": 8,
+        "TrendQuality/14": 1
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.14862195219478533
+    },
+    {
+      "view": 60,
+      "policy": "hold-only",
+      "trades": 9,
+      "cash_decisions": 21,
+      "occupied_signals": 6,
+      "terminal_wealth": {
+        "net_zero": 0.6693828406951756,
+        "net_loss": 0.6693828406951756
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6200538346051269,
+        "net_loss": -0.6200538346051269
+      },
+      "holding_days": 264,
+      "choices": {
+        "Momentum/14": 6,
+        "Momentum/60": 3
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.22328079392639727
+    },
+    {
+      "view": 60,
+      "policy": "joint",
+      "trades": 9,
+      "cash_decisions": 21,
+      "occupied_signals": 6,
+      "terminal_wealth": {
+        "net_zero": 0.690720064461468,
+        "net_loss": 0.690720064461468
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6200538346051269,
+        "net_loss": -0.6200538346051269
+      },
+      "holding_days": 264,
+      "choices": {
+        "Momentum/14": 5,
+        "TrendQuality/14": 1,
+        "Momentum/60": 3
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.22030754940319294
+    },
+    {
+      "view": 60,
+      "policy": "fixed:Momentum:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.26219688348793796,
+        "net_loss": 0.26219688348793796
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.780662454758996,
+        "net_loss": -0.780662454758996
+      },
+      "holding_days": 252,
+      "choices": {
+        "Momentum/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.07357718198649749
+    },
+    {
+      "view": 60,
+      "policy": "fixed:Momentum:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.6326043040520496,
+        "net_loss": 0.5704415114932382
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6996078078320871,
+        "net_loss": -0.6996078078320871
+      },
+      "holding_days": 504,
+      "choices": {
+        "Momentum/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.10577525603685893
+    },
+    {
+      "view": 60,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 1.1344484096662653,
+        "net_loss": 1.1344484096662653
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.29967263490057106,
+        "net_loss": -0.29967263490057106
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.6111111111111112,
+      "forecast_mean_absolute_error": 0.14070206574404678
+    },
+    {
+      "view": 60,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.7660702854965823,
+        "net_loss": 0.7660702854965823
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.48702078857526143,
+        "net_loss": -0.48702078857526143
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.4166666666666667,
+      "forecast_mean_absolute_error": 0.20920967660770493
+    },
+    {
+      "view": 60,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.708179465368036,
+        "net_loss": 0.708179465368036
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6782760049548356,
+        "net_loss": -0.6782760049548356
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.2537521511416513
+    },
+    {
+      "view": 60,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.35485134239139826,
+        "net_loss": 0.35485134239139826
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.70688958924241,
+        "net_loss": -0.70688958924241
+      },
+      "holding_days": 252,
+      "choices": {
+        "TrendQuality/7": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5277777777777778,
+      "forecast_mean_absolute_error": 0.06900393901935924
+    },
+    {
+      "view": 60,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 36,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.660640970145193,
+        "net_loss": 0.5951312996788091
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6205013621534188,
+        "net_loss": -0.6205013621534188
+      },
+      "holding_days": 504,
+      "choices": {
+        "TrendQuality/14": 36
+      },
+      "forecast_count": 36,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.08821087512238308
+    },
+    {
+      "view": 60,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 18,
+      "terminal_wealth": {
+        "net_zero": 0.9119354023732439,
+        "net_loss": 0.9119354023732439
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.28849827118961446,
+        "net_loss": -0.28849827118961446
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.11913355406016937
+    },
+    {
+      "view": 60,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.7435985488703625,
+        "net_loss": 0.7435985488703625
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.5197745419608952,
+        "net_loss": -0.5197745419608952
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.19290431640096817
+    },
+    {
+      "view": 60,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 27,
+      "terminal_wealth": {
+        "net_zero": 0.7295238685484663,
+        "net_loss": 0.7295238685484663
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6720162722377176,
+        "net_loss": -0.6720162722377176
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.22307210946811942
+    },
+    {
+      "view": 90,
+      "policy": "method-only",
+      "trades": 3,
+      "cash_decisions": 30,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.9399567537926709,
+        "net_loss": 0.9399567537926709
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.11869490663749915,
+        "net_loss": -0.11869490663749915
+      },
+      "holding_days": 42,
+      "choices": {
+        "Momentum/14": 3
+      },
+      "forecast_count": 3,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.08195934329154383
+    },
+    {
+      "view": 90,
+      "policy": "hold-only",
+      "trades": 5,
+      "cash_decisions": 26,
+      "occupied_signals": 2,
+      "terminal_wealth": {
+        "net_zero": 0.6801553298059632,
+        "net_loss": 0.6801553298059632
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.31984467019403684,
+        "net_loss": -0.31984467019403684
+      },
+      "holding_days": 162,
+      "choices": {
+        "Momentum/14": 3,
+        "Momentum/60": 2
+      },
+      "forecast_count": 5,
+      "forecast_20_80_coverage": 0.6,
+      "forecast_mean_absolute_error": 0.13150253543477414
+    },
+    {
+      "view": 90,
+      "policy": "joint",
+      "trades": 5,
+      "cash_decisions": 26,
+      "occupied_signals": 2,
+      "terminal_wealth": {
+        "net_zero": 0.6801553298059632,
+        "net_loss": 0.6801553298059632
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.31984467019403684,
+        "net_loss": -0.31984467019403684
+      },
+      "holding_days": 162,
+      "choices": {
+        "Momentum/14": 3,
+        "Momentum/60": 2
+      },
+      "forecast_count": 5,
+      "forecast_20_80_coverage": 0.6,
+      "forecast_mean_absolute_error": 0.13150253543477414
+    },
+    {
+      "view": 90,
+      "policy": "fixed:Momentum:7",
+      "trades": 33,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.2968905719256272,
+        "net_loss": 0.2968905719256272
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7399809251348115,
+        "net_loss": -0.7399809251348115
+      },
+      "holding_days": 231,
+      "choices": {
+        "Momentum/7": 33
+      },
+      "forecast_count": 33,
+      "forecast_20_80_coverage": 0.6060606060606061,
+      "forecast_mean_absolute_error": 0.07583772080904493
+    },
+    {
+      "view": 90,
+      "policy": "fixed:Momentum:14",
+      "trades": 33,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.2847964173318304,
+        "net_loss": 0.2564241209278021
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7534848465334154,
+        "net_loss": -0.7534848465334154
+      },
+      "holding_days": 462,
+      "choices": {
+        "Momentum/14": 33
+      },
+      "forecast_count": 33,
+      "forecast_20_80_coverage": 0.5454545454545454,
+      "forecast_mean_absolute_error": 0.10355733012331073
+    },
+    {
+      "view": 90,
+      "policy": "fixed:Momentum:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 15,
+      "terminal_wealth": {
+        "net_zero": 0.24549245452617263,
+        "net_loss": 0.22125964187294958
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.8273147285548069,
+        "net_loss": -0.8273147285548069
+      },
+      "holding_days": 540,
+      "choices": {
+        "Momentum/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5555555555555556,
+      "forecast_mean_absolute_error": 0.20160021737209907
+    },
+    {
+      "view": 90,
+      "policy": "fixed:Momentum:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 21,
+      "terminal_wealth": {
+        "net_zero": 0.535293838686604,
+        "net_loss": 0.535293838686604
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7221524741254597,
+        "net_loss": -0.7221524741254597
+      },
+      "holding_days": 720,
+      "choices": {
+        "Momentum/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.3282204746584209
+    },
+    {
+      "view": 90,
+      "policy": "fixed:Momentum:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.2476762544565047,
+        "net_loss": 0.22222456898515874
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.8458281234946661,
+        "net_loss": -0.8458281234946662
+      },
+      "holding_days": 810,
+      "choices": {
+        "Momentum/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.3938599232827278
+    },
+    {
+      "view": 90,
+      "policy": "fixed:TrendQuality:7",
+      "trades": 33,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3776003204922148,
+        "net_loss": 0.3776003204922148
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6660437750391998,
+        "net_loss": -0.6660437750391998
+      },
+      "holding_days": 231,
+      "choices": {
+        "TrendQuality/7": 33
+      },
+      "forecast_count": 33,
+      "forecast_20_80_coverage": 0.6666666666666666,
+      "forecast_mean_absolute_error": 0.0718649316335364
+    },
+    {
+      "view": 90,
+      "policy": "fixed:TrendQuality:14",
+      "trades": 33,
+      "cash_decisions": 0,
+      "occupied_signals": 0,
+      "terminal_wealth": {
+        "net_zero": 0.3701249206483898,
+        "net_loss": 0.33325193589128876
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.673914182852925,
+        "net_loss": -0.6739141828529251
+      },
+      "holding_days": 462,
+      "choices": {
+        "TrendQuality/14": 33
+      },
+      "forecast_count": 33,
+      "forecast_20_80_coverage": 0.5454545454545454,
+      "forecast_mean_absolute_error": 0.09021265410544325
+    },
+    {
+      "view": 90,
+      "policy": "fixed:TrendQuality:30",
+      "trades": 18,
+      "cash_decisions": 0,
+      "occupied_signals": 15,
+      "terminal_wealth": {
+        "net_zero": 0.43054807800383343,
+        "net_loss": 0.38804823444403946
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6932347861648012,
+        "net_loss": -0.6932347861648012
+      },
+      "holding_days": 540,
+      "choices": {
+        "TrendQuality/30": 18
+      },
+      "forecast_count": 18,
+      "forecast_20_80_coverage": 0.5,
+      "forecast_mean_absolute_error": 0.17551983141294378
+    },
+    {
+      "view": 90,
+      "policy": "fixed:TrendQuality:60",
+      "trades": 12,
+      "cash_decisions": 0,
+      "occupied_signals": 21,
+      "terminal_wealth": {
+        "net_zero": 0.4650800945210656,
+        "net_loss": 0.4650800945210656
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.6837664710412519,
+        "net_loss": -0.6837664710412519
+      },
+      "holding_days": 720,
+      "choices": {
+        "TrendQuality/60": 12
+      },
+      "forecast_count": 12,
+      "forecast_20_80_coverage": 0.5833333333333334,
+      "forecast_mean_absolute_error": 0.24367465337895935
+    },
+    {
+      "view": 90,
+      "policy": "fixed:TrendQuality:90",
+      "trades": 9,
+      "cash_decisions": 0,
+      "occupied_signals": 24,
+      "terminal_wealth": {
+        "net_zero": 0.38651020026559585,
+        "net_loss": 0.2921798685425944
+      },
+      "exit_checkpoint_drawdown": {
+        "net_zero": -0.7590601392149352,
+        "net_loss": -0.7970026897477396
+      },
+      "holding_days": 810,
+      "choices": {
+        "TrendQuality/90": 9
+      },
+      "forecast_count": 9,
+      "forecast_20_80_coverage": 0.4444444444444444,
+      "forecast_mean_absolute_error": 0.3566992598658201
+    }
+  ]
+}

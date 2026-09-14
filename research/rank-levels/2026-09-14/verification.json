@@ -1,0 +1,9 @@
+{
+  "verifiedAt": "2026-09-14T05:43:08.541758+00:00",
+  "events": 4793,
+  "cells": 72,
+  "eventMembership": "SQL set equality; no omissions or duplicates",
+  "outcomes": "rank paths and Decimal fee returns reconstructed from source",
+  "disconnect": "SQL counts agree",
+  "status": "passed"
+}

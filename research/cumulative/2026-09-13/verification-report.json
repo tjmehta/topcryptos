@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "started_utc": "2026-09-13T22:21:02.905Z",
+  "completed_utc": "2026-09-13T22:21:26.031Z",
+  "hashes": {
+    "verification.cjs": "6e612113de49915267d7ec94d1a4ff833ecfcdc52df2280f0631b0c96147bea2",
+    "cmc-summary.json": "d7ae5371afcda31001ed7bcccc777fec556dd3fba24f5ec2c67c940608c1d7d5",
+    "cmc-inputs.json.gz": "6f4933db0fb25a1f92a25396d347345bac83a0dfecc0870636150ec86ab2e9bc",
+    "cmc-results.json.gz": "7e37fcd1be5741df67fe15cc7da061c2c5770dec144a7176f9ebf5a865858463",
+    "cmc-sources.json": "a62a72faad08dd17b209dafd1996a6e08cdf3ae4d6c3969f794101a9fc64a093",
+    "venue-summary.json": "e971dca65bf399af46d2e1dc3c690730eccc357f51f01ec5515abfa19be8c2c3",
+    "venue-ledger.json.gz": "d02c04b4606942c9e50bba993e8f15768519fa66f7e9504367a8d560254ea91e",
+    "venue-capital.json.gz": "c72385e3d449712459f3e47f119a276fdeac0deaaf848ca529f7e574313b9acd"
+  },
+  "cmc": {
+    "raw_files": 166,
+    "unique_formations": 324,
+    "all_method_scores": 795730,
+    "signals": 1620,
+    "records": 4645,
+    "positions": 46450,
+    "known_raw_price_returns": 45669,
+    "path_snapshot_checks": 335253,
+    "paired_metric_cells": 1242,
+    "half_metric_cells": 1035,
+    "gates": [
+      {
+        "mode": "daily",
+        "candidate": "cumulative",
+        "passed": false
+      },
+      {
+        "mode": "daily",
+        "candidate": "hybrid",
+        "passed": false
+      },
+      {
+        "mode": "hourly",
+        "candidate": "cumulative",
+        "passed": true
+      },
+      {
+        "mode": "hourly",
+        "candidate": "hybrid",
+        "passed": true
+      }
+    ]
+  },
+  "venue": {
+    "formations": 26136,
+    "independent_raw_cumulative_checks": 12510,
+    "all_new_selection_checks": 52272,
+    "cohort_mark_checks": 627264,
+    "capital_paths": 1536,
+    "capital_scenarios": 9216
+  },
+  "scope": "Independent stdlib implementation; no application/scoring/backtest code imported. Raw CMC block reconstruction, all native scoring/eligibility/selection, full trade labels/costs and adoption metrics; venue raw deterministic score sample, all new selection ordering and capital arithmetic. No new default claim beyond frozen CMC gates."
+}

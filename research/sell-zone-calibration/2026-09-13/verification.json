@@ -1,0 +1,412 @@
+{
+  "verified_at_utc": "2026-09-13T20:05:00.152540+00:00",
+  "verifier_sha256": "b58fd8b4365dc882ea5ebe7bc979a0af2a86dd6f9dcc99b0a1bd208cc774bba5",
+  "predictions_sha256": "eca9dc74a7332bc13f1d01d86bc352df315371ac12e3c791601488e729f5e7f7",
+  "verified_fits": 124,
+  "verified_forecasts": 14200,
+  "verified_evaluation_forecasts": 7800,
+  "verified_cells": 40,
+  "scope": "Independent source, strict hard-horizon maturity, prequential calibration membership, offset likelihood score, probability, baseline, all metric and reliability arithmetic checks. Base fitting is separately covered by runner perturbation tests and exact original replay.",
+  "summary": [
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": "all",
+      "known": 3894,
+      "unknown": 6,
+      "raw_probability_brier": 0.2301552912801943,
+      "calibrated_probability_brier": 0.2264544011192488,
+      "holding_baseline_probability_brier": 0.2290343168909336
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 14,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.17545212745609937,
+      "calibrated_probability_brier": 0.16654316759569943,
+      "holding_baseline_probability_brier": 0.17204051365083542
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 30,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.23620315002613276,
+      "calibrated_probability_brier": 0.23523679381033621,
+      "holding_baseline_probability_brier": 0.2370316896532146
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 60,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.25359066508000977,
+      "calibrated_probability_brier": 0.2516929429482428,
+      "holding_baseline_probability_brier": 0.25405886005900136
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "all",
+      "holding": 90,
+      "known": 972,
+      "unknown": 3,
+      "raw_probability_brier": 0.2554271154212479,
+      "calibrated_probability_brier": 0.25239797234288847,
+      "holding_baseline_probability_brier": 0.2530555290716907
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": "all",
+      "known": 1324,
+      "unknown": 0,
+      "raw_probability_brier": 0.2334594193280654,
+      "calibrated_probability_brier": 0.23667452946296072,
+      "holding_baseline_probability_brier": 0.23505984031684166
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 14,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.19803822647116803,
+      "calibrated_probability_brier": 0.1927129866282083,
+      "holding_baseline_probability_brier": 0.19577473203513632
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 30,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.2481195254194778,
+      "calibrated_probability_brier": 0.2556155134854037,
+      "holding_baseline_probability_brier": 0.24858242867729655
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 60,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.2498561662912282,
+      "calibrated_probability_brier": 0.254451792386406,
+      "holding_baseline_probability_brier": 0.2518945552545791
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2023",
+      "holding": 90,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.23782375913038764,
+      "calibrated_probability_brier": 0.2439178253518249,
+      "holding_baseline_probability_brier": 0.24398764530035472
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": "all",
+      "known": 1342,
+      "unknown": 2,
+      "raw_probability_brier": 0.2306458785232025,
+      "calibrated_probability_brier": 0.2366197065607691,
+      "holding_baseline_probability_brier": 0.2324990461149044
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 14,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.1879457498561903,
+      "calibrated_probability_brier": 0.18543615792529458,
+      "holding_baseline_probability_brier": 0.18874605684967996
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 30,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.23719643852012376,
+      "calibrated_probability_brier": 0.2405737465965298,
+      "holding_baseline_probability_brier": 0.23973357366181028
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 60,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.2518063382346947,
+      "calibrated_probability_brier": 0.2631887772702665,
+      "holding_baseline_probability_brier": 0.254698555164344
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2024",
+      "holding": 90,
+      "known": 334,
+      "unknown": 2,
+      "raw_probability_brier": 0.24572474262526597,
+      "calibrated_probability_brier": 0.257403859647933,
+      "holding_baseline_probability_brier": 0.24690374101533358
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": "all",
+      "known": 1228,
+      "unknown": 4,
+      "raw_probability_brier": 0.22605672970405552,
+      "calibrated_probability_brier": 0.204326314938797,
+      "holding_baseline_probability_brier": 0.21875136930585942
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 14,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.13742653820392256,
+      "calibrated_probability_brier": 0.11764982932044078,
+      "holding_baseline_probability_brier": 0.12816726023058994
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 30,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.22226808426333744,
+      "calibrated_probability_brier": 0.20742385456405488,
+      "holding_baseline_probability_brier": 0.22162085042240268
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 60,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.2595699905494318,
+      "calibrated_probability_brier": 0.23613665794422992,
+      "holding_baseline_probability_brier": 0.25569223899994165
+    },
+    {
+      "policy": "SMAATRBracket",
+      "period": "2025",
+      "holding": 90,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.28496230579953036,
+      "calibrated_probability_brier": 0.2560949179264624,
+      "holding_baseline_probability_brier": 0.26952512757050345
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": "all",
+      "known": 3896,
+      "unknown": 4,
+      "raw_probability_brier": 0.22214159261772348,
+      "calibrated_probability_brier": 0.21967532570472,
+      "holding_baseline_probability_brier": 0.23972754047786593
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 14,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.20952149171318135,
+      "calibrated_probability_brier": 0.20229503907713745,
+      "holding_baseline_probability_brier": 0.2371316721043209
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 30,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.2351224711685844,
+      "calibrated_probability_brier": 0.2338322836178608,
+      "holding_baseline_probability_brier": 0.25205152759334326
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 60,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.22621866640131036,
+      "calibrated_probability_brier": 0.2257411432773906,
+      "holding_baseline_probability_brier": 0.24125418484737488
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "all",
+      "holding": 90,
+      "known": 974,
+      "unknown": 1,
+      "raw_probability_brier": 0.2177037411878178,
+      "calibrated_probability_brier": 0.2168328368464912,
+      "holding_baseline_probability_brier": 0.22847277736642468
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": "all",
+      "known": 1324,
+      "unknown": 0,
+      "raw_probability_brier": 0.22424170206772742,
+      "calibrated_probability_brier": 0.22590225272287304,
+      "holding_baseline_probability_brier": 0.23747436737569158
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 14,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.2247602506638235,
+      "calibrated_probability_brier": 0.22118069617997466,
+      "holding_baseline_probability_brier": 0.24350374577841744
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 30,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.24087479026909267,
+      "calibrated_probability_brier": 0.2439151281853188,
+      "holding_baseline_probability_brier": 0.25184776519985785
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 60,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.2294363244758979,
+      "calibrated_probability_brier": 0.23180227271221918,
+      "holding_baseline_probability_brier": 0.23844617132707538
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2023",
+      "holding": 90,
+      "known": 331,
+      "unknown": 0,
+      "raw_probability_brier": 0.20189544286209568,
+      "calibrated_probability_brier": 0.2067109138139796,
+      "holding_baseline_probability_brier": 0.2160997871974156
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": "all",
+      "known": 1344,
+      "unknown": 0,
+      "raw_probability_brier": 0.2070937551140966,
+      "calibrated_probability_brier": 0.21490005260514491,
+      "holding_baseline_probability_brier": 0.2321326778967543
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 14,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.20511678484073909,
+      "calibrated_probability_brier": 0.20644612445374375,
+      "holding_baseline_probability_brier": 0.24499907230533083
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 30,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.22204316478457994,
+      "calibrated_probability_brier": 0.22814069939488243,
+      "holding_baseline_probability_brier": 0.2488908672411726
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 60,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.20580645858908542,
+      "calibrated_probability_brier": 0.21824613621033423,
+      "holding_baseline_probability_brier": 0.22603320164342447
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2024",
+      "holding": 90,
+      "known": 336,
+      "unknown": 0,
+      "raw_probability_brier": 0.19540861224198205,
+      "calibrated_probability_brier": 0.2067672503616193,
+      "holding_baseline_probability_brier": 0.20860757039708924
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": "all",
+      "known": 1228,
+      "unknown": 4,
+      "raw_probability_brier": 0.23634659969677008,
+      "calibrated_probability_brier": 0.21818796061823326,
+      "holding_baseline_probability_brier": 0.2504691500025344
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 14,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.1979122158059437,
+      "calibrated_probability_brier": 0.17738977136515424,
+      "holding_baseline_probability_brier": 0.22165088105003658
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 30,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.2432352702655136,
+      "calibrated_probability_brier": 0.22919042937386128,
+      "holding_baseline_probability_brier": 0.25573044365384157
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 60,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.24508986184827808,
+      "calibrated_probability_brier": 0.22740918409694325,
+      "holding_baseline_probability_brier": 0.26094051328954576
+    },
+    {
+      "policy": "ResistanceSMAATR",
+      "period": "2025",
+      "holding": 90,
+      "known": 307,
+      "unknown": 1,
+      "raw_probability_brier": 0.25914905086734497,
+      "calibrated_probability_brier": 0.23876245763697426,
+      "holding_baseline_probability_brier": 0.26355476201671363
+    }
+  ]
+}

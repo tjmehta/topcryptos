@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "started_utc": "2026-09-13T22:19:39.682Z",
+  "completed_utc": "2026-09-13T22:19:54.031Z",
+  "hashes": {
+    "verification.cjs": "6e612113de49915267d7ec94d1a4ff833ecfcdc52df2280f0631b0c96147bea2",
+    "cmc-summary.json": "d7ae5371afcda31001ed7bcccc777fec556dd3fba24f5ec2c67c940608c1d7d5",
+    "cmc-inputs.json.gz": "6f4933db0fb25a1f92a25396d347345bac83a0dfecc0870636150ec86ab2e9bc",
+    "cmc-results.json.gz": "7e37fcd1be5741df67fe15cc7da061c2c5770dec144a7176f9ebf5a865858463",
+    "cmc-sources.json": "a62a72faad08dd17b209dafd1996a6e08cdf3ae4d6c3969f794101a9fc64a093"
+  },
+  "cmc": {
+    "raw_files": 166,
+    "unique_formations": 324,
+    "all_method_scores": 795730,
+    "signals": 1620,
+    "records": 4645,
+    "positions": 46450,
+    "known_raw_price_returns": 45669,
+    "path_snapshot_checks": 335253,
+    "paired_metric_cells": 1242,
+    "half_metric_cells": 1035,
+    "gates": [
+      {
+        "mode": "daily",
+        "candidate": "cumulative",
+        "passed": false
+      },
+      {
+        "mode": "daily",
+        "candidate": "hybrid",
+        "passed": false
+      },
+      {
+        "mode": "hourly",
+        "candidate": "cumulative",
+        "passed": true
+      },
+      {
+        "mode": "hourly",
+        "candidate": "hybrid",
+        "passed": true
+      }
+    ]
+  },
+  "venue": null,
+  "scope": "Independent stdlib implementation; no application/scoring/backtest code imported. Raw CMC block reconstruction, all native scoring/eligibility/selection, full trade labels/costs and adoption metrics; venue raw deterministic score sample, all new selection ordering and capital arithmetic. No new default claim beyond frozen CMC gates."
+}

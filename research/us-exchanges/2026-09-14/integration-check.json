@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-09-14T04:59:16.620110+00:00",
+  "checkType": "live API integration, not financial backtest",
+  "results": [
+    {
+      "exchange": "coinbase",
+      "signal_date": "2026-09-12",
+      "entry_date": "2026-09-14",
+      "hard_exit_date": "2026-10-14",
+      "universe_size": 50,
+      "eligible_count": 41,
+      "volume_description": "Daily dollar volume is an estimate: candle close \u00d7 base volume. Market selection uses Coinbase\u2019s approximate 24-hour quote volume. Volume thresholds and scores use this proxy; Binance backtest results and fitted probabilities do not validate this market or measurement.",
+      "signals": 10,
+      "unsupportedProbabilitiesSuppressed": true
+    },
+    {
+      "exchange": "kraken",
+      "signal_date": "2026-09-12",
+      "entry_date": "2026-09-14",
+      "hard_exit_date": "2026-10-14",
+      "universe_size": 50,
+      "eligible_count": 31,
+      "volume_description": "Daily and rolling dollar volume are reconstructed from reported VWAP \u00d7 base volume, subject to provider rounding. Binance backtest results and fitted probabilities do not validate this market.",
+      "signals": 10,
+      "unsupportedProbabilitiesSuppressed": true
+    }
+  ]
+}

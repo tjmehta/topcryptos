@@ -39,3 +39,18 @@ yarn-error.log*
 
 # local snapshot cache (seed with scripts/seedLocalCache.mjs)
 .cache/
+
+# research bulk data: raw venue acquisitions, compressed ledgers/inputs and multi-MB
+# result dumps stay local; READMEs, scripts and small summaries are tracked
+research/algorithm-comparison/high-flier-data/
+research/algorithm-comparison/high-flier-data-probe/
+research/algorithm-comparison/external-data/
+research/**/*.gz
+research/**/__pycache__/
+research/algorithm-comparison/external-monthly-results.json
+research/indicator-algorithms/2026-09-13/summary.json
+research/indicator-algorithms/2026-09-13/selection.json
+research/indicator-algorithms/2026-09-13/selection-sensitivity.json
+research/cumulative/2026-09-13/cmc-summary.json
+research/cumulative/2026-09-13/venue-summary.json
+research/radar-velocity/2026-09-14/summary.json

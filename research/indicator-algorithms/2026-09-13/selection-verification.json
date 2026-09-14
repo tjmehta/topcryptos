@@ -1,0 +1,321 @@
+{
+  "status": "passed",
+  "verified_utc": "2026-09-13T20:19:01.154701+00:00",
+  "hashes": {
+    "ledger.json.gz": "86e02ac882f48e696938fc647cb2a9f24093ce5d467f2a9bbe2faaa70c8003da",
+    "summary.json": "61bf12efdc46d38c592dbb6de0581655b13662e20e289f8da0b2251079c05d27",
+    "protocol.md": "56a9604c531b2ef53da180f62a8850d4e678c9a19eeb30996acac34666854d87",
+    "run.py": "360df7a4b7dd223f84d8bffb7b0462f2644e5ed2f767702557ff92421ab4f271",
+    "selector.py": "6103d497669031db40f10e259d2c8b85db30920b582e69b8ff664093668875f9",
+    "selection.json": "c520fdc015b6e6088ceb721e4508fccbdcdd11cd66257f48df8b4582d79d9e8b",
+    "selection-ledger.json.gz": "8878a047be4b1da8cae475d2d8cfbd8871b7ec3281face61bb8bd1192e7fd143",
+    "verify-selection.py": "6b9805d9c68e8012ab65384b2ea8641d7338f8ce5ab3e0d6c6228212ae480cd0"
+  },
+  "counts": {
+    "compared_values": 1414609,
+    "outcomes_cost_and_date_verified": 17403,
+    "cohorts_slot_means_verified": 25740,
+    "nonoverlap_paths": 1464,
+    "executed_path_events": 39002,
+    "annual_fits_verified": 36,
+    "evaluation_paths_verified": 384
+  },
+  "scenarios": [
+    "net_zero",
+    "net_loss",
+    "net100_zero",
+    "net100_loss"
+  ],
+  "method": "Independent standard-library reconstruction; no source implementation imports. Cost marks recovered from saved executable prices; nonoverlap calendars built with binary search; wealth and annual returns recovered from prefix products; all selector and fixed policy outputs compared.",
+  "limitations": "Executable source prices and indicator selections are frozen inputs here; this verifier does not independently reconstruct raw candle eligibility, signals or prices.",
+  "annual_decisions": [
+    {
+      "view": 3,
+      "year": 2023,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 3,
+      "year": 2024,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 60
+      }
+    },
+    {
+      "view": 3,
+      "year": 2025,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 90
+      }
+    },
+    {
+      "view": 4,
+      "year": 2023,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 4,
+      "year": 2024,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 30
+      }
+    },
+    {
+      "view": 4,
+      "year": 2025,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 30
+      }
+    },
+    {
+      "view": 5,
+      "year": 2023,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 5,
+      "year": 2024,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 5,
+      "year": 2025,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 6,
+      "year": 2023,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 6,
+      "year": 2024,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 60
+      }
+    },
+    {
+      "view": 6,
+      "year": 2025,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 60
+      }
+    },
+    {
+      "view": 7,
+      "year": 2023,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 7,
+      "year": 2024,
+      "choice": {
+        "method": "Momentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 7,
+      "year": 2025,
+      "choice": {
+        "method": "Momentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 10,
+      "year": 2023,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 10,
+      "year": 2024,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 10,
+      "year": 2025,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 14,
+      "year": 2023,
+      "choice": {
+        "method": "Momentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 14,
+      "year": 2024,
+      "choice": {
+        "method": "Momentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 14,
+      "year": 2025,
+      "choice": {
+        "method": "Momentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 21,
+      "year": 2023,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 14
+      }
+    },
+    {
+      "view": 21,
+      "year": 2024,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 14
+      }
+    },
+    {
+      "view": 21,
+      "year": 2025,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 30,
+      "year": 2023,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 30,
+      "year": 2024,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 30,
+      "year": 2025,
+      "choice": {
+        "method": "EMAConfirmedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 45,
+      "year": 2023,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 14
+      }
+    },
+    {
+      "view": 45,
+      "year": 2024,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 60
+      }
+    },
+    {
+      "view": 45,
+      "year": 2025,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 60
+      }
+    },
+    {
+      "view": 60,
+      "year": 2023,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 60
+      }
+    },
+    {
+      "view": 60,
+      "year": 2024,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 60
+      }
+    },
+    {
+      "view": 60,
+      "year": 2025,
+      "choice": {
+        "method": "ATRNormalizedMomentum",
+        "holding": 60
+      }
+    },
+    {
+      "view": 90,
+      "year": 2023,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 90
+      }
+    },
+    {
+      "view": 90,
+      "year": 2024,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 90
+      }
+    },
+    {
+      "view": 90,
+      "year": 2025,
+      "choice": {
+        "method": "TrendQuality",
+        "holding": 90
+      }
+    }
+  ]
+}

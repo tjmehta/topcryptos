@@ -1,0 +1,23 @@
+{
+  "date_utc": "2026-09-13",
+  "daily": {
+    "url": "http://dev.local:3038/?d=7&algo=cumulative",
+    "selected": "Cumulative",
+    "chart_lines": 30,
+    "empty_state": false,
+    "experimental_label": false
+  },
+  "hourly": {
+    "url": "http://dev.local:3038/hourly?h=6&algo=hybrid",
+    "selected": "Hybrid",
+    "chart_lines": 30,
+    "empty_state": false,
+    "experimental_label": false
+  },
+  "tests": {
+    "suites": 20,
+    "tests": 163,
+    "snapshots": 11,
+    "passed": true
+  }
+}

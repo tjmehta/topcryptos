@@ -1,0 +1,105 @@
+{
+  "status": "bounded primary-source identity audit; not an exhaustive event registry",
+  "primaryTreatment": "Do not stitch raw price histories or substitute a replacement token as an exit. Split same-symbol reuse. Retain affected trades and unknown outcomes under the frozen scenario rules. Conversion ratios below are metadata for a separately declared position-accounting sensitivity, not permission to change the primary runner.",
+  "dailyBucketWarning": "Daily open_time can be midnight even when the first actual trade is later. Do not assume a listing/reopening-day open is a midnight executable fill. Raw edges below were checked by the identity researcher against public one-minute archives.",
+  "events": [
+    {
+      "oldSymbol": "LUNAUSDT",
+      "oldIdentity": "LUNAUSDT:terra-classic",
+      "newSymbol": "LUNAUSDT",
+      "newIdentity": "LUNAUSDT:terra2",
+      "type": "same-symbol reuse for different asset",
+      "noticePublishedUtc": "2022-05-13T00:28:00Z",
+      "oldTradingCeasedUtc": "2022-05-13T00:40:00Z",
+      "newTradingStartedUtc": "2022-05-31T06:00:00Z",
+      "successorOfOldAsset": "LUNC, NOT Terra2 LUNA",
+      "oldAssetUsdtSuccessorStartedUtc": "2022-09-09T08:00:00Z",
+      "oldAssetBusdSuccessorStartedUtc": "2022-05-30T09:30:00Z",
+      "sources": [
+        "https://www.binance.com/en/support/announcement/detail/514e0ba636e843bda47d5d740b7dadf4",
+        "https://www.binance.com/en/support/announcement/detail/c52fa3c686be4b2b9d5df50de15847ec",
+        "https://www.binance.com/en/support/announcement/binance-will-list-terra-2-0-luna-in-the-innovation-zone-luna-old-renamed-as-lunc-d044a6742e484b77a170111460b0eed3",
+        "https://www.binance.com/en-ZA/support/announcement/detail/1e237033f63945d6b6acaf39f058d152",
+        "https://www.binance.com/en/support/announcement/detail/8d1fe8552fa24726b27caf640cbcefbb"
+      ]
+    },
+    {
+      "oldSymbol": "BTTUSDT",
+      "newSymbol": "BTTCUSDT",
+      "type": "migration and redenomination",
+      "noticePublishedUtc": "2022-01-10T11:15:00Z",
+      "oldTradingCeasedUtc": "2022-01-17T04:00:00Z",
+      "newTradingStartedUtc": "2022-01-25T04:00:00Z",
+      "newUnitsPerOldUnit": "1000",
+      "sources": ["https://www.binance.com/en/support/announcement/detail/2722e6da4f5141dd9b2fb07b5b1f3f75"]
+    },
+    {
+      "oldSymbol": "NPXSUSDT",
+      "newSymbol": "PUNDIXUSDT",
+      "type": "migration and redenomination",
+      "oldScheduledHaltUtc": "2021-04-05T04:00:00Z",
+      "oldLastObservedTradeUtc": "2021-04-05T04:22:05.225Z",
+      "newTradingStartedUtc": "2021-04-09T04:00:00Z",
+      "newUnitsPerOldUnit": "0.001",
+      "uncertainty": "Original scheduling notice currently redirects; indexed schedule differs from observed terminal trade by about22minutes. Do not claim the scheduled time independently verified from currently accessible full text.",
+      "sources": [
+        "https://blog.pundix.com/2021/03/19/npxs-will-be-pundix/",
+        "https://www.binance.com/en/support/announcement/detail/3776ecbf694a4dfda138c0d7262ea4b2"
+      ]
+    },
+    {
+      "oldSymbol": "LENDUSDT",
+      "newSymbol": "AAVEUSDT",
+      "type": "migration and redenomination",
+      "noticePublishedUtc": "2020-10-03T10:59:00Z",
+      "oldTradingCeasedUtc": "2020-10-12T03:00:00Z",
+      "newTradingStartedUtc": "2020-10-15T03:00:00Z",
+      "newUnitsPerOldUnit": "0.01",
+      "sources": ["https://www.binance.com/en/support/announcement/detail/17595222999545348c8acdd5dc41c00a"]
+    },
+    {
+      "oldSymbol": "VENUSDT",
+      "newSymbol": "VETUSDT",
+      "type": "pre-panel migration and redenomination",
+      "oldTradingCeasedUtc": "2018-07-23T04:00:00Z",
+      "newTradingStartedUtc": "2018-07-25T04:00:00Z",
+      "newUnitsPerOldUnit": "100",
+      "note": "Outside main2020-2025 panel; VET can use its own raw history without VEN stitching.",
+      "sources": ["https://www.binance.com/en-NG/support/announcement/detail/360007439672"]
+    },
+    {
+      "oldSymbol": "MATICUSDT",
+      "newSymbol": "POLUSDT",
+      "type": "migration",
+      "noticePublishedUtc": "2024-08-28T09:00:00Z",
+      "oldTradingCeasedUtc": "2024-09-10T03:00:00Z",
+      "newTradingStartedUtc": "2024-09-13T10:00:00Z",
+      "newUnitsPerOldUnit": "1",
+      "sources": ["https://www.binance.com/de/support/announcement/detail/6a6de383727f4659a3050f7982e1620f"]
+    },
+    {
+      "oldSymbol": "RNDRUSDT",
+      "newSymbol": "RENDERUSDT",
+      "type": "migration",
+      "noticePublishedUtc": "2024-07-10T06:30:00Z",
+      "oldTradingCeasedUtc": "2024-07-22T03:00:00Z",
+      "newTradingStartedUtc": "2024-07-26T08:00:00Z",
+      "newUnitsPerOldUnit": "1",
+      "sources": ["https://www.binance.com/en/support/announcement/detail/d1f2ae8d99b24439a7a900caa9bb6b3b"]
+    },
+    {
+      "oldSymbol": "FTMUSDT",
+      "newSymbol": "SUSDT",
+      "type": "migration",
+      "noticePublishedUtc": "2024-12-24T07:00:00Z",
+      "oldTradingCeasedUtc": "2025-01-13T03:00:00Z",
+      "newTradingStartedUtc": "2025-01-16T08:00:00Z",
+      "newUnitsPerOldUnit": "1",
+      "sources": [
+        "https://www.binance.com/en-IN/support/announcement/detail/aec6fcbc84b749eeab6690e6bcac2f3d",
+        "https://www.binance.com/en/support/announcement/detail/30f60a488b224e0b89f24569348da205"
+      ]
+    }
+  ],
+  "rawVerificationPattern": "https://data.binance.vision/data/spot/daily/klines/{SYMBOL}/1m/{SYMBOL}-1m-{YYYY-MM-DD}.zip"
+}

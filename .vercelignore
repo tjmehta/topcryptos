@@ -1,0 +1,11 @@
+# Offline research and local review artifacts; runtime evidence lives in modules/data.
+/research/
+/screenshots/
+**/__tests__/
+/.cache/
+/.codex/
+/.mcp.json
+/.env*
+/dist/
+/scripts/dist/
+*.tsbuildinfo
