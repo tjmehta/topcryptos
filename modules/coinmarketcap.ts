@@ -10,7 +10,7 @@ import path from 'path'
 const USE_FS_CACHE = get('USE_FS_CACHE').asBool()
 const CACHE_STORE_DIR = get('CACHE_STORE_DIR').required().asString()
 const CMC_API_KEY = get('CMC_API_KEY').required().asString()
-const maxCacheDuration = 15 * 60 * 60 * 1000 // 15 min
+const maxCacheDuration = 15 * 60 * 1000 // 15 min
 
 
 export type { Listings }
@@ -52,12 +52,93 @@ async function getJson<T>(path: string, expected: number, init?: { query?: Recor
 }
 
 class CoinMarketCap {
+  private localHourlyRefresh: Promise<void> | null = null
+  private localHourlyRefreshedAt = -Infinity
+
+  /** Keep keyless local development on the same CMC IDs as its saved history. */
+  refreshLocalHourlyCache = async (): Promise<void> => {
+    if (!USE_FS_CACHE || process.env.NODE_ENV === 'production') return
+    if (this.localHourlyRefresh) return this.localHourlyRefresh
+    if (Date.now() - this.localHourlyRefreshedAt < 5 * 60_000) return
+
+    this.localHourlyRefresh = (async () => {
+      // This public endpoint reads existing hourly snapshots. Never request
+      // daily historical fallbacks, which can trigger paid upstream queries.
+      const snapshots = await Promise.all(
+        [0, 5, 10, 15, 20].map(async (hoursSkip) => {
+          const url = new URL('https://topcryptos.io/api/rankings/hourly')
+          url.searchParams.set('hoursSkip', String(hoursSkip))
+          url.searchParams.set('hoursLimit', '5')
+          const response = await fetch(url.toString(), {
+            headers: { accept: 'application/json' },
+            signal: AbortSignal.timeout(12_000),
+          })
+          if (!response.ok) throw new Error(`Hourly refresh status ${response.status}`)
+          const data: Listings[] = await response.json()
+          if (!Array.isArray(data)) throw new Error('Invalid hourly refresh response')
+          return data
+        }),
+      )
+      const now = Date.now()
+      const byHour = new Map<string, { time: number; snapshot: Listings }>()
+      for (const snapshot of snapshots.flat()) {
+        const first = snapshot?.data?.[0]
+        const time = Date.parse(first?.quote?.USD?.last_updated ?? '')
+        // Reject fallback-provider IDs and out-of-range samples; keep actual
+        // quote times intact. A newer retrieval must not relabel old prices.
+        if (!first || !snapshot.data.every((row) => typeof row.id === 'number' && Number.isSafeInteger(row.id) && row.id > 0)
+          || !Number.isFinite(time) || time > now || now - time > 26 * 3_600_000) continue
+        const date = roundToHour(new Date(time))
+        const key = cacheKey('cryptocurrency_listings', { start: 1, limit: 500, hourlyCron: true, date })
+        if ((byHour.get(key)?.time ?? -Infinity) < time) byHour.set(key, { time, snapshot })
+      }
+      for (const [key, { time, snapshot }] of byHour) {
+        const existing = await store.get<Listings>(key)
+        const existingTime = Date.parse(existing?.data?.[0]?.quote?.USD?.last_updated ?? '')
+        const existingIsCmc = existing?.data?.every((row) => typeof row.id === 'number' && Number.isSafeInteger(row.id) && row.id > 0)
+        if (!existingIsCmc || !Number.isFinite(existingTime) || existingTime < time) await store.set(key, snapshot)
+      }
+    })().catch((error: unknown) => {
+      // Existing cached data is still usable when the public endpoint is down.
+      console.warn('Local hourly refresh failed:', error instanceof Error ? error.message : 'Unknown error')
+    }).finally(() => {
+      this.localHourlyRefreshedAt = Date.now()
+      this.localHourlyRefresh = null
+    })
+    return this.localHourlyRefresh
+  }
+
   latestListingsCache: {
     date: Date
     result: Listings
   } | null = null
 
   constructor() {}
+
+  private latestLocalCachedMarkets = async (opts: ListingsOpts): Promise<Listings | null> => {
+    const now = Date.now()
+    const hourMs = 60 * 60 * 1000
+    const currentHour = Math.floor(now / hourMs) * hourMs
+    let latest: Listings | null = null
+    let latestTime = -Infinity
+
+    // The local seed stores the public live snapshot under roundToHour, so a
+    // :30–:59 quote belongs to the next cache key. Check actual quote time:
+    // a rounded-up key is fine, but a future or stale quote is not.
+    for (const offset of [1, 0, -1]) {
+      const snapshot = await this.hourlyCachedMarkets({
+        ...opts, date: new Date(currentHour + offset * hourMs),
+      })
+      const first = snapshot?.data[0]
+      const updated = Date.parse(first?.quote.USD.last_updated ?? '')
+      if (snapshot && typeof first?.id === 'number' && Number.isFinite(updated)
+        && updated <= now && now - updated <= hourMs && updated > latestTime) {
+        latest = snapshot
+        latestTime = updated
+      }
+    }
+    return latest
+  }
 
   hourlyCachedMarkets = async (
     opts: ListingsOpts & { date: Date },
@@ -141,6 +222,14 @@ class CoinMarketCap {
   listings = cache(
     {
       get: async ([opts]) => {
+        // Seeded local history uses CMC IDs. A keyless live request falls back
+        // to Gecko slug IDs, which cannot join that history and leaves hourly
+        // charts entirely unscoreable. Reuse fresh native snapshots locally;
+        // cron writes and production live requests still fetch upstream.
+        if (USE_FS_CACHE && opts.date == null && !opts.hourlyCron) {
+          const local = await this.latestLocalCachedMarkets(opts)
+          if (local != null) return local
+        }
         // @ts-ignore
         const key = cacheKey('cryptocurrency_listings', opts)
         const now = Date.now()

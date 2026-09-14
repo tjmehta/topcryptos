@@ -3,6 +3,7 @@ import BaseErr from 'baseerr'
 import { promises as fs } from 'fs'
 import mkdirp from 'mkdirp'
 import path from 'path'
+import { randomUUID } from 'node:crypto'
 
 class StoreGetError extends BaseErr<{ key: string }> {}
 class StoreSetError extends BaseErr<{ key: string }> {}
@@ -49,9 +50,12 @@ export default class FSStore extends AbstractStartable {
     } catch (err) {
       throw StoreSetError.wrap(err, 'JSON.stringify error', { key })
     }
+    const temporary = path.join(this.path, `${key}.${randomUUID()}.tmp`)
     try {
-      await fs.writeFile(path.join(this.path, key), str)
+      await fs.writeFile(temporary, str)
+      await fs.rename(temporary, path.join(this.path, key))
     } catch (err) {
+      await fs.unlink(temporary).catch(() => {})
       throw StoreSetError.wrap(err, 'writeFile error', { key })
     }
   }

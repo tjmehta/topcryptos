@@ -1,8 +1,7 @@
 const nextJest = require('next/jest')
 
-// `compareDates` (and therefore the day-windowing in processRankings) reads
-// local date parts via getFullYear/getMonth/getDate, so results depend on the
-// machine's timezone. Pin it so tests behave the same everywhere.
+// Pin legacy date utilities and API fixtures. Ranking windows use UTC bucket
+// boundaries and the scorer compares exact timestamps.
 process.env.TZ = 'UTC'
 
 // next/jest wires up the SWC transform, tsconfig `paths`, and CSS/asset stubs.
@@ -16,7 +15,11 @@ const config = {
   coverageDirectory: 'coverage',
   setupFiles: ['dotenv/config', '<rootDir>/jest.setup.js'],
   testEnvironment: 'node',
+  moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
+  // The isolated trading environment includes duplicate Jupyter package names;
+  // neither those packages nor downloaded caches are application modules.
+  modulePathIgnorePatterns: ['<rootDir>/.cache/'],
   // quick-lru is ESM-only (S3Store reaches it via `await import`). node_modules
   // is not transformed by default, so Jest chokes on its `export` statement —
   // allow this one package through the transform.

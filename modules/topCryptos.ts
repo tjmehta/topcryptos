@@ -36,23 +36,9 @@ class TopCryptosApiClient {
     )
 
     const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
-    const seen = new Set<string>()
-    const seenDate = new Set<string>()
-    mergedResponses.forEach((response) => {
-      // @ts-ignore
-      response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split(':')[0] ?? ''
-        const key = `${dateStr}:${item.id}`
-        seenDate.add(dateStr)
-        if (seen.has(key)) {
-          return false
-        }
-        seen.add(key)
-        return true
-      })
-      return response
-    })
-
+    // Preserve complete snapshots so market-cap ranks keep their source
+    // universe. The scorer deduplicates each coin's observations after ranks
+    // are assigned; removing rows here compressed ranks in later snapshots.
     return mergedResponses
   }
   async getHourlyRankings(opts: HourlyRankingsOpts): Promise<RankingsResponse> {
@@ -70,23 +56,8 @@ class TopCryptosApiClient {
     )
 
     const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
-    const seen = new Set<string>()
-    const seenDate = new Set<string>()
-    mergedResponses.forEach((response) => {
-      // @ts-ignore
-      response.data = response.data.filter((item) => {
-        const dateStr = `${item.quote.USD.last_updated}`.split(':')[0] ?? ''
-        const key = `${dateStr}:${item.id}`
-        seenDate.add(dateStr)
-        if (seen.has(key)) {
-          return false
-        }
-        seen.add(key)
-        return true
-      })
-      return response
-    })
-
+    // Repeated quotes are handled per coin by the scorer, without shrinking
+    // the source universe used to establish market-cap ranks.
     return mergedResponses
   }
 }

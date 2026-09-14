@@ -27,6 +27,8 @@ export default async (
   const maxRank = intParam(req.query.maxRank) ?? 500
   const minMarketCap = intParam(req.query.minMarketCap) ?? 10 * 1e6
 
+  if (!USE_COINGECKO_API) await cmc.refreshLocalHourlyCache()
+
   // console.log('query', req.query, {
   //   hoursSkip,
   //   hoursLimit,
