@@ -75,7 +75,7 @@ class ErrorBoundary extends React.Component<
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div
-      className={`${display.variable} ${body.variable} ${mono.variable} min-h-full`}
+      className={`${display.variable} ${body.variable} ${mono.variable} min-h-full font-sans`}
     >
       <TooltipProvider delayDuration={200}>
         <ErrorBoundary>

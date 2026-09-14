@@ -4,7 +4,7 @@ import { createRoot, type Root } from 'react-dom/client'
 import { RankingsChart } from '../RankingsChart'
 import { D3Chart } from '../D3Chart'
 import { MinMaxState } from '@/modules/MinMax'
-import type { Crypto } from '@/modules/processRankings'
+import { NAN_SCORE, type Crypto } from '@/modules/processRankings'
 
 // Observe the imperative renderer's invalidation boundary, without importing
 // D3's ESM graph or simulating SVG geometry in jsdom.
@@ -93,4 +93,18 @@ test('changing exchange data clears stale hover state', () => {
   jest.mocked(props.onHover).mockClear()
   render({ ...props, cryptos: [coin('d'), coin('e')] })
   expect(props.onHover).toHaveBeenCalledWith(null)
+})
+
+test.each(['empty', 'insufficient'] as const)('handles %s history and recovers when quotes return', (kind) => {
+  const props = defaults()
+  jest.mocked(D3Chart).mockClear()
+  act(() => root.render(<RankingsChart {...props}
+    cryptos={kind === 'empty' ? [] : [{ ...coin('a'), score: NAN_SCORE, insufficientHistory: true }]}
+    minMaxes={{ ...props.minMaxes, dateMinMax: new MinMaxState<Date>() }}
+  />))
+  expect(container.querySelector('[role="status"]')?.textContent).toContain('No scoreable history')
+  expect(D3Chart).not.toHaveBeenCalled()
+  render(props)
+  expect(container.querySelector('[role="status"]')).toBeNull()
+  expect(D3Chart).toHaveBeenCalled()
 })

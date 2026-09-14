@@ -1,19 +1,24 @@
 import {
   Crypto,
   CryptoScoreResults,
+  NAN_SCORE,
+  type RankingAlgorithm,
   processRankings,
 } from '@/modules/processRankings'
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
 import { percent, toneClass, trend } from '@/modules/format'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { CoinCard } from '@/components/CoinCard'
+import { CoinOutlook } from '@/components/CoinOutlook'
+import { Button } from '@/components/ui/button'
 import { ShareButton } from '@/components/ShareButton'
 import type { SortingState } from '@tanstack/react-table'
 import { useRouter } from 'next/router'
@@ -27,6 +32,8 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { selectCoinIdsOnExchanges } from '@/modules/exchangeMap'
 import { topCryptos } from '@/modules/topCryptos'
+import { getRankingWindow } from '@/modules/rankingWindow'
+import type { RankingsResponse } from '@/modules/uiTypes'
 import { useMediaQuery } from '@/components/hooks/useMediaQuery'
 
 export const DAILY_WINDOWS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
@@ -34,6 +41,34 @@ export const HOURLY_WINDOWS = [3, 6, 9, 12, 18, 24]
 export const DEFAULT_WINDOW = { daily: 10, hourly: 6 } as const
 
 export type RankingsMode = 'daily' | 'hourly'
+
+export const ALGORITHMS = {
+  classic: {
+    label: 'Classic',
+    description: 'Price momentum, acceleration, and improving market-cap rank.',
+  },
+  momentum: {
+    label: 'Momentum',
+    description: 'Price return from the start to the end of this window.',
+  },
+  'trend-quality': {
+    label: 'Trend quality',
+    description: 'Direction and consistency of the log-price trend.',
+  },
+  cumulative: {
+    label: 'Cumulative',
+    description: 'Rewards earlier gains that hold through this window.',
+  },
+  hybrid: {
+    label: 'Hybrid',
+    description: '50% Momentum + 50% Cumulative, normalized across eligible coins.',
+  },
+} satisfies Record<RankingAlgorithm, { label: string; description: string }>
+
+export function parseAlgorithm(v: string | string[] | undefined): RankingAlgorithm {
+  const value = first(v)
+  return value != null && Object.hasOwn(ALGORITHMS, value) ? value as RankingAlgorithm : 'classic'
+}
 
 /**
  * Query param carrying the window, per mode. Kept distinct (`d` vs `h`) so a
@@ -84,22 +119,16 @@ function hiddenStorageKey(mode: RankingsMode) {
   return `topcryptos:hidden:${mode}`
 }
 
-function startDateFor(mode: RankingsMode, amount: number): Date {
-  const date = new Date()
-  if (mode === 'daily') date.setDate(date.getDate() - (amount - 1))
-  else date.setHours(date.getHours() - (amount - 1))
-  return date
-}
-
-/** The sentence a shared link previews with. Built from URL state only, so the server can emit it too. */
+/** Query-specific copy updates after router hydration; static social previews use defaults. */
 export function shareDescription(
   mode: RankingsMode,
   amount: number,
   highlighted: number,
   exchanges: number,
+  algorithm: RankingAlgorithm = 'classic',
 ): string {
   const unit = mode === 'daily' ? 'days' : 'hours'
-  const parts = [`Cryptocurrencies climbing the market-cap ranks fastest over ${amount} ${unit}`]
+  const parts = [`Cryptocurrency ${ALGORITHMS[algorithm].label.toLowerCase()} rankings over ${amount} ${unit}`]
   if (exchanges > 0) parts.push(`on ${exchanges} exchange${exchanges === 1 ? '' : 's'}`)
   if (highlighted > 0) parts.push(`· ${highlighted} coin${highlighted === 1 ? '' : 's'} highlighted`)
   return parts.join(' ') + '.'
@@ -108,11 +137,11 @@ export function shareDescription(
 export function RankingsView({ mode }: { mode: RankingsMode }) {
   const unit = mode === 'daily' ? 'days' : 'hours'
   const isDesktop = useMediaQuery('(min-width: 768px)')
-  const isWide = useMediaQuery('(min-width: 1280px)')
 
   const [error, setError] = useState<string | null>(null)
-  const [rankings, setRankings] = useState<null | unknown[]>(null)
-  const [results, setResults] = useState<null | CryptoScoreResults>(null)
+  const [loadedRankings, setLoadedRankings] = useState<{ mode: RankingsMode; data: RankingsResponse } | null>(null)
+  const rankings = loadedRankings?.mode === mode ? loadedRankings.data : null
+  const [scored, setScored] = useState<{ key: string; input: RankingsResponse; data: CryptoScoreResults } | null>(null)
   const [exchangeMap, setExchangeMap] = useState<null | ExchangeMap>(null)
 
   const [activeCryptoId, setActiveCryptoId] = useState<string | null>(null)
@@ -126,6 +155,8 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
   const router = useRouter()
   const windowParam = WINDOW_PARAM[mode]
   const amount = parseWindow(mode, router.query[windowParam])
+  const algorithm = parseAlgorithm(router.query.algo)
+  const algorithmInfo = ALGORITHMS[algorithm]
   const selectedExchanges = useMemo(
     () => parseList(router.query.ex),
     [router.query.ex],
@@ -158,6 +189,10 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
       setQuery({ [windowParam]: n === DEFAULT_WINDOW[mode] ? undefined : String(n) }, true),
     [setQuery, windowParam, mode],
   )
+  const setAlgorithm = useCallback(
+    (value: RankingAlgorithm) => setQuery({ algo: value === 'classic' ? undefined : value }, true),
+    [setQuery],
+  )
   const setSelectedExchanges = useCallback(
     (ids: string[]) => setQuery({ ex: ids.length ? ids.join(',') : undefined }),
     [setQuery],
@@ -176,6 +211,17 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
   )
 
   const [hiddenIds, setHiddenIds] = useState<Set<string>>(() => new Set())
+  const scoreKey = `${mode}:${amount}:${algorithm}:${[...hiddenIds].sort().join(',')}`
+  const results = scored?.key === scoreKey && scored.input === rankings ? scored.data : null
+  const [outlookId, setOutlookId] = useState<string | null>(null)
+  const outlookTrigger = useRef<HTMLElement | null>(null)
+  const openOutlook = useCallback((id: string) => {
+    outlookTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    setOutlookId(id)
+  }, [])
+  const restoreOutlookFocus = useCallback(() => {
+    if (outlookTrigger.current?.isConnected) outlookTrigger.current.focus({ preventScroll: true })
+  }, [])
   useEffect(() => {
     try {
       const raw = localStorage.getItem(hiddenStorageKey(mode))
@@ -200,20 +246,36 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
 
   useEffect(() => {
     let cancelled = false
-    const load =
-      mode === 'daily'
+    let pending = false
+    let lastAttempt = -Infinity
+    const reload = () => {
+      if (pending) return
+      pending = true
+      lastAttempt = Date.now()
+      const load = mode === 'daily'
         ? topCryptos.getDailyRankings({})
         : topCryptos.getHourlyRankings({})
-
-    load
-      .then((res) => !cancelled && setRankings(res))
-      .catch((err) => {
-        console.error('getRankings error', err)
-        if (!cancelled) setError('Could not load rankings.')
-      })
+      void load
+        .then((res) => {
+          if (!cancelled) setLoadedRankings({ mode, data: res })
+        })
+        .catch((err) => {
+          console.error('getRankings error', err)
+          if (!cancelled) setError('Could not load rankings.')
+        })
+        .finally(() => { pending = false })
+    }
+    reload()
+    const refreshVisible = () => {
+      if (document.visibilityState !== 'hidden' && Date.now() - lastAttempt >= 5 * 60_000) reload()
+    }
+    const timer = mode === 'hourly' ? window.setInterval(refreshVisible, 5 * 60_000) : null
+    if (mode === 'hourly') document.addEventListener('visibilitychange', refreshVisible)
 
     return () => {
       cancelled = true
+      if (timer != null) window.clearInterval(timer)
+      document.removeEventListener('visibilitychange', refreshVisible)
     }
   }, [mode])
 
@@ -235,8 +297,14 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     if (rankings == null) return
     let cancelled = false
 
-    processRankings(rankings as any, startDateFor(mode, amount), hiddenIds)
-      .then((res) => !cancelled && setResults(res))
+    const { startDate, endDate, intervalMs } = getRankingWindow(mode, amount)
+    processRankings(rankings, startDate, hiddenIds, { algorithm, endDate, intervalMs })
+      .then((res) => {
+        if (!cancelled) {
+          setScored({ key: scoreKey, input: rankings, data: res })
+          setError(null)
+        }
+      })
       .catch((err) => {
         console.error('processRankings error', err)
         if (!cancelled) setError('Could not score rankings.')
@@ -245,7 +313,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     return () => {
       cancelled = true
     }
-  }, [rankings, amount, hiddenIds, mode])
+  }, [rankings, amount, hiddenIds, mode, algorithm, scoreKey])
 
   // --- derived --------------------------------------------------------------
 
@@ -272,18 +340,27 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
     return list
   }, [visibleCryptos, highlightedIds])
 
-  const leader = visibleCryptos[0] ?? null
+  const leader = visibleCryptos.find((coin) => !coin.insufficientHistory && coin.score !== NAN_SCORE) ?? null
 
-  /*
-   * Hourly options are trimmed to what the snapshots actually cover: a window
-   * of N hours needs N cron buckets plus the live one, hence the strict `<`.
-   * Until the data arrives the full list stands so the select never flashes
-   * a bogus "1 hours" entry.
-   */
+  // Snapshot count can overstate coverage when several rows share a bucket.
+  // Use observed UTC hour buckets; scoring separately checks individual gaps.
   const windowOptions = useMemo(() => {
     if (mode === 'daily') return DAILY_WINDOWS
     if (rankings == null) return HOURLY_WINDOWS
-    const opts = HOURLY_WINDOWS.filter((w) => w < rankings.length)
+    const hourMs = 60 * 60 * 1000
+    let oldest = Infinity
+    let newest = -Infinity
+    for (const snapshot of rankings) {
+      for (const row of snapshot.data) {
+        const time = Date.parse(row.quote.USD.last_updated)
+        if (!Number.isFinite(time)) continue
+        const bucket = Math.floor(time / hourMs)
+        oldest = Math.min(oldest, bucket)
+        newest = Math.max(newest, bucket)
+      }
+    }
+    const observedHours = newest - oldest + 1
+    const opts = HOURLY_WINDOWS.filter((w) => w <= observedHours)
     return opts.length > 0 ? opts : HOURLY_WINDOWS.slice(0, 1)
   }, [mode, rankings])
 
@@ -324,7 +401,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
       : 0
   const loading = results == null && error == null
 
-  const description = shareDescription(mode, amount, highlightedIds.size, selectedExchanges.length)
+  const description = shareDescription(mode, amount, highlightedIds.size, selectedExchanges.length, algorithm)
 
   return (
     <div className="min-h-full">
@@ -360,14 +437,15 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               [
                 { href: '/', label: 'Daily', active: mode === 'daily' },
                 { href: '/hourly', label: 'Hourly', active: mode === 'hourly' },
+                { href: '/breakouts', label: 'Breakouts', active: false },
               ] as const
             ).map((tab) => (
               <Link
                 key={tab.href}
-                href={tab.href}
+                href={{ pathname: tab.href, query: router.query }}
                 aria-current={tab.active ? 'page' : undefined}
                 className={cn(
-                  'rounded-full px-3 py-1 font-medium transition-colors',
+                  'inline-flex min-h-11 items-center rounded-full px-2 font-medium transition-colors sm:min-h-8 sm:px-3',
                   tab.active
                     ? 'bg-primary text-primary-foreground'
                     : 'text-muted-foreground hover:text-foreground',
@@ -384,7 +462,25 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
         {/* Thesis line: says what the page is for, and carries the two controls
             inline so the sentence reads as the query being run. */}
         <div className="flex flex-wrap items-center gap-x-2 gap-y-2 pt-5 pb-4 text-base sm:text-lg">
-          <span className="text-muted-foreground">Climbing fastest over</span>
+          <span className="text-muted-foreground">Rank by</span>
+          <Select value={algorithm} onValueChange={(value) => setAlgorithm(parseAlgorithm(value))}>
+            <SelectTrigger
+              aria-label={`Algorithm: ${algorithmInfo.label}`}
+              className="min-h-11 w-auto gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent position="popper" align="start">
+              <SelectGroup>
+              {Object.entries(ALGORITHMS).map(([id, info]) => (
+                <SelectItem key={id} value={id} className="min-h-11">
+                  {info.label}
+                </SelectItem>
+              ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <span className="text-muted-foreground">over</span>
           <Select
             value={String(amount)}
             onValueChange={(v) => {
@@ -394,16 +490,18 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
           >
             <SelectTrigger
               aria-label={`Window: ${amount} ${unit}`}
-              className="h-8 w-auto gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm"
+              className="min-h-11 w-auto gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm"
             >
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent position="popper" align="start">
+              <SelectGroup>
               {windowOptions.map((w) => (
-                <SelectItem key={w} value={String(w)}>
+                <SelectItem key={w} value={String(w)} className="min-h-11">
                   {`${w} ${unit}`}
                 </SelectItem>
               ))}
+              </SelectGroup>
             </SelectContent>
           </Select>
           <span className="text-muted-foreground">on</span>
@@ -429,9 +527,9 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
             <span className="text-xs tracking-wide text-muted-foreground uppercase">
               Leader
             </span>
-            <span className="font-display truncate text-2xl leading-none">
-              {leader.name}
-            </span>
+            <Button variant="ghost" className="min-w-0 justify-start px-0 font-display text-2xl" onClick={() => openOutlook(leader.id)} aria-label={`View outlook for ${leader.name}`}>
+              <span className="truncate">{leader.name}</span>
+            </Button>
             <span
               className={cn(
                 'figure ml-auto shrink-0 text-lg font-medium',
@@ -446,6 +544,27 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
           </div>
         )}
 
+        {results && (
+          <CoinOutlook
+            key={scoreKey}
+            cryptos={visibleCryptos}
+            peers={results.cryptosSortedByScore}
+            highlightedIds={highlightedIds}
+            selectedId={outlookId}
+            onSelect={openOutlook}
+            onClose={() => setOutlookId(null)}
+            restoreFocus={restoreOutlookFocus}
+            rankings={rankings!}
+            mode={mode}
+            amount={amount}
+            algorithm={algorithm}
+            algorithmLabel={algorithmInfo.label}
+            hiddenCoins={hiddenIds.size > 0}
+            exchangeFiltered={selectedExchanges.length > 0}
+            isDesktop={isDesktop}
+          />
+        )}
+
         {/* The table is given the larger share: it is the column that gains
             information with width (each ~100px brings back a real metric),
             whereas the chart is legible well below half the page. */}
@@ -456,7 +575,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
             // items-start this panel's border/background stretched down to
             // match the much-taller scrolling table next to it — a big empty
             // "mat" below the chart and legend.
-            className="panel rounded-xl border border-border/50 p-3 shadow-2xl sm:p-5"
+            className="panel rounded-xl border border-border/50 p-3 sm:p-5"
           >
             {loading ? (
               <Skeleton className="h-[300px] w-full rounded-lg sm:h-[380px]" />
@@ -465,8 +584,8 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                 cryptos={visibleCryptos}
                 minMaxes={results.minMaxes}
                 points={amount}
-                // 500 hairlines is texture, not information, on a phone.
-                maxSeries={isWide ? undefined : isDesktop ? 120 : 30}
+                // Keep the chart readable; the table retains every eligible coin.
+                maxSeries={isDesktop ? 120 : 30}
                 highlightedIds={highlightedIds}
                 hiddenIds={hiddenIds}
                 activeCryptoId={activeCryptoId}
@@ -478,9 +597,9 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
             {/* One line of onboarding stays visible; everything else the old
                 explainer said now lives on the thing it explains — the legend,
                 the Score header tooltip, the New badge, the hover card. */}
-            <p className="mt-4 border-t border-border/50 pt-3 text-xs text-muted-foreground">
-              <span className="text-foreground font-medium">Score</span> = how fast a coin's
-              price, market cap, and rank climbed over the whole window, not just today.
+            <p className="mt-4 border-t border-border/50 pt-3 text-sm leading-relaxed text-muted-foreground">
+              <span className="text-foreground font-medium">{algorithmInfo.label}.</span>{' '}
+              {algorithmInfo.description}
             </p>
           </section>
 
@@ -536,12 +655,14 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
               // axes need to live on the one div, via containerClassName.
               <RankingsTable
                 data={rows}
+                scoreDescription={algorithmInfo.description}
                 sorting={sorting}
                 onSortingChange={setSorting}
                 highlightedIds={highlightedIds}
                 hiddenIds={hiddenIds}
                 onToggleHighlight={toggleHighlight}
                 onToggleHidden={toggleHidden}
+                onViewOutlook={openOutlook}
                 onHover={setActiveCryptoId}
                 containerClassName="panel max-h-[70vh] overflow-y-auto rounded-xl border border-border/50 shadow-2xl"
               />
@@ -555,6 +676,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                       hidden={hiddenIds.has(crypto.id)}
                       onToggleHighlight={toggleHighlight}
                       onToggleHidden={toggleHidden}
+                onViewOutlook={openOutlook}
                     />
                   </li>
                 ))}
@@ -584,7 +706,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
             alt=""
             width={44}
             height={44}
-            className="size-11 shrink-0 rounded-full transition-transform group-hover:rotate-[12deg]"
+            className="size-11 shrink-0 rounded-full"
           />
           <span className="min-w-0 flex-1">
             <span className="block text-[10px] tracking-wide text-muted-foreground uppercase">

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 
 /**
- * Copies the current URL — which carries the window, filter, sort and
+ * Copies the current URL — which carries the algorithm, window, filter, sort and
  * highlighted coins — so the link reproduces exactly this view. On devices
  * with a native share sheet (phones, iPads) that sheet is used instead, since
  * it lands the link straight in Messages/Telegram rather than a clipboard.

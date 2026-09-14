@@ -62,7 +62,7 @@ export function ExchangeFilter({
               : `Filter by exchange: ${label}`
           }
           disabled={disabled || exchanges.length === 0}
-          className="h-8 max-w-[15rem] justify-between gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm font-normal"
+          className="min-h-11 max-w-[15rem] justify-between gap-1.5 rounded-full border-border/70 bg-secondary/50 px-3 text-sm font-normal"
         >
           <span className="truncate">
             {exchanges.length === 0 ? 'Exchanges unavailable' : label}

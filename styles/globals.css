@@ -15,6 +15,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  color-scheme: dark;
   /* ---- surfaces -------------------------------------------------------- */
   /* Page sits cooler and darker than the panels so cards read as lifted. */
   --background: oklch(0.28 0.028 268);
@@ -135,7 +136,7 @@
     );
     background-attachment: fixed;
     min-height: 100%;
-    @apply text-foreground antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
   }
 

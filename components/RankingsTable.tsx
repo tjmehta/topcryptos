@@ -50,22 +50,26 @@ type Meta = { align?: 'right'; priority?: '2xl' | '3xl' | '4xl'; flex?: boolean 
  */
 export function RankingsTable({
   data,
+  scoreDescription,
   sorting,
   onSortingChange,
   highlightedIds,
   hiddenIds,
   onToggleHighlight,
   onToggleHidden,
+  onViewOutlook,
   onHover,
   containerClassName,
 }: {
   data: Crypto[]
+  scoreDescription: string
   sorting: SortingState
   onSortingChange: OnChangeFn<SortingState>
   highlightedIds: Set<string>
   hiddenIds: Set<string>
   onToggleHighlight: (id: string) => void
   onToggleHidden: (id: string) => void
+  onViewOutlook?: (id: string) => void
   onHover: (id: string | null) => void
   containerClassName?: string
 }) {
@@ -119,7 +123,7 @@ export function RankingsTable({
         header: 'Coin',
         meta: { flex: true } as Meta,
         cell: ({ row }) => (
-          <div className="flex min-w-0 items-center gap-2">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-2">
             <a
               href={cmcUrl(row.original.slug)}
               target="_blank"
@@ -133,6 +137,7 @@ export function RankingsTable({
             <span className="figure shrink-0 text-xs text-muted-foreground">
               {row.original.symbol}
             </span>
+            {onViewOutlook && <button type="button" className="min-h-8 text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground" onClick={() => onViewOutlook(row.original.id)} aria-label={`View outlook for ${row.original.name}`}>Outlook</button>}
           </div>
         ),
       },
@@ -171,8 +176,7 @@ export function RankingsTable({
                 </button>
               </TooltipTrigger>
               <TooltipContent className="max-w-[16rem] text-left">
-                How fast a coin's price, market cap, and rank climbed across the whole
-                window, as a percentile against every other coin. Not just today's move.
+                {scoreDescription}
               </TooltipContent>
             </Tooltip>
           </span>
@@ -182,7 +186,7 @@ export function RankingsTable({
             <Tooltip>
               <TooltipTrigger asChild>
                 <Badge variant="outline" className="cursor-default text-muted-foreground">
-                  New
+                  Insufficient history
                 </Badge>
               </TooltipTrigger>
               <TooltipContent className="max-w-[16rem] text-left">
@@ -275,7 +279,7 @@ export function RankingsTable({
         size: 40,
       },
     ],
-    [highlightedIds, hiddenIds, onToggleHighlight, onToggleHidden],
+    [highlightedIds, hiddenIds, onToggleHighlight, onToggleHidden, onViewOutlook, scoreDescription],
   )
 
   const table = useReactTable({

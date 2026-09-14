@@ -26,12 +26,14 @@ export function CoinCard({
   hidden,
   onToggleHighlight,
   onToggleHidden,
+  onViewOutlook,
 }: {
   crypto: Crypto
   highlighted: boolean
   hidden: boolean
   onToggleHighlight: (id: string) => void
   onToggleHidden: (id: string) => void
+  onViewOutlook?: (id: string) => void
 }) {
   const pricePct = crypto.total?.pricePct ?? 0
   const glyph = trend(pricePct)
@@ -81,17 +83,18 @@ export function CoinCard({
           </span>
           <span className="figure text-xs text-muted-foreground">
             {crypto.insufficientHistory
-              ? 'too new to score'
+              ? 'insufficient history'
               : `score ${crypto.score === NAN_SCORE ? '—' : score(crypto.score)}`}
           </span>
         </div>
+        {onViewOutlook && <Button variant="ghost" className="mt-1 min-h-11 px-0 text-xs" onClick={() => onViewOutlook(crypto.id)} aria-label={`View outlook for ${crypto.name}`}>View outlook →</Button>}
       </div>
 
       <div className="flex shrink-0 flex-col items-center gap-1">
         <Button
           variant="ghost"
           size="icon"
-          className="size-8"
+          className="size-11"
           aria-pressed={highlighted}
           aria-label={
             highlighted
@@ -115,7 +118,7 @@ export function CoinCard({
             <Button
               variant="ghost"
               size="icon"
-              className="size-8"
+              className="size-11"
               aria-label={`More actions for ${crypto.name}`}
             >
               <MoreVertical className="size-4 text-muted-foreground" />

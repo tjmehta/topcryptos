@@ -12,7 +12,6 @@ import {
 import { MinMaxState } from './MinMax'
 import type { RankingsResponse } from './uiTypes'
 import SortedList from './SortedList'
-import { compareDates } from './compareDates'
 import { last } from './../modules/last'
 
 /**
@@ -40,6 +39,14 @@ export const MAX_SCORE = 1000
  */
 export const MIN_QUOTES_TO_SCORE = 3
 export const MIN_COVERAGE_TO_SCORE = 0.5
+
+export type RankingAlgorithm = 'classic' | 'momentum' | 'trend-quality' | 'cumulative' | 'hybrid'
+export type ScoringOptions = {
+  algorithm?: RankingAlgorithm
+  endDate?: Date
+  /** Expected snapshot cadence, in milliseconds, for freshness/density checks. */
+  intervalMs?: number
+}
 
 export type Quote = {
   id: string
@@ -132,6 +139,7 @@ export async function processRankings(
   rankingsList: RankingsResponse,
   startDate: Date,
   disabledCryptoIds: Set<string>,
+  options: ScoringOptions = {},
 ): Promise<CryptoScoreResults> {
   const minMaxes = {
     dateMinMax: new MinMaxState<Date>(),
@@ -142,51 +150,14 @@ export async function processRankings(
     scoreMinMax: new MinMaxState<number>(),
   }
 
-  const quotesGroupedByCrypto = from(rankingsList).pipe(
-    mergeMap((rankings) => {
-      rankings.data.sort((a, b) => {
-        if (a.quote.USD.market_cap > b.quote.USD.market_cap) return -1
-        if (a.quote.USD.market_cap < b.quote.USD.market_cap) return 1
-        return 0
-      })
-      return from(rankings.data).pipe(
-        map((rankingData, index) => {
-          const { id, name, symbol, slug, quote: _quote } = rankingData
-          const { price, volume_24h, market_cap, last_updated } = _quote.USD
-
-          const quote: Quote = {
-            id: id.toString(),
-            name,
-            symbol,
-            slug,
-            date: new Date(last_updated),
-            price,
-            marketCap: market_cap,
-            dayVolume: volume_24h,
-            rankByMarketCap: index + 1,
-          }
-          return quote
-        }),
-        filter((quote) =>
-          compareDates(startDate, quote.date, (startDay, quoteDay) => {
-            if (startDay.year > quoteDay.year) return false
-            if (startDay.year < quoteDay.year) return true
-            // year === year
-            if (startDay.month > quoteDay.month) return false
-            if (startDay.month < quoteDay.month) return true
-            // month === month
-            if (startDay.date > quoteDay.date) return false
-            // date <= date
-            return true
-          }),
-        ),
-        tap((quote) => {
-          if (!disabledCryptoIds.has(quote.id)) {
-            minMaxes.dateMinMax.compare(quote.date)
-            minMaxes.rankByMarketCapMinMax.compare(quote.rankByMarketCap)
-          }
-        }),
-      )
+  const quotesGroupedByCrypto = from(
+    normalizedQuotes(rankingsList, startDate, options.endDate),
+  ).pipe(
+    tap((quote) => {
+      if (!disabledCryptoIds.has(quote.id)) {
+        minMaxes.dateMinMax.compare(quote.date)
+        minMaxes.rankByMarketCapMinMax.compare(quote.rankByMarketCap)
+      }
     }),
     groupBy((quote) => quote.id),
   )
@@ -277,9 +248,9 @@ export async function processRankings(
             name,
             symbol,
             slug,
-            pricePctAccel: delta('pricePctVelocity', pair) / duration,
+            pricePctAccel: stableDifference(pair[1].pricePctVelocity, pair[0].pricePctVelocity) / duration,
             marketCapPctAccel: delta('marketCapPctVelocity', pair) / duration,
-            rankAccel: delta('rankVelocity', pair) / duration,
+            rankAccel: stableDifference(pair[0].rankVelocity, pair[1].rankVelocity) / duration,
             duration,
           }
         }),
@@ -316,10 +287,16 @@ export async function processRankings(
           let pricePctAccelsSum = 0
           let rankAccelsSum = 0
 
+          let priceAccelMagnitude = 0
+          let rankAccelMagnitude = 0
           accels.forEach((accel) => {
             pricePctAccelsSum += accel.pricePctAccel
             rankAccelsSum += accel.rankAccel
+            priceAccelMagnitude += Math.abs(accel.pricePctAccel)
+            rankAccelMagnitude += Math.abs(accel.rankAccel)
           })
+          pricePctAccelsSum = removeRoundoff(pricePctAccelsSum, priceAccelMagnitude)
+          rankAccelsSum = removeRoundoff(rankAccelsSum, rankAccelMagnitude)
 
           if (!disabledCryptoIds.has(id)) {
             minMaxes.pricePctAccelsSumMinMax.compare(pricePctAccelsSum)
@@ -362,12 +339,9 @@ export async function processRankings(
   const w3 = 0.1 * MAX_SCORE
 
   /*
-   * Coverage is measured against the longest span any coin achieved, not the
-   * raw min-to-max of all dates. When data is healthy they're identical — some
-   * large cap always spans the whole window. They diverge when no coin *can*
-   * span it: a stalled cron leaves every coin with the same truncated history,
-   * and dividing by the theoretical window would gate the entire board as
-   * "insufficient" even though every coin is equally, maximally covered.
+   * Legacy three-argument callers measure coverage against the longest coin
+   * history. An explicit endDate instead measures the requested window, so a
+   * globally truncated feed cannot masquerade as complete coverage.
    */
   let fullSpanMinutes = 0
   Object.keys(sparseCryptosById).forEach((id) => {
@@ -376,6 +350,20 @@ export async function processRankings(
       fullSpanMinutes = Math.max(fullSpanMinutes, duration)
     }
   })
+
+  const requestedSpan = options.endDate == null
+    ? null
+    : (options.endDate.valueOf() - startDate.valueOf()) / 60000
+  if (requestedSpan != null) fullSpanMinutes = Math.max(0, requestedSpan)
+  const cadence = options.intervalMs
+  if (cadence != null && (!Number.isFinite(cadence) || cadence <= 0)) {
+    throw new Error('intervalMs must be a positive finite duration')
+  }
+  const algorithm = options.algorithm ?? 'classic'
+  const candidateValues: Record<string, number> = {}
+  const candidatePercentiles = new SignedPercentiles()
+  const cumulativeValues: Record<string, number> = {}
+  const cumulativePercentiles = new SignedPercentiles()
 
   /*
    * Pass 1 — eligibility and coverage-adjusted velocity.
@@ -406,9 +394,23 @@ export async function processRankings(
         ? 0
         : Math.min(1, total.duration / fullSpanMinutes)
     sparseCrypto.coverage = coverage
+    const observations = quotes ?? []
+    const expectedCount = cadence == null ? 0 : Math.floor(fullSpanMinutes * 60000 / cadence) + 1
+    const sparse = cadence != null && (
+      observations.length < Math.ceil(expectedCount * MIN_COVERAGE_TO_SCORE) ||
+      observations.some((quote, i) => i > 0 && quote.date.valueOf() - observations[i - 1].date.valueOf() > 2 * cadence) ||
+      (options.endDate != null && observations.length > 0 &&
+        options.endDate.valueOf() - last(observations)!.date.valueOf() > cadence)
+    )
     sparseCrypto.insufficientHistory =
-      (quotes?.length ?? 0) < MIN_QUOTES_TO_SCORE ||
-      coverage < MIN_COVERAGE_TO_SCORE
+      observations.length < MIN_QUOTES_TO_SCORE ||
+      coverage < MIN_COVERAGE_TO_SCORE || sparse
+    candidateValues[id] = algorithm === 'trend-quality'
+      ? trendQuality(observations)
+      : total?.pricePct ?? NaN
+    if (algorithm === 'cumulative' || algorithm === 'hybrid') {
+      cumulativeValues[id] = cumulativeLogStrength(observations, fullSpanMinutes * 60000)
+    }
 
     if (total != null) {
       adjustedVelocityById[id] = total.pricePctVelocity * coverage
@@ -426,6 +428,8 @@ export async function processRankings(
       velocityPercentiles.add(adjustedVelocityById[id])
       pricePctAccelsSumPercentiles.add(sparseCrypto.pricePctAccelsSum)
       rankAccelsSumPercentiles.add(sparseCrypto.rankAccelsSum)
+      candidatePercentiles.add(candidateValues[id])
+      cumulativePercentiles.add(cumulativeValues[id])
     }
   })
 
@@ -451,7 +455,12 @@ export async function processRankings(
           w2 * pricePctAccelsSumPercentiles.rank(pricePctAccelsSum) +
           w3 * rankAccelsSumPercentiles.rank(rankAccelsSum)) /
         (w1 + w2 + w3)
-      score = scoreRatio * MAX_SCORE
+      const momentumRank = candidatePercentiles.rank(candidateValues[id])
+      const cumulativeRank = cumulativePercentiles.rank(cumulativeValues[id])
+      score = (algorithm === 'classic' ? scoreRatio
+        : algorithm === 'cumulative' ? cumulativeRank
+        : algorithm === 'hybrid' ? (momentumRank + cumulativeRank) / 2
+        : momentumRank) * MAX_SCORE
     } else {
       score = NaN
     }
@@ -469,6 +478,9 @@ export async function processRankings(
     comparator: (a, b) => {
       if (a.score < b.score) return -1
       if (a.score > b.score) return 1
+      // SortedList inserts descending; the lexical ID breaks exact score ties.
+      if (a.id < b.id) return 1
+      if (a.id > b.id) return -1
       return 0
     },
   })
@@ -546,6 +558,104 @@ export async function processRankings(
   //   minMaxes,
   // })
   return { cryptosSortedByScore, cryptosById, minMaxes }
+}
+
+/** Prepare immutable, chronological measurements before any derivatives. */
+function normalizedQuotes(rankingsList: RankingsResponse, startDate: Date, endDate?: Date): Quote[] {
+  const start = startDate.valueOf()
+  const end = endDate?.valueOf() ?? Infinity
+  if (!Number.isFinite(start) || (endDate != null && !Number.isFinite(end)) || end < start) {
+    throw new Error('Invalid scoring window')
+  }
+  const byMeasurement = new Map<string, Quote | null>()
+  for (const snapshot of rankingsList) {
+    const rows = snapshot.data.slice().sort((a, b) => {
+      const capDifference = b.quote.USD.market_cap - a.quote.USD.market_cap
+      if (Number.isFinite(capDifference) && capDifference !== 0) return capDifference
+      return String(a.id) < String(b.id) ? -1 : String(a.id) > String(b.id) ? 1 : 0
+    })
+    rows.forEach((row, index) => {
+      const value = row.quote.USD
+      const timestamp = Date.parse(value.last_updated)
+      if (!Number.isFinite(timestamp) || timestamp < start || timestamp > end ||
+        !Number.isFinite(value.price) || value.price <= 0 ||
+        !Number.isFinite(value.market_cap) || value.market_cap <= 0) return
+      const quote: Quote = {
+        id: String(row.id), name: row.name, symbol: row.symbol, slug: row.slug,
+        date: new Date(timestamp), price: value.price, marketCap: value.market_cap,
+        dayVolume: value.volume_24h,
+        rankByMarketCap: Number.isInteger(row.cmc_rank) && row.cmc_rank > 0 ? row.cmc_rank : index + 1,
+      }
+      const key = `${quote.id}:${timestamp}`
+      const previous = byMeasurement.get(key)
+      if (!byMeasurement.has(key)) byMeasurement.set(key, quote)
+      // Conflicting observations at one timestamp cannot establish a price path.
+      // Drop that measurement instead of choosing a favorable or input-order value.
+      else if (previous != null && (previous.price !== quote.price ||
+        previous.marketCap !== quote.marketCap || previous.rankByMarketCap !== quote.rankByMarketCap)) {
+        byMeasurement.set(key, null)
+      }
+    })
+  }
+  return [...byMeasurement.values()].filter((quote): quote is Quote => quote != null)
+    .sort((a, b) => a.date.valueOf() - b.date.valueOf() || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
+}
+
+function removeRoundoff(value: number, scale: number): number {
+  if (!Number.isFinite(value) || !Number.isFinite(scale)) return value
+  return Math.abs(value) <= 32 * Number.EPSILON * scale ? 0 : value
+}
+
+function stableDifference(next: number, previous: number): number {
+  return removeRoundoff(next - previous, Math.abs(next) + Math.abs(previous))
+}
+
+/** Signed OLS log-price slope per day, discounted by its goodness of fit. */
+function trendQuality(quotes: Quote[]): number {
+  if (quotes.length < 2) return NaN
+  const origin = quotes[0].date.valueOf()
+  const xs = quotes.map((quote) => (quote.date.valueOf() - origin) / 86400000)
+  const logOrigin = Math.log(quotes[0].price)
+  const ys = quotes.map((quote) => Math.log(quote.price) - logOrigin)
+  const meanX = xs.reduce((sum, value) => sum + value, 0) / xs.length
+  const meanY = ys.reduce((sum, value) => sum + value, 0) / ys.length
+  let xx = 0, xy = 0, yy = 0
+  for (let i = 0; i < xs.length; i++) {
+    const x = xs[i] - meanX, y = ys[i] - meanY
+    xx += x * x
+    xy += x * y
+    yy += y * y
+  }
+  return xx > 0 && yy > 0 ? (xy / xx) * Math.min(1, xy * xy / (xx * yy)) : 0
+}
+
+/**
+ * Average gain sustained through a window: integrate log price relative to the
+ * first observed price using trapezoids and actual elapsed time. Equal endpoint
+ * returns can differ when one move happened early and held. This is not a sum
+ * of adjacent returns (which would reproduce endpoint momentum).
+ * Missing edge coverage contributes no area; do not extend prices past observed history.
+ */
+export function cumulativeLogStrength(
+  quotes: readonly Pick<Quote, 'date' | 'price'>[],
+  windowSpanMs: number,
+): number {
+  if (quotes.length < 2 || !Number.isFinite(windowSpanMs) || windowSpanMs <= 0) return NaN
+  const origin = Math.log(quotes[0].price)
+  if (!Number.isFinite(origin)) return NaN
+  let area = 0, magnitude = 0
+  for (let i = 1; i < quotes.length; i++) {
+    const before = quotes[i - 1], after = quotes[i]
+    const elapsed = after.date.valueOf() - before.date.valueOf()
+    const left = Math.log(before.price) - origin, right = Math.log(after.price) - origin
+    if (!Number.isFinite(elapsed) || elapsed <= 0 || !Number.isFinite(left) || !Number.isFinite(right)) return NaN
+    const contribution = (left + right) / 2 * elapsed
+    area += contribution
+    magnitude += Math.abs(contribution)
+  }
+  // A cancelling path must stay zero instead of gaining a full signed rank
+  // from tiny log/subtraction errors. Reuse Classic's relative dust guard.
+  return removeRoundoff(area, magnitude) / windowSpanMs
 }
 
 function delta<K extends string, R extends Record<K, number>>(

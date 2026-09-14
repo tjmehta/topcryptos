@@ -136,6 +136,16 @@ export function RankingsChart({
     }
   }, [activeCryptoId, renderKey])
 
+  if (drawn.length === 0 ||
+    !Number.isFinite(minMaxes.dateMinMax.min?.getTime()) ||
+    !Number.isFinite(minMaxes.dateMinMax.max?.getTime())) {
+    return (
+      <p role="status" className="py-12 text-center text-sm text-muted-foreground">
+        No scoreable history in this window. Try a longer interval or different filters.
+      </p>
+    )
+  }
+
   return (
     <figure ref={figureRef} className="relative m-0">
       <D3Chart renderKey={renderKey} aspect={0.78} minHeight={280}>
@@ -224,11 +234,15 @@ export function RankingsChart({
                 ? 'var(--gain)'
                 : 'var(--loss)'
 
+          // Top-only interval views can contain thirty near-maximum scores.
+          // Cap visible strokes by plot width; keep the separate 16px hit paths.
+          const maxStroke = width < 400 ? 3 : 5
           const widthFor = (c: Crypto) =>
-            c.score >= 0
-              ? 1 + 13 * emphasis(c.score, minMaxes.scoreMinMax.max, 4)
-              : 0.75 +
-                6.25 * emphasis(Math.abs(c.score), Math.abs(minMaxes.scoreMinMax.min), 4)
+            0.75 + (maxStroke - 0.75) * emphasis(
+              Math.abs(c.score),
+              c.score >= 0 ? minMaxes.scoreMinMax.max : Math.abs(minMaxes.scoreMinMax.min),
+              4,
+            )
 
           const opacityFor = (c: Crypto) => {
             if (highlightedIds.has(c.id)) return 1
@@ -276,12 +290,13 @@ export function RankingsChart({
           /*
            * Hit layer. A 1px stroke is unhittable with a finger and awkward with
            * a mouse, so every series gets a transparent 16px-wide companion path
-           * on top. Drawn strongest-first so the most prominent line wins ties.
+           * on top. Match the visible stacking order: SVG hit-tests the last
+           * path first, so strong and starred lines must also come last here.
            */
           svg
             .append('g')
             .selectAll('path.rank-hit')
-            .data(drawn, (c: any) => c.id)
+            .data(ordered, (c: any) => c.id)
             .join('path')
             .attr('class', 'rank-hit')
             .attr('d', path)
@@ -599,6 +614,7 @@ export function RankingsChart({
             let pointerInside = false
             let pointerY = NaN
             let keyed = false // last move came from the keyboard
+            let press: { id: number; x: number; y: number; dragged: boolean } | null = null
             const goTo = (f: number, y = items[f]?.y) => {
               if (f < 0 || f >= items.length) return
               cursor = f
@@ -644,6 +660,10 @@ export function RankingsChart({
 
             hit
               .on('pointerenter pointermove', function (evt: any) {
+                if (press && press.id === evt.pointerId &&
+                  Math.hypot(evt.clientX - press.x, evt.clientY - press.y) > 6) {
+                  press.dragged = true
+                }
                 const [, my] = pointer(evt, svg.node())
                 pointerInside = true
                 scrubbingRef.current = side
@@ -655,11 +675,26 @@ export function RankingsChart({
                 announce()
               })
               .on('pointerleave', function () {
+                press = null
                 pointerInside = false
                 pointerY = NaN
                 scrubbingRef.current = null
                 leave()
                 ;(this as SVGRectElement).blur()
+              })
+              .on('pointerdown', function (evt: PointerEvent) {
+                if (!evt.isPrimary || evt.button !== 0) return
+                press = { id: evt.pointerId, x: evt.clientX, y: evt.clientY, dragged: false }
+              })
+              .on('pointercancel', () => { press = null })
+              .on('pointerup', function (evt: PointerEvent) {
+                const started = press
+                press = null
+                if (!started || started.id !== evt.pointerId || evt.button !== 0 ||
+                  started.dragged || Math.hypot(evt.clientX - started.x, evt.clientY - started.y) > 6) return
+                // Activate on release: iPad can withhold the synthesized click
+                // when hover opens the lens/card. Scrubbing is not a click.
+                if (cursor >= 0) onToggleHighlight(items[cursor].crypto.id)
               })
               .on('focus', () => {
                 if (pointerInside || cursor >= 0) return
@@ -698,9 +733,9 @@ export function RankingsChart({
                 announce()
               })
               .on('click', function (evt: any) {
-                const [, my] = pointer(evt, svg.node())
-                const f = cursor >= 0 ? cursor : nearestIndex(my)
-                if (f >= 0) onToggleHighlight(items[f].crypto.id)
+                // Pointer activation already happened on pointerup. Keep
+                // assistive-technology clicks, which have no pointer sequence.
+                if (evt.detail === 0 && cursor >= 0) onToggleHighlight(items[cursor].crypto.id)
               })
 
             return { mark }
