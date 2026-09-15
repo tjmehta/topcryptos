@@ -225,7 +225,7 @@ class CoinMarketCap {
         // Seeded local history uses CMC IDs. A keyless live request falls back
         // to Gecko slug IDs, which cannot join that history and leaves hourly
         // charts entirely unscoreable. Reuse fresh native snapshots locally;
-        // cron writes and production live requests still fetch upstream.
+        // cron writes and S3-backed live requests still fetch upstream.
         if (USE_FS_CACHE && opts.date == null && !opts.hourlyCron) {
           const local = await this.latestLocalCachedMarkets(opts)
           if (local != null) return local
