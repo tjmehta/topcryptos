@@ -137,6 +137,7 @@ export function shareDescription(
 export function RankingsView({ mode }: { mode: RankingsMode }) {
   const unit = mode === 'daily' ? 'days' : 'hours'
   const isDesktop = useMediaQuery('(min-width: 768px)')
+  const isWide = useMediaQuery('(min-width: 1280px)')
 
   const [error, setError] = useState<string | null>(null)
   const [loadedRankings, setLoadedRankings] = useState<{ mode: RankingsMode; data: RankingsResponse } | null>(null)
@@ -584,8 +585,10 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
                 cryptos={visibleCryptos}
                 minMaxes={results.minMaxes}
                 points={amount}
-                // Keep the chart readable; the table retains every eligible coin.
-                maxSeries={isDesktop ? 120 : 30}
+                // A wide plot has room for every series and its rank rails
+                // then read 1…500. Narrower screens keep the strongest movers;
+                // the table retains every eligible coin.
+                maxSeries={isWide ? undefined : isDesktop ? 120 : 30}
                 highlightedIds={highlightedIds}
                 hiddenIds={hiddenIds}
                 activeCryptoId={activeCryptoId}

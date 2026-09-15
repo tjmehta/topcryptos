@@ -236,7 +236,7 @@ export function RankingsChart({
 
           // Top-only interval views can contain thirty near-maximum scores.
           // Cap visible strokes by plot width; keep the separate 16px hit paths.
-          const maxStroke = width < 400 ? 3 : 5
+          const maxStroke = width < 400 ? 4 : 8
           const widthFor = (c: Crypto) =>
             0.75 + (maxStroke - 0.75) * emphasis(
               Math.abs(c.score),
