@@ -29,3 +29,15 @@ Two independent reviews covered breaking changes and testing/integration. Neithe
 These checks establish application behavior and data availability. They do not establish superior trading returns or optimal Radar thresholds. Coinbase/Kraken market models remain unvalidated, with forecast probabilities withheld. Historical outcomes remain scoped to their matched data and interval.
 
 This follow-up changes only a comment and this review record. Local `.codex/` and `.mcp.json` configuration is excluded from the commit.
+
+## Dependency follow-up — 2026-09-15 05:20 UTC
+
+The push of review commit `edb17a3` exposed four existing Dependabot alerts. Updated Next.js from 16.3.0 to 16.3.5, its sharp dependency from 0.35.3 to 0.35.4, and development dependency js-yaml from 3.15.1 to 3.15.2. No new direct dependencies or overrides were added.
+
+2. Runtime Next.js alerts 170/171: the installed version was below the 16.3.3 patch boundary, including the [AVIF image optimization advisory](https://github.com/vercel/next.js/security/advisories/GHSA-2xp9-vwfh-vxw4). Resolved by the Next.js patch update.
+3. Runtime sharp alert 173: installed 0.35.3 was below patched 0.35.4. Resolved through the updated dependency tree.
+4. Development js-yaml alert 172: installed 3.15.1 was below patched 3.15.2. Updated within its existing dependency range.
+
+After the updates: npm audit reported zero vulnerabilities; all 26 suites / 226 tests / 11 snapshots and typecheck passed again; the local production build completed successfully with Next.js 16.3.5. The production follow-up must deploy this lockfile before these fixes are considered live.
+
+Independent dependency review found no actionable issues: changes are limited to those packages and matching transitive helpers/binaries, with compatible Node requirements and React peers.
