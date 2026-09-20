@@ -109,3 +109,9 @@ Also corrected live-cache lifetime from accidental 15 hours to documented 15 min
 Validation: 226 tests/11 snapshots and TypeScript passed. Live 6-hour Classic showed 120 rendered chart paths with no empty-history message. Screenshot: `screenshots/review-hourly-cache-recovery.png`. New tests exercise refresh deduplication/expiry, native identity, quote preservation, failure backoff, production guards, cache expiry and client polling cleanup. No cron mutation or deployment was performed.
 
 The isolated production build also passed after the fix. Changes remain local; no deployment or cron schedule change.
+
+### Dead planner cleanup, 2026-09-20
+
+**Observed behavior:** CoinOutlook uses `/api/outlook-evidence` and the separate coin-outlook ledger. Removed the unused NativeExitPanel, its tests and stale RankingsView test mock, and its native-exit selector/JSON. The active Coinbase/Kraken candle path on `/breakouts` remains separate and unchanged. Historical native-exit export and verification scripts remain archived; regenerate their app artifact with `export.cjs` before running the historical verifier.
+
+Validation: TypeScript and 222 tests/11 snapshots passed in an isolated copy with inert `.env.test.local` values. `NODE_ENV=production npm run build -- --webpack` passed with inert credentials and no production env files. `npm run lint` failed because the unchanged script calls `next lint`, removed in installed Next.js 16.3.5. No lint migration, push, deployment, cache or cron change was made.

@@ -23,7 +23,6 @@ jest.mock('@/modules/topCryptos', () => ({ topCryptos: { getDailyRankings: jest.
 jest.mock('../RankingsTable', () => ({ RankingsTable: jest.fn(() => null) }))
 jest.mock('../RankingsChart', () => ({ RankingsChart: jest.fn(() => null) }))
 jest.mock('../CoinOutlook', () => ({ CoinOutlook: () => null }))
-jest.mock('../NativeExitPanel', () => ({ NativeExitPanel: () => null }))
 jest.mock('../CoinCard', () => ({ CoinCard: () => null }))
 jest.mock('../ShareButton', () => ({ ShareButton: () => null }))
 jest.mock('../ExchangeFilter', () => ({ ExchangeFilter: () => null }))

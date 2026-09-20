@@ -5,9 +5,8 @@ Guidance for Claude Code when working in this repo.
 ## What this is
 
 Product corrections recorded September 13, 2026 local time: exit guidance belongs with
-our native Daily/Hourly algorithms and the selected interval. Native Exit timing now
-shows matched CMC holding evidence and a manual UTC planner; automatic recommendations
-remain unvalidated. The user is in the US and uses Coinbase and Kraken; do not let
+our native Daily/Hourly algorithms and the selected interval. The manual UTC planner was rejected and its dead implementation has been removed.
+Coin Outlook shows matched descriptive evidence; automatic recommendations remain unvalidated. The user is in the US and uses Coinbase and Kraken; do not let
 Binance.com availability define their tradable coin universe. Distinguish data feeds
 from exchange access. Do not call a profitable but inconclusive comparison a failed
 backtest. See `research/PRODUCT_LEARNINGS.md` for the mistakes, evidence rules and
@@ -45,10 +44,11 @@ establish an automatic method selector or optimal sell period.
 - `/breakouts` — Coinbase/Kraken USD daily OHLC rankings, entry references and H30 reference levels; separate current rolling-volume universe
 
 The Daily and Hourly pages are thin wrappers over `components/RankingsView.tsx`.
-`NativeExitPanel.tsx` uses `modules/data/native-exit-evidence.json` and
-`modules/nativeExitEvidence.ts` for matched holding comparisons and a manual exit-date
-planner. See `research/native-exits/2026-09-14/README.md`. Do not promote the largest
-retrospective average into an automatic hold recommendation.
+`CoinOutlook.tsx` fetches matched descriptive evidence from `/api/outlook-evidence`,
+which reads `modules/data/coin-outlook-evidence.json`. The rejected `NativeExitPanel`
+and its dedicated selector, data and tests have been removed. Historical holding
+research remains in `research/native-exits/2026-09-14/README.md`. Do not promote the
+largest retrospective average into an automatic hold recommendation.
 
 `/breakouts` uses `BreakoutsView.tsx` and `/api/rankings/ohlc`, backed by public Coinbase
 and Kraken USD spot data through `modules/exchangeOhlc.ts`. The `exchange` parameter
@@ -231,6 +231,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ### Coin Outlook update — 2026-09-14 UTC
 
-Daily/Hourly: `components/CoinOutlook.tsx` provides watch pins and explicit row/leader Outlook actions; inline desktop panel and installed shadcn mobile Sheet. `modules/coinOutlook.ts` describes observed states and raw-snapshot rank crossings; these are not buy/sell policies. `pages/api/outlook-evidence.ts` serves one filtered slice of `modules/data/coin-outlook-evidence.json` on demand; keep the full ledger out of client imports. Only eligible numeric-CMC unmodified top-ten coins can show matched descriptive evidence. Exchange filters affect display; hidden exclusions change scoring. Scored data is keyed to exact context/input to suppress stale interval/method results. The user rejected the manual planner; NativeExitPanel is no longer imported or mounted by RankingsView. Keep it out of the product flow. Outlook evidence is labeled Past outcomes with compact context and figures.
+Daily/Hourly: `components/CoinOutlook.tsx` provides watch pins and explicit row/leader Outlook actions; inline desktop panel and installed shadcn mobile Sheet. `modules/coinOutlook.ts` describes observed states and raw-snapshot rank crossings; these are not buy/sell policies. `pages/api/outlook-evidence.ts` serves one filtered slice of `modules/data/coin-outlook-evidence.json` on demand; keep the full ledger out of client imports. Only eligible numeric-CMC unmodified top-ten coins can show matched descriptive evidence. Exchange filters affect display; hidden exclusions change scoring. Scored data is keyed to exact context/input to suppress stale interval/method results. The user rejected the manual planner; `NativeExitPanel`, its dedicated tests, `modules/nativeExitEvidence.ts` and `modules/data/native-exit-evidence.json` have been removed. CoinOutlook consumes neither native-exit evidence file; its separate endpoint and ledger remain in use. Keep the manual planner out of the product flow. Outlook evidence is labeled Past outcomes with compact context and figures.
 
 Research and current limits: `research/coin-outlook/2026-09-14/APP_INTEGRATION.md`, `research/radar-velocity/2026-09-14/README.md`, and its `earlier-era/README.md`. All recommendations remain null; no rank-to-5x promise, calibrated probability, tested stop, new default, or automatic exit was established. Optional helper audit: `COIN_OUTLOOK_TRACE_PARITY=1 npm test -- --runInBand modules/__tests__/coinOutlook.test.ts`. Full suite 203 tests/11 snapshots and isolated production build passed. Local only; no deployment.
