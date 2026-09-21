@@ -31,7 +31,8 @@ jest.mock('@aws-sdk/client-s3', () => ({
   })),
 }))
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// require() (not import) so jest.mock('quick-lru', ...) above is applied before load
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const S3Store = require('../S3Store').default
 
 const BUCKET = process.env.AWS_S3_BUCKET

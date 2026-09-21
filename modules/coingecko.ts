@@ -90,13 +90,6 @@ export type Market = {
   // roi: null
 }
 
-const errorDatesByKey: {
-  [key: string]: {
-    err: Error
-    date: Date
-  }
-} = {}
-
 export class CoinGecko {
   latestMarketsCache: {
     date: Date
@@ -147,7 +140,6 @@ export class CoinGecko {
   hourlyCachedMarkets = async (
     opts: MarketsOpts & { date: Date },
   ): Promise<Market[] | null> => {
-    // @ts-ignore
     const cacheOpts = {
       ...opts,
       date: roundToHour(opts.date),
@@ -160,7 +152,6 @@ export class CoinGecko {
   dailyCachedMarkets = async (
     opts: MarketsOpts & { date: Date },
   ): Promise<Market[] | null> => {
-    // @ts-ignore
     const cacheOpts = {
       ...opts,
       date: setHour(opts.date, 23),
@@ -182,7 +173,6 @@ export class CoinGecko {
   markets = cache(
     {
       get: async ([opts = {}]) => {
-        // @ts-ignore
         if (opts.hourlyCron) return
         if (this.latestMarketsCache == null) return
 

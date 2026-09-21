@@ -46,7 +46,7 @@ function analyze(records){
  const grouped=new Map()
  for(const r of records){const key=[r.mode,r.view,r.holding].join('/');if(!grouped.has(key))grouped.set(key,[]);grouped.get(key).push(r)}
  const paired=[],halves=[]
- for(const [key,rs] of grouped){
+ for(const [_key,rs] of grouped){
   const signals=[...new Set(rs.map(r=>r.signal))].sort(),cut=Math.floor(signals.length/2)
   const subsets={all:signals,earlier:signals.slice(0,cut),later:signals.slice(cut)}
   const lookup=new Map(rs.map(r=>[[r.signal,r.method].join('/'),r]))
@@ -105,7 +105,7 @@ async function main(){
  const outputs=['cmc-inputs.json.gz','cmc-results.json.gz','cmc-summary.json','cmc-sources.json']
  for(const filename of outputs)assert(!fs.existsSync(path.join(HERE,filename)),`Refusing overwrite ${filename}`)
  const startedAt=iso(Date.now()),{blocks,manifest}=helper.load()
- const normalized=Object.fromEntries(Object.entries(blocks).map(([mode,bs])=>[mode,bs.map(b=>b.map(({byId,...s})=>s))]))
+ const normalized=Object.fromEntries(Object.entries(blocks).map(([mode,bs])=>[mode,bs.map(b=>b.map(({byId:_byId,...s})=>s))]))
  const inputBytes=gzipSync(JSON.stringify({capturedAt:startedAt,manifest,blocks:normalized})+'\n',{mtime:0})
  fs.writeFileSync(path.join(HERE,'cmc-inputs.json.gz'),inputBytes,{flag:'wx'})
  const records=[],signals=[],feasibility=[];let warnings=0,eligibilityChecks=0,slotChecks=0

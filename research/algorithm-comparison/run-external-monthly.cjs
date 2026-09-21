@@ -558,7 +558,7 @@ async function main() {
     archiveCount: download.records.length,
     totalArchiveBytes: download.records.reduce((sum, record) => sum + record.bytes, 0),
     bytesDownloadedThisRun: download.downloadedBytes,
-    archives: download.records.map(({ downloadedBytes, ...record }) => record),
+    archives: download.records.map(({ downloadedBytes: _downloadedBytes, ...record }) => record),
   };
   const limitations = [
     'Retrospective BTC/ETH survivor study; not a point-in-time top-500 or cross-sectional validation.',

@@ -1,9 +1,5 @@
 import { HourlyCron } from './HourlyCron'
 import { cmc } from '../../modules/coinmarketcap'
-import { coingecko } from '../../modules/coingecko'
-import { get } from 'env-var'
-
-const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
 
 class HourlyListingsCron extends HourlyCron {
   constructor() {

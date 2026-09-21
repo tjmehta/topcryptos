@@ -13,8 +13,8 @@ type TaskType = () => Promise<void>
 
 export class HourlyCron extends AbstractApp {
   private _logger: LoggerType & {
-    warn: (...args: Array<any>) => void
-    info: (...args: Array<any>) => void
+    warn: (...args: Array<unknown>) => void
+    info: (...args: Array<unknown>) => void
   }
   private task: TaskType
   private taskPromise: ReturnType<TaskType> | null = null

@@ -7,8 +7,6 @@ import { get } from 'env-var'
 import { setHour } from './../../../modules/roundToHour'
 import { timesParallel } from 'times-loop'
 
-type Resolved<T> = T extends PromiseLike<infer U> ? U : T
-
 const USE_COINGECKO_API = get('USE_COINGECKO_API').asBool()
 
 export type { RankingsResponse } from '../../../modules/uiTypes'
@@ -18,7 +16,7 @@ export type DailyRankingsQuery = {
   dayLimit?: string
 }
 
-export default async (
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<Listings[]>,
 ) => {
@@ -51,10 +49,8 @@ export default async (
           ? await fetchFromGecko(query)
           : await fetchFromCMC(query)
 
-        // @ts-ignore
         result.data = result.data.slice(0, maxRank)
         if (minMarketCap) {
-          // @ts-ignore
           result.data = result.data.filter(
             (c) => c.quote.USD.market_cap > minMarketCap,
           )
@@ -77,8 +73,9 @@ export default async (
   res.status(200).json(dailyRankingsResponse)
 }
 
+export default handler
 
-async function fetchFromGecko(query: ListingsOpts, noFallback?: boolean) {
+async function fetchFromGecko(query: ListingsOpts, _noFallback?: boolean) {
   const date = query.date
   try {
     const markets = date

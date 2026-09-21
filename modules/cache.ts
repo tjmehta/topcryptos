@@ -24,7 +24,7 @@ export function cache<Result, Args extends Array<unknown>>(
   }
 }
 
-export function cacheKey(name: string, opts: {}): string {
+export function cacheKey(name: string, opts: object): string {
   const out = {}
   Object.keys(opts).forEach((key) => {
     out[key] = opts[key].toISOString
