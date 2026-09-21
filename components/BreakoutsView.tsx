@@ -28,7 +28,13 @@ export function BreakoutsView() {
     if (!router.isReady) return
     const controller = new AbortController()
     activeRequest.current = controller
-    setData(null)
+    // `data` is already derived from `loadedData` and the current
+    // view/method/exchange (line 23), so it renders as null the instant any
+    // of those change — no need to also clear `loadedData` here. `error` has
+    // no equivalent derived guard, so it still needs resetting here or a
+    // stale error from a previous request would keep showing after
+    // switching view/method/exchange.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setError(null)
     fetch(`/api/rankings/ohlc?d=${view}&algo=${method}&exchange=${exchange}`, { signal: controller.signal })
       .then(async (res) => {
@@ -123,7 +129,7 @@ export function BreakoutsView() {
                 <div><dt>Prices fetched</dt><dd className="figure mt-1">{data.fetched_at}</dd></div>
                 <div><dt>Rankings calculated</dt><dd className="figure mt-1">{data.generated_at}</dd></div>
               </dl>
-              <p>Daily and Hourly use our CMC rankings and their own holding-period evidence. This separate screen uses the selected exchange's candles for breakout scores and reference levels.</p>
+              <p>Daily and Hourly use our CMC rankings and their own holding-period evidence. This separate screen uses the selected exchange&apos;s candles for breakout scores and reference levels.</p>
 
               <a href={data.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center underline underline-offset-4">{EXCHANGES[exchange]} market-data source</a>
             </div>

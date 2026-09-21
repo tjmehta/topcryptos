@@ -120,8 +120,12 @@ export function RankingsChart({
   )
 
   // A tooltip from the previous exchange/window must not linger over new data.
+  // This is intentionally an effect, not a derived value: hover is driven by
+  // pointer events on the drawn paths, so it has to be reset in response to
+  // `cryptos`/`minMaxes`/`points` changing, not recomputed from them.
   useEffect(() => {
     scrubbingRef.current = null
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     handleHover(null)
   }, [cryptos, minMaxes, points, handleHover])
 
