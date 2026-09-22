@@ -283,7 +283,7 @@ export function RankingsChart({
           svg
             .append('g')
             .selectAll('path.rank-line')
-            .data(ordered, (c: any) => c.id)
+            .data(ordered, (c: Crypto) => c.id)
             .join('path')
             .attr('class', 'rank-line')
             .attr('d', path)
@@ -300,28 +300,28 @@ export function RankingsChart({
           svg
             .append('g')
             .selectAll('path.rank-hit')
-            .data(ordered, (c: any) => c.id)
+            .data(ordered, (c: Crypto) => c.id)
             .join('path')
             .attr('class', 'rank-hit')
             .attr('d', path)
             .attr('tabindex', 0)
             .attr('role', 'button')
             .attr('aria-label', (c) => `${c.name}, rank ${c.rank}`)
-            .on('pointerenter', function (evt: any, c: Crypto) {
+            .on('pointerenter', function (evt: PointerEvent, c: Crypto) {
               const [mx, my] = [evt.offsetX ?? 0, evt.offsetY ?? 0]
               handleHover({ crypto: c, x: mx, y: my })
             })
-            .on('pointermove', function (evt: any, c: Crypto) {
+            .on('pointermove', function (evt: PointerEvent, c: Crypto) {
               handleHover({ crypto: c, x: evt.offsetX ?? 0, y: evt.offsetY ?? 0 })
             })
             .on('pointerleave', () => handleHover(null))
-            .on('focus', function (evt: any, c: Crypto) {
+            .on('focus', function (evt: FocusEvent, c: Crypto) {
               const box = (this as SVGPathElement).getBBox()
               handleHover({ crypto: c, x: box.x + box.width / 2, y: box.y })
             })
             .on('blur', () => handleHover(null))
-            .on('click', (_evt: any, c: Crypto) => onToggleHighlight(c.id))
-            .on('keydown', (evt: any, c: Crypto) => {
+            .on('click', (_evt: MouseEvent, c: Crypto) => onToggleHighlight(c.id))
+            .on('keydown', (evt: KeyboardEvent, c: Crypto) => {
               if (evt.key === 'Enter' || evt.key === ' ') {
                 evt.preventDefault()
                 onToggleHighlight(c.id)
@@ -663,7 +663,7 @@ export function RankingsChart({
             }
 
             hit
-              .on('pointerenter pointermove', function (evt: any) {
+              .on('pointerenter pointermove', function (evt: PointerEvent) {
                 if (press && press.id === evt.pointerId &&
                   Math.hypot(evt.clientX - press.x, evt.clientY - press.y) > 6) {
                   press.dragged = true
@@ -736,7 +736,7 @@ export function RankingsChart({
                 }
                 announce()
               })
-              .on('click', function (evt: any) {
+              .on('click', function (evt: MouseEvent) {
                 // Pointer activation already happened on pointerup. Keep
                 // assistive-technology clicks, which have no pointer sequence.
                 if (evt.detail === 0 && cursor >= 0) onToggleHighlight(items[cursor].crypto.id)

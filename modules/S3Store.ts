@@ -1,4 +1,5 @@
 import { GetObjectCommandOutput, S3 } from '@aws-sdk/client-s3'
+import type QuickLRU from 'quick-lru'
 
 import AbstractStartable from 'abstract-startable'
 import BaseErr from 'baseerr'
@@ -22,7 +23,9 @@ export default class S3Store extends AbstractStartable {
   private opts: Record<string, unknown>
   private client: S3
   private bucket: string
-  private cache: any // stupid ESM :-(
+  // quick-lru is ESM-only, so the value is loaded with `await import` in
+  // _start(); only the type is imported here.
+  private cache: QuickLRU<string, unknown>
 
   constructor() {
     super()

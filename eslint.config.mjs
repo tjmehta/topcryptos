@@ -35,6 +35,13 @@ const eslintConfig = [
     },
   },
   {
+    // Tests hand partial fixtures, mocks and hand-built responses to typed
+    // APIs; `any` there is a fixture convenience, not a production type hole.
+    // Production code keeps the preset's error level for this rule.
+    files: ["**/__tests__/**", "**/*.test.{ts,tsx}"],
+    rules: { "@typescript-eslint/no-explicit-any": "off" },
+  },
+  {
     // Research and cron scripts are CommonJS on purpose; require() is correct there.
     files: ["**/*.cjs"],
     languageOptions: { sourceType: "commonjs" },
