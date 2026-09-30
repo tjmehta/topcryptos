@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- jest config is loaded as CJS */
 const nextJest = require('next/jest')
 
 // Pin legacy date utilities and API fixtures. Ranking windows use UTC bucket

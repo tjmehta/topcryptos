@@ -58,7 +58,12 @@ function HistoricalOutcomes({
     if (!opened || !eligible) return
     const controller = new AbortController()
     const [mode, view, method, state] = context.split(':')
-    setData(null)
+    // `current` below (data?.context === context ? data : null) already
+    // guards against rendering a stale response for a different context, so
+    // clearing `data` here would be redundant. `failed` has no such derived
+    // guard, so it still needs resetting or a stale failure message from a
+    // previous context would keep showing after switching context.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFailed(false)
     fetch(
       `/api/outlook-evidence?${new URLSearchParams({ mode, view, method, state })}`,
@@ -92,7 +97,7 @@ function HistoricalOutcomes({
             history and no hidden-coin exclusions.
           </p>
         ) : failed ? (
-          <p role="status">Results couldn't load. Close and reopen to retry.</p>
+          <p role="status">Results couldn&apos;t load. Close and reopen to retry.</p>
         ) : !current ? (
           <p role="status">Loading results…</p>
         ) : current.rows.length === 0 ? (
@@ -337,6 +342,13 @@ export function CoinOutlook(props: Props) {
   const panel = useRef<HTMLElement>(null)
   useEffect(() => {
     if (coin && props.isDesktop) panel.current?.focus({ preventScroll: false })
+    // Depending on `coin` (not just `coin?.id`) would refocus the panel on
+    // every quote refresh while it's open — `cryptos` gets new object
+    // references on each poll, so the full `coin` object is a new reference
+    // even when the selected coin hasn't changed. That would steal focus
+    // away from the user repeatedly. `coin?.id` only changes when the
+    // selection itself changes, which is the intended trigger.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coin?.id, props.isDesktop])
   const close = () => {
     props.onClose()

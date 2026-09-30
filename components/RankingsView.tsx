@@ -223,9 +223,15 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
   const restoreOutlookFocus = useCallback(() => {
     if (outlookTrigger.current?.isConnected) outlookTrigger.current.focus({ preventScroll: true })
   }, [])
+  // Reads an external store (localStorage), keyed by `mode`. A lazy useState
+  // initializer only covers the first mount; switching daily/hourly after
+  // mount still has to re-read the other mode's key, so this has to stay an
+  // effect that reruns on `mode`. The try/catch fallback to an empty Set is
+  // required for private-mode/storage-disabled browsers.
   useEffect(() => {
     try {
       const raw = localStorage.getItem(hiddenStorageKey(mode))
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHiddenIds(new Set(raw ? (JSON.parse(raw) as string[]) : []))
     } catch {
       setHiddenIds(new Set())
@@ -374,7 +380,11 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
 
   const toggleIn = (set: Set<string>, id: string) => {
     const next = new Set(set)
-    next.has(id) ? next.delete(id) : next.add(id)
+    if (next.has(id)) {
+      next.delete(id)
+    } else {
+      next.add(id)
+    }
     return next
   }
 

@@ -29,6 +29,10 @@ export default function useURLSearchParam<T>(
   // Deriving it during render instead would desync server and client markup.
   useEffect(() => {
     if (!router.isReady) return
+    // Syncs state from an external store (the URL) once it becomes
+    // available after hydration; not derivable during render without
+    // desyncing server/client markup (see comment above).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setValue(parse(router.query[key] as string | string[] | undefined))
     // `parse` is typically an inline arrow, so depending on it would loop.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,7 +56,16 @@ export default function useURLSearchParam<T>(
         scroll: false,
       })
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // `router.query` is a new object every render, so it has to be
+    // stringified to compare by value; depending on the object itself would
+    // make this callback identity change every render, and depending on
+    // individual keys isn't possible since the query shape varies by page.
+    // `router` and `serialize` are intentionally omitted too: `router` is
+    // stable across renders from `useRouter()` and including it would add
+    // nothing, and `serialize` is typically an inline arrow at the call
+    // site, so depending on it would recreate this callback (and re-trigger
+    // consumers) on every render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/use-memo
     [router.isReady, router.pathname, JSON.stringify(router.query), key],
   )
 

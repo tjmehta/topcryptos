@@ -90,13 +90,6 @@ export type Market = {
   // roi: null
 }
 
-const errorDatesByKey: {
-  [key: string]: {
-    err: Error
-    date: Date
-  }
-} = {}
-
 export class CoinGecko {
   latestMarketsCache: {
     date: Date
@@ -114,7 +107,7 @@ export class CoinGecko {
         notice: null,
       },
       data: markets.map<Listings['data'][0]>((market) => ({
-        id: (market.id as any) as number, // hack
+        id: market.id as unknown as number, // hack: CMC ids are numeric, CoinGecko slugs are strings
         name: market.name,
         symbol: market.symbol,
         slug: market.id,
@@ -147,7 +140,6 @@ export class CoinGecko {
   hourlyCachedMarkets = async (
     opts: MarketsOpts & { date: Date },
   ): Promise<Market[] | null> => {
-    // @ts-ignore
     const cacheOpts = {
       ...opts,
       date: roundToHour(opts.date),
@@ -160,7 +152,6 @@ export class CoinGecko {
   dailyCachedMarkets = async (
     opts: MarketsOpts & { date: Date },
   ): Promise<Market[] | null> => {
-    // @ts-ignore
     const cacheOpts = {
       ...opts,
       date: setHour(opts.date, 23),
@@ -182,7 +173,6 @@ export class CoinGecko {
   markets = cache(
     {
       get: async ([opts = {}]) => {
-        // @ts-ignore
         if (opts.hourlyCron) return
         if (this.latestMarketsCache == null) return
 
@@ -245,15 +235,17 @@ export class CoinGecko {
       if (ids) query.ids = ids
       if (order) query.order = order
 
-      const makeUrl = (params: Record<string, string>) => {
+      const makeUrl = (params: MarketQuery) => {
         const url = new URL('https://api.coingecko.com/api/v3/coins/markets')
-        Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v))
+        // String() is what URLSearchParams.set applies to a non-string value, so
+        // `ids` still joins with commas exactly as before.
+        Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)))
         return url.toString()
       }
 
       let json: Market[] = []
       if (limit <= 250) {
-        const url = makeUrl(query as any)
+        const url = makeUrl(query)
         const res = await fetch(url, { headers: { accept: 'application/json' } })
         if (!res.ok) throw new Error(`status ${res.status}`)
         json = await res.json()
@@ -262,7 +254,7 @@ export class CoinGecko {
         const pages: Market[][] = await timesParallel(
           count,
           async (i): Promise<Market[]> => {
-            const url = makeUrl({ ...(query as any), per_page: '250', page: (i + 1).toString() })
+            const url = makeUrl({ ...query, per_page: '250', page: (i + 1).toString() })
             const res = await fetch(url, { headers: { accept: 'application/json' } })
             if (!res.ok) throw new Error(`status ${res.status}`)
             return res.json()

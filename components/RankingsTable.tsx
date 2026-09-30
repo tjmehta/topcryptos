@@ -282,6 +282,11 @@ export function RankingsTable({
     [highlightedIds, hiddenIds, onToggleHighlight, onToggleHidden, onViewOutlook, scoreDescription],
   )
 
+  // TanStack Table's useReactTable() returns functions the React Compiler
+  // cannot memoize safely; this is a library-compatibility limitation, not
+  // something fixable in this component, and restructuring the table to
+  // dodge it is not warranted.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

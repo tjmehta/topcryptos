@@ -43,6 +43,16 @@ async function cgGet<T>(path: string, attempt = 0): Promise<T> {
   return (await res.json()) as T
 }
 
+// The fields this module reads from each CoinGecko response. Anything else the
+// API returns is ignored, so it is left out of the shapes.
+type ExchangeRow = {
+  id: string
+  name: string
+  trust_score_rank?: number | null
+}
+type ExchangeTickersBody = { tickers?: Array<{ coin_id?: string }> }
+type CoinListRow = { id: string; symbol: string; name: string }
+
 /** Widest page the endpoint serves. One call, so asking for it is free. */
 const EXCHANGES_PAGE_MAX = 250
 
@@ -63,8 +73,8 @@ export async function fetchTopExchanges(
 ): Promise<ExchangeSummary[]> {
   const perPage =
     extraIds.length > 0 ? EXCHANGES_PAGE_MAX : Math.min(limit, EXCHANGES_PAGE_MAX)
-  const raw = await cgGet<any[]>(`/exchanges?per_page=${perPage}&page=1`)
-  const summarize = (e: any): ExchangeSummary => ({
+  const raw = await cgGet<ExchangeRow[]>(`/exchanges?per_page=${perPage}&page=1`)
+  const summarize = (e: ExchangeRow): ExchangeSummary => ({
     id: e.id,
     name: e.name,
     rank: typeof e.trust_score_rank === 'number' ? e.trust_score_rank : null,
@@ -94,7 +104,7 @@ export async function fetchExchangeCoinIds(
   const ids = new Set<string>()
 
   for (let page = 1; page <= pages; page++) {
-    const body = await cgGet<{ tickers?: any[] }>(
+    const body = await cgGet<ExchangeTickersBody>(
       `/exchanges/${encodeURIComponent(exchangeId)}/tickers?page=${page}&order=volume_desc`,
     )
     const tickers = body?.tickers ?? []
@@ -116,7 +126,7 @@ export async function fetchExchangeCoinIds(
 export async function fetchGeckoCoinList(): Promise<
   Array<{ id: string; symbol: string; name: string }>
 > {
-  const raw = await cgGet<any[]>('/coins/list')
+  const raw = await cgGet<CoinListRow[]>('/coins/list')
   return raw.map((c) => ({ id: c.id, symbol: c.symbol, name: c.name }))
 }
 

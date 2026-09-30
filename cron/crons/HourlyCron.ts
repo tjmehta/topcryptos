@@ -10,12 +10,13 @@ import timeout from 'abortable-timeout'
 const FORCE_RUN_INTERVAL = get('FORCE_RUN_INTERVAL').asBool()
 
 type TaskType = () => Promise<void>
+type CronLogger = LoggerType & {
+  warn: (...args: Array<unknown>) => void
+  info: (...args: Array<unknown>) => void
+}
 
 export class HourlyCron extends AbstractApp {
-  private _logger: LoggerType & {
-    warn: (...args: Array<any>) => void
-    info: (...args: Array<any>) => void
-  }
+  private _logger: CronLogger
   private task: TaskType
   private taskPromise: ReturnType<TaskType> | null = null
   private abortController: AbortController | null = null
@@ -28,7 +29,7 @@ export class HourlyCron extends AbstractApp {
       stopTimeout: opts.stopTimeout,
     })
     this.task = opts.task
-    this._logger = opts.logger as any
+    this._logger = opts.logger as CronLogger
   }
 
   private _handleInterval = async () => {

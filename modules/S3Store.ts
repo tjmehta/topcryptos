@@ -1,4 +1,5 @@
 import { GetObjectCommandOutput, S3 } from '@aws-sdk/client-s3'
+import type QuickLRU from 'quick-lru'
 
 import AbstractStartable from 'abstract-startable'
 import BaseErr from 'baseerr'
@@ -16,15 +17,15 @@ const AWS_S3_BUCKET_REGION = get('AWS_S3_BUCKET_REGION').required().asString()
 class S3StoreGetError extends BaseErr<{ key: string }> {}
 class S3StoreSetError extends BaseErr<{ key: string }> {}
 
-class S3StoreStartError extends BaseErr<{}> {}
-
-type Resolved<T> = T extends PromiseLike<infer U> ? U : T
+class S3StoreStartError extends BaseErr<Record<string, unknown>> {}
 
 export default class S3Store extends AbstractStartable {
-  private opts: {}
+  private opts: Record<string, unknown>
   private client: S3
   private bucket: string
-  private cache: any // stupid ESM :-(
+  // quick-lru is ESM-only, so the value is loaded with `await import` in
+  // _start(); only the type is imported here.
+  private cache: QuickLRU<string, unknown>
 
   constructor() {
     super()

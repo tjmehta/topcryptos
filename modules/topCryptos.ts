@@ -24,7 +24,7 @@ async function getJson<T>(path: string, query?: Record<string, string>): Promise
 }
 
 class TopCryptosApiClient {
-  async getDailyRankings(opts: DailyRankingsOpts): Promise<RankingsResponse> {
+  async getDailyRankings(_opts: DailyRankingsOpts): Promise<RankingsResponse> {
     const limit = 9
     const responses = await Promise.all<RankingsResponse>(
       times(90 / limit, (i) =>
@@ -35,13 +35,13 @@ class TopCryptosApiClient {
       ).reverse(),
     )
 
-    const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
+    const mergedResponses: RankingsResponse = ([] as RankingsResponse).concat(...responses)
     // Preserve complete snapshots so market-cap ranks keep their source
     // universe. The scorer deduplicates each coin's observations after ranks
     // are assigned; removing rows here compressed ranks in later snapshots.
     return mergedResponses
   }
-  async getHourlyRankings(opts: HourlyRankingsOpts): Promise<RankingsResponse> {
+  async getHourlyRankings(_opts: HourlyRankingsOpts): Promise<RankingsResponse> {
     // 25 hours: a 24-hour window needs 24 cron buckets plus the live one.
     // Chunked for the same reason daily is — one 25×500-coin response would
     // trip the 1MB cap — and reversed so the oldest chunk merges first.
@@ -55,7 +55,7 @@ class TopCryptosApiClient {
       ).reverse(),
     )
 
-    const mergedResponses: RankingsResponse = ([] as any[]).concat.apply([], responses)
+    const mergedResponses: RankingsResponse = ([] as RankingsResponse).concat(...responses)
     // Repeated quotes are handled per coin by the scorer, without shrinking
     // the source universe used to establish market-cap ranks.
     return mergedResponses

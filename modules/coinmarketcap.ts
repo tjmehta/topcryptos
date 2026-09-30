@@ -15,7 +15,7 @@ const maxCacheDuration = 15 * 60 * 1000 // 15 min
 
 export type { Listings }
 
-type Exchanges = {}
+type Exchanges = Record<string, unknown>
 
 export type ListingsOpts = {
   start: number
@@ -42,7 +42,7 @@ const errorDatesByKey: {
 } = {}
 
 async function getJson<T>(path: string, expected: number, init?: { query?: Record<string, string> }) {
-  let url = new URL(`https://pro-api.coinmarketcap.com/v1/${path}`)
+  const url = new URL(`https://pro-api.coinmarketcap.com/v1/${path}`)
   if (init?.query) Object.entries(init.query).forEach(([k, v]) => url.searchParams.set(k, v))
   const res = await fetch(url.toString(), {
     headers: { 'X-CMC_PRO_API_KEY': CMC_API_KEY, accept: 'application/json' },
@@ -230,7 +230,6 @@ class CoinMarketCap {
           const local = await this.latestLocalCachedMarkets(opts)
           if (local != null) return local
         }
-        // @ts-ignore
         const key = cacheKey('cryptocurrency_listings', opts)
         const now = Date.now()
 
@@ -299,7 +298,7 @@ class CoinMarketCap {
       },
     },
     async (opts: ListingsOpts): Promise<Listings> => {
-      let query: {
+      const query: {
         start: string
         limit: string
         date?: string
@@ -356,7 +355,7 @@ class CoinMarketCap {
       },
     },
     async (opts: ExchangesOpts): Promise<Exchanges> => {
-      let query: {
+      const query: {
         start: string
         limit: string
       } = {
