@@ -33,6 +33,7 @@ import { cn } from '@/lib/utils'
 import { selectCoinIdsOnExchanges } from '@/modules/exchangeMap'
 import { topCryptos } from '@/modules/topCryptos'
 import { getRankingWindow } from '@/modules/rankingWindow'
+import { canonicalUrl } from '@/modules/site'
 import type { RankingsResponse } from '@/modules/uiTypes'
 import { useMediaQuery } from '@/components/hooks/useMediaQuery'
 
@@ -425,6 +426,7 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
         <meta name="twitter:card" content="summary" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={canonicalUrl(mode === 'hourly' ? '/hourly' : '/')} />
       </Head>
 
       {/* Sticky, compact: on a phone this is the only chrome between the user

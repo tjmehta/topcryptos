@@ -181,6 +181,20 @@ Read at **module load time** via `env-var`, so a missing one throws on import:
 - **Legacy**: `cron/crons/` + `Dockerfile-cron` are the old DigitalOcean container. Safe to
   delete once DO is decommissioned.
 
+### Search crawl controls and Search Console
+
+- `public/robots.txt` allows everything except `/api/` (data and cron endpoints) and names
+  `https://topcryptos.io/sitemap.xml`. `public/sitemap.xml` lists only the three public
+  pages (`/`, `/hourly`, `/breakouts`). Each page emits a matching `<link rel="canonical">`
+  from `modules/site.ts`, so query variants (`days`, `algo`, `exchange`, `d`) collapse onto
+  the bare route. `modules/__tests__/site.test.ts` keeps the sitemap and canonicals in sync.
+  Add a new public page to both the sitemap and its page `<Head>`; never list `/api/*`.
+- Search Console ownership (authority: TJ, 2026-10-31, [TJS-3256](/TJS/issues/TJS-3256)):
+  the studio lead holds the property verification and submits the sitemap; growth records
+  coverage in the portfolio coverage matrix; the Topcryptos studio lead reports the live
+  `/robots.txt` and `/sitemap.xml` readback after each deployment that touches them.
+  Dated readback: pending until [TJS-3259](/TJS/issues/TJS-3259) is merged and deployed.
+
 ## Known rough edges
 
 - **Local hourly history refreshes automatically.** In non-production FS-cache mode,

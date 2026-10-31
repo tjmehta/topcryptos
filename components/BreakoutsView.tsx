@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { OhlcScreen } from '@/modules/ohlcScreen'
+import { canonicalUrl } from '@/modules/site'
 
 const VIEWS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
 const EXCHANGES = { coinbase: 'Coinbase', kraken: 'Kraken' } as const
@@ -57,7 +58,7 @@ export function BreakoutsView() {
   }
 
   return <div className="min-h-full">
-    <Head><title>Top Cryptos — Breakouts &amp; sell outlooks</title><meta name="description" content="Daily OHLC rankings, dated entry references and 30-day target outlooks." /></Head>
+    <Head><title>Top Cryptos — Breakouts &amp; sell outlooks</title><meta name="description" content="Daily OHLC rankings, dated entry references and 30-day target outlooks." /><link rel="canonical" href={canonicalUrl('/breakouts')} /></Head>
     <header className="sticky top-0 z-30 border-b border-border/60 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
         <Link href="/" className="flex min-w-0 items-center gap-2"><span aria-hidden className="text-lg leading-none">🔥</span><span className="truncate font-display text-xl leading-none tracking-tight sm:text-2xl">Top Cryptos</span></Link>
