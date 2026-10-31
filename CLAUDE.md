@@ -193,7 +193,11 @@ Read at **module load time** via `env-var`, so a missing one throws on import:
   the studio lead holds the property verification and submits the sitemap; growth records
   coverage in the portfolio coverage matrix; the Topcryptos studio lead reports the live
   `/robots.txt` and `/sitemap.xml` readback after each deployment that touches them.
-  Dated readback: pending until [TJS-3259](/TJS/issues/TJS-3259) is merged and deployed.
+  Dated readback: 2026-10-31T19:57Z, production deployment `dpl_88orXa1FHQjExQfofWSkdxTTpJiv`
+  (merge `286df0a`, [TJS-3259](/TJS/issues/TJS-3259)): `/robots.txt` 200 `text/plain`, `/sitemap.xml`
+  200 `application/xml` (valid, three locs); `/`, `/hourly`, `/breakouts` 200 with matching
+  canonicals, no `x-robots-tag` header and no robots meta; query variants emit the bare-route
+  canonical. Search Console submission is recorded on [TJS-3256](/TJS/issues/TJS-3256).
 
 ## Known rough edges
 
