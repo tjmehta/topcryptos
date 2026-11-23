@@ -1,6 +1,7 @@
 import {
   type BreakoutSummary,
   type RankingSummary,
+  datasetJsonLd,
   faqJsonLd,
   itemListJsonLd,
   serializeJsonLd,
@@ -23,7 +24,7 @@ const UNIVERSE =
   'the 500 largest cryptocurrencies by market cap, counting only coins worth more than $10 million'
 
 const CLASSIC =
-  'The default Classic score combines three signed percentile ranks: price momentum (70%, the price change spread over the whole window), price acceleration (20%) and improving market-cap rank (10%, whether a coin is climbing the market-cap ranking faster).'
+  'The default Classic score combines three signed percentile ranks: price momentum (70%, the price change spread over the whole window), price acceleration (20%) and market-cap rank acceleration (10%, whether a coin is climbing the market-cap ranking faster).'
 
 const NOT_ADVICE =
   'These rankings describe past price data. They are not investment advice or a forecast of future returns.'
@@ -54,11 +55,11 @@ function faq(daily: RankingSummary | null): { q: string; a: string }[] {
     },
     {
       q: "What's a free website that ranks cryptocurrencies by momentum?",
-      a: 'Top Cryptos (topcryptos.io) is free and needs no account. It ranks coins by Classic score, built from price momentum, acceleration and improving market-cap rank, and also offers Momentum, Trend quality, Cumulative and Hybrid methods over windows of 3 to 90 days or 3 to 24 hours.',
+      a: 'Top Cryptos (topcryptos.io) is free and needs no account. It ranks coins by Classic score, built from price momentum, price acceleration and market-cap rank acceleration (whether a coin is climbing the market-cap ranking faster), and also offers Momentum, Trend quality, Cumulative and Hybrid methods over windows of 3 to 90 days or 3 to 24 hours.',
     },
     {
       q: 'Is there a free crypto breakout scanner?',
-      a: 'Yes. The Breakouts page (topcryptos.io/breakouts) screens the top 50 Coinbase or Kraken USD spot pairs by rolling 24-hour dollar volume. A pair qualifies when its latest completed daily close is above the highest high of the earlier candles in the chosen view (3 to 90 daily candles). It lists up to 10 signals with reference target and stop levels, which have not been backtested on these exchanges.',
+      a: 'Yes. The Breakouts page (topcryptos.io/breakouts) screens the top 50 Coinbase or Kraken USD spot pairs by rolling 24-hour dollar volume. A pair qualifies when its signal-day close, the daily close from two UTC days before the current day, is above the highest high of the earlier candles in the chosen view (3 to 90 daily candles). It lists up to 10 signals with reference target and stop levels, which have not been backtested on these exchanges.',
     },
     {
       q: 'Where can I see hourly top-performing cryptocurrencies?',
@@ -66,7 +67,7 @@ function faq(daily: RankingSummary | null): { q: string; a: string }[] {
     },
     {
       q: 'How can I find coins whose market cap rank is improving?',
-      a: "Improving market-cap rank is one of the three inputs to the Classic score on the Daily and Hourly pages. On a wide screen, the rankings table has a Rank Δ column showing how many places each coin's market-cap rank moved over the window; sort by it to see the biggest climbers first.",
+      a: "On the Daily and Hourly pages, 10% of the Classic score rewards market-cap rank acceleration: whether a coin is climbing the market-cap ranking faster over the window. To see which coins' rank improved most, use the rankings table on a wide screen: its Rank Δ column shows how many places each coin's market-cap rank moved over the window; sort by it to see the biggest climbers first.",
     },
   ]
 }
@@ -105,7 +106,8 @@ function rankMove(e: RankingSummary['entries'][number]): string | null {
   return `market-cap rank #${e.startRank} → #${e.endRank}`
 }
 
-export function RankingsSummary({ mode, summary }: { mode: 'daily' | 'hourly'; summary: RankingSummary | null }) {
+/** JSON-LD for a rankings page: always WebSite + Dataset; ItemList when scored. */
+export function rankingsJsonLd(mode: 'daily' | 'hourly', summary: RankingSummary | null): Record<string, unknown>[] {
   const path = mode === 'daily' ? '/' : '/hourly'
   const unit = mode === 'daily' ? 'days' : 'hours'
   const window = summary?.window ?? (mode === 'daily' ? 10 : 6)
@@ -113,8 +115,15 @@ export function RankingsSummary({ mode, summary }: { mode: 'daily' | 'hourly'; s
   const listDescription = summary
     ? `Highest Classic scores over ${window} ${unit} as of ${summary.asOfLabel}, among ${UNIVERSE}.`
     : `Highest Classic scores over ${window} ${unit}, among ${UNIVERSE}.`
-  const items = faq(mode === 'daily' ? summary : null)
-  const graph: Record<string, unknown>[] = [websiteJsonLd()]
+  const graph: Record<string, unknown>[] = [
+    websiteJsonLd(),
+    datasetJsonLd({
+      path,
+      name: `Top Cryptos ${mode} cryptocurrency rankings`,
+      description: `${mode === 'daily' ? 'Daily' : 'Hourly'} rankings of ${UNIVERSE}, scored by the Classic method (price momentum, price acceleration and market-cap rank acceleration) over a ${window}-${mode === 'daily' ? 'day' : 'hour'} default window from hourly CoinMarketCap snapshots.`,
+      dateModified: summary?.asOf ?? null,
+    }),
+  ]
   if (summary && summary.entries.length > 0) {
     graph.push(
       itemListJsonLd({
@@ -125,7 +134,15 @@ export function RankingsSummary({ mode, summary }: { mode: 'daily' | 'hourly'; s
       }),
     )
   }
-  if (mode === 'daily') graph.push(faqJsonLd(items))
+  if (mode === 'daily') graph.push(faqJsonLd(faq(summary)))
+  return graph
+}
+
+export function RankingsSummary({ mode, summary }: { mode: 'daily' | 'hourly'; summary: RankingSummary | null }) {
+  const window = summary?.window ?? (mode === 'daily' ? 10 : 6)
+  const unit = mode === 'daily' ? 'days' : 'hours'
+  const items = faq(mode === 'daily' ? summary : null)
+  const graph = rankingsJsonLd(mode, summary)
 
   return (
     <section
@@ -155,7 +172,7 @@ export function RankingsSummary({ mode, summary }: { mode: 'daily' | 'hourly'; s
       {summary && summary.entries.length > 0 && (
         <div className="flex flex-col gap-3">
           <h2 className="font-medium text-foreground">
-            Top {summary.entries.length} by Classic score over {window} {unit}
+            {`Top ${summary.entries.length} by Classic score over ${window} ${unit}`}
           </h2>
           <p>
             As of {summary.asOfLabel}, from the newest saved snapshot;{' '}
@@ -185,10 +202,20 @@ export function RankingsSummary({ mode, summary }: { mode: 'daily' | 'hourly'; s
   )
 }
 
-export function BreakoutsSummary({ summary }: { summary: BreakoutSummary | null }) {
-  const items = faq(null)
-  const graph: Record<string, unknown>[] = [websiteJsonLd()]
-  if (summary && summary.entries.length > 0) {
+/** JSON-LD for /breakouts: WebSite + Dataset, and an ItemList (possibly empty) when loaded. */
+export function breakoutsJsonLd(summary: BreakoutSummary | null): Record<string, unknown>[] {
+  const graph: Record<string, unknown>[] = [
+    websiteJsonLd(),
+    datasetJsonLd({
+      path: '/breakouts',
+      name: 'Top Cryptos breakout screen',
+      description:
+        'Breakout, Volume breakout and Momentum rankings of the top 50 Coinbase or Kraken USD spot pairs by rolling 24-hour dollar volume, computed from public daily candles, with up to 10 signals per view.',
+      dateModified: summary?.fetchedAt ?? null,
+    }),
+  ]
+  // Zero signals is a normal outcome; the list then says so with no items.
+  if (summary) {
     graph.push(
       itemListJsonLd({
         path: '/breakouts',
@@ -198,6 +225,12 @@ export function BreakoutsSummary({ summary }: { summary: BreakoutSummary | null 
       }),
     )
   }
+  return graph
+}
+
+export function BreakoutsSummary({ summary }: { summary: BreakoutSummary | null }) {
+  const items = faq(null)
+  const graph = breakoutsJsonLd(summary)
 
   return (
     <section
@@ -217,8 +250,9 @@ export function BreakoutsSummary({ summary }: { summary: BreakoutSummary | null 
           dollar volume of at least $1 million over the previous 20 days.
         </p>
         <p>
-          The default Breakout method scores how far the latest completed daily
-          close sits above the highest high of the earlier candles in the view
+          The default Breakout method scores how far the signal-day close (the
+          daily close from two UTC days before the current day) sits above the
+          highest high of the earlier candles in the view
           (7 daily candles by default, adjustable from 3 to 90) and keeps up to
           10 pairs with a positive score. Volume breakout also requires that
           day&apos;s volume to be at least 1.5 times the 20-day median; Momentum

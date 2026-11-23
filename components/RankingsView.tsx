@@ -48,7 +48,7 @@ export type RankingsMode = 'daily' | 'hourly'
 export const ALGORITHMS = {
   classic: {
     label: 'Classic',
-    description: 'Price momentum, acceleration, and improving market-cap rank.',
+    description: 'Price momentum, price acceleration, and market-cap rank acceleration.',
   },
   momentum: {
     label: 'Momentum',

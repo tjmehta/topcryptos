@@ -1,14 +1,14 @@
 # Top Cryptos
 
-> Free cryptocurrency momentum rankings at https://topcryptos.io. Daily and hourly leaderboards rank the 500 largest coins by market cap (worth more than $10 million) by price momentum, acceleration and improving market-cap rank. A separate breakout screen covers the top 50 Coinbase and Kraken USD spot pairs. No account is needed. The rankings describe past price data; they are not investment advice or a forecast.
+> Free cryptocurrency momentum rankings at https://topcryptos.io. Daily and hourly leaderboards rank the 500 largest coins by market cap (worth more than $10 million) by price momentum, price acceleration and market-cap rank acceleration (whether a coin is climbing the market-cap ranking faster). A separate breakout screen covers the top 50 Coinbase and Kraken USD spot pairs. No account is needed. The rankings describe past price data; they are not investment advice or a forecast.
 
-Each page's HTML includes a plain-text summary of its method and current top entries, and ItemList JSON-LD for those entries.
+Each page's HTML includes a plain-text summary of its method and current top entries, and Dataset and ItemList JSON-LD.
 
 ## Pages
 
-- [Daily rankings](https://topcryptos.io/): coins ranked over a window of 3 to 90 UTC days, 10 by default, from hourly CoinMarketCap snapshots. The default Classic score combines signed percentile ranks of price momentum (70%), price acceleration (20%) and improving market-cap rank (10%). Momentum, Trend quality, Cumulative and Hybrid methods are also available.
+- [Daily rankings](https://topcryptos.io/): coins ranked over a window of 3 to 90 UTC days, 10 by default, from hourly CoinMarketCap snapshots. The default Classic score combines signed percentile ranks of price momentum (70%), price acceleration (20%) and market-cap rank acceleration (10%, whether a coin is climbing the market-cap ranking faster). Momentum, Trend quality, Cumulative and Hybrid methods are also available.
 - [Hourly rankings](https://topcryptos.io/hourly): the same coins and methods over the last 3 to 24 hours, 6 by default.
-- [Breakouts](https://topcryptos.io/breakouts): Coinbase or Kraken USD spot pairs whose latest completed daily close is above the highest high of the earlier candles in the view (3 to 90 daily candles, 7 by default), up to 10 signals, with reference target and stop levels that have not been backtested on these exchanges.
+- [Breakouts](https://topcryptos.io/breakouts): Coinbase or Kraken USD spot pairs whose signal-day close (the daily close from two UTC days before the current day) is above the highest high of the earlier candles in the view (3 to 90 daily candles, 7 by default), up to 10 signals, with reference target and stop levels that have not been backtested on these exchanges.
 
 ## Notes
 

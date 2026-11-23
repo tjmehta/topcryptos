@@ -75,7 +75,7 @@ export function websiteJsonLd(): JsonLd {
     name: 'Top Cryptos',
     url: `${SITE_ORIGIN}/`,
     description:
-      'Free cryptocurrency momentum rankings: daily and hourly leaderboards scored from price momentum, acceleration and improving market-cap rank, plus a Coinbase and Kraken breakout screen.',
+      'Free cryptocurrency momentum rankings: daily and hourly leaderboards scored from price momentum, price acceleration and market-cap rank acceleration, plus a Coinbase and Kraken breakout screen.',
     inLanguage: 'en',
   }
 }
@@ -98,6 +98,24 @@ export function itemListJsonLd(opts: {
       position: i + 1,
       name,
     })),
+  }
+}
+
+export function datasetJsonLd(opts: {
+  path: string
+  name: string
+  description: string
+  /** ISO time of the data the page was generated from, when known */
+  dateModified: string | null
+}): JsonLd {
+  return {
+    '@type': 'Dataset',
+    name: opts.name,
+    description: opts.description,
+    url: canonicalUrl(opts.path),
+    isAccessibleForFree: true,
+    creator: { '@type': 'Organization', name: 'Top Cryptos', url: `${SITE_ORIGIN}/` },
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   }
 }
 
