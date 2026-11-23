@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { OhlcScreen } from '@/modules/ohlcScreen'
 import { canonicalUrl } from '@/modules/site'
+import { BreakoutsSummary } from '@/components/PageSummary'
+import type { BreakoutSummary } from '@/modules/rankingSummary'
 
 const VIEWS = [3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60, 90]
 const EXCHANGES = { coinbase: 'Coinbase', kraken: 'Kraken' } as const
@@ -13,7 +15,7 @@ const METHODS = ['Breakout', 'VolumeBreakout', 'Momentum']
 const LABELS: Record<string, string> = { Breakout: 'Breakout', VolumeBreakout: 'Volume breakout', Momentum: 'Momentum' }
 const numericPrice = (value: number) => value.toLocaleString('en-US', { maximumSignificantDigits: 7 })
 
-export function BreakoutsView() {
+export function BreakoutsView({ summary = null }: { summary?: BreakoutSummary | null }) {
   const router = useRouter()
   const rawView = typeof router.query.d === 'string' ? Number(router.query.d) : 7
   const view = VIEWS.includes(rawView) ? rawView : 7
@@ -137,6 +139,7 @@ export function BreakoutsView() {
           </details>
         </section>
       </>}
+      <BreakoutsSummary summary={summary} />
     </main>
   </div>
 }
