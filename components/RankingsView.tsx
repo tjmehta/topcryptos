@@ -28,6 +28,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { RankingsChart } from '@/components/RankingsChart'
 import { RankingsTable } from '@/components/RankingsTable'
+import { RankingsSummary } from '@/components/PageSummary'
+import type { RankingSummary } from '@/modules/rankingSummary'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { selectCoinIdsOnExchanges } from '@/modules/exchangeMap'
@@ -46,7 +48,7 @@ export type RankingsMode = 'daily' | 'hourly'
 export const ALGORITHMS = {
   classic: {
     label: 'Classic',
-    description: 'Price momentum, acceleration, and improving market-cap rank.',
+    description: 'Price momentum, price acceleration, and market-cap rank acceleration.',
   },
   momentum: {
     label: 'Momentum',
@@ -135,7 +137,7 @@ export function shareDescription(
   return parts.join(' ') + '.'
 }
 
-export function RankingsView({ mode }: { mode: RankingsMode }) {
+export function RankingsView({ mode, summary = null }: { mode: RankingsMode; summary?: RankingSummary | null }) {
   const unit = mode === 'daily' ? 'days' : 'hours'
   const isDesktop = useMediaQuery('(min-width: 768px)')
   const isWide = useMediaQuery('(min-width: 1280px)')
@@ -705,6 +707,8 @@ export function RankingsView({ mode }: { mode: RankingsMode }) {
             )}
           </section>
         </div>
+
+        <RankingsSummary mode={mode} summary={summary} />
       </main>
 
       {/* Sponsored card, below the fold. */}

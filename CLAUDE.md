@@ -189,6 +189,14 @@ Read at **module load time** via `env-var`, so a missing one throws on import:
   from `modules/site.ts`, so query variants (`days`, `algo`, `exchange`, `d`) collapse onto
   the bare route. `modules/__tests__/site.test.ts` keeps the sitemap and canonicals in sync.
   Add a new public page to both the sitemap and its page `<Head>`; never list `/api/*`.
+- AEO page summaries ([TJS-5710](/TJS/issues/TJS-5710)): `/`, `/hourly` and `/breakouts` use
+  `getStaticProps` with ISR (1h, 15m, 1h) to server-render a plain-text method summary, the
+  default view's current top entries, an FAQ and WebSite + ItemList JSON-LD (FAQPage on `/`).
+  `modules/rankingSummaryServer.ts` reads only cron-written snapshots (never the live or
+  historical CMC endpoints, which spend credits) and must stay behind `await import()` so it
+  never reaches the browser bundle. Regeneration errors are rethrown so Next keeps the last good
+  page; only the build degrades to `summary: null` (`modules/staticSummaryProps.ts`). Copy in
+  `components/PageSummary.tsx` and `public/llms.txt` must stay true of the scorer and universe.
 - Search Console ownership (authority: TJ, 2026-10-31, [TJS-3256](/TJS/issues/TJS-3256)):
   the studio lead holds the property verification and submits the sitemap; growth records
   coverage in the portfolio coverage matrix; the Topcryptos studio lead reports the live

@@ -27,4 +27,12 @@ describe('site crawl controls', () => {
     expect(robots).toMatch(/^Disallow: \/api\/$/m)
     expect(robots).toMatch(new RegExp(`^Sitemap: ${SITE_ORIGIN}/sitemap.xml$`, 'm'))
   })
+
+  it('llms.txt links every public page by its canonical URL and nothing under /api/', () => {
+    const llms = readFileSync(join(publicDir, 'llms.txt'), 'utf8')
+    expect(llms).toMatch(/^# Top Cryptos$/m)
+    const links = [...llms.matchAll(/\]\((https:[^)]+)\)/g)].map((m) => m[1])
+    expect(links).toEqual(['/', '/hourly', '/breakouts'].map(canonicalUrl))
+    expect(llms).not.toMatch(/\/api\//)
+  })
 })
